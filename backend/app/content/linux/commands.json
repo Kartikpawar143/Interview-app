@@ -1,0 +1,282 @@
+[
+  {
+    "id": "cmd-01",
+    "name": "uname",
+    "description": "System and kernel identity",
+    "example": "uname -r",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-02",
+    "name": "findmnt",
+    "description": "Mount and filesystem view",
+    "example": "findmnt -T /var/log",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-03",
+    "name": "stat",
+    "description": "File metadata and permissions",
+    "example": "stat -c \"%a %U:%G %n\" file",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-04",
+    "name": "namei",
+    "description": "Permissions along a path",
+    "example": "namei -l /srv/app/config.yml",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-05",
+    "name": "getfacl",
+    "description": "Read access control lists",
+    "example": "getfacl -p /srv/share",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-06",
+    "name": "id",
+    "description": "User and group identity",
+    "example": "id alice",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-07",
+    "name": "getent",
+    "description": "Query configured name services",
+    "example": "getent passwd alice",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-08",
+    "name": "visudo",
+    "description": "Validate sudoers policy",
+    "example": "visudo -c",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-09",
+    "name": "ps",
+    "description": "Process snapshot",
+    "example": "ps -eo pid,ppid,state,comm",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-10",
+    "name": "kill",
+    "description": "Send a process signal",
+    "example": "kill -TERM 2480",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-11",
+    "name": "systemctl",
+    "description": "Inspect or manage systemd units",
+    "example": "systemctl status nginx",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-12",
+    "name": "journalctl",
+    "description": "Query the system journal",
+    "example": "journalctl -u nginx --since today",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-13",
+    "name": "ip",
+    "description": "Inspect links, addresses, and routes",
+    "example": "ip route get 1.1.1.1",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-14",
+    "name": "ss",
+    "description": "Inspect sockets",
+    "example": "ss -lntup",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-15",
+    "name": "ssh",
+    "description": "Secure remote connection",
+    "example": "ssh -vvv user@host",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-16",
+    "name": "lsblk",
+    "description": "Block device relationships",
+    "example": "lsblk -f",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-17",
+    "name": "df",
+    "description": "Filesystem space and inode use",
+    "example": "df -hT; df -i",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-18",
+    "name": "pvs-vgs-lvs",
+    "description": "Inspect LVM layers",
+    "example": "pvs; vgs; lvs",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-19",
+    "name": "free",
+    "description": "Memory and swap summary",
+    "example": "free -h",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-20",
+    "name": "top",
+    "description": "Process and CPU activity",
+    "example": "top -b -n1",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-21",
+    "name": "vmstat",
+    "description": "Memory and CPU activity",
+    "example": "vmstat 1 5",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-22",
+    "name": "iostat",
+    "description": "Device throughput and latency",
+    "example": "iostat -xz 1 3",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-23",
+    "name": "apt",
+    "description": "Debian-family package queries",
+    "example": "apt-cache policy openssh-client",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-24",
+    "name": "dnf",
+    "description": "RPM-family package queries",
+    "example": "dnf info openssh-clients",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-25",
+    "name": "dpkg-rpm",
+    "description": "Query package file ownership",
+    "example": "dpkg -S /usr/bin/ssh",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-26",
+    "name": "getenforce",
+    "description": "SELinux enforcement state",
+    "example": "getenforce",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-27",
+    "name": "ausearch",
+    "description": "Query audit events",
+    "example": "ausearch -m AVC -ts recent",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-28",
+    "name": "nft",
+    "description": "Inspect nftables rules",
+    "example": "nft list ruleset",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-29",
+    "name": "bash-n",
+    "description": "Syntax-check Bash without execution",
+    "example": "bash -n ./job.sh",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-30",
+    "name": "shellcheck",
+    "description": "Analyze shell scripts",
+    "example": "shellcheck ./job.sh",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-31",
+    "name": "crontab",
+    "description": "Inspect cron schedule",
+    "example": "crontab -l",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-32",
+    "name": "flock",
+    "description": "Acquire advisory file lock",
+    "example": "flock -n /run/lock/job.lock command",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-33",
+    "name": "lsof",
+    "description": "List open files and sockets",
+    "example": "lsof +L1",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-34",
+    "name": "logrotate",
+    "description": "Debug log rotation configuration",
+    "example": "logrotate -d /etc/logrotate.conf",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  },
+  {
+    "id": "cmd-35",
+    "name": "dmesg",
+    "description": "Read kernel messages",
+    "example": "dmesg --level=err,warn",
+    "notes": "Review host and distribution behavior before use; commands that alter system state require validated scope, permissions, and rollback.",
+    "topic_ids": []
+  }
+]

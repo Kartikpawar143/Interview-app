@@ -1,0 +1,29 @@
+[
+  {
+    "id": "linux",
+    "name": "Linux Administration",
+    "short_name": "SYSTEMS / 01",
+    "description": "Build a strong foundation in the operating system that powers the modern internet.",
+    "status": "available",
+    "accent": "green",
+    "topics": []
+  },
+  {
+    "id": "aws",
+    "name": "AWS Cloud",
+    "short_name": "CLOUD / 02",
+    "description": "Explore the building blocks behind secure, scalable cloud infrastructure.",
+    "status": "coming_soon",
+    "accent": "orange",
+    "topics": []
+  },
+  {
+    "id": "azure",
+    "name": "Microsoft Azure",
+    "short_name": "CLOUD / 03",
+    "description": "Get ready to design and operate solutions across the Azure ecosystem.",
+    "status": "coming_soon",
+    "accent": "blue",
+    "topics": []
+  }
+]

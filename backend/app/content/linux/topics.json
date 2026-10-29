@@ -1,0 +1,90 @@
+[
+  {
+    "id": "linux-fundamentals-architecture",
+    "slug": "linux-fundamentals-architecture",
+    "name": "Linux Fundamentals and Architecture",
+    "description": "Kernel and user-space boundaries, boot, processes, and core system interfaces.",
+    "department_id": "linux",
+    "order": 1
+  },
+  {
+    "id": "filesystems-permissions",
+    "slug": "filesystems-permissions",
+    "name": "Filesystems and Permissions",
+    "description": "Filesystem hierarchy, mounts, access modes, ACLs, links, and disk usage.",
+    "department_id": "linux",
+    "order": 2
+  },
+  {
+    "id": "users-groups-sudo",
+    "slug": "users-groups-sudo",
+    "name": "Users, Groups, and sudo",
+    "description": "Identity sources, group membership, privilege delegation, and account administration.",
+    "department_id": "linux",
+    "order": 3
+  },
+  {
+    "id": "processes-systemd",
+    "slug": "processes-systemd",
+    "name": "Processes and systemd",
+    "description": "Process lifecycle, signals, service units, dependencies, and resource controls.",
+    "department_id": "linux",
+    "order": 4
+  },
+  {
+    "id": "networking-dns-ssh",
+    "slug": "networking-dns-ssh",
+    "name": "Networking, DNS, and SSH",
+    "description": "Addressing, routing, resolver configuration, sockets, and SSH authentication.",
+    "department_id": "linux",
+    "order": 5
+  },
+  {
+    "id": "storage-partitions-lvm",
+    "slug": "storage-partitions-lvm",
+    "name": "Storage, Partitions, and LVM",
+    "description": "Block devices, filesystems, mount configuration, and logical volume management.",
+    "department_id": "linux",
+    "order": 6
+  },
+  {
+    "id": "cpu-memory-troubleshooting",
+    "slug": "cpu-memory-troubleshooting",
+    "name": "CPU, Memory, and Troubleshooting",
+    "description": "Resource accounting, pressure, swap, performance diagnosis, and fault isolation.",
+    "department_id": "linux",
+    "order": 7
+  },
+  {
+    "id": "package-management",
+    "slug": "package-management",
+    "name": "Package Management",
+    "description": "Repositories, dependency resolution, package databases, and safe updates.",
+    "department_id": "linux",
+    "order": 8
+  },
+  {
+    "id": "security-selinux-firewalls",
+    "slug": "security-selinux-firewalls",
+    "name": "Security, SELinux, and Firewalls",
+    "description": "Least privilege, mandatory access control, firewall policy, and security diagnostics.",
+    "department_id": "linux",
+    "order": 9
+  },
+  {
+    "id": "bash-scripting-cron",
+    "slug": "bash-scripting-cron",
+    "name": "Bash Scripting and Cron",
+    "description": "Shell semantics, quoting, exit status, scheduling, and safe automation.",
+    "department_id": "linux",
+    "order": 10
+  },
+  {
+    "id": "logs-monitoring-production",
+    "slug": "logs-monitoring-production",
+    "name": "Logs, Monitoring, and Production Troubleshooting",
+    "description": "Journals, log files, observability, incident triage, and safe production operations.",
+    "department_id": "linux",
+    "order": 11
+  }
+]

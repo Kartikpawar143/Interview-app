@@ -1,0 +1,2048 @@
+[
+  {
+    "id": "linux-001",
+    "slug": "kernel-user-space",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What is the difference between the Linux kernel and user space?",
+    "short_answer": "The kernel manages hardware and shared resources; user-space programs request services through system calls and lack direct privileged access.",
+    "detailed_explanation": "The kernel manages hardware and shared resources; user-space programs request services through system calls and lack direct privileged access. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "uname -r"
+    ],
+    "sample_output": "6.8.0-41-generic",
+    "real_world_examples": [
+      "In an interview scenario involving what is the difference between the Linux kernel and user space?, describe the impact, collect evidence with `uname -r`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `uname -r` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of kernel user space.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-002",
+    "slug": "boot-sequence",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Walk through a typical Linux boot sequence.",
+    "short_answer": "Firmware initializes hardware, a bootloader loads the kernel and initramfs, then the kernel mounts root and starts PID 1 and services.",
+    "detailed_explanation": "Firmware initializes hardware, a bootloader loads the kernel and initramfs, then the kernel mounts root and starts PID 1 and services. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "systemctl get-default"
+    ],
+    "sample_output": "graphical.target",
+    "real_world_examples": [
+      "In an interview scenario involving walk through a typical Linux boot sequence., describe the impact, collect evidence with `systemctl get-default`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl get-default` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of boot sequence.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-003",
+    "slug": "system-calls",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "What happens during a system call?",
+    "short_answer": "The CPU enters kernel mode through a controlled interface; the kernel validates arguments, performs the operation, and returns a result or error.",
+    "detailed_explanation": "The CPU enters kernel mode through a controlled interface; the kernel validates arguments, performs the operation, and returns a result or error. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "strace -e openat cat /etc/hostname"
+    ],
+    "sample_output": "openat(AT_FDCWD, \"/etc/hostname\", O_RDONLY) = 3",
+    "real_world_examples": [
+      "In an interview scenario involving what happens during a system call?, describe the impact, collect evidence with `strace -e openat cat /etc/hostname`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `strace -e openat cat /etc/hostname` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of system calls.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-004",
+    "slug": "initramfs",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "Why is an initramfs used during boot?",
+    "short_answer": "It provides early-boot tools and drivers needed to locate and mount the real root filesystem, including encrypted or complex storage.",
+    "detailed_explanation": "It provides early-boot tools and drivers needed to locate and mount the real root filesystem, including encrypted or complex storage. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "lsinitramfs /boot/initrd.img-$(uname -r) | head"
+    ],
+    "sample_output": "initramfs-tools: listing archive contents",
+    "real_world_examples": [
+      "In an interview scenario involving why is an initramfs used during boot?, describe the impact, collect evidence with `lsinitramfs /boot/initrd.img-$(uname -r) | head`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `lsinitramfs /boot/initrd.img-$(uname -r) | head` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of initramfs.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-005",
+    "slug": "oops-panic",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How does a kernel oops differ from a kernel panic?",
+    "short_answer": "An oops may be recoverable but signals a kernel fault; a panic halts when safe continuation is not possible.",
+    "detailed_explanation": "An oops may be recoverable but signals a kernel fault; a panic halts when safe continuation is not possible. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "journalctl -k -b -1 | tail"
+    ],
+    "sample_output": "kernel: BUG: unable to handle page fault",
+    "real_world_examples": [
+      "In an interview scenario involving how does a kernel oops differ from a kernel panic?, describe the impact, collect evidence with `journalctl -k -b -1 | tail`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `journalctl -k -b -1 | tail` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of oops panic.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-006",
+    "slug": "kernel-module",
+    "topic_id": "linux-fundamentals-architecture",
+    "topic": "Linux Fundamentals and Architecture",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How would you diagnose a kernel module that fails to load?",
+    "short_answer": "Check module presence, kernel compatibility, dependencies and signature requirements, then inspect kernel logs for the loader error.",
+    "detailed_explanation": "Check module presence, kernel compatibility, dependencies and signature requirements, then inspect kernel logs for the loader error. Linux distributions combine the kernel with user-space tooling and defaults; verify the host rather than assuming identical behavior. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Debian/Ubuntu commonly use initramfs-tools; Fedora/RHEL commonly use dracut. Bootloader and module-signing defaults differ.",
+    "commands": [
+      "modinfo e1000e | head"
+    ],
+    "sample_output": "filename: /lib/modules/6.8.0/kernel/drivers/net/e1000e/e1000e.ko",
+    "real_world_examples": [
+      "In an interview scenario involving how would you diagnose a kernel module that fails to load?, describe the impact, collect evidence with `modinfo e1000e | head`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `modinfo e1000e | head` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of kernel module.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-007",
+    "slug": "filesystem-hierarchy",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What are /etc, /var, /home, and /tmp used for?",
+    "short_answer": "/etc holds configuration, /var changing state, /home user data, and /tmp temporary files subject to cleanup.",
+    "detailed_explanation": "/etc holds configuration, /var changing state, /home user data, and /tmp temporary files subject to cleanup. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "findmnt / /var /tmp"
+    ],
+    "sample_output": "TARGET SOURCE FSTYPE OPTIONS\n/ /dev/vda1 ext4 rw,relatime",
+    "real_world_examples": [
+      "In an interview scenario involving what are /etc, /var, /home, and /tmp used for?, describe the impact, collect evidence with `findmnt / /var /tmp`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `findmnt / /var /tmp` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of filesystem hierarchy.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-008",
+    "slug": "chmod-numeric",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do numeric chmod permissions work?",
+    "short_answer": "Read, write, and execute are 4, 2, and 1; 640 gives owner read/write, group read, and no access to others.",
+    "detailed_explanation": "Read, write, and execute are 4, 2, and 1; 640 gives owner read/write, group read, and no access to others. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "stat -c \"%a %A %n\" /etc/ssh/sshd_config"
+    ],
+    "sample_output": "644 -rw-r--r-- /etc/ssh/sshd_config",
+    "real_world_examples": [
+      "In an interview scenario involving how do numeric chmod permissions work?, describe the impact, collect evidence with `stat -c \"%a %A %n\" /etc/ssh/sshd_config`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `stat -c \"%a %A %n\" /etc/ssh/sshd_config` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of chmod numeric.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-009",
+    "slug": "access-checks",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How does Linux decide whether a user can access a file?",
+    "short_answer": "The kernel checks process credentials against owner, matching group, and other bits; ACLs can add entries, while directory execute permits traversal.",
+    "detailed_explanation": "The kernel checks process credentials against owner, matching group, and other bits; ACLs can add entries, while directory execute permits traversal. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "namei -l /srv/app/config.yml"
+    ],
+    "sample_output": "f: /srv/app/config.yml\ndrwxr-xr-x root root /",
+    "real_world_examples": [
+      "In an interview scenario involving how does Linux decide whether a user can access a file?, describe the impact, collect evidence with `namei -l /srv/app/config.yml`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `namei -l /srv/app/config.yml` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of access checks.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-010",
+    "slug": "hard-symbolic-links",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "Compare a hard link and a symbolic link.",
+    "short_answer": "A hard link names the same inode and normally cannot cross filesystems; a symlink stores a path and may become dangling.",
+    "detailed_explanation": "A hard link names the same inode and normally cannot cross filesystems; a symlink stores a path and may become dangling. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "ls -li /etc/hosts; readlink /tmp/hosts-link"
+    ],
+    "sample_output": "131104 /etc/hosts\n420193 /tmp/hosts-link -> /etc/hosts",
+    "real_world_examples": [
+      "In an interview scenario involving compare a hard link and a symbolic link., describe the impact, collect evidence with `ls -li /etc/hosts`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ls -li /etc/hosts` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of hard symbolic links.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-011",
+    "slug": "special-bits",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "Explain setuid, setgid, and the sticky bit.",
+    "short_answer": "Setuid uses executable owner identity, setgid uses group identity or directory inheritance, and sticky directories restrict deletion.",
+    "detailed_explanation": "Setuid uses executable owner identity, setgid uses group identity or directory inheritance, and sticky directories restrict deletion. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "stat -c \"%A %n\" /usr/bin/passwd /tmp"
+    ],
+    "sample_output": "-rwsr-xr-x /usr/bin/passwd\ndrwxrwxrwt /tmp",
+    "real_world_examples": [
+      "In an interview scenario involving explain setuid, setgid, and the sticky bit., describe the impact, collect evidence with `stat -c \"%A %n\" /usr/bin/passwd /tmp`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `stat -c \"%A %n\" /usr/bin/passwd /tmp` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of special bits.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-012",
+    "slug": "acl-mask",
+    "topic_id": "filesystems-permissions",
+    "topic": "Filesystems and Permissions",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "What does the ACL mask do?",
+    "short_answer": "The mask caps effective rights for named users, named groups, and the owning group, even when the listed ACL entry is broader.",
+    "detailed_explanation": "The mask caps effective rights for named users, named groups, and the owning group, even when the listed ACL entry is broader. The kernel applies credentials and filesystem metadata; also inspect parent-directory traversal, ACLs, and mount options. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. GNU and BSD tool flags can differ. ACL utilities and filesystem features depend on the distribution and filesystem.",
+    "commands": [
+      "getfacl -p /srv/share"
+    ],
+    "sample_output": "user:analyst:rwx #effective:r-x\nmask::r-x",
+    "real_world_examples": [
+      "In an interview scenario involving what does the ACL mask do?, describe the impact, collect evidence with `getfacl -p /srv/share`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getfacl -p /srv/share` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of acl mask.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-013",
+    "slug": "passwd-shadow",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What is stored in /etc/passwd and /etc/shadow?",
+    "short_answer": "Passwd contains account names, numeric IDs, home directory, and shell; shadow stores password hashes and aging data with restricted access.",
+    "detailed_explanation": "Passwd contains account names, numeric IDs, home directory, and shell; shadow stores password hashes and aging data with restricted access. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "getent passwd root"
+    ],
+    "sample_output": "root:x:0:0:root:/root:/bin/bash",
+    "real_world_examples": [
+      "In an interview scenario involving what is stored in /etc/passwd and /etc/shadow?, describe the impact, collect evidence with `getent passwd root`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getent passwd root` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of passwd shadow.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-014",
+    "slug": "primary-supplementary-groups",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do primary and supplementary groups differ?",
+    "short_answer": "Processes carry a primary group and may carry supplementary group IDs; a new login session may be needed to refresh membership.",
+    "detailed_explanation": "Processes carry a primary group and may carry supplementary group IDs; a new login session may be needed to refresh membership. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "id alice"
+    ],
+    "sample_output": "uid=1001(alice) gid=1001(alice) groups=1001(alice),27(sudo)",
+    "real_world_examples": [
+      "In an interview scenario involving how do primary and supplementary groups differ?, describe the impact, collect evidence with `id alice`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `id alice` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of primary supplementary groups.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-015",
+    "slug": "sudoers",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you grant a limited sudo capability safely?",
+    "short_answer": "Use a narrow sudoers rule or group, edit with visudo, specify commands where practical, and verify effective policy with sudo -l.",
+    "detailed_explanation": "Use a narrow sudoers rule or group, edit with visudo, specify commands where practical, and verify effective policy with sudo -l. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "sudo -l -U deploy"
+    ],
+    "sample_output": "(root) NOPASSWD: /usr/bin/systemctl restart api.service",
+    "real_world_examples": [
+      "In an interview scenario involving how do you grant a limited sudo capability safely?, describe the impact, collect evidence with `sudo -l -U deploy`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `sudo -l -U deploy` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of sudoers.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-016",
+    "slug": "uid-collision",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "Why are duplicate UIDs risky across hosts?",
+    "short_answer": "File ownership is numeric, so duplicate UIDs can make unrelated accounts appear to own files on shared storage or after migration.",
+    "detailed_explanation": "File ownership is numeric, so duplicate UIDs can make unrelated accounts appear to own files on shared storage or after migration. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "getent passwd 1001"
+    ],
+    "sample_output": "alice:x:1001:1001:...",
+    "real_world_examples": [
+      "In an interview scenario involving why are duplicate UIDs risky across hosts?, describe the impact, collect evidence with `getent passwd 1001`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getent passwd 1001` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of uid collision.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-017",
+    "slug": "sudo-environment",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "Why does sudo change a caller environment?",
+    "short_answer": "Policy such as env_reset and secure_path reduces privilege escalation risk; preserve only required variables rather than inheriting everything.",
+    "detailed_explanation": "Policy such as env_reset and secure_path reduces privilege escalation risk; preserve only required variables rather than inheriting everything. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "sudo -V | grep -E \"environment|secure_path\""
+    ],
+    "sample_output": "env_reset, secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin",
+    "real_world_examples": [
+      "In an interview scenario involving why does sudo change a caller environment?, describe the impact, collect evidence with `sudo -V | grep -E \"environment|secure_path\"`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `sudo -V | grep -E \"environment|secure_path\"` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of sudo environment.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-018",
+    "slug": "nss-pam",
+    "topic_id": "users-groups-sudo",
+    "topic": "Users, Groups, and sudo",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How would you troubleshoot an LDAP account that cannot log in?",
+    "short_answer": "Check NSS lookup and provider health, then PAM and directory logs; separate identity lookup failure from authentication and session failure.",
+    "detailed_explanation": "Check NSS lookup and provider health, then PAM and directory logs; separate identity lookup failure from authentication and session failure. Separate identity lookup, authentication, authorization, and session setup; Linux commonly combines NSS and PAM. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sudo is often the admin group on Debian/Ubuntu and wheel on Fedora/RHEL, but sudoers policy is authoritative.",
+    "commands": [
+      "getent passwd jdoe; grep passwd /etc/nsswitch.conf"
+    ],
+    "sample_output": "passwd: files systemd sss",
+    "real_world_examples": [
+      "In an interview scenario involving how would you troubleshoot an LDAP account that cannot log in?, describe the impact, collect evidence with `getent passwd jdoe`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getent passwd jdoe` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of nss pam.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-019",
+    "slug": "process-thread",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What is the difference between a process and a thread?",
+    "short_answer": "Processes have separate virtual address spaces; threads share a process address space and resources while scheduling as separate tasks.",
+    "detailed_explanation": "Processes have separate virtual address spaces; threads share a process address space and resources while scheduling as separate tasks. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "ps -eLf | head"
+    ],
+    "sample_output": "UID PID PPID LWP C NLWP STIME TTY TIME CMD",
+    "real_world_examples": [
+      "In an interview scenario involving what is the difference between a process and a thread?, describe the impact, collect evidence with `ps -eLf | head`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ps -eLf | head` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of process thread.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-020",
+    "slug": "term-kill",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Why prefer SIGTERM to SIGKILL?",
+    "short_answer": "SIGTERM lets an application shut down cleanly; SIGKILL cannot be caught and is a last resort after graceful termination fails.",
+    "detailed_explanation": "SIGTERM lets an application shut down cleanly; SIGKILL cannot be caught and is a last resort after graceful termination fails. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "kill -TERM 2480"
+    ],
+    "sample_output": "[process exits; ps no longer lists PID 2480]",
+    "real_world_examples": [
+      "In an interview scenario involving why prefer SIGTERM to SIGKILL?, describe the impact, collect evidence with `kill -TERM 2480`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `kill -TERM 2480` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of term kill.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-021",
+    "slug": "systemd-states",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do active, enabled, and failed differ in systemd?",
+    "short_answer": "Active is runtime state, enabled means configured for automatic activation, and failed records an unsuccessful start or runtime failure.",
+    "detailed_explanation": "Active is runtime state, enabled means configured for automatic activation, and failed records an unsuccessful start or runtime failure. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "systemctl is-active nginx; systemctl is-enabled nginx"
+    ],
+    "sample_output": "active\nenabled",
+    "real_world_examples": [
+      "In an interview scenario involving how do active, enabled, and failed differ in systemd?, describe the impact, collect evidence with `systemctl is-active nginx`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl is-active nginx` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of systemd states.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-022",
+    "slug": "unit-dependencies",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do Wants, Requires, and After differ?",
+    "short_answer": "Wants and Requires pull in units with different failure coupling; After only orders jobs and does not pull a unit in by itself.",
+    "detailed_explanation": "Wants and Requires pull in units with different failure coupling; After only orders jobs and does not pull a unit in by itself. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "systemctl show api.service -p Wants -p Requires -p After"
+    ],
+    "sample_output": "Wants=network-online.target\nAfter=network-online.target",
+    "real_world_examples": [
+      "In an interview scenario involving how do Wants, Requires, and After differ?, describe the impact, collect evidence with `systemctl show api.service -p Wants -p Requires -p After`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl show api.service -p Wants -p Requires -p After` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of unit dependencies.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-023",
+    "slug": "zombies",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "What is a zombie process and how do you clear one?",
+    "short_answer": "An exited child remains as a process-table entry until its parent collects status; fix or signal the parent, since killing the zombie itself does not work.",
+    "detailed_explanation": "An exited child remains as a process-table entry until its parent collects status; fix or signal the parent, since killing the zombie itself does not work. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "ps -eo pid,ppid,state,cmd"
+    ],
+    "sample_output": "2480 2400 Z [worker] <defunct>",
+    "real_world_examples": [
+      "In an interview scenario involving what is a zombie process and how do you clear one?, describe the impact, collect evidence with `ps -eo pid,ppid,state,cmd`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ps -eo pid,ppid,state,cmd` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of zombies.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-024",
+    "slug": "cgroups",
+    "topic_id": "processes-systemd",
+    "topic": "Processes and systemd",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do cgroups control service resource use?",
+    "short_answer": "Cgroups account for and limit resources such as CPU and memory across process groups; systemd exposes these controls on units.",
+    "detailed_explanation": "Cgroups account for and limit resources such as CPU and memory across process groups; systemd exposes these controls on units. Observe process and unit state before acting; signal behavior, cgroups, and service dependencies affect safe remediation. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. systemd is common on current major distributions; unit defaults and compatibility layers vary.",
+    "commands": [
+      "systemctl show api.service -p MemoryMax -p CPUQuota"
+    ],
+    "sample_output": "MemoryMax=1G\nCPUQuota=200%",
+    "real_world_examples": [
+      "In an interview scenario involving how do cgroups control service resource use?, describe the impact, collect evidence with `systemctl show api.service -p MemoryMax -p CPUQuota`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl show api.service -p MemoryMax -p CPUQuota` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of cgroups.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-025",
+    "slug": "addresses-routes",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do you inspect addresses and routes?",
+    "short_answer": "Use ip address and ip route to see interface state, addresses, and route selection; verify the chosen source and next hop.",
+    "detailed_explanation": "Use ip address and ip route to see interface state, addresses, and route selection; verify the chosen source and next hop. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "ip route get 1.1.1.1"
+    ],
+    "sample_output": "1.1.1.1 via 192.0.2.1 dev eth0 src 192.0.2.10",
+    "real_world_examples": [
+      "In an interview scenario involving how do you inspect addresses and routes?, describe the impact, collect evidence with `ip route get 1.1.1.1`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ip route get 1.1.1.1` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of addresses routes.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-026",
+    "slug": "dns-failure",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do you troubleshoot a DNS lookup failure?",
+    "short_answer": "Separate NSS and local resolver behavior from upstream DNS; inspect resolver configuration, then query the resolver directly.",
+    "detailed_explanation": "Separate NSS and local resolver behavior from upstream DNS; inspect resolver configuration, then query the resolver directly. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "getent hosts example.com"
+    ],
+    "sample_output": "93.184.216.34 example.com",
+    "real_world_examples": [
+      "In an interview scenario involving how do you troubleshoot a DNS lookup failure?, describe the impact, collect evidence with `getent hosts example.com`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getent hosts example.com` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of dns failure.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-027",
+    "slug": "tcp-udp",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "When would an application use TCP instead of UDP?",
+    "short_answer": "TCP provides an ordered reliable byte stream; UDP is datagram-based and leaves delivery and ordering behavior to the application.",
+    "detailed_explanation": "TCP provides an ordered reliable byte stream; UDP is datagram-based and leaves delivery and ordering behavior to the application. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "ss -lntup"
+    ],
+    "sample_output": "LISTEN 0 128 0.0.0.0:8443 0.0.0.0:*",
+    "real_world_examples": [
+      "In an interview scenario involving when would an application use TCP instead of UDP?, describe the impact, collect evidence with `ss -lntup`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ss -lntup` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of tcp udp.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-028",
+    "slug": "ssh-keys",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How does SSH public-key authentication work?",
+    "short_answer": "The server checks an authorized public key and verifies a client signature; the corresponding private key remains on the client.",
+    "detailed_explanation": "The server checks an authorized public key and verifies a client signature; the corresponding private key remains on the client. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "ssh -vvv deploy@server.example"
+    ],
+    "sample_output": "Offering public key: /home/user/.ssh/id_ed25519",
+    "real_world_examples": [
+      "In an interview scenario involving how does SSH public-key authentication work?, describe the impact, collect evidence with `ssh -vvv deploy@server.example`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ssh -vvv deploy@server.example` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of ssh keys.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-029",
+    "slug": "listen-blocked",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "A service listens but clients cannot connect. What do you check?",
+    "short_answer": "Verify bind address, route and return path, host/upstream firewall, security groups, and whether clients reach the expected address family.",
+    "detailed_explanation": "Verify bind address, route and return path, host/upstream firewall, security groups, and whether clients reach the expected address family. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "ss -lntp"
+    ],
+    "sample_output": "LISTEN 0 128 0.0.0.0:8443 users:(\"api\",pid=811,fd=7)",
+    "real_world_examples": [
+      "In an interview scenario involving a service listens but clients cannot connect. What do you check?, describe the impact, collect evidence with `ss -lntp`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ss -lntp` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of listen blocked.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-030",
+    "slug": "mtu-blackhole",
+    "topic_id": "networking-dns-ssh",
+    "topic": "Networking, DNS, and SSH",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How would you diagnose a path-MTU black hole?",
+    "short_answer": "Look for size-dependent failures, test DF probes, inspect tunnel MTUs, and permit ICMP packet-too-big messages required by path-MTU discovery.",
+    "detailed_explanation": "Look for size-dependent failures, test DF probes, inspect tunnel MTUs, and permit ICMP packet-too-big messages required by path-MTU discovery. Trace traffic through local resolution, sockets, route selection, filtering, and the remote service; test each layer. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Resolver management may use systemd-resolved, NetworkManager, resolvconf, or direct resolv.conf management.",
+    "commands": [
+      "tracepath -n 198.51.100.20"
+    ],
+    "sample_output": "pmtu 1500\n... pmtu 1450",
+    "real_world_examples": [
+      "In an interview scenario involving how would you diagnose a path-MTU black hole?, describe the impact, collect evidence with `tracepath -n 198.51.100.20`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `tracepath -n 198.51.100.20` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of mtu blackhole.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-031",
+    "slug": "device-filesystem",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How does a block device differ from a filesystem?",
+    "short_answer": "A block device exposes addressable storage; a filesystem organizes blocks into files, directories, and metadata.",
+    "detailed_explanation": "A block device exposes addressable storage; a filesystem organizes blocks into files, directories, and metadata. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "lsblk -f"
+    ],
+    "sample_output": "NAME FSTYPE UUID MOUNTPOINTS\nvda1 ext4 ... /",
+    "real_world_examples": [
+      "In an interview scenario involving how does a block device differ from a filesystem?, describe the impact, collect evidence with `lsblk -f`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `lsblk -f` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of device filesystem.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-032",
+    "slug": "fstab",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What is /etc/fstab for and how do you validate it?",
+    "short_answer": "It declares filesystem mounts and options; check syntax with findmnt --verify and test mounts before rebooting.",
+    "detailed_explanation": "It declares filesystem mounts and options; check syntax with findmnt --verify and test mounts before rebooting. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "findmnt --verify --verbose"
+    ],
+    "sample_output": "Success, no errors or warnings detected",
+    "real_world_examples": [
+      "In an interview scenario involving what is /etc/fstab for and how do you validate it?, describe the impact, collect evidence with `findmnt --verify --verbose`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `findmnt --verify --verbose` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of fstab.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-033",
+    "slug": "lvm-layers",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "Explain LVM PVs, VGs, and LVs.",
+    "short_answer": "Physical volumes contribute extents to volume groups, which allocate those extents to logical volumes presented as block devices.",
+    "detailed_explanation": "Physical volumes contribute extents to volume groups, which allocate those extents to logical volumes presented as block devices. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "pvs; vgs; lvs"
+    ],
+    "sample_output": "PV /dev/vdb1 in VG data; LV app 20.00g",
+    "real_world_examples": [
+      "In an interview scenario involving explain LVM PVs, VGs, and LVs., describe the impact, collect evidence with `pvs`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `pvs` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of lvm layers.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-034",
+    "slug": "grow-filesystem",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you grow a filesystem on an LVM volume?",
+    "short_answer": "Confirm free capacity and filesystem support, extend the LV, then grow the filesystem with its correct tool.",
+    "detailed_explanation": "Confirm free capacity and filesystem support, extend the LV, then grow the filesystem with its correct tool. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "lvextend -r -L +10G /dev/data/app"
+    ],
+    "sample_output": "Logical volume data/app successfully resized",
+    "real_world_examples": [
+      "In an interview scenario involving how do you grow a filesystem on an LVM volume?, describe the impact, collect evidence with `lvextend -r -L +10G /dev/data/app`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `lvextend -r -L +10G /dev/data/app` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of grow filesystem.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-035",
+    "slug": "inode-exhaustion",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "Disk space is available but file creation fails. What could be wrong?",
+    "short_answer": "The filesystem may have exhausted inodes, hit a quota, or lack space in a constrained subvolume; inspect df -i and quota data.",
+    "detailed_explanation": "The filesystem may have exhausted inodes, hit a quota, or lack space in a constrained subvolume; inspect df -i and quota data. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "df -h /var; df -i /var"
+    ],
+    "sample_output": "Filesystem Inodes IUsed IFree IUse% Mounted on",
+    "real_world_examples": [
+      "In an interview scenario involving disk space is available but file creation fails. What could be wrong?, describe the impact, collect evidence with `df -h /var`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `df -h /var` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of inode exhaustion.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-036",
+    "slug": "lvm-snapshot",
+    "topic_id": "storage-partitions-lvm",
+    "topic": "Storage, Partitions, and LVM",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "What are LVM snapshot uses and limitations?",
+    "short_answer": "Snapshots provide a point-in-time block view, but writes consume copy-on-write capacity; a full snapshot becomes invalid and is not necessarily application-consistent.",
+    "detailed_explanation": "Snapshots provide a point-in-time block view, but writes consume copy-on-write capacity; a full snapshot becomes invalid and is not necessarily application-consistent. Verify device identity, backups, filesystem type, mount state, and capacity before making storage changes. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Growth tools differ: resize2fs for ext filesystems and xfs_growfs for XFS; XFS cannot shrink in place.",
+    "commands": [
+      "lvs -o lv_name,origin,data_percent"
+    ],
+    "sample_output": "app-snap app 12.4%",
+    "real_world_examples": [
+      "In an interview scenario involving what are LVM snapshot uses and limitations?, describe the impact, collect evidence with `lvs -o lv_name,origin,data_percent`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `lvs -o lv_name,origin,data_percent` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of lvm snapshot.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-037",
+    "slug": "load-average",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What does Linux load average represent?",
+    "short_answer": "It averages runnable or uninterruptible tasks over 1, 5, and 15 minutes, not CPU percentage; compare with CPU count and wait states.",
+    "detailed_explanation": "It averages runnable or uninterruptible tasks over 1, 5, and 15 minutes, not CPU percentage; compare with CPU count and wait states. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "uptime"
+    ],
+    "sample_output": "load average: 2.10, 1.80, 1.42",
+    "real_world_examples": [
+      "In an interview scenario involving what does Linux load average represent?, describe the impact, collect evidence with `uptime`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `uptime` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of load average.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-038",
+    "slug": "available-memory",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Why can free memory be low on a healthy host?",
+    "short_answer": "Linux uses idle RAM for reclaimable cache; the available value better estimates memory allocatable without swapping.",
+    "detailed_explanation": "Linux uses idle RAM for reclaimable cache; the available value better estimates memory allocatable without swapping. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "free -h"
+    ],
+    "sample_output": "Mem: 7.7Gi total 1.2Gi free 4.1Gi buff/cache 5.9Gi available",
+    "real_world_examples": [
+      "In an interview scenario involving why can free memory be low on a healthy host?, describe the impact, collect evidence with `free -h`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `free -h` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of available memory.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-039",
+    "slug": "high-cpu",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you investigate sustained high CPU?",
+    "short_answer": "Identify processes and threads, distinguish user/system/steal time, then correlate workload, changes, profiling, and throttling.",
+    "detailed_explanation": "Identify processes and threads, distinguish user/system/steal time, then correlate workload, changes, profiling, and throttling. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "top -b -n1 | head -8"
+    ],
+    "sample_output": "%Cpu(s): 72.0 us, 18.0 sy, 0.0 st",
+    "real_world_examples": [
+      "In an interview scenario involving how do you investigate sustained high CPU?, describe the impact, collect evidence with `top -b -n1 | head -8`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `top -b -n1 | head -8` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of high cpu.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-040",
+    "slug": "oom-killer",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "What happens when the OOM killer runs?",
+    "short_answer": "Under allocation pressure, the kernel selects a task to kill based on scoring and constraints; inspect kernel logs and cgroup limits.",
+    "detailed_explanation": "Under allocation pressure, the kernel selects a task to kill based on scoring and constraints; inspect kernel logs and cgroup limits. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "journalctl -k | grep -i oom"
+    ],
+    "sample_output": "Out of memory: Killed process 811 (worker)",
+    "real_world_examples": [
+      "In an interview scenario involving what happens when the OOM killer runs?, describe the impact, collect evidence with `journalctl -k | grep -i oom`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `journalctl -k | grep -i oom` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of oom killer.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-041",
+    "slug": "psi",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "What does PSI show beyond utilization?",
+    "short_answer": "Pressure Stall Information measures time tasks stall for CPU, memory, or I/O, surfacing contention impact hidden by averages.",
+    "detailed_explanation": "Pressure Stall Information measures time tasks stall for CPU, memory, or I/O, surfacing contention impact hidden by averages. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "cat /proc/pressure/memory"
+    ],
+    "sample_output": "some avg10=0.42 avg60=0.31 avg300=0.12 total=...",
+    "real_world_examples": [
+      "In an interview scenario involving what does PSI show beyond utilization?, describe the impact, collect evidence with `cat /proc/pressure/memory`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `cat /proc/pressure/memory` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of psi.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-042",
+    "slug": "iowait",
+    "topic_id": "cpu-memory-troubleshooting",
+    "topic": "CPU, Memory, and Troubleshooting",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "High iowait is reported; how do you investigate?",
+    "short_answer": "It indicates CPU idle time while tasks wait on I/O accounting, not proof of slow storage; correlate device latency, queues, and blocked tasks.",
+    "detailed_explanation": "It indicates CPU idle time while tasks wait on I/O accounting, not proof of slow storage; correlate device latency, queues, and blocked tasks. Use time-aligned host and process evidence, kernel logs, workload context, and cgroup limits before changing capacity. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. sysstat tools may need installation; cgroup v1 and v2 expose different controls.",
+    "commands": [
+      "iostat -xz 1 2"
+    ],
+    "sample_output": "Device r/s w/s await aqu-sz %util\nvda 12 30 8.2 0.4 21.0",
+    "real_world_examples": [
+      "In an interview scenario involving high iowait is reported; how do you investigate?, describe the impact, collect evidence with `iostat -xz 1 2`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `iostat -xz 1 2` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of iowait.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-043",
+    "slug": "apt-dnf",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do APT and DNF differ?",
+    "short_answer": "APT commonly manages Debian/Ubuntu dpkg packages; DNF manages RPM packages on Fedora and related distributions.",
+    "detailed_explanation": "APT commonly manages Debian/Ubuntu dpkg packages; DNF manages RPM packages on Fedora and related distributions. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "cat /etc/os-release"
+    ],
+    "sample_output": "ID=ubuntu\nVERSION_ID=\"24.04\"",
+    "real_world_examples": [
+      "In an interview scenario involving how do APT and DNF differ?, describe the impact, collect evidence with `cat /etc/os-release`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `cat /etc/os-release` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of apt dnf.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-044",
+    "slug": "metadata-upgrade",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Why separate refreshing metadata from package upgrades?",
+    "short_answer": "Refresh downloads repository indexes; upgrade uses them to install newer versions. Command names and upgrade semantics differ.",
+    "detailed_explanation": "Refresh downloads repository indexes; upgrade uses them to install newer versions. Command names and upgrade semantics differ. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "sudo apt update"
+    ],
+    "sample_output": "Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease",
+    "real_world_examples": [
+      "In an interview scenario involving why separate refreshing metadata from package upgrades?, describe the impact, collect evidence with `sudo apt update`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `sudo apt update` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of metadata upgrade.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-045",
+    "slug": "package-owner",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you identify the package owning a file?",
+    "short_answer": "Query the host package database to distinguish packaged files from local files and plan safe repair.",
+    "detailed_explanation": "Query the host package database to distinguish packaged files from local files and plan safe repair. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "dpkg -S /usr/bin/ssh"
+    ],
+    "sample_output": "openssh-client/noble-updates 1:9.6p1-3ubuntu13 amd64 [upgradable]",
+    "real_world_examples": [
+      "In an interview scenario involving how do you identify the package owning a file?, describe the impact, collect evidence with `dpkg -S /usr/bin/ssh`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `dpkg -S /usr/bin/ssh` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of package owner.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-046",
+    "slug": "repo-signing",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do signed repositories protect package installation?",
+    "short_answer": "Signed metadata and packages help authenticate origin and detect tampering; key scope and rotation still need management.",
+    "detailed_explanation": "Signed metadata and packages help authenticate origin and detect tampering; key scope and rotation still need management. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "apt-cache policy openssh-client"
+    ],
+    "sample_output": "openssh-client: /usr/bin/ssh",
+    "real_world_examples": [
+      "In an interview scenario involving how do signed repositories protect package installation?, describe the impact, collect evidence with `apt-cache policy openssh-client`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `apt-cache policy openssh-client` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of repo signing.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-047",
+    "slug": "dependency-conflict",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do you investigate a dependency conflict?",
+    "short_answer": "Inspect solver output, repositories, pins, held packages, and architecture; avoid force-removing packages before understanding the graph.",
+    "detailed_explanation": "Inspect solver output, repositories, pins, held packages, and architecture; avoid force-removing packages before understanding the graph. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "apt-cache policy libc6; apt-mark showhold"
+    ],
+    "sample_output": "500 http://archive.ubuntu.com/ubuntu noble/main Packages",
+    "real_world_examples": [
+      "In an interview scenario involving how do you investigate a dependency conflict?, describe the impact, collect evidence with `apt-cache policy libc6`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `apt-cache policy libc6` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of dependency conflict.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-048",
+    "slug": "reproducible-state",
+    "topic_id": "package-management",
+    "topic": "Package Management",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How can package state be reproducible across hosts?",
+    "short_answer": "Pin OS images and repositories, record package versions, and control upgrades through staged rollout and configuration management.",
+    "detailed_explanation": "Pin OS images and repositories, record package versions, and control upgrades through staged rollout and configuration management. Package operations depend on trusted repositories, metadata, dependency constraints, and supported release policy. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. APT/dpkg and DNF/RPM use different formats, commands, and package names.",
+    "commands": [
+      "dpkg-query -W -f=\"${Package}=${Version}\\n\" | head"
+    ],
+    "sample_output": "bash=5.2.21-2ubuntu4",
+    "real_world_examples": [
+      "In an interview scenario involving how can package state be reproducible across hosts?, describe the impact, collect evidence with `dpkg-query -W -f=\"${Package}=${Version}\\n\" | head`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `dpkg-query -W -f=\"${Package}=${Version}\\n\" | head` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of reproducible state.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-049",
+    "slug": "least-privilege",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What does least privilege mean for a service?",
+    "short_answer": "Grant only identities, capabilities, filesystem, and network access required for its function, then review and reduce access.",
+    "detailed_explanation": "Grant only identities, capabilities, filesystem, and network access required for its function, then review and reduce access. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "systemctl show api.service -p User -p NoNewPrivileges"
+    ],
+    "sample_output": "User=api\nNoNewPrivileges=yes",
+    "real_world_examples": [
+      "In an interview scenario involving what does least privilege mean for a service?, describe the impact, collect evidence with `systemctl show api.service -p User -p NoNewPrivileges`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl show api.service -p User -p NoNewPrivileges` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of least privilege.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-050",
+    "slug": "selinux-modes",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do enforcing and permissive SELinux modes differ?",
+    "short_answer": "Enforcing policy denies prohibited actions; permissive records denials without enforcing; disabled mode does not load active policy.",
+    "detailed_explanation": "Enforcing policy denies prohibited actions; permissive records denials without enforcing; disabled mode does not load active policy. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "getenforce"
+    ],
+    "sample_output": "Enforcing",
+    "real_world_examples": [
+      "In an interview scenario involving how do enforcing and permissive SELinux modes differ?, describe the impact, collect evidence with `getenforce`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getenforce` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of selinux modes.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-051",
+    "slug": "selinux-denial",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you investigate an SELinux denial?",
+    "short_answer": "Inspect audit records and labels, confirm intended access, correct labels or narrowly scoped policy, and do not blindly disable SELinux.",
+    "detailed_explanation": "Inspect audit records and labels, confirm intended access, correct labels or narrowly scoped policy, and do not blindly disable SELinux. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "ausearch -m AVC -ts recent"
+    ],
+    "sample_output": "avc: denied { name_connect } for pid=811 comm=\"api\"",
+    "real_world_examples": [
+      "In an interview scenario involving how do you investigate an SELinux denial?, describe the impact, collect evidence with `ausearch -m AVC -ts recent`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `ausearch -m AVC -ts recent` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of selinux denial.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-052",
+    "slug": "firewall",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you check whether a firewall blocks traffic?",
+    "short_answer": "Identify the active manager and ruleset, confirm packet path and zone, inspect counters, and test a narrow rule change.",
+    "detailed_explanation": "Identify the active manager and ruleset, confirm packet path and zone, inspect counters, and test a narrow rule change. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "nft list ruleset"
+    ],
+    "sample_output": "table inet filter { chain input { type filter hook input priority filter; } }",
+    "real_world_examples": [
+      "In an interview scenario involving how do you check whether a firewall blocks traffic?, describe the impact, collect evidence with `nft list ruleset`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `nft list ruleset` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of firewall.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-053",
+    "slug": "capabilities",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do capabilities reduce the need for root daemons?",
+    "short_answer": "Capabilities split some root privileges into narrower units; grant only required rights and account for inherited privileges and attack surface.",
+    "detailed_explanation": "Capabilities split some root privileges into narrower units; grant only required rights and account for inherited privileges and attack surface. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "getcap /usr/bin/ping"
+    ],
+    "sample_output": "/usr/bin/ping cap_net_raw=ep",
+    "real_world_examples": [
+      "In an interview scenario involving how do capabilities reduce the need for root daemons?, describe the impact, collect evidence with `getcap /usr/bin/ping`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `getcap /usr/bin/ping` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of capabilities.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-054",
+    "slug": "firewall-layers",
+    "topic_id": "security-selinux-firewalls",
+    "topic": "Security, SELinux, and Firewalls",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do firewalld, UFW, and nftables relate?",
+    "short_answer": "nftables is a kernel firewall framework; firewalld and UFW are higher-level managers. Avoid competing tools overwriting rules.",
+    "detailed_explanation": "nftables is a kernel firewall framework; firewalld and UFW are higher-level managers. Avoid competing tools overwriting rules. Identify which layer denies an operation; permissions, capabilities, MAC policy, and packet filters solve different problems. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. SELinux is common on Fedora/RHEL; Ubuntu commonly uses AppArmor. Firewall managers and defaults vary.",
+    "commands": [
+      "firewall-cmd --state"
+    ],
+    "sample_output": "running",
+    "real_world_examples": [
+      "In an interview scenario involving how do firewalld, UFW, and nftables relate?, describe the impact, collect evidence with `firewall-cmd --state`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `firewall-cmd --state` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of firewall layers.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-055",
+    "slug": "shell-bash",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "What is the difference between a shell and Bash?",
+    "short_answer": "A shell is a command interpreter; Bash adds features beyond POSIX sh. Declare the intended interpreter and avoid nonportable syntax when needed.",
+    "detailed_explanation": "A shell is a command interpreter; Bash adds features beyond POSIX sh. Declare the intended interpreter and avoid nonportable syntax when needed. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "bash --version | head -1"
+    ],
+    "sample_output": "GNU bash, version 5.2.21",
+    "real_world_examples": [
+      "In an interview scenario involving what is the difference between a shell and Bash?, describe the impact, collect evidence with `bash --version | head -1`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `bash --version | head -1` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of shell bash.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-056",
+    "slug": "quoting",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Why should shell variables usually be quoted?",
+    "short_answer": "Quoting prevents word splitting and pathname expansion; use arrays for argument lists instead of building command strings.",
+    "detailed_explanation": "Quoting prevents word splitting and pathname expansion; use arrays for argument lists instead of building command strings. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "name=\"two words\"; printf \"<%s>\\n\" \"$name\""
+    ],
+    "sample_output": "<two words>",
+    "real_world_examples": [
+      "In an interview scenario involving why should shell variables usually be quoted?, describe the impact, collect evidence with `name=\"two words\"`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `name=\"two words\"` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of quoting.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-057",
+    "slug": "pipeline-status",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do pipelines affect Bash exit status?",
+    "short_answer": "By default a pipeline returns the last command status; set pipefail when earlier stage failures should fail the pipeline.",
+    "detailed_explanation": "By default a pipeline returns the last command status; set pipefail when earlier stage failures should fail the pipeline. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "set -o pipefail; false | true; echo \"$?\""
+    ],
+    "sample_output": "1",
+    "real_world_examples": [
+      "In an interview scenario involving how do pipelines affect Bash exit status?, describe the impact, collect evidence with `set -o pipefail`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `set -o pipefail` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of pipeline status.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-058",
+    "slug": "cron-environment",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "Why can a command work interactively but fail under cron?",
+    "short_answer": "Cron has a limited environment, PATH, working directory, shell, and timezone; use absolute paths and logged output.",
+    "detailed_explanation": "Cron has a limited environment, PATH, working directory, shell, and timezone; use absolute paths and logged output. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "crontab -l"
+    ],
+    "sample_output": "*/5 * * * * /usr/local/sbin/cleanup >>/var/log/cleanup.log 2>&1",
+    "real_world_examples": [
+      "In an interview scenario involving why can a command work interactively but fail under cron?, describe the impact, collect evidence with `crontab -l`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `crontab -l` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of cron environment.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-059",
+    "slug": "temp-files",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do you safely handle temporary files in Bash?",
+    "short_answer": "Use mktemp in a protected directory and a trap for cleanup; avoid predictable names and unsafe cleanup globs.",
+    "detailed_explanation": "Use mktemp in a protected directory and a trap for cleanup; avoid predictable names and unsafe cleanup globs. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "tmp=$(mktemp); trap 'rm -f -- \"$tmp\"' EXIT"
+    ],
+    "sample_output": "/tmp/tmp.4Lz2xQ",
+    "real_world_examples": [
+      "In an interview scenario involving how do you safely handle temporary files in Bash?, describe the impact, collect evidence with `tmp=$(mktemp)`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `tmp=$(mktemp)` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of temp files.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-060",
+    "slug": "cron-overlap",
+    "topic_id": "bash-scripting-cron",
+    "topic": "Bash Scripting and Cron",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "How do you prevent a scheduled job overlapping itself?",
+    "short_answer": "Use an atomic lock such as flock and decide how to report skipped runs; ensure lock behavior fits the filesystem and failure model.",
+    "detailed_explanation": "Use an atomic lock such as flock and decide how to report skipped runs; ensure lock behavior fits the filesystem and failure model. Make scripts explicit about inputs and environment, handle errors, and design automation to be safe to retry. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Cron behavior, timezone, and environment vary; systemd timers offer a different scheduling model.",
+    "commands": [
+      "flock -n /run/lock/report.lock /usr/local/bin/report"
+    ],
+    "sample_output": "[lock acquired; job ran]",
+    "real_world_examples": [
+      "In an interview scenario involving how do you prevent a scheduled job overlapping itself?, describe the impact, collect evidence with `flock -n /run/lock/report.lock /usr/local/bin/report`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `flock -n /run/lock/report.lock /usr/local/bin/report` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of cron overlap.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-061",
+    "slug": "journalctl",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "How do you view logs for a systemd service?",
+    "short_answer": "Filter journalctl by unit and time; follow live output during reproduction and inspect prior boots for restart issues.",
+    "detailed_explanation": "Filter journalctl by unit and time; follow live output during reproduction and inspect prior boots for restart issues. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "journalctl -u ssh.service -n 20 --no-pager"
+    ],
+    "sample_output": "Started OpenBSD Secure Shell server.",
+    "real_world_examples": [
+      "In an interview scenario involving how do you view logs for a systemd service?, describe the impact, collect evidence with `journalctl -u ssh.service -n 20 --no-pager`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `journalctl -u ssh.service -n 20 --no-pager` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of journalctl.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-062",
+    "slug": "log-rotation",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "beginner",
+    "experience_level": "Entry-level",
+    "question": "Why is log rotation important?",
+    "short_answer": "Rotation bounds disk use and can compress or expire old logs; applications may need reopening after rotation.",
+    "detailed_explanation": "Rotation bounds disk use and can compress or expire old logs; applications may need reopening after rotation. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "logrotate -d /etc/logrotate.conf"
+    ],
+    "sample_output": "reading config file /etc/logrotate.conf",
+    "real_world_examples": [
+      "In an interview scenario involving why is log rotation important?, describe the impact, collect evidence with `logrotate -d /etc/logrotate.conf`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `logrotate -d /etc/logrotate.conf` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of log rotation.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-063",
+    "slug": "incident-triage",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do you approach an unfamiliar production incident?",
+    "short_answer": "Establish impact and timeline, review changes and golden signals, preserve evidence, mitigate safely, and test one hypothesis at a time.",
+    "detailed_explanation": "Establish impact and timeline, review changes and golden signals, preserve evidence, mitigate safely, and test one hypothesis at a time. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "journalctl -p warning..alert --since \"15 min ago\""
+    ],
+    "sample_output": "Oct 28 12:01:10 host api[811]: upstream timeout",
+    "real_world_examples": [
+      "In an interview scenario involving how do you approach an unfamiliar production incident?, describe the impact, collect evidence with `journalctl -p warning..alert --since \"15 min ago\"`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `journalctl -p warning..alert --since \"15 min ago\"` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of incident triage.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-064",
+    "slug": "observability",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "intermediate",
+    "experience_level": "Mid-level",
+    "question": "How do metrics, logs, and traces complement one another?",
+    "short_answer": "Metrics show trends, logs provide event details, and traces follow requests across components; timestamps and correlation IDs connect them.",
+    "detailed_explanation": "Metrics show trends, logs provide event details, and traces follow requests across components; timestamps and correlation IDs connect them. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "systemctl status api.service --no-pager"
+    ],
+    "sample_output": "Active: active (running) since Tue 2026-10-28 11:45:00 UTC",
+    "real_world_examples": [
+      "In an interview scenario involving how do metrics, logs, and traces complement one another?, describe the impact, collect evidence with `systemctl status api.service --no-pager`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `systemctl status api.service --no-pager` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of observability.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-065",
+    "slug": "deleted-open-file",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "Why can disk usage stay high after deleting a large log?",
+    "short_answer": "A process may retain an open descriptor to an unlinked inode; storage is released only after the descriptor closes.",
+    "detailed_explanation": "A process may retain an open descriptor to an unlinked inode; storage is released only after the descriptor closes. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "lsof +L1"
+    ],
+    "sample_output": "api 811 root 4w REG ... /var/log/api.log (deleted)",
+    "real_world_examples": [
+      "In an interview scenario involving why can disk usage stay high after deleting a large log?, describe the impact, collect evidence with `lsof +L1`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `lsof +L1` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of deleted open file.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  },
+  {
+    "id": "linux-066",
+    "slug": "safe-debugging",
+    "topic_id": "logs-monitoring-production",
+    "topic": "Logs, Monitoring, and Production Troubleshooting",
+    "difficulty": "advanced",
+    "experience_level": "Senior",
+    "question": "What safeguards help when debugging production?",
+    "short_answer": "Prefer scoped read-only evidence collection, preserve before-and-after state, avoid broad restarts, and define rollback and escalation paths.",
+    "detailed_explanation": "Prefer scoped read-only evidence collection, preserve before-and-after state, avoid broad restarts, and define rollback and escalation paths. Align events, metrics, deployments, and user impact on a timeline; preserve evidence and prefer reversible mitigations. Apply the concept to the actual host state rather than inferring a cause from one symptom. Verify the behavior with the command below, record its exit status, and check the corresponding service or kernel evidence. Journal persistence and traditional log configuration depend on the host.",
+    "commands": [
+      "journalctl -u api.service --since \"10 min ago\" --no-pager"
+    ],
+    "sample_output": "Oct 28 12:01:10 host api[811]: request latency above threshold",
+    "real_world_examples": [
+      "In an interview scenario involving what safeguards help when debugging production?, describe the impact, collect evidence with `journalctl -u api.service --since \"10 min ago\" --no-pager`, choose a minimal reversible action, then confirm recovery."
+    ],
+    "troubleshooting_steps": [
+      "1. Scope the symptom and note host, time, and recent changes. 2. Run `journalctl -u api.service --since \"10 min ago\" --no-pager` and inspect exit status. 3. Check related logs, permissions, limits, and distribution-specific behavior. 4. Change one variable, verify the outcome, and document rollback."
+    ],
+    "common_mistakes": [
+      "Assuming the first symptom alone proves the cause of safe debugging.",
+      "Applying a broad or irreversible change before confirming scope and rollback."
+    ],
+    "cost_considerations": "These local diagnostic commands have no direct usage fee. On cloud hosts, investigation can incur compute and log-ingestion costs; avoid unnecessary resizing, high-volume tracing, or prolonged debug logging, and consider storage, snapshots, and support costs before remediation.",
+    "follow_up_questions": [
+      "How would you verify this on a different Linux distribution?",
+      "What evidence would change your diagnosis or remediation?",
+      "How would you automate this check safely across a fleet?"
+    ]
+  }
+]
