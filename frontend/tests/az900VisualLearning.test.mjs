@@ -67,13 +67,13 @@ test('visual route provides keyboard node selection, sequence controls, reduced 
   assert.ok(home.includes('/azure/az-900/visual-learning'))
 })
 
-test('homepage presents the three learning pathways and keeps AWS Coming Soon only', async () => {
+test('homepage presents Linux, AWS, Azure administration, and AZ-900 learning pathways', async () => {
   const home = await readFile(new URL('../src/pages/HomePage.tsx', import.meta.url), 'utf8')
   const department = await readFile(new URL('../src/components/DepartmentCard.tsx', import.meta.url), 'utf8')
-  for (const link of ['href="/linux"', 'href="/azure/az-900"', 'href="/azure/az-900/visual-learning"', 'href="/azure"']) assert.ok(home.includes(link))
+  for (const link of ['href="/linux"', 'href="/aws"', 'href="/azure/az-900"', 'href="/azure/az-900/visual-learning"', 'href="/azure"']) assert.ok(home.includes(link))
   assert.ok(home.includes('Linux administration &amp; technical interviews'))
   assert.ok(home.includes('Microsoft Azure Fundamentals'))
   assert.ok(home.includes('Azure operations &amp; interviews'))
-  assert.ok(department.includes("department.id !== 'aws'"))
+  assert.ok(department.includes("department.id === 'aws' ? '/aws'"))
   assert.ok(department.includes('COMING SOON'))
 })

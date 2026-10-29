@@ -7,17 +7,17 @@ import type { Department } from '../types/department'
 
 const fallbackDepartments: Department[] = [
   { id: 'linux', name: 'Linux Administration', short_name: 'SYSTEMS / 01', description: 'Build a strong foundation in the operating system that powers the modern internet.', status: 'available', accent: 'green', topics: [] },
-  { id: 'aws', name: 'AWS Cloud', short_name: 'CLOUD / 02', description: 'Cloud learning path in development.', status: 'coming_soon', accent: 'orange', topics: [] },
+  { id: 'aws', name: 'AWS Cloud', short_name: 'CLOUD / 02', description: 'Build practical cloud knowledge across AWS services, architecture, and operations.', status: 'available', accent: 'orange', topics: [] },
   { id: 'azure', name: 'Microsoft Azure', short_name: 'CLOUD / 03', description: 'Explore Azure administration and prepare for AZ-900 with a separate certification course.', status: 'coming_soon', accent: 'blue', topics: [] },
 ]
 
 const features = [
-  { number: '01', icon: Search, title: 'Searchable question libraries', description: 'Browse and filter Linux and Azure administration interview questions by topic and difficulty.' },
-  { number: '02', icon: BookOpen, title: 'Answers with practical context', description: 'Read concise answers, deeper explanations, real-world examples, and troubleshooting guidance.' },
-  { number: '03', icon: Network, title: 'Interactive visual learning', description: 'Explore seven Linux diagrams and ten AZ-900 diagrams with selectable concepts and knowledge checks.' },
+  { number: '01', icon: Search, title: 'Searchable question libraries', description: 'Browse and filter interview questions by topic and difficulty across available departments.' },
+  { number: '02', icon: BookOpen, title: 'Answers with practical context', description: 'Build practical knowledge with focused explanations, examples, and troubleshooting guidance.' },
+  { number: '03', icon: Network, title: 'Interactive visual learning', description: 'Explore visual guides that connect technical concepts and help test your understanding.' },
   { number: '04', icon: Terminal, title: 'Linux command practice', description: 'Use the Linux command reference and a safe browser-based terminal simulator.' },
   { number: '05', icon: ShieldCheck, title: 'AZ-900 study course', description: 'Study 20 sections and 40 lessons, then use original questions and configurable timed mock exams.' },
-  { number: '06', icon: Wrench, title: 'Guided troubleshooting', description: 'Work through Linux exercises and simulated Azure administration scenarios.' },
+  { number: '06', icon: Wrench, title: 'Guided troubleshooting', description: 'Work through department-specific exercises and simulated scenarios.' },
 ]
 
 export default function HomePage() {
@@ -42,9 +42,10 @@ export default function HomePage() {
       {loading ? <div className="loading-state" role="status"><LoaderCircle className="spin" size={18} /> Loading departments…</div> : <div className="department-grid">{displayed.map((department, index) => <DepartmentCard key={department.id} department={department} index={index} />)}</div>}
     </section>
 
-    <section className="home-pathways section-wrap" id="learning-paths"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> LEARNING PATHWAYS</div><h2>Start with your goal<span>.</span></h2></div><p>Separate paths for Linux, Azure administration,<br />and AZ-900 certification preparation.</p></div>
+    <section className="home-pathways section-wrap" id="learning-paths"><div className="section-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> LEARNING PATHWAYS</div><h2>Start with your goal<span>.</span></h2></div><p>Explore Linux, AWS Cloud, Azure administration,<br />and AZ-900 certification preparation.</p></div>
       <div className="home-pathway-grid">
         <article className="home-pathway-card"><div className="home-pathway-mark"><Terminal size={18} /><span>COMPLETED PATH</span></div><h3>Linux administration &amp; technical interviews</h3><p>Explore 11 topics, a 66-question library, detailed answers, command references, visual guides, Copilot exercises, and the safe terminal simulator.</p><a className="home-pathway-link" href="/linux">Open Linux learning <ArrowRight size={14} /></a></article>
+        <article className="home-pathway-card home-pathway-aws"><div className="home-pathway-mark"><Cloud size={18} /><span>AWS CLOUD</span></div><h3>AWS architecture &amp; operations</h3><p>Explore 14 topic guides across AWS infrastructure, security, compute, networking, storage, reliability, and cost. Interview questions are being prepared.</p><a className="home-pathway-link" href="/aws">Open AWS Cloud learning <ArrowRight size={14} /></a></article>
         <article className="home-pathway-card home-pathway-azure"><div className="home-pathway-mark"><ShieldCheck size={18} /><span>AZ-900 CERTIFICATION PREPARATION</span></div><h3>Microsoft Azure Fundamentals</h3><p>Study 20 sections and 40 original lessons, practise with 100 original questions, and configure timed mock exams.</p><div className="home-pathway-links"><a className="home-pathway-link" href="/azure/az-900">Open AZ-900 course <ArrowRight size={14} /></a><a className="home-pathway-secondary" href="/azure/az-900/visual-learning"><Network size={14} /> Explore AZ-900 Visual Learning</a></div></article>
         <article className="home-pathway-card home-pathway-azure"><div className="home-pathway-mark"><Cloud size={18} /><span>AZURE ADMINISTRATION</span></div><h3>Azure operations &amp; interviews</h3><p>Review 14 administration topics, 84 original interview questions, and eight simulated troubleshooting scenarios.</p><a className="home-pathway-link" href="/azure">Open Azure administration <ArrowRight size={14} /></a></article>
       </div>

@@ -16,5 +16,7 @@ def test_departments_endpoint_has_expected_metadata() -> None:
     assert response.status_code == 200
     departments = response.json()
     assert [department["id"] for department in departments] == ["linux", "aws", "azure"]
-    assert [department["status"] for department in departments] == ["available", "coming_soon", "coming_soon"]
-    assert all(department["topics"] == [] for department in departments)
+    assert [department["status"] for department in departments] == ["available", "available", "coming_soon"]
+    assert departments[0]["topics"] == []
+    assert len(departments[1]["topics"]) == 14
+    assert departments[2]["topics"] == []

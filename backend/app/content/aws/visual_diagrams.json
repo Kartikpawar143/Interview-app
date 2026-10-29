@@ -1,0 +1,3728 @@
+[
+  {
+    "id": "global-infrastructure",
+    "order": 1,
+    "title": "Global infrastructure",
+    "summary": "A Region contains isolated Availability Zones, which each contain multiple data centers. Edge locations form a separate global delivery layer; they are not another Availability Zone.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "region-boundary",
+        "title": "Region · us-east-1",
+        "caption": "AZs contain data centers; edge locations remain a separate layer.",
+        "kind": "region",
+        "x": 80,
+        "y": 115,
+        "width": 830,
+        "height": 435
+      },
+      {
+        "id": "az-a-boundary",
+        "title": "Availability Zone A",
+        "caption": "Isolated location inside the Region",
+        "kind": "availability-zone",
+        "x": 100,
+        "y": 160,
+        "width": 390,
+        "height": 365
+      },
+      {
+        "id": "az-b-boundary",
+        "title": "Availability Zone B",
+        "caption": "Separate AZ failure domain",
+        "kind": "availability-zone",
+        "x": 510,
+        "y": 160,
+        "width": 380,
+        "height": 365
+      },
+      {
+        "id": "edge-boundary",
+        "title": "Global edge layer",
+        "caption": "CloudFront / Route 53 edge locations are outside the AZ hierarchy.",
+        "kind": "edge",
+        "x": 965,
+        "y": 145,
+        "width": 390,
+        "height": 370
+      }
+    ],
+    "nodes": [
+      {
+        "id": "region",
+        "label": "AWS Region",
+        "code": "REG",
+        "x": 385,
+        "y": 55,
+        "description": "A Region is a geographic area with multiple isolated Availability Zones and a regional service boundary.",
+        "purpose": "Choose a Region for latency, service availability, data residency, and recovery requirements.",
+        "example": "A workload runs in one Region and uses a second Region only for its recovery plan.",
+        "services": [
+          "AWS Regions and Availability Zones"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-001"
+        ]
+      },
+      {
+        "id": "az-a",
+        "label": "Availability Zone A",
+        "code": "AZ-A",
+        "x": 155,
+        "y": 205,
+        "description": "An Availability Zone is an isolated location within a Region, composed of one or more data centers.",
+        "purpose": "Place redundant zonal resources in separate Availability Zones to reduce correlated failure.",
+        "example": "An application load balancer spans two enabled AZs, each with independent application capacity.",
+        "services": [
+          "Availability Zones"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-002"
+        ]
+      },
+      {
+        "id": "az-b",
+        "label": "Availability Zone B",
+        "code": "AZ-B",
+        "x": 570,
+        "y": 205,
+        "description": "A second Availability Zone is physically separate from AZ A while remaining in the same Region.",
+        "purpose": "Use multiple AZs for regional high availability; this does not by itself provide cross-Region recovery.",
+        "example": "A zonal interruption leaves healthy capacity in the other AZ serving requests.",
+        "services": [
+          "Availability Zones"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-003"
+        ]
+      },
+      {
+        "id": "dc-a1",
+        "label": "Data center",
+        "code": "DC",
+        "x": 110,
+        "y": 360,
+        "description": "Data centers contain physical compute, storage, power, and network infrastructure operated by AWS.",
+        "purpose": "The customer uses AWS service abstractions rather than selecting an individual data center.",
+        "example": "EC2 instances are placed into an AZ, while AWS manages the physical facility.",
+        "services": [
+          "AWS global infrastructure"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-004"
+        ]
+      },
+      {
+        "id": "dc-a2",
+        "label": "Data center",
+        "code": "DC",
+        "x": 290,
+        "y": 360,
+        "description": "An Availability Zone can consist of multiple data centers connected through redundant, high-bandwidth networking.",
+        "purpose": "Understand that an AZ is a failure-isolation boundary, not a single building.",
+        "example": "Managed services distribute or replicate data across infrastructure according to their documented design.",
+        "services": [
+          "AWS global infrastructure"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-005"
+        ]
+      },
+      {
+        "id": "dc-b1",
+        "label": "Data center",
+        "code": "DC",
+        "x": 525,
+        "y": 360,
+        "description": "Data center facilities inside AZ B are isolated from facilities in AZ A.",
+        "purpose": "Separate zonal placement can reduce impact from a localized facility disruption.",
+        "example": "A second EC2 target runs in AZ B rather than sharing AZ A placement.",
+        "services": [
+          "AWS global infrastructure"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-006"
+        ]
+      },
+      {
+        "id": "dc-b2",
+        "label": "Data center",
+        "code": "DC",
+        "x": 705,
+        "y": 360,
+        "description": "AWS operates physical facilities and the network connecting them within an Availability Zone.",
+        "purpose": "Use service-level AZ placement and health signals rather than attempting to manage a specific building.",
+        "example": "An AZ-aware database deployment places standby capacity in a different AZ.",
+        "services": [
+          "AWS global infrastructure"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-007"
+        ]
+      },
+      {
+        "id": "edge-layer",
+        "label": "Edge locations",
+        "code": "EDGE",
+        "x": 1000,
+        "y": 220,
+        "description": "Edge locations are part of AWS global edge infrastructure used by services such as CloudFront and Route 53.",
+        "purpose": "An edge location is distinct from a Region AZ and supports latency-sensitive edge delivery or DNS services.",
+        "example": "CloudFront caches a static object at an edge location closer to a viewer.",
+        "services": [
+          "Amazon CloudFront; Amazon Route 53"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-008"
+        ]
+      },
+      {
+        "id": "viewer",
+        "label": "Viewer / DNS client",
+        "code": "USER",
+        "x": 1000,
+        "y": 390,
+        "description": "A viewer connects to a global AWS endpoint, which can direct DNS or content delivery toward an appropriate destination.",
+        "purpose": "Distinguish user-facing edge delivery from the regional origin that runs the application.",
+        "example": "A viewer resolves a Route 53 record and receives cached CloudFront content when available.",
+        "services": [
+          "Amazon CloudFront; Amazon Route 53"
+        ],
+        "topic_id": "fundamentals-global-infrastructure",
+        "question_ids": [
+          "aws-001"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "region-az-a",
+        "source": "region",
+        "target": "az-a",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": 1
+      },
+      {
+        "id": "region-az-b",
+        "source": "region",
+        "target": "az-b",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": 2
+      },
+      {
+        "id": "az-a-dc-a1",
+        "source": "az-a",
+        "target": "dc-a1",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": 3
+      },
+      {
+        "id": "az-a-dc-a2",
+        "source": "az-a",
+        "target": "dc-a2",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "az-b-dc-b1",
+        "source": "az-b",
+        "target": "dc-b1",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "az-b-dc-b2",
+        "source": "az-b",
+        "target": "dc-b2",
+        "label": "contains",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "viewer-edge-layer",
+        "source": "viewer",
+        "target": "edge-layer",
+        "label": "DNS / HTTPS",
+        "kind": "traffic",
+        "sequence_step": 4
+      },
+      {
+        "id": "edge-layer-region",
+        "source": "edge-layer",
+        "target": "region",
+        "label": "origin request",
+        "kind": "traffic",
+        "sequence_step": 5
+      }
+    ],
+    "sequence": [
+      "region",
+      "az-a",
+      "dc-a1",
+      "az-b",
+      "dc-b1",
+      "edge-layer",
+      "viewer"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html",
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html"
+    ]
+  },
+  {
+    "id": "iam-authorization",
+    "order": 2,
+    "title": "IAM authorization flow",
+    "summary": "Separate the principal that asks to assume a role, the role trust policy, temporary STS credentials, and the policies evaluated for the resource request. An explicit deny overrides an allow.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "caller-account",
+        "title": "Caller account / identity",
+        "caption": "Principal and sts:AssumeRole permission",
+        "kind": "identity",
+        "x": 25,
+        "y": 60,
+        "width": 395,
+        "height": 470
+      },
+      {
+        "id": "role-account",
+        "title": "Role trust boundary",
+        "caption": "Role trust policy controls who may assume the role",
+        "kind": "identity",
+        "x": 435,
+        "y": 60,
+        "width": 395,
+        "height": 470
+      },
+      {
+        "id": "resource-account",
+        "title": "Resource account / policy",
+        "caption": "Resource policies participate in authorization",
+        "kind": "identity",
+        "x": 1070,
+        "y": 60,
+        "width": 330,
+        "height": 470
+      }
+    ],
+    "nodes": [
+      {
+        "id": "principal",
+        "label": "IAM user / workload",
+        "code": "USER",
+        "x": 45,
+        "y": 115,
+        "description": "A user or workload identity is the principal that starts an AWS request. Workloads should normally obtain short-lived credentials through an attached role rather than embedding long-lived keys.",
+        "purpose": "Identify who makes the request before reasoning about permissions.",
+        "example": "An EC2 application receives role credentials from instance metadata and calls STS or a service API.",
+        "services": [
+          "AWS Identity and Access Management"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-009"
+        ]
+      },
+      {
+        "id": "group",
+        "label": "IAM group",
+        "code": "GROUP",
+        "x": 45,
+        "y": 300,
+        "description": "An IAM group is a collection of IAM users to which identity-based policies can be attached. Groups do not act as principals and cannot be assumed as roles.",
+        "purpose": "Use groups to manage shared user permissions, while using roles for delegated or workload access.",
+        "example": "An operations group receives read-only console permissions through a group policy.",
+        "services": [
+          "AWS Identity and Access Management"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-010"
+        ]
+      },
+      {
+        "id": "assume-policy",
+        "label": "sts:AssumeRole permission",
+        "code": "POLICY",
+        "x": 250,
+        "y": 115,
+        "description": "The caller needs an identity-based allow for sts:AssumeRole on the target role, subject to applicable boundaries and organization controls.",
+        "purpose": "This permission authorizes the caller side of role assumption; it does not establish trust by itself.",
+        "example": "A build role may assume only the named deployment role in a target account.",
+        "services": [
+          "AWS Identity and Access Management; AWS Security Token Service"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-011"
+        ]
+      },
+      {
+        "id": "role",
+        "label": "IAM role",
+        "code": "ROLE",
+        "x": 465,
+        "y": 115,
+        "description": "A role is an identity with permissions that a trusted principal can assume to receive temporary credentials.",
+        "purpose": "Use roles to delegate access without distributing long-lived access keys.",
+        "example": "A CI identity assumes a narrowly scoped production deployment role for a release.",
+        "services": [
+          "AWS Identity and Access Management"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-011"
+        ]
+      },
+      {
+        "id": "trust-policy",
+        "label": "Role trust policy",
+        "code": "TRUST",
+        "x": 465,
+        "y": 300,
+        "description": "The role trust policy is a resource-based policy that identifies principals allowed to assume the role and can constrain the request with conditions.",
+        "purpose": "Both caller permission and role trust must permit the intended role assumption.",
+        "example": "A trust condition limits assumption to the expected account and federated repository subject.",
+        "services": [
+          "AWS Identity and Access Management"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-012"
+        ]
+      },
+      {
+        "id": "sts",
+        "label": "AWS STS",
+        "code": "STS",
+        "x": 680,
+        "y": 115,
+        "description": "AWS Security Token Service validates an allowed role-assumption request and returns temporary security credentials.",
+        "purpose": "Temporary credentials have a bounded session duration and are preferred for workload access.",
+        "example": "An application exchanges its federated identity for a short-lived role session.",
+        "services": [
+          "AWS Security Token Service"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-012"
+        ]
+      },
+      {
+        "id": "credentials",
+        "label": "Temporary session credentials",
+        "code": "KEY",
+        "x": 885,
+        "y": 115,
+        "description": "An assumed-role session uses temporary access key, secret key, and session token credentials.",
+        "purpose": "The credentials carry the assumed role permissions and expire; refresh them through the credential provider.",
+        "example": "An SDK default credential chain refreshes the task role credentials automatically.",
+        "services": [
+          "AWS Security Token Service; AWS SDKs"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-013"
+        ]
+      },
+      {
+        "id": "evaluation",
+        "label": "Allow / deny evaluation",
+        "code": "EVAL",
+        "x": 885,
+        "y": 310,
+        "description": "AWS evaluates applicable identity and resource policies together with boundaries, session policies, and organization controls as relevant. By default, access is denied and an explicit deny takes precedence.",
+        "purpose": "Debug the complete policy context, not just one attached allow statement.",
+        "example": "A bucket request fails because an organization policy explicitly denies an otherwise allowed action.",
+        "services": [
+          "AWS Identity and Access Management"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-015"
+        ]
+      },
+      {
+        "id": "resource-policy",
+        "label": "Resource policy",
+        "code": "BUCKET",
+        "x": 1150,
+        "y": 115,
+        "description": "A resource-based policy on a supported resource, such as an S3 bucket, names principals and allowed or denied actions.",
+        "purpose": "Cross-account designs often require both caller-side access and resource-owner authorization.",
+        "example": "A bucket policy allows one external account role to read a specific prefix.",
+        "services": [
+          "Amazon S3; AWS Identity and Access Management"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-033"
+        ]
+      },
+      {
+        "id": "resource",
+        "label": "Protected AWS resource",
+        "code": "S3",
+        "x": 1150,
+        "y": 310,
+        "description": "The service authorizes the signed API call against the request context and applicable policies before granting access.",
+        "purpose": "Scope access to the required actions and resource ARNs, then verify any service-specific policy behavior.",
+        "example": "The role can read objects under one bucket prefix but cannot change bucket policy.",
+        "services": [
+          "Amazon S3; AWS Identity and Access Management"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-034"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "principal-group",
+        "source": "principal",
+        "target": "group",
+        "label": "member of",
+        "kind": "authorization",
+        "sequence_step": 1
+      },
+      {
+        "id": "group-assume-policy",
+        "source": "group",
+        "target": "assume-policy",
+        "label": "policy grants",
+        "kind": "authorization",
+        "sequence_step": 2
+      },
+      {
+        "id": "principal-assume-policy",
+        "source": "principal",
+        "target": "assume-policy",
+        "label": "caller permission",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "assume-policy-role",
+        "source": "assume-policy",
+        "target": "role",
+        "label": "permits assume",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "trust-policy-role",
+        "source": "trust-policy",
+        "target": "role",
+        "label": "trusts principal",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "role-sts",
+        "source": "role",
+        "target": "sts",
+        "label": "assume role",
+        "kind": "control",
+        "sequence_step": 3
+      },
+      {
+        "id": "sts-credentials",
+        "source": "sts",
+        "target": "credentials",
+        "label": "returns session",
+        "kind": "control",
+        "sequence_step": 4
+      },
+      {
+        "id": "credentials-resource",
+        "source": "credentials",
+        "target": "resource",
+        "label": "signed API request",
+        "kind": "traffic",
+        "sequence_step": 5
+      },
+      {
+        "id": "credentials-evaluation",
+        "source": "credentials",
+        "target": "evaluation",
+        "label": "session context",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "role-evaluation",
+        "source": "role",
+        "target": "evaluation",
+        "label": "role permissions",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "resource-policy-evaluation",
+        "source": "resource-policy",
+        "target": "evaluation",
+        "label": "resource permissions",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "evaluation-resource",
+        "source": "evaluation",
+        "target": "resource",
+        "label": "allow only if evaluated",
+        "kind": "authorization",
+        "sequence_step": 6
+      }
+    ],
+    "sequence": [
+      "principal",
+      "assume-policy",
+      "role",
+      "sts",
+      "credentials",
+      "evaluation",
+      "resource"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html"
+    ]
+  },
+  {
+    "id": "vpc-networking",
+    "order": 3,
+    "title": "VPC traffic paths across two AZs",
+    "summary": "The public route table sends internet-bound traffic to the IGW. Private IPv4 egress uses a NAT Gateway in a public subnet in each AZ; ALB requests enter private application subnets through security-group rules.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "vpc",
+        "title": "VPC · 10.0.0.0/16",
+        "caption": "Route tables select targets; SGs attach to resources; NACLs apply at subnet boundaries.",
+        "kind": "vpc",
+        "x": 150,
+        "y": 45,
+        "width": 1240,
+        "height": 545
+      },
+      {
+        "id": "az-a",
+        "title": "Availability Zone A",
+        "caption": "Public ingress and private app egress path",
+        "kind": "availability-zone",
+        "x": 175,
+        "y": 125,
+        "width": 570,
+        "height": 430
+      },
+      {
+        "id": "public-a",
+        "title": "Public subnet A",
+        "caption": "Route table → IGW · ALB/NAT placement",
+        "kind": "subnet-public",
+        "x": 195,
+        "y": 170,
+        "width": 525,
+        "height": 155
+      },
+      {
+        "id": "private-a",
+        "title": "Private subnet A",
+        "caption": "Route table → NAT A",
+        "kind": "subnet-private",
+        "x": 195,
+        "y": 345,
+        "width": 525,
+        "height": 195
+      },
+      {
+        "id": "az-b",
+        "title": "Availability Zone B",
+        "caption": "Independent targets and AZ-local NAT path",
+        "kind": "availability-zone",
+        "x": 765,
+        "y": 125,
+        "width": 600,
+        "height": 430
+      },
+      {
+        "id": "public-b",
+        "title": "Public subnet B",
+        "caption": "Route table → IGW · ALB/NAT placement",
+        "kind": "subnet-public",
+        "x": 785,
+        "y": 170,
+        "width": 555,
+        "height": 155
+      },
+      {
+        "id": "private-b",
+        "title": "Private subnet B",
+        "caption": "Route table → NAT B",
+        "kind": "subnet-private",
+        "x": 785,
+        "y": 345,
+        "width": 570,
+        "height": 195
+      }
+    ],
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Internet client",
+        "code": "USER",
+        "x": 20,
+        "y": 250,
+        "description": "A public client starts HTTPS traffic toward the internet-facing load balancer.",
+        "purpose": "Public reachability requires a route and public endpoint, plus compatible network rules.",
+        "example": "A browser resolves the service DNS name and connects on TCP 443.",
+        "services": [
+          "Amazon VPC; Elastic Load Balancing"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-025"
+        ]
+      },
+      {
+        "id": "igw",
+        "label": "Internet Gateway",
+        "code": "IGW",
+        "x": 210,
+        "y": 250,
+        "description": "An Internet Gateway attaches to a VPC and provides a route target for internet traffic; it is not itself a firewall.",
+        "purpose": "A public subnet needs a route to the IGW, and public IPv4 instances need a public address for direct internet access.",
+        "example": "The public ALB receives inbound traffic through the IGW.",
+        "services": [
+          "Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-026"
+        ]
+      },
+      {
+        "id": "public-rt",
+        "label": "Public route table",
+        "code": "RT-PUB",
+        "x": 390,
+        "y": 115,
+        "description": "The public subnet route table includes the VPC local route and an internet default route to the IGW.",
+        "purpose": "The route table determines next hops; it does not grant traffic through security controls.",
+        "example": "0.0.0.0/0 points to the attached IGW for the public load balancer and NAT gateways.",
+        "services": [
+          "Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-027"
+        ]
+      },
+      {
+        "id": "private-rt-a",
+        "label": "Private route table A",
+        "code": "RT-PRI",
+        "x": 390,
+        "y": 420,
+        "description": "Private subnet A has a local VPC route and a default IPv4 route to the AZ-local NAT Gateway for outbound internet initiation.",
+        "purpose": "Using an AZ-local NAT path avoids routing private traffic through a NAT Gateway in another AZ.",
+        "example": "Application patch downloads leave through NAT A and return through the established connection.",
+        "services": [
+          "Amazon VPC; NAT Gateway"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-028"
+        ]
+      },
+      {
+        "id": "alb",
+        "label": "Internet-facing ALB",
+        "code": "ALB",
+        "x": 700,
+        "y": 55,
+        "description": "The ALB is deployed in public subnets across enabled AZs and forwards requests to healthy targets.",
+        "purpose": "Use the ALB security group to allow client listener traffic and application-target traffic separately.",
+        "example": "The ALB forwards HTTPS requests to app targets on the configured target port.",
+        "services": [
+          "Application Load Balancer"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-041"
+        ]
+      },
+      {
+        "id": "nat-a",
+        "label": "NAT Gateway A",
+        "code": "NAT-A",
+        "x": 585,
+        "y": 235,
+        "description": "A public NAT Gateway allows private IPv4 resources to initiate outbound connections while preventing unsolicited inbound initiation.",
+        "purpose": "A NAT Gateway must be placed in a public subnet whose route reaches the IGW.",
+        "example": "A private app instance reaches an external package repository through NAT A.",
+        "services": [
+          "NAT Gateway; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-029"
+        ]
+      },
+      {
+        "id": "app-a",
+        "label": "Private app target A",
+        "code": "APP-A",
+        "x": 205,
+        "y": 420,
+        "description": "An application target in the private subnet has no direct public ingress route; the ALB security group is permitted to reach its listener.",
+        "purpose": "Keep application targets private and scope their security-group ingress to the ALB security group.",
+        "example": "The ALB forwards a request to an EC2 target in AZ A.",
+        "services": [
+          "Amazon EC2; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-030"
+        ]
+      },
+      {
+        "id": "public-rt-b",
+        "label": "Public route table B",
+        "code": "RT-PUB",
+        "x": 785,
+        "y": 145,
+        "description": "The AZ B public subnet route table sends internet-bound traffic to the IGW.",
+        "purpose": "Public route associations are per subnet and must be deliberately configured.",
+        "example": "NAT Gateway B uses this table to reach the IGW.",
+        "services": [
+          "Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-031"
+        ]
+      },
+      {
+        "id": "private-rt-b",
+        "label": "Private route table B",
+        "code": "RT-PRI",
+        "x": 805,
+        "y": 420,
+        "description": "Private subnet B routes internet-bound IPv4 traffic through its own AZ-local NAT Gateway.",
+        "purpose": "Provide independent egress paths per AZ when cross-AZ dependency is not desired.",
+        "example": "Private application traffic in AZ B uses NAT B.",
+        "services": [
+          "Amazon VPC; NAT Gateway"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-032"
+        ]
+      },
+      {
+        "id": "nat-b",
+        "label": "NAT Gateway B",
+        "code": "NAT-B",
+        "x": 805,
+        "y": 235,
+        "description": "A second NAT Gateway supplies an egress path for private resources in AZ B.",
+        "purpose": "A single NAT Gateway can create an AZ dependency and cross-AZ transfer; plan availability and cost together.",
+        "example": "App B sends outbound requests through NAT B in the same AZ.",
+        "services": [
+          "NAT Gateway; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-025"
+        ]
+      },
+      {
+        "id": "app-b",
+        "label": "Private app target B",
+        "code": "APP-B",
+        "x": 990,
+        "y": 420,
+        "description": "An application target in AZ B provides capacity independent from the AZ A target.",
+        "purpose": "Spread targets across AZs and configure health checks so unhealthy targets stop receiving requests.",
+        "example": "The ALB routes a request to the healthy target in AZ B when AZ A target is unhealthy.",
+        "services": [
+          "Amazon EC2; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-026"
+        ]
+      },
+      {
+        "id": "controls",
+        "label": "Subnet NACL + resource SGs",
+        "code": "ACL / SG",
+        "x": 1170,
+        "y": 420,
+        "description": "Network ACLs are stateless subnet controls with allow and deny rules; security groups are stateful allow-only controls attached to resources.",
+        "purpose": "Route tables decide paths; NACLs and security groups filter packets at different boundaries.",
+        "example": "Permit ALB-to-app traffic in SG rules and ensure NACL return ephemeral ports are allowed.",
+        "services": [
+          "Amazon VPC; Security Groups; Network ACLs"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-027"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "client-igw",
+        "source": "client",
+        "target": "igw",
+        "label": "public HTTPS",
+        "kind": "traffic",
+        "sequence_step": 1
+      },
+      {
+        "id": "igw-alb",
+        "source": "igw",
+        "target": "alb",
+        "label": "public subnet route",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "alb-app-a",
+        "source": "alb",
+        "target": "app-a",
+        "label": "target group request",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "alb-app-b",
+        "source": "alb",
+        "target": "app-b",
+        "label": "target group request",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "app-a-nat-a",
+        "source": "app-a",
+        "target": "nat-a",
+        "label": "outbound via private route A",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "nat-a-igw",
+        "source": "nat-a",
+        "target": "igw",
+        "label": "public route to IGW",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "app-b-nat-b",
+        "source": "app-b",
+        "target": "nat-b",
+        "label": "outbound via private route B",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "nat-b-igw",
+        "source": "nat-b",
+        "target": "igw",
+        "label": "public route to IGW",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "public-rt-igw",
+        "source": "public-rt",
+        "target": "igw",
+        "label": "0.0.0.0/0 → IGW",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "private-rt-a-nat-a",
+        "source": "private-rt-a",
+        "target": "nat-a",
+        "label": "0.0.0.0/0 → NAT A",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "private-rt-b-nat-b",
+        "source": "private-rt-b",
+        "target": "nat-b",
+        "label": "0.0.0.0/0 → NAT B",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "controls-app-a",
+        "source": "controls",
+        "target": "app-a",
+        "label": "NACL / SG filtering",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "controls-app-b",
+        "source": "controls",
+        "target": "app-b",
+        "label": "NACL / SG filtering",
+        "kind": "containment",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "client",
+      "igw",
+      "alb",
+      "app-a",
+      "nat-a"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html",
+      "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html",
+      "https://docs.aws.amazon.com/vpc/latest/userguide/infrastructure-security.html"
+    ]
+  },
+  {
+    "id": "ec2-auto-scaling",
+    "order": 4,
+    "title": "EC2 Auto Scaling behind an ALB",
+    "summary": "DNS resolves clients to the ALB. The ALB forwards to healthy target-group instances; CloudWatch metrics inform Auto Scaling policies that change desired fleet capacity across AZs.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "region",
+        "title": "AWS Region",
+        "caption": "Regional load balancer and Auto Scaling group",
+        "kind": "region",
+        "x": 205,
+        "y": 45,
+        "width": 1160,
+        "height": 545
+      },
+      {
+        "id": "az-a",
+        "title": "Availability Zone A",
+        "caption": "ALB subnet + private EC2 target subnet",
+        "kind": "availability-zone",
+        "x": 220,
+        "y": 155,
+        "width": 450,
+        "height": 390
+      },
+      {
+        "id": "public-a",
+        "title": "Public subnet A",
+        "caption": "Regional ALB enabled in this AZ",
+        "kind": "subnet-public",
+        "x": 235,
+        "y": 185,
+        "width": 420,
+        "height": 130
+      },
+      {
+        "id": "private-a",
+        "title": "Private EC2 subnet A",
+        "caption": "No direct public ingress",
+        "kind": "subnet-private",
+        "x": 235,
+        "y": 325,
+        "width": 420,
+        "height": 205
+      },
+      {
+        "id": "az-b",
+        "title": "Availability Zone B",
+        "caption": "Independent ALB subnet + EC2 target subnet",
+        "kind": "availability-zone",
+        "x": 700,
+        "y": 155,
+        "width": 635,
+        "height": 390
+      },
+      {
+        "id": "public-b",
+        "title": "Public subnet B",
+        "caption": "Regional ALB enabled in this AZ",
+        "kind": "subnet-public",
+        "x": 715,
+        "y": 185,
+        "width": 605,
+        "height": 130
+      },
+      {
+        "id": "private-b",
+        "title": "Private EC2 subnet B",
+        "caption": "No direct public ingress",
+        "kind": "subnet-private",
+        "x": 715,
+        "y": 325,
+        "width": 605,
+        "height": 205
+      }
+    ],
+    "nodes": [
+      {
+        "id": "dns",
+        "label": "Route 53 alias",
+        "code": "R53",
+        "x": 35,
+        "y": 245,
+        "description": "Route 53 resolves the application name to the regional load balancer.",
+        "purpose": "DNS directs clients to the ALB; it does not distribute each HTTP request between EC2 instances.",
+        "example": "An alias record targets the application load balancer.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-042"
+        ]
+      },
+      {
+        "id": "alb",
+        "label": "Application Load Balancer",
+        "code": "ALB",
+        "x": 250,
+        "y": 65,
+        "description": "An ALB accepts HTTP(S) traffic and routes it to a target group based on listener rules.",
+        "purpose": "Spread the ALB over public subnets in multiple AZs.",
+        "example": "Listener rule forwards /api requests to the service target group.",
+        "services": [
+          "Elastic Load Balancing"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-043"
+        ]
+      },
+      {
+        "id": "tg",
+        "label": "EC2 target group",
+        "code": "TG",
+        "x": 445,
+        "y": 65,
+        "description": "The target group registers EC2 instances and evaluates configured health checks.",
+        "purpose": "Only healthy registered targets should receive traffic.",
+        "example": "A failing health check removes an instance from request routing while Auto Scaling replaces capacity.",
+        "services": [
+          "Elastic Load Balancing; Amazon EC2"
+        ],
+        "topic_id": "ec2-auto-scaling",
+        "question_ids": [
+          "aws-017"
+        ]
+      },
+      {
+        "id": "asg",
+        "label": "Auto Scaling group",
+        "code": "ASG",
+        "x": 1050,
+        "y": 65,
+        "description": "The ASG maintains desired EC2 capacity across selected subnets and replaces instances that fail configured health checks.",
+        "purpose": "Use a launch template and multi-AZ subnet placement to manage fleet capacity.",
+        "example": "The group launches a replacement instance after an unhealthy instance is terminated.",
+        "services": [
+          "Amazon EC2 Auto Scaling"
+        ],
+        "topic_id": "ec2-auto-scaling",
+        "question_ids": [
+          "aws-018"
+        ]
+      },
+      {
+        "id": "ec2-a",
+        "label": "EC2 instance · AZ A",
+        "code": "EC2-A",
+        "x": 270,
+        "y": 360,
+        "description": "An EC2 instance runs the application and registers as a target in the target group.",
+        "purpose": "Instances should be stateless or use external state so replacement and scaling are safe.",
+        "example": "A launch template provisions a new web instance in AZ A.",
+        "services": [
+          "Amazon EC2"
+        ],
+        "topic_id": "ec2-auto-scaling",
+        "question_ids": [
+          "aws-019"
+        ]
+      },
+      {
+        "id": "ec2-b",
+        "label": "EC2 instance · AZ B",
+        "code": "EC2-B",
+        "x": 1000,
+        "y": 360,
+        "description": "A second EC2 instance in another AZ provides independent serving capacity.",
+        "purpose": "Use multiple AZs and test behavior when one target or AZ becomes unhealthy.",
+        "example": "The target group serves traffic from AZ B during an AZ A issue.",
+        "services": [
+          "Amazon EC2"
+        ],
+        "topic_id": "ec2-auto-scaling",
+        "question_ids": [
+          "aws-020"
+        ]
+      },
+      {
+        "id": "metrics",
+        "label": "CloudWatch metrics",
+        "code": "CW",
+        "x": 640,
+        "y": 65,
+        "description": "CloudWatch metrics report workload and fleet signals that can be used by scaling policies.",
+        "purpose": "Choose a metric that reflects demand or saturation and set evaluation periods carefully.",
+        "example": "ALB request count per target drives a target-tracking scaling policy.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-073"
+        ]
+      },
+      {
+        "id": "policy",
+        "label": "Scaling policy",
+        "code": "POLICY",
+        "x": 835,
+        "y": 65,
+        "description": "A scaling policy adjusts desired capacity according to metrics or scheduled actions.",
+        "purpose": "Scaling changes desired count; it does not itself guarantee fast application startup or enough subnet IPs.",
+        "example": "A target-tracking policy increases desired capacity as requests per target rise.",
+        "services": [
+          "Amazon EC2 Auto Scaling; Amazon CloudWatch"
+        ],
+        "topic_id": "ec2-auto-scaling",
+        "question_ids": [
+          "aws-021"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "dns-alb",
+        "source": "dns",
+        "target": "alb",
+        "label": "DNS alias",
+        "kind": "traffic",
+        "sequence_step": 1
+      },
+      {
+        "id": "alb-tg",
+        "source": "alb",
+        "target": "tg",
+        "label": "listener forwards request",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "tg-ec2-a",
+        "source": "tg",
+        "target": "ec2-a",
+        "label": "healthy target traffic",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "tg-ec2-b",
+        "source": "tg",
+        "target": "ec2-b",
+        "label": "healthy target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "ec2-a-metrics",
+        "source": "ec2-a",
+        "target": "metrics",
+        "label": "instance / ALB metrics",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "metrics-policy",
+        "source": "metrics",
+        "target": "policy",
+        "label": "metric alarm / target tracking",
+        "kind": "monitoring",
+        "sequence_step": 4
+      },
+      {
+        "id": "policy-asg",
+        "source": "policy",
+        "target": "asg",
+        "label": "adjust desired capacity",
+        "kind": "control",
+        "sequence_step": 5
+      },
+      {
+        "id": "asg-ec2-a",
+        "source": "asg",
+        "target": "ec2-a",
+        "label": "launch template / health replacement",
+        "kind": "control",
+        "sequence_step": 6
+      },
+      {
+        "id": "asg-ec2-b",
+        "source": "asg",
+        "target": "ec2-b",
+        "label": "multi-AZ placement",
+        "kind": "control",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "dns",
+      "alb",
+      "tg",
+      "ec2-a",
+      "metrics",
+      "policy",
+      "asg",
+      "ec2-b"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+      "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html",
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-health-checks.html"
+    ]
+  },
+  {
+    "id": "s3-storage",
+    "order": 5,
+    "title": "S3 access, protection, and replication",
+    "summary": "S3 requests are authorized through IAM and bucket policy evaluation. Object versioning, encryption, and lifecycle are bucket/object controls; optional Cross-Region Replication asynchronously copies eligible object versions to a versioned destination.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "source-region",
+        "title": "Source Region · S3 bucket",
+        "caption": "Objects, versions, encryption, and lifecycle policy",
+        "kind": "region",
+        "x": 420,
+        "y": 55,
+        "width": 590,
+        "height": 490
+      },
+      {
+        "id": "destination-region",
+        "title": "Destination Region",
+        "caption": "Separate bucket and independent destination controls",
+        "kind": "region",
+        "x": 1100,
+        "y": 145,
+        "width": 300,
+        "height": 300
+      }
+    ],
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Application client",
+        "code": "APP",
+        "x": 35,
+        "y": 250,
+        "description": "A client makes an authenticated S3 API request over TLS.",
+        "purpose": "Use a role or federated identity and avoid exposing long-lived access keys.",
+        "example": "A service requests GetObject for a permitted object key.",
+        "services": [
+          "Amazon S3; AWS Identity and Access Management"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-035"
+        ]
+      },
+      {
+        "id": "identity",
+        "label": "IAM identity policy",
+        "code": "IAM",
+        "x": 245,
+        "y": 100,
+        "description": "The caller identity policy grants only the required S3 actions and resource scope.",
+        "purpose": "Identity-based allow is one part of the authorization decision; explicit denies and resource policies still matter.",
+        "example": "A workload role permits reads for one bucket prefix.",
+        "services": [
+          "AWS Identity and Access Management; Amazon S3"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-014"
+        ]
+      },
+      {
+        "id": "bucket-policy",
+        "label": "Bucket policy",
+        "code": "POLICY",
+        "x": 245,
+        "y": 390,
+        "description": "The bucket policy controls resource-based access, including public-access blocks and allowed principals.",
+        "purpose": "Keep block-public-access enabled unless a carefully reviewed public use case requires otherwise.",
+        "example": "A bucket policy allows the application role and denies insecure transport.",
+        "services": [
+          "Amazon S3"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-036"
+        ]
+      },
+      {
+        "id": "bucket",
+        "label": "S3 bucket",
+        "code": "S3",
+        "x": 500,
+        "y": 250,
+        "description": "An S3 bucket is a regional object namespace whose objects are stored by S3 across multiple AZs.",
+        "purpose": "S3 is object storage; use bucket and access settings to define protection and sharing.",
+        "example": "An application stores generated reports in a private bucket.",
+        "services": [
+          "Amazon S3"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-037"
+        ]
+      },
+      {
+        "id": "objects",
+        "label": "Objects / versions",
+        "code": "OBJ",
+        "x": 715,
+        "y": 100,
+        "description": "Objects contain data and metadata; with versioning enabled, overwrites and deletes retain version history.",
+        "purpose": "Versioning supports recovery from accidental changes but does not replace independent backup or retention controls.",
+        "example": "A prior object version is restored after an accidental overwrite.",
+        "services": [
+          "Amazon S3"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-038"
+        ]
+      },
+      {
+        "id": "encryption",
+        "label": "Encryption · SSE-KMS",
+        "code": "KMS",
+        "x": 715,
+        "y": 250,
+        "description": "S3 encrypts objects at rest; SSE-KMS uses a KMS key and requires both S3 and KMS authorization as applicable.",
+        "purpose": "Protect key access and verify key policy, IAM permissions, and service use.",
+        "example": "The application role can read objects only when it has permission to decrypt with the selected key.",
+        "services": [
+          "Amazon S3; AWS Key Management Service"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-039"
+        ]
+      },
+      {
+        "id": "lifecycle",
+        "label": "Lifecycle policy",
+        "code": "LIFE",
+        "x": 715,
+        "y": 390,
+        "description": "Lifecycle rules transition or expire objects and noncurrent versions according to configured age and filters.",
+        "purpose": "Match lifecycle behavior to access patterns, retention obligations, and restore requirements.",
+        "example": "Older logs transition after the active investigation window and expire only after retention ends.",
+        "services": [
+          "Amazon S3"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-040"
+        ]
+      },
+      {
+        "id": "replication",
+        "label": "Cross-Region replication",
+        "code": "CRR",
+        "x": 965,
+        "y": 250,
+        "description": "S3 replication asynchronously copies eligible object versions to a destination bucket in another Region when configured with versioning and permissions.",
+        "purpose": "Replication supports geographic separation but is not synchronous and does not automatically mirror every configuration.",
+        "example": "A compliance archive copies new object versions to a separate Region.",
+        "services": [
+          "Amazon S3"
+        ],
+        "topic_id": "s3-storage",
+        "question_ids": [
+          "aws-033"
+        ]
+      },
+      {
+        "id": "dest",
+        "label": "Destination bucket",
+        "code": "S3-DR",
+        "x": 1175,
+        "y": 250,
+        "description": "A destination bucket stores replicated object copies under its own policy, encryption, and retention configuration.",
+        "purpose": "Test destination access and recovery independently from source-account access.",
+        "example": "Recovery operators retrieve replicated objects after a regional incident.",
+        "services": [
+          "Amazon S3; AWS Backup"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-081"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "client-identity",
+        "source": "client",
+        "target": "identity",
+        "label": "signed S3 request",
+        "kind": "authorization",
+        "sequence_step": 1
+      },
+      {
+        "id": "identity-bucket",
+        "source": "identity",
+        "target": "bucket",
+        "label": "identity-based allow",
+        "kind": "authorization",
+        "sequence_step": 2
+      },
+      {
+        "id": "bucket-policy-bucket",
+        "source": "bucket-policy",
+        "target": "bucket",
+        "label": "resource policy evaluation",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "bucket-objects",
+        "source": "bucket",
+        "target": "objects",
+        "label": "object API operations",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "objects-encryption",
+        "source": "objects",
+        "target": "encryption",
+        "label": "encrypted at rest",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "objects-lifecycle",
+        "source": "objects",
+        "target": "lifecycle",
+        "label": "age / filter rules",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "bucket-replication",
+        "source": "bucket",
+        "target": "replication",
+        "label": "eligible object versions · async",
+        "kind": "replication",
+        "sequence_step": 4
+      },
+      {
+        "id": "replication-dest",
+        "source": "replication",
+        "target": "dest",
+        "label": "replication role writes copy",
+        "kind": "replication",
+        "sequence_step": 5
+      }
+    ],
+    "sequence": [
+      "client",
+      "identity",
+      "bucket",
+      "objects",
+      "replication",
+      "dest"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security_iam_service-with-iam.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-requirements.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html"
+    ]
+  },
+  {
+    "id": "route53-failover",
+    "order": 6,
+    "title": "Route 53 DNS failover",
+    "summary": "A client resolver receives an answer from the hosted zone routing policy. Health status informs the primary/secondary DNS answer; clients must still reconnect and honor DNS caching behavior.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "region-a",
+        "title": "Region A · primary",
+        "caption": "Primary ALB and health evaluation",
+        "kind": "region",
+        "x": 900,
+        "y": 70,
+        "width": 260,
+        "height": 500
+      },
+      {
+        "id": "region-b",
+        "title": "Region B · secondary",
+        "caption": "Failover ALB must be ready for traffic",
+        "kind": "region",
+        "x": 1170,
+        "y": 70,
+        "width": 240,
+        "height": 500
+      }
+    ],
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Client",
+        "code": "USER",
+        "x": 35,
+        "y": 250,
+        "description": "The client asks its recursive resolver for the service DNS name.",
+        "purpose": "DNS routing chooses an answer; the client then connects to the returned endpoint.",
+        "example": "A browser resolves api.example.com before starting HTTPS.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-044"
+        ]
+      },
+      {
+        "id": "resolver",
+        "label": "Recursive resolver",
+        "code": "DNS",
+        "x": 245,
+        "y": 250,
+        "description": "The resolver queries the authoritative hosted zone and caches the answer according to DNS TTL.",
+        "purpose": "Keep TTL and failover expectations in mind; DNS changes are not instant connection migration.",
+        "example": "A client resolver asks Route 53 for the alias record.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-045"
+        ]
+      },
+      {
+        "id": "zone",
+        "label": "Public hosted zone",
+        "code": "ZONE",
+        "x": 465,
+        "y": 250,
+        "description": "The hosted zone stores authoritative records for a domain.",
+        "purpose": "Use alias records for supported AWS targets and select a routing policy deliberately.",
+        "example": "An A/AAAA alias points to the primary regional ALB.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-046"
+        ]
+      },
+      {
+        "id": "policy",
+        "label": "Failover routing policy",
+        "code": "FAIL",
+        "x": 690,
+        "y": 250,
+        "description": "A Route 53 failover policy associates primary and secondary records and returns the secondary when health evaluation marks the primary unhealthy.",
+        "purpose": "Health evaluation and DNS TTL affect failover behavior; test the complete client recovery path.",
+        "example": "Primary alias is returned while its configured health signal is healthy.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-047"
+        ]
+      },
+      {
+        "id": "health",
+        "label": "Health checks",
+        "code": "HC",
+        "x": 690,
+        "y": 430,
+        "description": "A Route 53 health check can monitor a configured endpoint or other supported signal; alias records can also evaluate target health.",
+        "purpose": "Choose endpoint checks or Evaluate Target Health according to the architecture; do not assume the health check understands application semantics.",
+        "example": "A health check detects the primary endpoint is not responding and marks its record unhealthy.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-048"
+        ]
+      },
+      {
+        "id": "primary",
+        "label": "Primary ALB · Region A",
+        "code": "ALB-A",
+        "x": 960,
+        "y": 145,
+        "description": "The primary regional ALB serves the production endpoint while targets are healthy.",
+        "purpose": "Place the ALB across multiple AZs and ensure its target health represents service readiness.",
+        "example": "Traffic goes to the primary ALB under normal conditions.",
+        "services": [
+          "Elastic Load Balancing"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-041"
+        ]
+      },
+      {
+        "id": "secondary",
+        "label": "Secondary ALB · Region B",
+        "code": "ALB-B",
+        "x": 1200,
+        "y": 365,
+        "description": "A secondary regional endpoint is the failover destination and must have recoverable data and deployable application capacity.",
+        "purpose": "DNS failover alone does not provision capacity, synchronize state, or guarantee application readiness.",
+        "example": "A warm standby ALB receives DNS answers after the primary is deemed unhealthy.",
+        "services": [
+          "Elastic Load Balancing; Amazon Route 53"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-082"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "client-resolver",
+        "source": "client",
+        "target": "resolver",
+        "label": "DNS query",
+        "kind": "traffic",
+        "sequence_step": 1
+      },
+      {
+        "id": "resolver-zone",
+        "source": "resolver",
+        "target": "zone",
+        "label": "recursive lookup",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "zone-policy",
+        "source": "zone",
+        "target": "policy",
+        "label": "record + failover policy",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "health-policy",
+        "source": "health",
+        "target": "policy",
+        "label": "health status",
+        "kind": "monitoring",
+        "sequence_step": 3
+      },
+      {
+        "id": "policy-primary",
+        "source": "policy",
+        "target": "primary",
+        "label": "primary answer when healthy",
+        "kind": "traffic",
+        "sequence_step": 4
+      },
+      {
+        "id": "policy-secondary",
+        "source": "policy",
+        "target": "secondary",
+        "label": "secondary answer on failover",
+        "kind": "recovery",
+        "sequence_step": 5
+      },
+      {
+        "id": "primary-health",
+        "source": "primary",
+        "target": "health",
+        "label": "endpoint health / target health",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "secondary-health",
+        "source": "secondary",
+        "target": "health",
+        "label": "secondary readiness signal",
+        "kind": "monitoring",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "client",
+      "resolver",
+      "zone",
+      "policy",
+      "health",
+      "primary",
+      "secondary"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html",
+      "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-elb-load-balancer.html",
+      "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html"
+    ]
+  },
+  {
+    "id": "lambda-serverless",
+    "order": 7,
+    "title": "Lambda event processing and failure handling",
+    "summary": "The diagram shows asynchronous invocation: Lambda queues the event and applies the async retry policy. The execution role authorizes downstream API calls; exhausted or expired events can go to a configured DLQ or on-failure destination.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "lambda-region",
+        "title": "AWS Region · async invocation",
+        "caption": "Event source, function, execution role, and destinations",
+        "kind": "region",
+        "x": 230,
+        "y": 55,
+        "width": 1155,
+        "height": 500
+      }
+    ],
+    "nodes": [
+      {
+        "id": "event-source",
+        "label": "EventBridge / S3 event",
+        "code": "EVENT",
+        "x": 40,
+        "y": 250,
+        "description": "An event source invokes Lambda synchronously or asynchronously according to the integration. This diagram shows an asynchronous invocation path.",
+        "purpose": "Know the invoker retry model; event-source mappings such as SQS have different source queue retry and redrive behavior.",
+        "example": "An EventBridge rule sends a matching event to the function asynchronously.",
+        "services": [
+          "Amazon EventBridge; Amazon S3; AWS Lambda"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-049"
+        ]
+      },
+      {
+        "id": "async-queue",
+        "label": "Lambda async queue",
+        "code": "QUEUE",
+        "x": 260,
+        "y": 250,
+        "description": "For asynchronous invocation, Lambda queues the event before attempting function execution.",
+        "purpose": "The event may be delivered more than once; make handlers idempotent.",
+        "example": "A queued event waits until function concurrency is available.",
+        "services": [
+          "AWS Lambda"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-050"
+        ]
+      },
+      {
+        "id": "function",
+        "label": "Lambda function",
+        "code": "LAMBDA",
+        "x": 485,
+        "y": 250,
+        "description": "Lambda runs the function in a managed execution environment and scales concurrency within configured limits.",
+        "purpose": "Keep function code safe for retries and manage timeout, memory, concurrency, and downstream limits.",
+        "example": "The function validates a document event and writes normalized metadata.",
+        "services": [
+          "AWS Lambda"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-051"
+        ]
+      },
+      {
+        "id": "role",
+        "label": "Execution role",
+        "code": "ROLE",
+        "x": 485,
+        "y": 85,
+        "description": "The execution role grants the Lambda runtime permission to access required services and write logs.",
+        "purpose": "The role is assumed by Lambda; it is distinct from a caller permission to invoke the function.",
+        "example": "A function role can write one DynamoDB table and its CloudWatch log group.",
+        "services": [
+          "AWS Identity and Access Management; AWS Lambda"
+        ],
+        "topic_id": "iam-security",
+        "question_ids": [
+          "aws-015"
+        ]
+      },
+      {
+        "id": "downstream",
+        "label": "DynamoDB / S3",
+        "code": "DATA",
+        "x": 755,
+        "y": 250,
+        "description": "Downstream service APIs are called using credentials from the execution role.",
+        "purpose": "Grant only the actions and resource ARNs needed by the function.",
+        "example": "A document processor writes metadata to DynamoDB and output to S3.",
+        "services": [
+          "Amazon DynamoDB; Amazon S3"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-052"
+        ]
+      },
+      {
+        "id": "retry",
+        "label": "Retry policy",
+        "code": "RETRY",
+        "x": 755,
+        "y": 430,
+        "description": "Lambda asynchronous invocation retries function errors according to its configured retry and event-age settings.",
+        "purpose": "The default retry behavior applies to asynchronous function errors; synchronous caller and event-source mapping retries differ.",
+        "example": "A transient downstream error causes a bounded retry; duplicate handling avoids duplicate writes.",
+        "services": [
+          "AWS Lambda"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-053"
+        ]
+      },
+      {
+        "id": "dlq",
+        "label": "On-failure destination / DLQ",
+        "code": "DLQ",
+        "x": 1015,
+        "y": 430,
+        "description": "A configured dead-letter queue or on-failure destination captures events that fail processing or expire, depending on configuration.",
+        "purpose": "Monitor destination delivery failures and define a controlled redrive process.",
+        "example": "SQS stores an exhausted event for investigation and later replay.",
+        "services": [
+          "Amazon SQS; AWS Lambda"
+        ],
+        "topic_id": "lambda-serverless",
+        "question_ids": [
+          "aws-054"
+        ]
+      },
+      {
+        "id": "logs",
+        "label": "CloudWatch logs / metrics",
+        "code": "CW",
+        "x": 1015,
+        "y": 250,
+        "description": "Lambda emits logs and metrics to CloudWatch when execution role permissions and logging configuration allow it.",
+        "purpose": "Monitor errors, throttles, duration, concurrency, and async event age.",
+        "example": "An alarm detects rising function errors and queue age.",
+        "services": [
+          "Amazon CloudWatch; AWS Lambda"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-074"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "event-source-async-queue",
+        "source": "event-source",
+        "target": "async-queue",
+        "label": "async invoke event",
+        "kind": "event",
+        "sequence_step": 1
+      },
+      {
+        "id": "async-queue-function",
+        "source": "async-queue",
+        "target": "function",
+        "label": "dispatch event",
+        "kind": "event",
+        "sequence_step": 2
+      },
+      {
+        "id": "role-function",
+        "source": "role",
+        "target": "function",
+        "label": "execution role permissions",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "function-downstream",
+        "source": "function",
+        "target": "downstream",
+        "label": "SDK calls with role credentials",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "function-logs",
+        "source": "function",
+        "target": "logs",
+        "label": "logs + invocation metrics",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "function-retry",
+        "source": "function",
+        "target": "retry",
+        "label": "function error / retry",
+        "kind": "event",
+        "sequence_step": 4
+      },
+      {
+        "id": "retry-async-queue",
+        "source": "retry",
+        "target": "async-queue",
+        "label": "retry delivery",
+        "kind": "event",
+        "sequence_step": null
+      },
+      {
+        "id": "retry-dlq",
+        "source": "retry",
+        "target": "dlq",
+        "label": "after configured failure handling",
+        "kind": "recovery",
+        "sequence_step": 5
+      },
+      {
+        "id": "logs-retry",
+        "source": "logs",
+        "target": "retry",
+        "label": "error / age signals",
+        "kind": "monitoring",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "event-source",
+      "async-queue",
+      "function",
+      "downstream",
+      "retry",
+      "dlq"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html"
+    ]
+  },
+  {
+    "id": "ecs-fargate",
+    "order": 8,
+    "title": "ECS, ECR, and Fargate delivery path",
+    "summary": "Source is built and scanned, then an immutable image is stored in ECR. ECS schedules Fargate tasks in private subnets across two AZs; the execution role supports platform image/log actions, while the task role supplies application permissions.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "vpc",
+        "title": "VPC · workload account",
+        "caption": "ALB in public subnets; Fargate tasks in private subnets",
+        "kind": "vpc",
+        "x": 575,
+        "y": 45,
+        "width": 825,
+        "height": 525
+      },
+      {
+        "id": "public",
+        "title": "Public subnets",
+        "caption": "Internet-facing ALB only",
+        "kind": "subnet-public",
+        "x": 600,
+        "y": 95,
+        "width": 775,
+        "height": 150
+      },
+      {
+        "id": "az-a",
+        "title": "Availability Zone A",
+        "caption": "Task ENI in private subnet",
+        "kind": "availability-zone",
+        "x": 600,
+        "y": 260,
+        "width": 365,
+        "height": 285
+      },
+      {
+        "id": "private-a",
+        "title": "Private subnet A",
+        "caption": "No direct inbound internet route",
+        "kind": "subnet-private",
+        "x": 620,
+        "y": 305,
+        "width": 325,
+        "height": 220
+      },
+      {
+        "id": "az-b",
+        "title": "Availability Zone B",
+        "caption": "Task ENI in private subnet",
+        "kind": "availability-zone",
+        "x": 980,
+        "y": 260,
+        "width": 395,
+        "height": 285
+      },
+      {
+        "id": "private-b",
+        "title": "Private subnet B",
+        "caption": "No direct inbound internet route",
+        "kind": "subnet-private",
+        "x": 1000,
+        "y": 305,
+        "width": 355,
+        "height": 220
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source",
+        "label": "Source repository",
+        "code": "GIT",
+        "x": 25,
+        "y": 245,
+        "description": "The source repository contains application code and the Docker build definition.",
+        "purpose": "A protected pipeline builds a versioned artifact from reviewed source.",
+        "example": "A commit starts CI and creates a traceable image digest.",
+        "services": [
+          "AWS CodePipeline; AWS CodeBuild"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-097"
+        ]
+      },
+      {
+        "id": "build",
+        "label": "Docker build + scan",
+        "code": "BUILD",
+        "x": 220,
+        "y": 245,
+        "description": "A build job produces a container image, runs tests and security checks, then tags the immutable digest.",
+        "purpose": "Build once and promote the same digest; avoid embedding secrets in image layers.",
+        "example": "CodeBuild tests the image before pushing it to ECR.",
+        "services": [
+          "AWS CodeBuild; Amazon ECR"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-065"
+        ]
+      },
+      {
+        "id": "ecr",
+        "label": "Amazon ECR",
+        "code": "ECR",
+        "x": 415,
+        "y": 245,
+        "description": "ECR stores container images and provides the registry endpoint used by ECS tasks.",
+        "purpose": "Configure repository policies and image retention appropriate to rollback needs.",
+        "example": "The task pulls the exact image digest from the private repository.",
+        "services": [
+          "Amazon ECR"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-066"
+        ]
+      },
+      {
+        "id": "service",
+        "label": "ECS service",
+        "code": "ECS",
+        "x": 390,
+        "y": 90,
+        "description": "The ECS service maintains desired task count and deployment state for its task definition.",
+        "purpose": "ECS service scheduling coordinates task placement; networking and IAM roles are configured in the task definition/service.",
+        "example": "A new task definition revision rolls out across private subnets.",
+        "services": [
+          "Amazon ECS"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-067"
+        ]
+      },
+      {
+        "id": "alb",
+        "label": "Application Load Balancer",
+        "code": "ALB",
+        "x": 885,
+        "y": 110,
+        "description": "The ALB receives public HTTPS traffic and forwards requests to healthy ECS task targets.",
+        "purpose": "Place it in public subnets and restrict task ingress to its security group.",
+        "example": "An ALB target group routes to task ENI addresses on the application port.",
+        "services": [
+          "Elastic Load Balancing; Amazon ECS"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-042"
+        ]
+      },
+      {
+        "id": "task-a",
+        "label": "Fargate task · AZ A",
+        "code": "TASK A",
+        "x": 650,
+        "y": 340,
+        "description": "A Fargate task runs in a private subnet with its own task network interface and security groups.",
+        "purpose": "Use private subnets and provide required egress through NAT or VPC endpoints.",
+        "example": "The task receives ALB traffic through the target group and calls a backend service.",
+        "services": [
+          "AWS Fargate; Amazon ECS"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-068"
+        ]
+      },
+      {
+        "id": "task-b",
+        "label": "Fargate task · AZ B",
+        "code": "TASK B",
+        "x": 1000,
+        "y": 340,
+        "description": "A second Fargate task provides capacity in another AZ.",
+        "purpose": "Multi-AZ placement improves availability but requires sufficient subnet IPs and healthy task placement.",
+        "example": "ECS replaces a stopped task in AZ B while the AZ A task continues serving.",
+        "services": [
+          "AWS Fargate; Amazon ECS"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-069"
+        ]
+      },
+      {
+        "id": "exec-role",
+        "label": "Task execution role",
+        "code": "EXEC",
+        "x": 25,
+        "y": 410,
+        "description": "The execution role is used by the ECS agent or Fargate platform for actions such as pulling private ECR images and publishing logs.",
+        "purpose": "It does not provide application code credentials inside the container.",
+        "example": "The platform uses this role during image pull and log setup.",
+        "services": [
+          "Amazon ECS; AWS Identity and Access Management"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-070"
+        ]
+      },
+      {
+        "id": "task-role",
+        "label": "Task role",
+        "code": "ROLE",
+        "x": 220,
+        "y": 410,
+        "description": "The task role provides temporary credentials to application code inside the container.",
+        "purpose": "Grant only application API permissions; keep it separate from the task execution role.",
+        "example": "The service code reads a specific DynamoDB table using its task role.",
+        "services": [
+          "Amazon ECS; AWS Identity and Access Management"
+        ],
+        "topic_id": "containers",
+        "question_ids": [
+          "aws-071"
+        ]
+      },
+      {
+        "id": "private-link",
+        "label": "VPC endpoints / egress",
+        "code": "VPC EP",
+        "x": 1175,
+        "y": 430,
+        "description": "Private tasks reach AWS services through VPC endpoints or an intentionally configured egress path.",
+        "purpose": "A private subnet has no direct IGW route; endpoint policies and security groups still govern access.",
+        "example": "ECR image and CloudWatch log traffic uses configured VPC endpoints rather than public internet routing.",
+        "services": [
+          "Amazon VPC; AWS PrivateLink"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-028"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "source-build",
+        "source": "source",
+        "target": "build",
+        "label": "commit → image build",
+        "kind": "control",
+        "sequence_step": 1
+      },
+      {
+        "id": "build-ecr",
+        "source": "build",
+        "target": "ecr",
+        "label": "push image digest",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "ecr-task-a",
+        "source": "ecr",
+        "target": "task-a",
+        "label": "platform image pull",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "ecr-task-b",
+        "source": "ecr",
+        "target": "task-b",
+        "label": "platform image pull",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "exec-role-task-a",
+        "source": "exec-role",
+        "target": "task-a",
+        "label": "execution role · pull/logs",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "exec-role-task-b",
+        "source": "exec-role",
+        "target": "task-b",
+        "label": "execution role · pull/logs",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "task-role-task-a",
+        "source": "task-role",
+        "target": "task-a",
+        "label": "application credentials",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "task-role-task-b",
+        "source": "task-role",
+        "target": "task-b",
+        "label": "application credentials",
+        "kind": "authorization",
+        "sequence_step": null
+      },
+      {
+        "id": "service-task-a",
+        "source": "service",
+        "target": "task-a",
+        "label": "desired count / task placement",
+        "kind": "control",
+        "sequence_step": 4
+      },
+      {
+        "id": "service-task-b",
+        "source": "service",
+        "target": "task-b",
+        "label": "multi-AZ scheduling",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "alb-task-a",
+        "source": "alb",
+        "target": "task-a",
+        "label": "healthy target traffic",
+        "kind": "traffic",
+        "sequence_step": 5
+      },
+      {
+        "id": "alb-task-b",
+        "source": "alb",
+        "target": "task-b",
+        "label": "healthy target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "task-a-private-link",
+        "source": "task-a",
+        "target": "private-link",
+        "label": "private AWS service connectivity",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "task-b-private-link",
+        "source": "task-b",
+        "target": "private-link",
+        "label": "private AWS service connectivity",
+        "kind": "traffic",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "source",
+      "build",
+      "ecr",
+      "service",
+      "task-a",
+      "alb",
+      "task-b"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-configuration.html"
+    ]
+  },
+  {
+    "id": "cloudwatch-observability",
+    "order": 9,
+    "title": "CloudWatch signals to response",
+    "summary": "Resources publish metrics and logs to CloudWatch. Metric alarms evaluate time-series thresholds and can notify responders through SNS; logs and dashboards support diagnosis rather than serving as the alarm condition in this flow.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "monitoring-region",
+        "title": "AWS Region",
+        "caption": "Regional metrics, logs, alarms, and notification services",
+        "kind": "region",
+        "x": 260,
+        "y": 55,
+        "width": 930,
+        "height": 500
+      }
+    ],
+    "nodes": [
+      {
+        "id": "resources",
+        "label": "AWS resources",
+        "code": "RES",
+        "x": 300,
+        "y": 245,
+        "description": "Applications and AWS services emit metrics, logs, and service events.",
+        "purpose": "Instrument application signals as well as infrastructure metrics so alerts map to user impact.",
+        "example": "An ALB emits request and target health metrics while the application writes structured logs.",
+        "services": [
+          "Amazon EC2; Elastic Load Balancing; AWS Lambda"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-075"
+        ]
+      },
+      {
+        "id": "metrics",
+        "label": "CloudWatch metrics",
+        "code": "METRIC",
+        "x": 300,
+        "y": 110,
+        "description": "Metrics are timestamped values grouped by namespace and dimensions.",
+        "purpose": "Choose dimensions that support useful aggregation without uncontrolled cardinality.",
+        "example": "Request count and 5xx rates are emitted for service and target group dimensions.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-076"
+        ]
+      },
+      {
+        "id": "logs",
+        "label": "CloudWatch Logs",
+        "code": "LOGS",
+        "x": 300,
+        "y": 365,
+        "description": "CloudWatch Logs stores log events in log groups and streams with configured retention and access.",
+        "purpose": "Use structured logs and protect sensitive data; set retention intentionally.",
+        "example": "The Lambda execution role sends application output to its log group.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-077"
+        ]
+      },
+      {
+        "id": "alarm",
+        "label": "CloudWatch alarm",
+        "code": "ALARM",
+        "x": 590,
+        "y": 110,
+        "description": "An alarm evaluates a metric over configured periods and enters states such as OK, ALARM, or INSUFFICIENT_DATA.",
+        "purpose": "Use meaningful evaluation periods and missing-data handling to reduce noisy or blind alerts.",
+        "example": "An ALB 5xx rate alarm enters ALARM after the chosen datapoints breach the threshold.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-078"
+        ]
+      },
+      {
+        "id": "dashboard",
+        "label": "Dashboard / Logs Insights",
+        "code": "VIEW",
+        "x": 590,
+        "y": 365,
+        "description": "Dashboards and Logs Insights help operators correlate metric trends with log events.",
+        "purpose": "Dashboards aid investigation but do not replace paging alarms or service-level objectives.",
+        "example": "An operator uses a dashboard time window to inspect logs around an alarm.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-079"
+        ]
+      },
+      {
+        "id": "sns",
+        "label": "SNS notification",
+        "code": "SNS",
+        "x": 880,
+        "y": 110,
+        "description": "An alarm action can publish a notification to an SNS topic with configured subscribers.",
+        "purpose": "Control who receives notifications and ensure the action path is tested.",
+        "example": "An alarm publishes to an operations topic that fans out to email or an incident integration.",
+        "services": [
+          "Amazon SNS; Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-080"
+        ]
+      },
+      {
+        "id": "operator",
+        "label": "On-call responder",
+        "code": "OPS",
+        "x": 1230,
+        "y": 110,
+        "description": "The responder receives an alert and follows a runbook to determine impact and mitigation.",
+        "purpose": "Include enough context, ownership, and links to reduce time to diagnosis.",
+        "example": "The responder correlates alarm time with deployment history and logs.",
+        "services": [
+          "Amazon CloudWatch; AWS Systems Manager"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-073"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "resources-metrics",
+        "source": "resources",
+        "target": "metrics",
+        "label": "metrics / dimensions",
+        "kind": "monitoring",
+        "sequence_step": 1
+      },
+      {
+        "id": "resources-logs",
+        "source": "resources",
+        "target": "logs",
+        "label": "structured log events",
+        "kind": "monitoring",
+        "sequence_step": 2
+      },
+      {
+        "id": "metrics-alarm",
+        "source": "metrics",
+        "target": "alarm",
+        "label": "alarm evaluates metric data",
+        "kind": "monitoring",
+        "sequence_step": 3
+      },
+      {
+        "id": "logs-dashboard",
+        "source": "logs",
+        "target": "dashboard",
+        "label": "logs query / correlation",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "metrics-dashboard",
+        "source": "metrics",
+        "target": "dashboard",
+        "label": "metric time series",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "alarm-sns",
+        "source": "alarm",
+        "target": "sns",
+        "label": "alarm action publishes",
+        "kind": "event",
+        "sequence_step": 4
+      },
+      {
+        "id": "sns-operator",
+        "source": "sns",
+        "target": "operator",
+        "label": "notification fan-out",
+        "kind": "event",
+        "sequence_step": 5
+      }
+    ],
+    "sequence": [
+      "resources",
+      "metrics",
+      "alarm",
+      "sns",
+      "operator"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html",
+      "https://docs.aws.amazon.com/sns/latest/dg/welcome.html"
+    ]
+  },
+  {
+    "id": "cicd-pipeline",
+    "order": 10,
+    "title": "CI/CD from commit to verified release",
+    "summary": "A pipeline builds and tests a source revision, scans and stores an immutable artifact, deploys it, then checks service health. A CloudWatch alarm can stop or roll back a traffic-shifting deployment when configured.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "pipeline-stages",
+        "title": "Delivery pipeline",
+        "caption": "Build, validation, artifact promotion, and deployment stages",
+        "kind": "global",
+        "x": 180,
+        "y": 75,
+        "width": 840,
+        "height": 440
+      },
+      {
+        "id": "prod-account",
+        "title": "Production account",
+        "caption": "Deployed service and health-gated rollback",
+        "kind": "identity",
+        "x": 1040,
+        "y": 75,
+        "width": 360,
+        "height": 440
+      }
+    ],
+    "nodes": [
+      {
+        "id": "git",
+        "label": "Git repository",
+        "code": "GIT",
+        "x": 30,
+        "y": 245,
+        "description": "A reviewed source change starts the release workflow.",
+        "purpose": "Protect release branches and identify the source revision for every artifact.",
+        "example": "A merge to the protected branch triggers a pipeline execution.",
+        "services": [
+          "AWS CodePipeline"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-098"
+        ]
+      },
+      {
+        "id": "pipeline",
+        "label": "CI/CD pipeline",
+        "code": "PIPE",
+        "x": 220,
+        "y": 245,
+        "description": "The pipeline coordinates source, build, test, approval, artifact, and deployment stages.",
+        "purpose": "Use least-privilege role sessions and separate production controls from build permissions.",
+        "example": "CodePipeline passes a successful build artifact to the deploy stage.",
+        "services": [
+          "AWS CodePipeline"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-099"
+        ]
+      },
+      {
+        "id": "build",
+        "label": "Build + tests",
+        "code": "BUILD",
+        "x": 425,
+        "y": 245,
+        "description": "The build stage compiles, tests, scans dependencies and images, and emits a versioned artifact.",
+        "purpose": "Fail before promotion when tests or security policies fail; preserve artifact provenance.",
+        "example": "CodeBuild creates and scans one container image digest.",
+        "services": [
+          "AWS CodeBuild; Amazon ECR"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-100"
+        ]
+      },
+      {
+        "id": "artifact",
+        "label": "ECR / artifact store",
+        "code": "ART",
+        "x": 640,
+        "y": 245,
+        "description": "The registry or artifact store holds immutable outputs that are promoted across environments.",
+        "purpose": "Promote the tested artifact instead of rebuilding different bytes for production.",
+        "example": "The pipeline records and deploys an ECR image digest.",
+        "services": [
+          "Amazon ECR; Amazon S3"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-101"
+        ]
+      },
+      {
+        "id": "deploy",
+        "label": "Deployment stage",
+        "code": "DEPLOY",
+        "x": 855,
+        "y": 245,
+        "description": "A deployment controller applies a task definition or release to the target environment.",
+        "purpose": "Choose rolling or traffic-shifting deployment according to capacity and rollback constraints.",
+        "example": "CodeDeploy shifts traffic to a new ECS task set after health checks pass.",
+        "services": [
+          "AWS CodeDeploy; Amazon ECS"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-102"
+        ]
+      },
+      {
+        "id": "service",
+        "label": "Production service",
+        "code": "APP",
+        "x": 1070,
+        "y": 105,
+        "description": "The service runs the deployed version behind a load balancer and emits health signals.",
+        "purpose": "Use target health and application metrics to validate user-facing readiness.",
+        "example": "The new ECS service revision receives a canary share of traffic.",
+        "services": [
+          "Amazon ECS; Elastic Load Balancing"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-103"
+        ]
+      },
+      {
+        "id": "health",
+        "label": "CloudWatch alarms",
+        "code": "HEALTH",
+        "x": 1070,
+        "y": 360,
+        "description": "Alarms evaluate release health signals such as error rate and latency during rollout.",
+        "purpose": "Select actionable thresholds and avoid relying on a single infrastructure metric.",
+        "example": "A sustained 5xx increase stops the traffic shift.",
+        "services": [
+          "Amazon CloudWatch"
+        ],
+        "topic_id": "observability",
+        "question_ids": [
+          "aws-074"
+        ]
+      },
+      {
+        "id": "rollback",
+        "label": "Rollback / prior revision",
+        "code": "ROLL",
+        "x": 1235,
+        "y": 360,
+        "description": "A configured deployment strategy can stop or roll back a failed rollout to a known prior revision.",
+        "purpose": "Rollback is not a substitute for backward-compatible database changes or retained artifacts.",
+        "example": "A failed canary routes traffic back to the prior healthy task set.",
+        "services": [
+          "AWS CodeDeploy; Amazon ECS"
+        ],
+        "topic_id": "cicd-deployment",
+        "question_ids": [
+          "aws-104"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "git-pipeline",
+        "source": "git",
+        "target": "pipeline",
+        "label": "source change",
+        "kind": "control",
+        "sequence_step": 1
+      },
+      {
+        "id": "pipeline-build",
+        "source": "pipeline",
+        "target": "build",
+        "label": "start build and tests",
+        "kind": "control",
+        "sequence_step": 2
+      },
+      {
+        "id": "build-artifact",
+        "source": "build",
+        "target": "artifact",
+        "label": "publish immutable artifact",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "artifact-deploy",
+        "source": "artifact",
+        "target": "deploy",
+        "label": "promote artifact digest",
+        "kind": "control",
+        "sequence_step": 4
+      },
+      {
+        "id": "deploy-service",
+        "source": "deploy",
+        "target": "service",
+        "label": "rollout / traffic shift",
+        "kind": "control",
+        "sequence_step": 5
+      },
+      {
+        "id": "service-health",
+        "source": "service",
+        "target": "health",
+        "label": "metrics + target health",
+        "kind": "monitoring",
+        "sequence_step": 6
+      },
+      {
+        "id": "health-rollback",
+        "source": "health",
+        "target": "rollback",
+        "label": "alarm stops / rolls back",
+        "kind": "recovery",
+        "sequence_step": 7
+      },
+      {
+        "id": "rollback-service",
+        "source": "rollback",
+        "target": "service",
+        "label": "restore prior revision",
+        "kind": "recovery",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "git",
+      "pipeline",
+      "build",
+      "artifact",
+      "deploy",
+      "service",
+      "health",
+      "rollback",
+      "service"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-types.html"
+    ]
+  },
+  {
+    "id": "backup-disaster-recovery",
+    "order": 11,
+    "title": "Multi-AZ availability and cross-Region recovery",
+    "summary": "Multi-AZ resources reduce zonal disruption impact inside Region A. Cross-Region replication or copied backups address regional recovery with different RPO and consistency properties; Route 53 shifts new connections only after the DR environment is ready.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "primary-region",
+        "title": "Region A · primary",
+        "caption": "Multi-AZ application + database availability",
+        "kind": "region",
+        "x": 180,
+        "y": 45,
+        "width": 675,
+        "height": 535
+      },
+      {
+        "id": "primary-az-a",
+        "title": "Availability Zone A",
+        "caption": "Primary workload placement",
+        "kind": "availability-zone",
+        "x": 205,
+        "y": 105,
+        "width": 285,
+        "height": 420
+      },
+      {
+        "id": "primary-az-b",
+        "title": "Availability Zone B",
+        "caption": "Standby / distributed application placement",
+        "kind": "availability-zone",
+        "x": 505,
+        "y": 105,
+        "width": 305,
+        "height": 420
+      },
+      {
+        "id": "dr-region",
+        "title": "Region B · recovery",
+        "caption": "Warm standby, replica, and copied recovery points",
+        "kind": "region",
+        "x": 875,
+        "y": 45,
+        "width": 500,
+        "height": 535
+      },
+      {
+        "id": "dr-az-a",
+        "title": "Recovery Availability Zone",
+        "caption": "Recovery capacity and data destination",
+        "kind": "availability-zone",
+        "x": 900,
+        "y": 105,
+        "width": 450,
+        "height": 420
+      }
+    ],
+    "nodes": [
+      {
+        "id": "users",
+        "label": "Clients",
+        "code": "USER",
+        "x": 30,
+        "y": 265,
+        "description": "Clients resolve a service name and connect to the currently active regional endpoint.",
+        "purpose": "DNS failover requires a ready destination and reconnecting clients.",
+        "example": "Route 53 shifts new DNS answers to the DR ALB after health evaluation.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-083"
+        ]
+      },
+      {
+        "id": "dns",
+        "label": "Route 53 failover",
+        "code": "R53",
+        "x": 215,
+        "y": 265,
+        "description": "A failover routing policy returns the primary record while healthy and the secondary record when primary health fails.",
+        "purpose": "DNS is only one part of failover; validate TTL, health evaluation, data readiness, and client retry behavior.",
+        "example": "The secondary ALB receives new connections after a regional failure.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-043"
+        ]
+      },
+      {
+        "id": "primary-alb",
+        "label": "Primary regional ALB",
+        "code": "ALB",
+        "x": 355,
+        "y": 55,
+        "description": "The primary regional ALB is enabled in public subnets across the primary Region AZs and forwards to healthy application targets.",
+        "purpose": "DNS returns this endpoint while its configured health evaluation is healthy.",
+        "example": "The ALB forwards connections to the active application tier in either healthy AZ.",
+        "services": [
+          "Elastic Load Balancing"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-044"
+        ]
+      },
+      {
+        "id": "primary-rds",
+        "label": "Primary RDS",
+        "code": "RDS",
+        "x": 315,
+        "y": 155,
+        "description": "The primary database serves writes in Region A. Multi-AZ standby replication is for availability inside the Region and is distinct from cross-Region DR.",
+        "purpose": "Use database-native or service-supported cross-Region replication when a regional recovery point is required.",
+        "example": "A regional DB outage promotes the Multi-AZ standby; a regional outage requires the DR plan.",
+        "services": [
+          "Amazon RDS"
+        ],
+        "topic_id": "databases",
+        "question_ids": [
+          "aws-057"
+        ]
+      },
+      {
+        "id": "standby-rds",
+        "label": "Multi-AZ standby",
+        "code": "STBY",
+        "x": 545,
+        "y": 315,
+        "description": "A Multi-AZ standby improves database availability within the primary Region; it is not a cross-Region read replica in the standard deployment model.",
+        "purpose": "Do not treat Multi-AZ failover as protection against loss of the entire Region.",
+        "example": "RDS performs a managed failover to the standby in another AZ.",
+        "services": [
+          "Amazon RDS"
+        ],
+        "topic_id": "databases",
+        "question_ids": [
+          "aws-058"
+        ]
+      },
+      {
+        "id": "backup",
+        "label": "AWS Backup vault",
+        "code": "BACKUP",
+        "x": 30,
+        "y": 465,
+        "description": "AWS Backup recovery points preserve configured resources according to backup plan and vault retention.",
+        "purpose": "Protect backup administration and test restores; a recovery point is not proof of successful application recovery.",
+        "example": "A scheduled backup is copied to a separately controlled DR Region vault.",
+        "services": [
+          "AWS Backup"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-084"
+        ]
+      },
+      {
+        "id": "app-a",
+        "label": "Primary app · AZ A",
+        "code": "APP-A",
+        "x": 205,
+        "y": 315,
+        "description": "An application target runs in the primary Region AZ A and serves requests behind the regional ALB.",
+        "purpose": "Keep application state external so another AZ or Region can serve after recovery.",
+        "example": "An EC2 or ECS target in AZ A serves while AZ B capacity remains healthy.",
+        "services": [
+          "Amazon EC2; Amazon ECS"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-085"
+        ]
+      },
+      {
+        "id": "app-b",
+        "label": "Primary app · AZ B",
+        "code": "APP-B",
+        "x": 620,
+        "y": 125,
+        "description": "A second application target runs in AZ B behind the same regional load balancer.",
+        "purpose": "Multi-AZ application placement reduces the impact of a single AZ failure.",
+        "example": "The ALB routes traffic to the AZ B target during an AZ A impairment.",
+        "services": [
+          "Amazon EC2; Amazon ECS"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-086"
+        ]
+      },
+      {
+        "id": "replication",
+        "label": "Cross-Region data copy",
+        "code": "REPL",
+        "x": 695,
+        "y": 315,
+        "description": "Supported data replication copies state to the DR Region with service-specific consistency and lag characteristics.",
+        "purpose": "Replication is not necessarily synchronous and can replicate logical deletion or corruption.",
+        "example": "S3 Cross-Region Replication asynchronously copies eligible objects; database replication uses its own semantics.",
+        "services": [
+          "Amazon S3; Amazon RDS"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-087"
+        ]
+      },
+      {
+        "id": "dr-app",
+        "label": "Warm standby app",
+        "code": "APP-DR",
+        "x": 950,
+        "y": 125,
+        "description": "The DR Region contains application capacity that can be brought to service during recovery.",
+        "purpose": "Choose pilot-light or warm-standby capacity based on RTO, cost, quotas, and tested automation.",
+        "example": "The deployment pipeline can scale the standby service after regional failover.",
+        "services": [
+          "Amazon EC2; AWS CloudFormation"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-088"
+        ]
+      },
+      {
+        "id": "dr-data",
+        "label": "DR database / replica",
+        "code": "DB-DR",
+        "x": 950,
+        "y": 315,
+        "description": "A cross-Region replica or restored database provides DR data according to the chosen replication or backup mechanism.",
+        "purpose": "Validate replication lag, promotion procedure, consistency, and application connection changes.",
+        "example": "Promote the supported replica or restore a recovery point before redirecting writes.",
+        "services": [
+          "Amazon RDS; Amazon S3"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-081"
+        ]
+      },
+      {
+        "id": "dr-alb",
+        "label": "Recovery regional ALB",
+        "code": "ALB-DR",
+        "x": 1170,
+        "y": 125,
+        "description": "The recovery Region has an ALB endpoint ready to receive traffic when Route 53 fails over.",
+        "purpose": "A failover record points to a real, healthy endpoint; DNS does not create or scale this resource.",
+        "example": "The DR ALB starts serving after standby capacity and data are ready.",
+        "services": [
+          "Elastic Load Balancing"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-045"
+        ]
+      },
+      {
+        "id": "objectives",
+        "label": "Recovery objectives",
+        "code": "RTO / RPO",
+        "x": 1175,
+        "y": 220,
+        "description": "RTO is the target time to restore service; RPO is the target maximum data-loss window.",
+        "purpose": "Choose architecture and test scenarios against measurable objectives, not labels alone.",
+        "example": "A business defines an RPO and RTO, then measures restore and failover exercises.",
+        "services": [
+          "AWS Well-Architected Framework; AWS Backup"
+        ],
+        "topic_id": "backup-reliability",
+        "question_ids": [
+          "aws-082"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "users-dns",
+        "source": "users",
+        "target": "dns",
+        "label": "DNS lookup",
+        "kind": "traffic",
+        "sequence_step": 1
+      },
+      {
+        "id": "dns-primary-alb",
+        "source": "dns",
+        "target": "primary-alb",
+        "label": "primary answer",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "primary-alb-app-a",
+        "source": "primary-alb",
+        "target": "app-a",
+        "label": "primary target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "primary-alb-app-b",
+        "source": "primary-alb",
+        "target": "app-b",
+        "label": "multi-AZ target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "app-a-primary-rds",
+        "source": "app-a",
+        "target": "primary-rds",
+        "label": "writer database traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "app-b-primary-rds",
+        "source": "app-b",
+        "target": "primary-rds",
+        "label": "writer database traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "primary-rds-standby-rds",
+        "source": "primary-rds",
+        "target": "standby-rds",
+        "label": "Multi-AZ synchronous HA mechanism",
+        "kind": "replication",
+        "sequence_step": null
+      },
+      {
+        "id": "primary-rds-replication",
+        "source": "primary-rds",
+        "target": "replication",
+        "label": "cross-Region replication / copy",
+        "kind": "replication",
+        "sequence_step": 3
+      },
+      {
+        "id": "backup-dr-data",
+        "source": "backup",
+        "target": "dr-data",
+        "label": "cross-Region recovery point copy",
+        "kind": "recovery",
+        "sequence_step": null
+      },
+      {
+        "id": "replication-dr-data",
+        "source": "replication",
+        "target": "dr-data",
+        "label": "service-specific async copy",
+        "kind": "replication",
+        "sequence_step": null
+      },
+      {
+        "id": "dr-alb-dr-app",
+        "source": "dr-alb",
+        "target": "dr-app",
+        "label": "recovery target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "dr-app-dr-data",
+        "source": "dr-app",
+        "target": "dr-data",
+        "label": "application uses recovered data",
+        "kind": "traffic",
+        "sequence_step": 4
+      },
+      {
+        "id": "dr-app-dns",
+        "source": "dr-app",
+        "target": "dns",
+        "label": "failover destination readiness",
+        "kind": "monitoring",
+        "sequence_step": null
+      },
+      {
+        "id": "objectives-backup",
+        "source": "objectives",
+        "target": "backup",
+        "label": "retention set for RPO",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "objectives-dr-app",
+        "source": "objectives",
+        "target": "dr-app",
+        "label": "recovery steps tested against RTO",
+        "kind": "control",
+        "sequence_step": null
+      },
+      {
+        "id": "dns-dr-alb",
+        "source": "dns",
+        "target": "dr-alb",
+        "label": "secondary answer after health check",
+        "kind": "recovery",
+        "sequence_step": 5
+      },
+      {
+        "id": "dr-data-dr-app-ready",
+        "source": "dr-data",
+        "target": "dr-app",
+        "label": "recovered data endpoint ready",
+        "kind": "recovery",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "users",
+      "dns",
+      "primary-alb",
+      "app-a",
+      "primary-rds",
+      "replication",
+      "dr-data",
+      "dr-app",
+      "dns",
+      "dr-alb",
+      "dr-app"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/backup-feature-availability.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+    ]
+  },
+  {
+    "id": "three-tier-application",
+    "order": 12,
+    "title": "Three-tier application across two AZs",
+    "summary": "Route 53 resolves to CloudFront, where AWS WAF can inspect viewer requests. Dynamic origin traffic reaches a public ALB, then private application targets, then an isolated private database tier with a separate security-group boundary and Multi-AZ database standby.",
+    "width": 1420,
+    "height": 620,
+    "groups": [
+      {
+        "id": "region",
+        "title": "AWS Region",
+        "caption": "Regional application VPC and database deployment",
+        "kind": "region",
+        "x": 555,
+        "y": 45,
+        "width": 830,
+        "height": 540
+      },
+      {
+        "id": "vpc",
+        "title": "VPC · tiered subnets",
+        "caption": "Routes and security groups enforce tier boundaries",
+        "kind": "vpc",
+        "x": 575,
+        "y": 95,
+        "width": 790,
+        "height": 470
+      },
+      {
+        "id": "az-a",
+        "title": "Availability Zone A",
+        "caption": "Independent application and database placement",
+        "kind": "availability-zone",
+        "x": 590,
+        "y": 130,
+        "width": 355,
+        "height": 425
+      },
+      {
+        "id": "public-a",
+        "title": "Public subnet A",
+        "caption": "Regional ALB network interface placement",
+        "kind": "subnet-public",
+        "x": 605,
+        "y": 150,
+        "width": 325,
+        "height": 90
+      },
+      {
+        "id": "app-a-subnet",
+        "title": "Private application subnet A",
+        "caption": "App SG accepts traffic from ALB SG",
+        "kind": "subnet-private",
+        "x": 605,
+        "y": 260,
+        "width": 325,
+        "height": 125
+      },
+      {
+        "id": "db-a-subnet",
+        "title": "Private isolated DB subnet A",
+        "caption": "Database listener allowed only from app SG",
+        "kind": "subnet-isolated",
+        "x": 605,
+        "y": 405,
+        "width": 325,
+        "height": 135
+      },
+      {
+        "id": "az-b",
+        "title": "Availability Zone B",
+        "caption": "Second AZ for app and database failover",
+        "kind": "availability-zone",
+        "x": 965,
+        "y": 130,
+        "width": 380,
+        "height": 425
+      },
+      {
+        "id": "public-b",
+        "title": "Public subnet B",
+        "caption": "Regional ALB network interface placement",
+        "kind": "subnet-public",
+        "x": 980,
+        "y": 150,
+        "width": 350,
+        "height": 90
+      },
+      {
+        "id": "app-b-subnet",
+        "title": "Private application subnet B",
+        "caption": "App SG accepts traffic from ALB SG",
+        "kind": "subnet-private",
+        "x": 980,
+        "y": 260,
+        "width": 350,
+        "height": 125
+      },
+      {
+        "id": "db-b-subnet",
+        "title": "Private isolated DB subnet B",
+        "caption": "Database standby remains nonpublic",
+        "kind": "subnet-isolated",
+        "x": 980,
+        "y": 405,
+        "width": 350,
+        "height": 135
+      }
+    ],
+    "nodes": [
+      {
+        "id": "viewer",
+        "label": "Internet client",
+        "code": "USER",
+        "x": 20,
+        "y": 255,
+        "description": "Clients resolve the public application name and establish TLS to the edge or load-balancing endpoint.",
+        "purpose": "Use DNS and edge caching to route users; protect origins from direct bypass where appropriate.",
+        "example": "A user opens www.example.com and receives a CloudFront distribution address.",
+        "services": [
+          "Amazon Route 53; Amazon CloudFront"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-046"
+        ]
+      },
+      {
+        "id": "dns",
+        "label": "Route 53",
+        "code": "R53",
+        "x": 205,
+        "y": 255,
+        "description": "Route 53 resolves the application hostname to the CloudFront distribution.",
+        "purpose": "DNS provides name resolution and routing policy, not HTTP request inspection.",
+        "example": "An alias record points the site hostname to CloudFront.",
+        "services": [
+          "Amazon Route 53"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-047"
+        ]
+      },
+      {
+        "id": "edge",
+        "label": "CloudFront + AWS WAF",
+        "code": "CF+WAF",
+        "x": 390,
+        "y": 255,
+        "description": "CloudFront delivers content from edge locations; AWS WAF web ACL can be associated with CloudFront to inspect and filter requests.",
+        "purpose": "CloudFront is appropriate for edge caching and global delivery; WAF placement and scope must match the protected resource.",
+        "example": "WAF blocks a malicious request before it reaches the origin; cacheable static content is served at the edge.",
+        "services": [
+          "Amazon CloudFront; AWS WAF"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-048"
+        ]
+      },
+      {
+        "id": "alb",
+        "label": "Regional ALB",
+        "code": "ALB",
+        "x": 760,
+        "y": 155,
+        "description": "The ALB is the application origin in public subnets and forwards permitted requests only to the application tier.",
+        "purpose": "Restrict origin ingress to the intended CloudFront origin path where configured, and allow app ingress only from the ALB SG.",
+        "example": "A dynamic API request reaches the ALB and is routed to a healthy app target.",
+        "services": [
+          "Elastic Load Balancing"
+        ],
+        "topic_id": "load-balancing-route53",
+        "question_ids": [
+          "aws-041"
+        ]
+      },
+      {
+        "id": "app-a",
+        "label": "App tier · AZ A",
+        "code": "APP-A",
+        "x": 625,
+        "y": 285,
+        "description": "Application instances or tasks run in a private subnet and accept traffic from the ALB security group.",
+        "purpose": "Keep app targets private and avoid direct client ingress.",
+        "example": "The app tier validates a request and opens a database connection.",
+        "services": [
+          "Amazon EC2; Amazon ECS; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-029"
+        ]
+      },
+      {
+        "id": "app-b",
+        "label": "App tier · AZ B",
+        "code": "APP-B",
+        "x": 1005,
+        "y": 285,
+        "description": "A second private application subnet in another AZ provides independent capacity.",
+        "purpose": "Configure load balancing and scaling so one AZ can carry the required failover load.",
+        "example": "ALB health checks stop routing to an impaired AZ target.",
+        "services": [
+          "Amazon EC2; Amazon ECS; Amazon VPC"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-030"
+        ]
+      },
+      {
+        "id": "db-sg",
+        "label": "Database security group",
+        "code": "DB-SG",
+        "x": 1185,
+        "y": 435,
+        "description": "The database security group allows only the database listener from the app-tier security group.",
+        "purpose": "Security groups are stateful; use references between tier security groups rather than broad CIDRs.",
+        "example": "The database accepts TCP 5432 only from application instances in the app SG.",
+        "services": [
+          "Amazon VPC; Security Groups"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-031"
+        ]
+      },
+      {
+        "id": "database",
+        "label": "Private RDS primary",
+        "code": "RDS",
+        "x": 625,
+        "y": 450,
+        "description": "The database resides in isolated private subnets and is not publicly accessible.",
+        "purpose": "Use Multi-AZ for availability where appropriate; the standby is for failover and is not ordinarily a read endpoint for standard RDS Multi-AZ.",
+        "example": "Application connections use the writer endpoint; Multi-AZ failover changes the underlying primary.",
+        "services": [
+          "Amazon RDS"
+        ],
+        "topic_id": "databases",
+        "question_ids": [
+          "aws-059"
+        ]
+      },
+      {
+        "id": "standby",
+        "label": "RDS standby · AZ B",
+        "code": "STBY",
+        "x": 1005,
+        "y": 450,
+        "description": "A standby in another AZ supports managed Multi-AZ failover for supported RDS configurations.",
+        "purpose": "A standby is not a substitute for backups or cross-Region recovery.",
+        "example": "RDS fails over to the standby during a supported AZ interruption.",
+        "services": [
+          "Amazon RDS"
+        ],
+        "topic_id": "databases",
+        "question_ids": [
+          "aws-060"
+        ]
+      },
+      {
+        "id": "security",
+        "label": "Trust boundaries",
+        "code": "BOUNDARY",
+        "x": 25,
+        "y": 435,
+        "description": "Each tier has its own route placement and security-group boundary: edge/origin, ALB/app, and app/database.",
+        "purpose": "A private subnet alone does not define access; combine routing with stateful security-group rules and carefully managed NACLs.",
+        "example": "Inbound database traffic is permitted from the app SG only; the DB subnet has no IGW route.",
+        "services": [
+          "Amazon VPC; AWS WAF"
+        ],
+        "topic_id": "vpc-networking",
+        "question_ids": [
+          "aws-032"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "viewer-dns",
+        "source": "viewer",
+        "target": "dns",
+        "label": "DNS query",
+        "kind": "traffic",
+        "sequence_step": 1
+      },
+      {
+        "id": "dns-edge",
+        "source": "dns",
+        "target": "edge",
+        "label": "alias to distribution",
+        "kind": "traffic",
+        "sequence_step": 2
+      },
+      {
+        "id": "edge-alb",
+        "source": "edge",
+        "target": "alb",
+        "label": "dynamic origin request",
+        "kind": "traffic",
+        "sequence_step": 3
+      },
+      {
+        "id": "alb-app-a",
+        "source": "alb",
+        "target": "app-a",
+        "label": "ALB SG → app SG",
+        "kind": "traffic",
+        "sequence_step": 4
+      },
+      {
+        "id": "alb-app-b",
+        "source": "alb",
+        "target": "app-b",
+        "label": "AZ-spread target traffic",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "app-a-db-sg",
+        "source": "app-a",
+        "target": "db-sg",
+        "label": "database connection request",
+        "kind": "traffic",
+        "sequence_step": 5
+      },
+      {
+        "id": "app-b-db-sg",
+        "source": "app-b",
+        "target": "db-sg",
+        "label": "database connection request",
+        "kind": "traffic",
+        "sequence_step": null
+      },
+      {
+        "id": "db-sg-database",
+        "source": "db-sg",
+        "target": "database",
+        "label": "allow app SG only",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "database-standby",
+        "source": "database",
+        "target": "standby",
+        "label": "Multi-AZ failover replication",
+        "kind": "replication",
+        "sequence_step": null
+      },
+      {
+        "id": "security-alb",
+        "source": "security",
+        "target": "alb",
+        "label": "origin and tier boundary rules",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "security-app-a",
+        "source": "security",
+        "target": "app-a",
+        "label": "private subnet + app SG",
+        "kind": "containment",
+        "sequence_step": null
+      },
+      {
+        "id": "security-database",
+        "source": "security",
+        "target": "database",
+        "label": "isolated DB subnet + DB SG",
+        "kind": "containment",
+        "sequence_step": null
+      }
+    ],
+    "sequence": [
+      "viewer",
+      "dns",
+      "edge",
+      "alb",
+      "app-a",
+      "db-sg",
+      "database",
+      "standby"
+    ],
+    "documentation_links": [
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/web-acl.html",
+      "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html"
+    ]
+  }
+]

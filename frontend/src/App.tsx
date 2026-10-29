@@ -10,6 +10,9 @@ import { LinuxVisualLearningPage } from './pages/LinuxVisualLearningPage'
 import { Az900Page } from './pages/Az900Page'
 import { AzureAdministrationPage } from './pages/AzureAdministrationPage'
 import { Az900VisualLearningPage } from './pages/Az900VisualLearningPage'
+import { AwsPage } from './pages/AwsPage'
+import { AwsVisualLearningPage } from './pages/AwsVisualLearningPage'
+import { AwsTroubleshootingPage } from './pages/AwsTroubleshootingPage'
 
 function App() {
   const [route, setRoute] = useState(() => `${window.location.pathname}${window.location.search}`)
@@ -28,6 +31,31 @@ function App() {
 
   const [pathname, search = ''] = route.split('?')
   let page
+  if (pathname === '/aws') page = <AwsPage navigate={navigate} view="overview" />
+  if (!page && pathname === '/aws/visual-learning') page = <AwsVisualLearningPage navigate={navigate} />
+  if (!page && pathname === '/aws/troubleshooting') page = <AwsTroubleshootingPage navigate={navigate} />
+  const awsLabMatch = pathname.match(/^\/aws\/troubleshooting\/([^/]+)$/)
+  if (!page && awsLabMatch) {
+    let slug = awsLabMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug and show the lab not-found view. */ }
+    page = <AwsTroubleshootingPage key={slug} navigate={navigate} slug={slug} />
+  }
+  if (!page && pathname === '/aws/questions') {
+    const params = new URLSearchParams(search)
+    page = <AwsPage navigate={navigate} view="questions" topicFilter={params.get('topic') ?? undefined} />
+  }
+  const awsQuestionMatch = pathname.match(/^\/aws\/questions\/([^/]+)$/)
+  if (!page && awsQuestionMatch) {
+    let slug = awsQuestionMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the page will show the not-found state. */ }
+    page = <AwsPage key={slug} navigate={navigate} view="question" slug={slug} />
+  }
+  const awsTopicMatch = pathname.match(/^\/aws\/topics\/([^/]+)$/)
+  if (!page && awsTopicMatch) {
+    let slug = awsTopicMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the page will show the not-found state. */ }
+    page = <AwsPage key={slug} navigate={navigate} view="topic" slug={slug} />
+  }
   if (pathname === '/linux') page = <LinuxDashboard navigate={navigate} />
   else if (pathname === '/linux/visual-learning') page = <LinuxVisualLearningPage navigate={navigate} />
   else if (pathname === '/linux/questions') {

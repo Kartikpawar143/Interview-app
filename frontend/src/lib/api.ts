@@ -2,6 +2,7 @@ import type { Department } from '../types/department'
 import type { LinuxCommand, LinuxQuestion, LinuxTopic, QuestionFilters } from '../types/linux'
 import type { Az900Course, Az900PracticeQuestion, Az900VisualDiagram } from '../types/azure'
 import type { AzureAdminQuestion, AzureAdminScenario, AzureAdminTopic, AzureAdminDifficulty } from '../types/azureAdmin'
+import type { AwsQuestion, AwsTopic, AwsDifficulty, AwsTroubleshootingLab, AwsVisualDiagram } from '../types/aws'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? ''
 
@@ -40,5 +41,11 @@ export const getAzureAdminQuestions = (filters: { q?: string; topic?: string; di
 export const getAzureAdminQuestion = (slug: string, signal?: AbortSignal) => request<AzureAdminQuestion>(`/api/azure/administration/questions/${encodeURIComponent(slug)}`, signal)
 export const getAzureScenarios = (signal?: AbortSignal) => request<AzureAdminScenario[]>('/api/azure/administration/scenarios', signal)
 export const getAzureScenario = (slug: string, signal?: AbortSignal) => request<AzureAdminScenario>(`/api/azure/administration/scenarios/${encodeURIComponent(slug)}`, signal)
+export const getAwsTopics = (signal?: AbortSignal) => request<AwsTopic[]>('/api/aws/topics', signal)
+export const getAwsQuestions = (filters: { q?: string; topic?: string; difficulty?: AwsDifficulty } = {}, signal?: AbortSignal) => request<AwsQuestion[]>(`/api/aws/questions${queryString(filters)}`, signal)
+export const getAwsQuestion = (slug: string, signal?: AbortSignal) => request<AwsQuestion>(`/api/aws/questions/${encodeURIComponent(slug)}`, signal)
+export const getAwsVisualDiagrams = (signal?: AbortSignal) => request<AwsVisualDiagram[]>('/api/aws/visual-learning/diagrams', signal)
+export const getAwsTroubleshootingLabs = (signal?: AbortSignal) => request<AwsTroubleshootingLab[]>('/api/aws/troubleshooting/labs', signal)
+export const getAwsTroubleshootingLab = (slug: string, signal?: AbortSignal) => request<AwsTroubleshootingLab>(`/api/aws/troubleshooting/labs/${encodeURIComponent(slug)}`, signal)
 
 export interface LinuxCopilotExercise { id: string; title: string; category: string; difficulty: string; scenario: string; hint: string; solution: string[]; topic_id: string; question_slug: string }

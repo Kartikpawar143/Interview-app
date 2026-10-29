@@ -13,7 +13,7 @@
     "name": "AWS Cloud",
     "short_name": "CLOUD / 02",
     "description": "Explore the building blocks behind secure, scalable cloud infrastructure.",
-    "status": "coming_soon",
+    "status": "available",
     "accent": "orange",
     "topics": []
   },

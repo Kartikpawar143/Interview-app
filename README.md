@@ -1,6 +1,6 @@
 # Fieldnotes — Technical Interview Preparation
 
-A dark, focused interview preparation platform built with React, Vite, TypeScript, Tailwind CSS, Anime.js 4, and FastAPI. Department metadata and learning content are stored in JSON. Linux is the completed systems learning path. Azure administration is available at `/azure`, and the independent AZ-900 certification course is available separately at `/azure/az-900`. AWS remains Coming Soon. No database is used.
+A dark, focused technical learning platform built with React, Vite, TypeScript, Tailwind CSS, Anime.js 4, and FastAPI. Department metadata and learning content are stored in JSON. Linux is the completed systems learning path; AWS Cloud is available at `/aws` with 14 topic guides and a question-library entry point; Azure administration is available at `/azure`, and the independent AZ-900 certification course is available separately at `/azure/az-900`. No database is used.
 
 ## Requirements
 
@@ -89,7 +89,7 @@ See [docs/api.md](docs/api.md) and [docs/architecture.md](docs/architecture.md).
 
 ## Linux learning content
 
-Linux learning data lives in `backend/app/content/linux/` as separate `topics.json`, `questions.json`, and `commands.json` files. The current question bank contains 66 questions across 11 Linux topics. AWS remains Coming Soon.
+Linux learning data lives in `backend/app/content/linux/` as separate `topics.json`, `questions.json`, and `commands.json` files. The current question bank contains 66 questions across 11 Linux topics.
 
 Linux endpoints:
 
@@ -130,7 +130,7 @@ Run visual content and interaction checks with `cd frontend && npm run test:az90
 
 ## Fieldnotes homepage
 
-The homepage introduces Fieldnotes as a platform for technical learning, interview practice, visual learning, and certification study. It links to the completed Linux path, the distinct Azure administration area at `/azure`, the AZ-900 course at `/azure/az-900`, and AZ-900 Visual Learning at `/azure/az-900/visual-learning`. AWS remains Coming Soon.
+The homepage introduces Fieldnotes as a multi-department platform for technical learning, interview practice, visual learning, and certification study. It links to the completed Linux path, AWS Cloud at `/aws`, the distinct Azure administration area at `/azure`, the AZ-900 course at `/azure/az-900`, and AZ-900 Visual Learning at `/azure/az-900/visual-learning`.
 
 ## Azure administration and interview preparation
 
@@ -139,3 +139,7 @@ Open <http://localhost:3000/azure> for the Azure administration field guide. It 
 Azure administration JSON is stored in `backend/app/content/azure/administration_*.json`. Read-only endpoints are `GET /api/azure/administration/topics`, `GET /api/azure/administration/questions?q=...&topic=...&difficulty=...`, `GET /api/azure/administration/questions/{slug}`, `GET /api/azure/administration/scenarios`, and `GET /api/azure/administration/scenarios/{slug}`. Verify service behavior against official Microsoft documentation. Pricing varies by region and usage, so the content explains cost factors instead of listing fixed prices.
 
 Run the new checks with `cd frontend && npm run test:azure-admin` and `cd backend && pytest tests/test_azure_admin_content.py`.
+
+## AWS Cloud foundation
+
+Open <http://localhost:3000/aws> for 14 AWS Cloud topic guides and 112 original interview questions, with eight questions per topic across beginner, intermediate, and advanced levels. The searchable library at `/aws/questions` combines topic and difficulty filters and supports question detail pages with related questions and official documentation links. Interactive SVG architectures are available at `/aws/visual-learning`, covering global infrastructure, IAM, VPC, compute, storage, DNS, serverless, containers, observability, delivery, recovery, and a three-tier application. Twelve simulated incident labs are available at `/aws/troubleshooting`; inspect mock logs/configuration, choose diagnostic actions, and identify root causes. Lab progress and best scores use browser local storage. AWS JSON content is isolated under `backend/app/content/aws/` and served by read-only APIs. No AWS account, credentials, live resource operations, or paid API is used; cost answers describe pricing factors rather than fixed prices.
