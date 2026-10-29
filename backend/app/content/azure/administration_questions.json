@@ -1,0 +1,2522 @@
+[
+  {
+    "id": "azadm-01-01",
+    "slug": "architecture-how-do-azure-resource-groups-help-organize-an",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "advanced",
+    "question": "How do Azure resource groups help organize an application?",
+    "short_answer": "A resource group is a lifecycle and management container for Azure resources.",
+    "detailed_explanation": "Choose a group around a workload or lifecycle boundary; related resources can share access control, policy evaluation, deployment operations, and deletion scope. Resources can be in different regions, but each resource belongs to one resource group.",
+    "real_world_example": "A team groups a web app, its plan, and supporting resources for a dev environment so the environment can be reviewed and removed together.",
+    "services": [
+      "Resource groups",
+      "Azure Resource Manager",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Resource groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Resource groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Resource groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Resource groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-01-02",
+    "slug": "architecture-what-is-the-relationship-between-a-subscripti",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "beginner",
+    "question": "What is the relationship between a subscription and a resource group?",
+    "short_answer": "A subscription is a billing and management boundary that contains resource groups and resources.",
+    "detailed_explanation": "Subscriptions provide quotas, billing attribution, and an access-control scope. Resource groups organize resources within that subscription; a subscription can contain many groups, and a group cannot span subscriptions.",
+    "real_world_example": "An administrator applies this approach to Subscriptions in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Subscriptions",
+      "Resource groups",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Subscriptions before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Subscriptions alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Subscriptions. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Subscriptions after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-01-03",
+    "slug": "architecture-when-would-you-use-management-groups",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "intermediate",
+    "question": "When would you use management groups?",
+    "short_answer": "Use management groups to apply governance and access controls across multiple subscriptions.",
+    "detailed_explanation": "The hierarchy supports inherited policy and role assignments from management group to subscription, resource group, and resource. Keep the hierarchy aligned to durable governance needs rather than short-lived projects.",
+    "real_world_example": "An administrator applies this approach to Management groups in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Management groups",
+      "Azure Policy",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Management groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Management groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Management groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Management groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-01-04",
+    "slug": "architecture-how-would-you-separate-production-and-develop",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "advanced",
+    "question": "How would you separate production and development Azure resources?",
+    "short_answer": "Use separate subscriptions or management-group scopes where billing, policy, quota, or access boundaries need separation.",
+    "detailed_explanation": "Separate scopes reduce accidental cross-environment changes and support distinct budgets and policy. Tags and resource groups help organize within each scope but do not replace authorization boundaries.",
+    "real_world_example": "An administrator applies this approach to Management groups in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Management groups",
+      "Subscriptions",
+      "Azure Policy"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Management groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Management groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Management groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Management groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-01-05",
+    "slug": "architecture-what-happens-when-a-resource-group-is-deleted",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "beginner",
+    "question": "What happens when a resource group is deleted?",
+    "short_answer": "Deletion requests removal of its contained resources, subject to locks, dependencies, and service behavior.",
+    "detailed_explanation": "Treat resource-group deletion as a broad destructive operation. Review the resource inventory, backups, locks, and dependencies, and use change controls before deleting.",
+    "real_world_example": "An administrator applies this approach to Resource groups in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Resource groups",
+      "Resource locks",
+      "Azure Resource Manager"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Resource groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Resource groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Resource groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Resource groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-01-06",
+    "slug": "architecture-how-do-arm-deployment-scopes-affect-a-deploym",
+    "topic_id": "architecture",
+    "topic": "Azure Architecture and Resource Management",
+    "difficulty": "intermediate",
+    "question": "How do ARM deployment scopes affect a deployment?",
+    "short_answer": "ARM deployments can target a resource group, subscription, management group, or tenant.",
+    "detailed_explanation": "Choose the narrowest scope that owns the desired objects. A resource-group template deployment cannot create management-group-level policy definitions, while broader deployments need appropriate permissions and review.",
+    "real_world_example": "An administrator applies this approach to Azure Resource Manager in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Resource Manager",
+      "ARM templates",
+      "Bicep"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Resource Manager before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Resource Manager alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Resource Manager. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Resource Manager after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-01",
+    "slug": "compute-how-do-availability-sets-differ-from-availabi",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "beginner",
+    "question": "How do availability sets differ from availability zones?",
+    "short_answer": "Availability sets distribute VMs across fault and update domains in a datacenter; zones use separate datacenters in a region.",
+    "detailed_explanation": "Availability sets reduce correlated host or maintenance impact within a datacenter. Zones provide stronger physical separation, but require a supported regional service design and may affect networking and cost.",
+    "real_world_example": "An administrator applies this approach to Virtual Machines in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Virtual Machines",
+      "Availability sets",
+      "Availability zones"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Virtual Machines before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Virtual Machines alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Virtual Machines. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Virtual Machines after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-02",
+    "slug": "compute-what-does-a-vm-scale-set-provide",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "intermediate",
+    "question": "What does a VM Scale Set provide?",
+    "short_answer": "It manages a group of load-balanced, similarly configured VMs with instance scaling.",
+    "detailed_explanation": "Scale sets support uniform or flexible orchestration. Define health probes, autoscale rules, image/version strategy, and capacity limits; autoscale does not replace application-level resilience.",
+    "real_world_example": "An administrator applies this approach to Virtual Machine Scale Sets in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Virtual Machine Scale Sets",
+      "Azure Load Balancer",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Virtual Machine Scale Sets before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Virtual Machine Scale Sets alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Virtual Machine Scale Sets. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Virtual Machine Scale Sets after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-03",
+    "slug": "compute-which-resources-commonly-contribute-to-an-azu",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "advanced",
+    "question": "Which resources commonly contribute to an Azure VM bill?",
+    "short_answer": "Compute size and runtime, disks, licensing, networking, and ancillary services are cost drivers.",
+    "detailed_explanation": "Estimate by region, SKU, operating hours, disk type and size, public IP, outbound traffic, backup, and licensing. Deallocated VMs generally stop compute billing, but attached storage and other resources can continue to incur charges.",
+    "real_world_example": "An administrator applies this approach to Virtual Machines in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Virtual Machines",
+      "Managed Disks",
+      "Bandwidth"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Virtual Machines before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Virtual Machines alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Virtual Machines. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Virtual Machines after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-04",
+    "slug": "compute-how-would-you-safely-patch-a-fleet-of-azure-v",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "beginner",
+    "question": "How would you safely patch a fleet of Azure VMs?",
+    "short_answer": "Use a staged maintenance process with inventory, test rings, maintenance windows, and health validation.",
+    "detailed_explanation": "Azure Update Manager can assess and coordinate update operations. Confirm application redundancy, backups, patch classifications, reboot expectations, and rollback options before broad rollout.",
+    "real_world_example": "An administrator applies this approach to Azure Update Manager in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Update Manager",
+      "Azure Monitor",
+      "Availability zones"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Update Manager before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Update Manager alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Update Manager. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Update Manager after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-05",
+    "slug": "compute-a-vm-is-running-but-an-application-port-is-un",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "intermediate",
+    "question": "A VM is running but an application port is unreachable. What do you check?",
+    "short_answer": "Trace the path from client to route, NSG, load balancer, guest firewall, and listening process.",
+    "detailed_explanation": "Validate effective routes and security rules, health probes and NAT rules, then confirm the guest service listens on the intended interface and port. Change one layer at a time.",
+    "real_world_example": "An administrator applies this approach to Network Watcher in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Network Watcher",
+      "Network Security Groups",
+      "Load Balancer"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Network Watcher before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Network Watcher alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Network Watcher. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Network Watcher after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-02-06",
+    "slug": "compute-how-do-managed-disks-differ-from-ephemeral-os",
+    "topic_id": "compute",
+    "topic": "Azure Virtual Machines and Compute",
+    "difficulty": "advanced",
+    "question": "How do managed disks differ from ephemeral OS disks?",
+    "short_answer": "Managed disks are persistent block storage; ephemeral OS disks use local VM storage and are intended for disposable state.",
+    "detailed_explanation": "Select persistence based on recovery requirements. Ephemeral disks can be recreated from the image after host events and are unsuitable for irreplaceable OS-state changes.",
+    "real_world_example": "An administrator applies this approach to Managed Disks in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Managed Disks",
+      "Virtual Machines",
+      "Azure Backup"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Managed Disks before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Managed Disks alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Managed Disks. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Managed Disks after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-01",
+    "slug": "networking-how-do-nsg-rules-determine-whether-traffic-is",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "intermediate",
+    "question": "How do NSG rules determine whether traffic is allowed?",
+    "short_answer": "NSGs evaluate prioritized inbound or outbound rules by source, destination, port, protocol, and action.",
+    "detailed_explanation": "Rules are processed by priority, with lower numbers evaluated first; the first matching rule applies. Effective security rules combine subnet and NIC associations, so inspect both when diagnosing access.",
+    "real_world_example": "An administrator applies this approach to Network Security Groups in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Network Security Groups",
+      "Network interfaces",
+      "Network Watcher"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Network Security Groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Network Security Groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Network Security Groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Network Security Groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-02",
+    "slug": "networking-when-should-you-use-vnet-peering-versus-vpn-g",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "advanced",
+    "question": "When should you use VNet peering versus VPN Gateway?",
+    "short_answer": "Peering connects Azure virtual networks over the Azure backbone; VPN Gateway provides encrypted tunnels to networks or other VNets.",
+    "detailed_explanation": "Peering is useful for direct Azure VNet connectivity but is non-transitive by default. Gateway topology supports site-to-site, point-to-site, and gateway transit designs with explicit routing.",
+    "real_world_example": "An administrator applies this approach to Virtual Network peering in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Virtual Network peering",
+      "VPN Gateway",
+      "Route tables"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Virtual Network peering before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Virtual Network peering alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Virtual Network peering. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Virtual Network peering after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-03",
+    "slug": "networking-how-do-private-endpoints-differ-from-service-",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "beginner",
+    "question": "How do private endpoints differ from service endpoints?",
+    "short_answer": "A private endpoint maps a service to a private IP in your VNet; a service endpoint extends VNet identity to a supported service.",
+    "detailed_explanation": "Private Link offers private IP connectivity and can support access from connected networks. Service endpoints keep the service public endpoint but restrict allowed networks to selected VNets. DNS design is critical with private endpoints.",
+    "real_world_example": "An administrator applies this approach to Private Link in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Private Link",
+      "Private DNS zones",
+      "Service endpoints"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Private Link before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Private Link alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Private Link. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Private Link after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-04",
+    "slug": "networking-what-is-the-role-of-azure-dns-in-a-private-ne",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "intermediate",
+    "question": "What is the role of Azure DNS in a private network design?",
+    "short_answer": "Azure DNS hosts public zones, while Azure Private DNS provides name resolution for linked VNets.",
+    "detailed_explanation": "For private endpoints, configure the appropriate private DNS zone and VNet links so clients resolve the service name to the private address. Avoid relying on direct IPs that bypass expected TLS names.",
+    "real_world_example": "An administrator applies this approach to Azure DNS in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure DNS",
+      "Private DNS zones",
+      "Private endpoints"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure DNS before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure DNS alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure DNS. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure DNS after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-05",
+    "slug": "networking-how-do-effective-routes-help-troubleshoot-con",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "advanced",
+    "question": "How do effective routes help troubleshoot connectivity?",
+    "short_answer": "They show the routes applied to a network interface after system, user-defined, and BGP routes are considered.",
+    "detailed_explanation": "Inspect the effective route table and next hop, then compare the intended route, peering or gateway configuration, and any network virtual appliance forwarding.",
+    "real_world_example": "An administrator applies this approach to Network Watcher in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Network Watcher",
+      "Route tables",
+      "VPN Gateway"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Network Watcher before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Network Watcher alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Network Watcher. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Network Watcher after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-03-06",
+    "slug": "networking-what-should-be-considered-when-connecting-on-",
+    "topic_id": "networking",
+    "topic": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "difficulty": "beginner",
+    "question": "What should be considered when connecting on-premises networks to Azure?",
+    "short_answer": "Choose VPN or ExpressRoute based on connectivity, throughput, latency, resilience, and operational needs.",
+    "detailed_explanation": "Plan address spaces without overlap, routing, gateway SKU and redundancy, DNS forwarding, security boundaries, and failover testing. ExpressRoute is private connectivity but does not itself encrypt traffic.",
+    "real_world_example": "An administrator applies this approach to ExpressRoute in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "ExpressRoute",
+      "VPN Gateway",
+      "Azure DNS"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for ExpressRoute before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming ExpressRoute alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for ExpressRoute. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate ExpressRoute after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-01",
+    "slug": "storage-when-would-you-choose-azure-files-instead-of-",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "advanced",
+    "question": "When would you choose Azure Files instead of Blob Storage?",
+    "short_answer": "Azure Files provides managed file shares with SMB or NFS options; Blob Storage is object storage for unstructured data.",
+    "detailed_explanation": "Legacy shared-file applications often need file semantics and mounted shares. Blob workloads typically access objects through APIs and benefit from tiering and lifecycle policies.",
+    "real_world_example": "An administrator applies this approach to Azure Files in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Files",
+      "Blob Storage",
+      "Storage accounts"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Files before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Files alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Files. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Files after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-02",
+    "slug": "storage-how-should-storage-redundancy-be-selected",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "beginner",
+    "question": "How should storage redundancy be selected?",
+    "short_answer": "Choose redundancy based on durability, regional failure coverage, read access, and recovery objectives.",
+    "detailed_explanation": "LRS keeps replicas in one datacenter; ZRS spans zones in a region; GRS replicates to a paired region; RA variants allow secondary reads. Validate service and region availability and recovery expectations.",
+    "real_world_example": "An administrator applies this approach to Azure Storage redundancy in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Storage redundancy",
+      "Blob Storage",
+      "Storage accounts"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Storage redundancy before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Storage redundancy alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Storage redundancy. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Storage redundancy after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-03",
+    "slug": "storage-how-do-lifecycle-management-policies-help-con",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "intermediate",
+    "question": "How do lifecycle management policies help control Blob costs?",
+    "short_answer": "They transition or delete eligible blobs based on age, prefix, or other supported conditions.",
+    "detailed_explanation": "Match access tiers to retrieval frequency and latency needs, and account for early deletion or retrieval charges. Test rules against a sample dataset before broad application.",
+    "real_world_example": "An administrator applies this approach to Blob lifecycle management in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Blob lifecycle management",
+      "Blob access tiers",
+      "Cost Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Blob lifecycle management before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Blob lifecycle management alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Blob lifecycle management. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Blob lifecycle management after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-04",
+    "slug": "storage-how-do-sas-tokens-and-microsoft-entra-authori",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "advanced",
+    "question": "How do SAS tokens and Microsoft Entra authorization differ?",
+    "short_answer": "SAS grants scoped, time-limited delegated access; Entra authorization uses identity and role assignments.",
+    "detailed_explanation": "Prefer identity-based authorization where feasible. If SAS is necessary, constrain resource, permissions, protocol, and expiry, and rotate or revoke the signing key strategy.",
+    "real_world_example": "An administrator applies this approach to Microsoft Entra ID in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Microsoft Entra ID",
+      "Storage SAS",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Microsoft Entra ID before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Microsoft Entra ID alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Microsoft Entra ID. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Microsoft Entra ID after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-05",
+    "slug": "storage-why-can-a-storage-request-fail-despite-valid-",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "beginner",
+    "question": "Why can a storage request fail despite valid credentials?",
+    "short_answer": "Network rules, DNS, firewall configuration, private endpoint routing, and authorization scope can all deny access.",
+    "detailed_explanation": "Check the resolved endpoint, storage firewall logs/settings, private DNS, role assignment scope, token identity, and data-plane role; management-plane roles do not automatically grant blob data access.",
+    "real_world_example": "An administrator applies this approach to Storage firewall in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Storage firewall",
+      "Private endpoints",
+      "Storage Blob Data roles"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Storage firewall before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Storage firewall alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Storage firewall. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Storage firewall after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-04-06",
+    "slug": "storage-what-are-the-backup-implications-of-managed-d",
+    "topic_id": "storage",
+    "topic": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "difficulty": "intermediate",
+    "question": "What are the backup implications of managed disks and file shares?",
+    "short_answer": "Protection depends on the workload and supported backup method; snapshots alone may not meet application recovery needs.",
+    "detailed_explanation": "Define recovery point and time objectives, consistency requirements, retention, restore validation, and regional recovery. Cost includes protected instances, snapshots, storage, and retained copies.",
+    "real_world_example": "An administrator applies this approach to Azure Backup in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Backup",
+      "Managed Disks",
+      "Azure Files"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Backup before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Backup alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Backup. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Backup after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-01",
+    "slug": "identity-how-does-azure-rbac-differ-from-microsoft-ent",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "beginner",
+    "question": "How does Azure RBAC differ from Microsoft Entra directory roles?",
+    "short_answer": "Azure RBAC authorizes access to Azure resources; Entra roles administer directory features and objects.",
+    "detailed_explanation": "Keep control-plane resource access distinct from tenant identity administration. Assign roles at the narrowest viable scope and review inherited assignments.",
+    "real_world_example": "An administrator applies this approach to Azure RBAC in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure RBAC",
+      "Microsoft Entra ID",
+      "Management groups"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure RBAC before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure RBAC alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure RBAC. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure RBAC after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-02",
+    "slug": "identity-what-is-a-managed-identity-and-when-should-it",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "intermediate",
+    "question": "What is a managed identity and when should it be used?",
+    "short_answer": "A managed identity gives an Azure workload an automatically managed Entra identity for token-based access.",
+    "detailed_explanation": "System-assigned identity follows one resource lifecycle; user-assigned identity can be shared across resources. Grant only required data-plane or management-plane roles and verify the target resource supports that identity flow.",
+    "real_world_example": "An administrator applies this approach to Managed identities in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Managed identities",
+      "Microsoft Entra ID",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Managed identities before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Managed identities alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Managed identities. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Managed identities after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-03",
+    "slug": "identity-why-can-an-identity-authenticate-but-still-re",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "advanced",
+    "question": "Why can an identity authenticate but still receive 403 from a resource?",
+    "short_answer": "Authentication proves identity; authorization, scope, data-plane role, network policy, or token claims may still deny the operation.",
+    "detailed_explanation": "Confirm the principal/object ID, role definition and assignment scope, correct data role, propagation delay, target audience, and resource firewall. Test with a fresh token after changes.",
+    "real_world_example": "An administrator applies this approach to Managed identities in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Managed identities",
+      "Azure RBAC",
+      "Key Vault"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Managed identities before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Managed identities alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Managed identities. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Managed identities after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-04",
+    "slug": "identity-how-should-key-vault-access-be-granted",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "beginner",
+    "question": "How should Key Vault access be granted?",
+    "short_answer": "Use the vault access model in force, preferably Azure RBAC where adopted, with narrowly scoped roles and network controls.",
+    "detailed_explanation": "Separate secret management from secret consumption. Audit access, use managed identities, configure soft delete and purge protection where appropriate, and avoid putting secret values in source control or logs.",
+    "real_world_example": "An administrator applies this approach to Key Vault in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Key Vault",
+      "Azure RBAC",
+      "Managed identities"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Key Vault before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Key Vault alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Key Vault. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Key Vault after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-05",
+    "slug": "identity-what-is-conditional-access-used-for",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "intermediate",
+    "question": "What is Conditional Access used for?",
+    "short_answer": "Conditional Access evaluates identity, device, location, and risk signals to apply access requirements.",
+    "detailed_explanation": "Use report-only evaluation and staged rollouts to identify impact. Exclude and protect emergency accounts appropriately, and ensure policies do not lock out administrators or service workflows.",
+    "real_world_example": "An administrator applies this approach to Microsoft Entra Conditional Access in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Microsoft Entra Conditional Access",
+      "MFA",
+      "Identity Protection"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Microsoft Entra Conditional Access before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Microsoft Entra Conditional Access alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Microsoft Entra Conditional Access. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Microsoft Entra Conditional Access after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-05-06",
+    "slug": "identity-how-do-you-investigate-a-service-principal-or",
+    "topic_id": "identity",
+    "topic": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "difficulty": "advanced",
+    "question": "How do you investigate a service principal or managed identity permission issue?",
+    "short_answer": "Correlate the caller identity, target operation, role assignment, scope, and resource-side authorization logs.",
+    "detailed_explanation": "Check sign-in or audit records as applicable, token audience, principal ID, role definition, scope, and whether a data-plane role is required. Distinguish missing permission from network denial.",
+    "real_world_example": "An administrator applies this approach to Microsoft Entra ID in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Microsoft Entra ID",
+      "Azure Activity Log",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Microsoft Entra ID before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Microsoft Entra ID alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Microsoft Entra ID. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Microsoft Entra ID after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-01",
+    "slug": "monitoring-how-do-metrics-and-logs-differ-in-azure-monit",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "intermediate",
+    "question": "How do metrics and logs differ in Azure Monitor?",
+    "short_answer": "Metrics are numeric time series optimized for near-real-time aggregation; logs are records queried with KQL.",
+    "detailed_explanation": "Use metrics for fast health and threshold alerting; use logs for detailed event analysis and correlation. Diagnostic settings route supported resource logs to selected destinations.",
+    "real_world_example": "An administrator applies this approach to Azure Monitor in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Monitor",
+      "Log Analytics",
+      "Diagnostic settings"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Monitor before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Monitor alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Monitor. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Monitor after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-02",
+    "slug": "monitoring-what-makes-an-alert-actionable",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "advanced",
+    "question": "What makes an alert actionable?",
+    "short_answer": "An actionable alert has a meaningful condition, severity, owner, runbook, and tested notification path.",
+    "detailed_explanation": "Tune thresholds and evaluation windows against service behavior, group related signals, and use action groups responsibly. Review alert noise and missed incidents over time.",
+    "real_world_example": "An administrator applies this approach to Azure Monitor alerts in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Monitor alerts",
+      "Action groups",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Monitor alerts before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Monitor alerts alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Monitor alerts. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Monitor alerts after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-03",
+    "slug": "monitoring-what-is-application-insights-used-for",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "beginner",
+    "question": "What is Application Insights used for?",
+    "short_answer": "It provides application telemetry such as requests, dependencies, exceptions, and traces for supported applications.",
+    "detailed_explanation": "Correlate transaction traces with infrastructure metrics and deployments. Instrumentation should protect personal data and avoid collecting secrets or sensitive payloads.",
+    "real_world_example": "An administrator applies this approach to Application Insights in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Application Insights",
+      "Azure Monitor",
+      "Log Analytics"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Application Insights before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Application Insights alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Application Insights. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Application Insights after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-04",
+    "slug": "monitoring-how-do-you-use-kql-during-an-incident",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "intermediate",
+    "question": "How do you use KQL during an incident?",
+    "short_answer": "Filter and summarize telemetry over a bounded time range, then correlate by operation, resource, or correlation identifier.",
+    "detailed_explanation": "Start with a narrow time window, inspect schema and sampling, compare affected versus healthy instances, and save repeatable queries for runbooks.",
+    "real_world_example": "An administrator applies this approach to Log Analytics in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Log Analytics",
+      "Kusto Query Language",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Log Analytics before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Log Analytics alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Log Analytics. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Log Analytics after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-05",
+    "slug": "monitoring-why-might-an-alert-not-fire-even-though-a-cha",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "advanced",
+    "question": "Why might an alert not fire even though a chart shows a spike?",
+    "short_answer": "The alert may use a different signal, aggregation, scope, threshold, evaluation period, or dimension than the chart.",
+    "detailed_explanation": "Compare the rule signal and aggregation with chart settings, review dimensions, state and suppression, and validate action group delivery.",
+    "real_world_example": "An administrator applies this approach to Metric alerts in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Metric alerts",
+      "Log alerts",
+      "Action groups"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Metric alerts before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Metric alerts alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Metric alerts. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Metric alerts after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-06-06",
+    "slug": "monitoring-what-cost-factors-matter-for-log-analytics",
+    "topic_id": "monitoring",
+    "topic": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "difficulty": "beginner",
+    "question": "What cost factors matter for Log Analytics?",
+    "short_answer": "Ingestion volume, retention, query patterns, and data export are important cost factors.",
+    "detailed_explanation": "Filter noisy diagnostic categories, use appropriate table plans and retention, avoid broad high-volume collection, and inspect usage estimates. Refer to current Azure Monitor pricing rather than memorized rates.",
+    "real_world_example": "An administrator applies this approach to Log Analytics in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Log Analytics",
+      "Diagnostic settings",
+      "Azure Monitor pricing"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Log Analytics before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Log Analytics alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Log Analytics. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Log Analytics after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-01",
+    "slug": "containers-when-would-you-choose-app-service-over-a-vm",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "advanced",
+    "question": "When would you choose App Service over a VM?",
+    "short_answer": "App Service is a managed web hosting platform; a VM offers more operating-system and runtime control.",
+    "detailed_explanation": "Use App Service when supported runtimes and platform integration meet requirements. Consider plan isolation, deployment slots, scaling, networking, and platform limits.",
+    "real_world_example": "An administrator applies this approach to App Service in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "App Service",
+      "App Service plans",
+      "Deployment slots"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for App Service before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming App Service alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for App Service. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate App Service after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-02",
+    "slug": "containers-how-does-azure-functions-scaling-differ-from-",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "beginner",
+    "question": "How does Azure Functions scaling differ from a continuously running service?",
+    "short_answer": "Functions execute in response to triggers and supported hosting plans manage scaling behavior.",
+    "detailed_explanation": "Select plan based on execution duration, networking, cold-start tolerance, scale needs, and workload pattern. Understand trigger semantics and idempotency before relying on retries.",
+    "real_world_example": "An administrator applies this approach to Azure Functions in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Functions",
+      "Event Grid",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Functions before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Functions alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Functions. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Functions after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-03",
+    "slug": "containers-what-does-aks-manage-and-what-remains-the-ope",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "intermediate",
+    "question": "What does AKS manage and what remains the operator’s responsibility?",
+    "short_answer": "AKS manages the Kubernetes control plane in the managed service; operators still manage workloads, configuration, security, and cluster operations.",
+    "detailed_explanation": "Plan node pools, upgrades, network policy, identity, secrets, observability, resource requests, and disruption budgets. Managed control plane does not make application containers highly available by itself.",
+    "real_world_example": "An administrator applies this approach to AKS in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "AKS",
+      "Azure Container Registry",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for AKS before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming AKS alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for AKS. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate AKS after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-04",
+    "slug": "containers-how-should-a-container-image-be-promoted-thro",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "advanced",
+    "question": "How should a container image be promoted through environments?",
+    "short_answer": "Build an immutable image once, scan and tag it, then promote the same digest through controlled environments.",
+    "detailed_explanation": "Use a registry, provenance and vulnerability checks, least-privilege pull identity, deployment health gates, and rollback to a known digest. Avoid mutable latest-only promotion.",
+    "real_world_example": "An administrator applies this approach to Azure Container Registry in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Container Registry",
+      "AKS",
+      "Azure DevOps"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Container Registry before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Container Registry alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Container Registry. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Container Registry after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-05",
+    "slug": "containers-how-do-deployment-slots-reduce-app-service-re",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "beginner",
+    "question": "How do deployment slots reduce App Service release risk?",
+    "short_answer": "Slots provide separate live app environments that can be warmed and swapped under configured conditions.",
+    "detailed_explanation": "Verify slot-specific settings, connection strings, health checks, and swap behavior. Slots require an eligible App Service plan and are not a replacement for database migration compatibility.",
+    "real_world_example": "An administrator applies this approach to App Service in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "App Service",
+      "Deployment slots",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for App Service before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming App Service alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for App Service. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate App Service after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-07-06",
+    "slug": "containers-an-app-service-returns-http-5xx-after-deploym",
+    "topic_id": "containers",
+    "topic": "App Service, Azure Functions, Containers, and AKS",
+    "difficulty": "intermediate",
+    "question": "An App Service returns HTTP 5xx after deployment. What do you inspect first?",
+    "short_answer": "Correlate failure timing with deployment, app logs, platform metrics, dependencies, and configuration changes.",
+    "detailed_explanation": "Check health, availability, failed request details, logs, dependency failures, slot settings, and resource limits. Roll back safely if impact is broad and the prior version is known healthy.",
+    "real_world_example": "An administrator applies this approach to App Service diagnostics in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "App Service diagnostics",
+      "Application Insights",
+      "Deployment slots"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for App Service diagnostics before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming App Service diagnostics alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for App Service diagnostics. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate App Service diagnostics after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-01",
+    "slug": "databases-how-do-azure-sql-database-and-sql-managed-ins",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "beginner",
+    "question": "How do Azure SQL Database and SQL Managed Instance differ?",
+    "short_answer": "Azure SQL Database is a managed database service; Managed Instance offers broader SQL Server instance compatibility.",
+    "detailed_explanation": "Compare application compatibility, networking, instance-level features, migration effort, scale model, and operational requirements. Validate exact feature needs before migration.",
+    "real_world_example": "An administrator applies this approach to Azure SQL Database in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure SQL Database",
+      "Azure SQL Managed Instance",
+      "Azure SQL migration"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure SQL Database before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure SQL Database alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure SQL Database. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure SQL Database after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-02",
+    "slug": "databases-what-should-you-check-when-an-azure-sql-workl",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "intermediate",
+    "question": "What should you check when an Azure SQL workload becomes slow?",
+    "short_answer": "Inspect query performance, waits, resource utilization, connection behavior, and recent changes.",
+    "detailed_explanation": "Use Query Store and Azure Monitor metrics, identify regressions or saturation, and verify indexing and parameter patterns before changing compute tier.",
+    "real_world_example": "An administrator applies this approach to Query Store in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Query Store",
+      "Azure Monitor",
+      "Azure SQL Database"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Query Store before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Query Store alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Query Store. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Query Store after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-03",
+    "slug": "databases-how-do-private-endpoints-affect-database-conn",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "advanced",
+    "question": "How do private endpoints affect database connectivity?",
+    "short_answer": "They provide private network paths to supported database services, with DNS and network policy configuration.",
+    "detailed_explanation": "Validate private DNS resolution from the application network, routing/peering, endpoint approval, and firewall rules. Do not assume a successful private endpoint deployment guarantees client name resolution.",
+    "real_world_example": "An administrator applies this approach to Private Link in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Private Link",
+      "Private DNS zones",
+      "Azure SQL"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Private Link before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Private Link alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Private Link. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Private Link after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-04",
+    "slug": "databases-how-should-database-secrets-be-handled-by-an-",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "beginner",
+    "question": "How should database secrets be handled by an application?",
+    "short_answer": "Prefer managed identity and supported identity authentication; otherwise retrieve secrets securely from a vault with controlled rotation.",
+    "detailed_explanation": "Limit access to the database and vault separately, avoid embedding credentials in images or configuration repositories, and monitor identity and database audit events.",
+    "real_world_example": "An administrator applies this approach to Managed identities in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Managed identities",
+      "Key Vault",
+      "Azure SQL"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Managed identities before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Managed identities alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Managed identities. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Managed identities after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-05",
+    "slug": "databases-what-is-the-purpose-of-geo-replication-or-fai",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "intermediate",
+    "question": "What is the purpose of geo-replication or failover groups?",
+    "short_answer": "They support cross-region continuity options for Azure SQL workloads with different failover management characteristics.",
+    "detailed_explanation": "Choose based on RPO/RTO and application connection behavior; test failover and failback, DNS/client reconnection, and data consistency assumptions.",
+    "real_world_example": "An administrator applies this approach to Azure SQL failover groups in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure SQL failover groups",
+      "Geo-replication",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure SQL failover groups before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure SQL failover groups alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure SQL failover groups. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure SQL failover groups after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-08-06",
+    "slug": "databases-what-are-common-cost-drivers-for-managed-data",
+    "topic_id": "databases",
+    "topic": "Azure SQL, Managed Databases, and Data Services",
+    "difficulty": "advanced",
+    "question": "What are common cost drivers for managed databases?",
+    "short_answer": "Compute or vCore tier, storage, backups, licensing choices, and data transfer can affect total cost.",
+    "detailed_explanation": "Estimate from workload characteristics and service pricing pages. Use autoscaling or serverless only after validating pause/latency behavior, and monitor backup retention and replica costs.",
+    "real_world_example": "An administrator applies this approach to Azure SQL in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure SQL",
+      "Cost Management",
+      "Azure Pricing Calculator"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure SQL before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure SQL alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure SQL. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure SQL after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-01",
+    "slug": "recovery-how-do-rpo-and-rto-guide-a-recovery-design",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "intermediate",
+    "question": "How do RPO and RTO guide a recovery design?",
+    "short_answer": "RPO describes acceptable data loss; RTO describes acceptable service restoration time.",
+    "detailed_explanation": "Map business impact to replication frequency, restore speed, dependencies, staffing, and runbook steps. Measure objectives with regular recovery exercises, not just configuration status.",
+    "real_world_example": "An administrator applies this approach to Azure Backup in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Backup",
+      "Azure Site Recovery",
+      "Business continuity"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Backup before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Backup alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Backup. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Backup after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-02",
+    "slug": "recovery-how-does-azure-backup-differ-from-azure-site-",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "advanced",
+    "question": "How does Azure Backup differ from Azure Site Recovery?",
+    "short_answer": "Backup preserves recoverable data points; Site Recovery orchestrates replication and failover for workload continuity.",
+    "detailed_explanation": "Use backups for retention and point-in-time recovery; use replication and recovery plans for disaster recovery. They address different objectives and may be used together.",
+    "real_world_example": "An administrator applies this approach to Recovery Services vault in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Recovery Services vault",
+      "Azure Backup",
+      "Azure Site Recovery"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Recovery Services vault before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Recovery Services vault alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Recovery Services vault. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Recovery Services vault after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-03",
+    "slug": "recovery-why-are-backup-restore-tests-necessary",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "beginner",
+    "question": "Why are backup restore tests necessary?",
+    "short_answer": "A successful backup job does not prove the data is complete, usable, or restorable within the required time.",
+    "detailed_explanation": "Perform isolated restore tests, validate application consistency and permissions, document recovery duration, and protect test environments from accidental exposure.",
+    "real_world_example": "An administrator applies this approach to Azure Backup in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Backup",
+      "Recovery Services vault",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Backup before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Backup alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Backup. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Backup after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-04",
+    "slug": "recovery-how-would-you-protect-backups-from-destructiv",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "intermediate",
+    "question": "How would you protect backups from destructive administrators or ransomware?",
+    "short_answer": "Apply layered controls such as immutable or protected recovery capabilities, restricted roles, alerts, and separate operational processes.",
+    "detailed_explanation": "Review soft delete, vault security settings, multi-user authorization where supported, privileged access, and cross-region requirements. Verify current service capabilities for the workload.",
+    "real_world_example": "An administrator applies this approach to Azure Backup in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Backup",
+      "Recovery Services vault",
+      "Microsoft Entra Privileged Identity Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Backup before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Backup alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Backup. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Backup after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-05",
+    "slug": "recovery-what-dependencies-should-a-disaster-recovery-",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "advanced",
+    "question": "What dependencies should a disaster recovery runbook include?",
+    "short_answer": "Identity, DNS, network routing, secrets, data stores, certificates, and external integrations must be considered alongside compute.",
+    "detailed_explanation": "Map dependency order, decision owners, failover criteria, validation checks, customer communications, and failback gates. Keep runbooks current with architecture changes.",
+    "real_world_example": "An administrator applies this approach to Azure Site Recovery in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Site Recovery",
+      "Azure DNS",
+      "Azure Key Vault"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Site Recovery before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Site Recovery alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Site Recovery. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Site Recovery after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-09-06",
+    "slug": "recovery-how-do-you-validate-regional-recovery-readine",
+    "topic_id": "recovery",
+    "topic": "Backup, Disaster Recovery, and Business Continuity",
+    "difficulty": "beginner",
+    "question": "How do you validate regional recovery readiness?",
+    "short_answer": "Run controlled exercises that test recovery plan execution, application health, data consistency, and measured RTO/RPO.",
+    "detailed_explanation": "Use isolated test failovers where supported, avoid disrupting production replication, record gaps, and confirm capacity, quota, network, and access prerequisites in the target region.",
+    "real_world_example": "An administrator applies this approach to Azure Site Recovery in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Site Recovery",
+      "Azure Backup",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Site Recovery before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Site Recovery alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Site Recovery. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Site Recovery after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-01",
+    "slug": "governance-how-does-azure-policy-differ-from-rbac",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "advanced",
+    "question": "How does Azure Policy differ from RBAC?",
+    "short_answer": "Azure Policy evaluates resource configuration and can audit or deny noncompliant state; RBAC controls who can perform actions.",
+    "detailed_explanation": "Use both: policy expresses guardrails and RBAC assigns authorized operators. Remediation tasks and policy effects have specific permissions and should be tested before enforcement.",
+    "real_world_example": "An administrator applies this approach to Azure Policy in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Policy",
+      "Azure RBAC",
+      "Resource groups"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Policy before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Policy alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Policy. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Policy after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-02",
+    "slug": "governance-when-should-a-resource-lock-be-used",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "beginner",
+    "question": "When should a resource lock be used?",
+    "short_answer": "A lock helps prevent accidental deletion or modification at a supported scope.",
+    "detailed_explanation": "ReadOnly blocks write operations; CanNotDelete prevents deletion while allowing changes. Locks can affect automation and do not replace backup, access control, or change management.",
+    "real_world_example": "An administrator applies this approach to Resource locks in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Resource locks",
+      "Azure Resource Manager",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Resource locks before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Resource locks alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Resource locks. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Resource locks after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-03",
+    "slug": "governance-what-role-do-tags-play-in-governance",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "intermediate",
+    "question": "What role do tags play in governance?",
+    "short_answer": "Tags are metadata used to organize, report, and allocate costs across resources.",
+    "detailed_explanation": "Standardize keys and allowed values with policy; tags are not authorization boundaries and inheritance behavior needs explicit handling.",
+    "real_world_example": "An administrator applies this approach to Tags in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Tags",
+      "Azure Policy",
+      "Cost Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Tags before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Tags alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Tags. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Tags after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-04",
+    "slug": "governance-how-would-you-operationalize-microsoft-defend",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "advanced",
+    "question": "How would you operationalize Microsoft Defender for Cloud recommendations?",
+    "short_answer": "Prioritize findings by exposure, business context, severity, and remediation feasibility.",
+    "detailed_explanation": "Validate applicability, assign owners, track secure score and regulatory controls, and avoid blindly applying changes that may break workloads.",
+    "real_world_example": "An administrator applies this approach to Defender for Cloud in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Defender for Cloud",
+      "Azure Policy",
+      "Microsoft Sentinel"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Defender for Cloud before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Defender for Cloud alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Defender for Cloud. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Defender for Cloud after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-05",
+    "slug": "governance-how-does-zero-trust-influence-azure-administr",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "beginner",
+    "question": "How does Zero Trust influence Azure administration?",
+    "short_answer": "Verify explicitly, use least privilege, and assume breach across identity, device, network, and workload boundaries.",
+    "detailed_explanation": "Apply MFA and conditional access, just-in-time privilege, segmented networking, managed identity, logging, and continuous review. No single control alone establishes Zero Trust.",
+    "real_world_example": "An administrator applies this approach to Microsoft Entra ID in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Microsoft Entra ID",
+      "Conditional Access",
+      "Privileged Identity Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Microsoft Entra ID before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Microsoft Entra ID alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Microsoft Entra ID. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Microsoft Entra ID after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-10-06",
+    "slug": "governance-how-should-compliance-claims-be-handled-in-a-",
+    "topic_id": "governance",
+    "topic": "Security, Governance, and Compliance",
+    "difficulty": "intermediate",
+    "question": "How should compliance claims be handled in a cloud design?",
+    "short_answer": "Map applicable obligations to controls and evidence; cloud certifications do not automatically make a customer workload compliant.",
+    "detailed_explanation": "Define shared responsibilities, data residency and retention needs, access evidence, policy exceptions, and audit artifacts with the organization’s compliance owners.",
+    "real_world_example": "An administrator applies this approach to Microsoft Purview in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Microsoft Purview",
+      "Azure Policy",
+      "Compliance Manager"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Microsoft Purview before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Microsoft Purview alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Microsoft Purview. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Microsoft Purview after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-01",
+    "slug": "iac-how-do-arm-templates-and-bicep-relate",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "beginner",
+    "question": "How do ARM templates and Bicep relate?",
+    "short_answer": "Bicep is a declarative language that compiles to ARM templates for Azure Resource Manager deployments.",
+    "detailed_explanation": "Bicep improves authoring with modules and type-aware tooling while ARM remains the deployment engine. Review generated or compiled deployments and parameterize environment differences.",
+    "real_world_example": "An administrator applies this approach to Bicep in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Bicep",
+      "ARM templates",
+      "Azure Resource Manager"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Bicep before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Bicep alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Bicep. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Bicep after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-02",
+    "slug": "iac-when-might-terraform-be-selected-for-azure-in",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "intermediate",
+    "question": "When might Terraform be selected for Azure infrastructure?",
+    "short_answer": "Terraform is useful when teams need a consistent IaC workflow across providers or already operate its state and review process.",
+    "detailed_explanation": "Protect state, lock it during operations, review plans, pin provider versions, and manage secrets carefully. A state file is part of the system of record and needs secure storage and recovery.",
+    "real_world_example": "An administrator applies this approach to Terraform in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Terraform",
+      "AzureRM provider",
+      "Azure Storage"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Terraform before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Terraform alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Terraform. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Terraform after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-03",
+    "slug": "iac-how-do-azure-cli-and-azure-powershell-differ-",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "advanced",
+    "question": "How do Azure CLI and Azure PowerShell differ operationally?",
+    "short_answer": "Both automate Azure; CLI is cross-platform and command-oriented, while PowerShell uses cmdlets and object pipelines.",
+    "detailed_explanation": "Use the tool the team can review and maintain consistently. Pin versions in automation, use noninteractive identity, select the correct cloud and subscription, and avoid secrets in shell history.",
+    "real_world_example": "An administrator applies this approach to Azure CLI in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure CLI",
+      "Azure PowerShell",
+      "Microsoft Entra ID"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure CLI before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure CLI alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure CLI. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure CLI after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-04",
+    "slug": "iac-what-makes-an-iac-deployment-idempotent",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "beginner",
+    "question": "What makes an IaC deployment idempotent?",
+    "short_answer": "Repeated deployment converges the declared resources toward the same desired state without unintended duplication.",
+    "detailed_explanation": "Use declarative resource definitions, stable names, explicit dependencies, and safe update semantics. Detect drift and account for resources changed outside the pipeline.",
+    "real_world_example": "An administrator applies this approach to ARM templates in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "ARM templates",
+      "Bicep",
+      "Terraform"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for ARM templates before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming ARM templates alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for ARM templates. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate ARM templates after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-05",
+    "slug": "iac-how-should-secrets-be-supplied-to-infrastruct",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "intermediate",
+    "question": "How should secrets be supplied to infrastructure automation?",
+    "short_answer": "Use an approved secret store or workload identity federation rather than hard-coded credentials.",
+    "detailed_explanation": "Scope pipeline identity permissions narrowly, mask and avoid logging values, rotate credentials where used, and separate deployment identity from runtime workload identity.",
+    "real_world_example": "An administrator applies this approach to Key Vault in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Key Vault",
+      "Managed identities",
+      "Azure DevOps"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Key Vault before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Key Vault alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Key Vault. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Key Vault after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-11-06",
+    "slug": "iac-how-do-you-reduce-risk-from-a-destructive-cli",
+    "topic_id": "iac",
+    "topic": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "difficulty": "advanced",
+    "question": "How do you reduce risk from a destructive CLI or IaC operation?",
+    "short_answer": "Preview the change, scope the identity and target, require review, and use backups or recovery controls for stateful resources.",
+    "detailed_explanation": "Confirm tenant, subscription, resource group, and change plan before execution. Use what-if or plan output, protected branches, approvals, and tested rollback steps.",
+    "real_world_example": "An administrator applies this approach to Azure CLI in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure CLI",
+      "ARM what-if",
+      "Terraform plan"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure CLI before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure CLI alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure CLI. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure CLI after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-01",
+    "slug": "cicd-what-is-the-purpose-of-a-multi-stage-deployme",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "intermediate",
+    "question": "What is the purpose of a multi-stage deployment pipeline?",
+    "short_answer": "It separates build, validation, and environment deployment stages with controlled promotion.",
+    "detailed_explanation": "Build once and promote immutable artifacts, use environment approvals where appropriate, keep secrets out of logs, and record deployment identity and provenance.",
+    "real_world_example": "An administrator applies this approach to Azure Pipelines in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Pipelines",
+      "Azure Artifacts",
+      "Entra workload identity federation"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Pipelines before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Pipelines alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Pipelines. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Pipelines after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-02",
+    "slug": "cicd-how-can-a-pipeline-authenticate-to-azure-with",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "advanced",
+    "question": "How can a pipeline authenticate to Azure without a long-lived secret?",
+    "short_answer": "Use workload identity federation or a managed identity where the execution environment supports it.",
+    "detailed_explanation": "Configure trust for the pipeline identity, grant least-privilege roles, constrain the federated subject, and audit role assignments and sign-ins.",
+    "real_world_example": "An administrator applies this approach to Azure DevOps in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure DevOps",
+      "Microsoft Entra ID",
+      "Azure RBAC"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure DevOps before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure DevOps alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure DevOps. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure DevOps after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-03",
+    "slug": "cicd-how-do-deployment-slots-support-ci-cd",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "beginner",
+    "question": "How do deployment slots support CI/CD?",
+    "short_answer": "They allow deployment and warm-up in a staging slot before a controlled swap to production.",
+    "detailed_explanation": "Validate slot configuration, sticky settings, health checks, database compatibility, and rollback readiness. Swap operations can still expose application defects.",
+    "real_world_example": "An administrator applies this approach to App Service slots in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "App Service slots",
+      "Azure Pipelines",
+      "Application Insights"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for App Service slots before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming App Service slots alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for App Service slots. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate App Service slots after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-04",
+    "slug": "cicd-how-should-infrastructure-changes-be-reviewed",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "intermediate",
+    "question": "How should infrastructure changes be reviewed in CI/CD?",
+    "short_answer": "Generate a plan or what-if preview, validate policy and tests, then require an authorized apply stage.",
+    "detailed_explanation": "Separate validation from deployment, capture artifacts and approvals, limit production service connection scope, and detect drift.",
+    "real_world_example": "An administrator applies this approach to Bicep in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Bicep",
+      "Terraform",
+      "Azure DevOps"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Bicep before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Bicep alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Bicep. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Bicep after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-05",
+    "slug": "cicd-what-is-a-useful-rollback-strategy-for-a-serv",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "advanced",
+    "question": "What is a useful rollback strategy for a service deployment?",
+    "short_answer": "Keep a known-good immutable artifact and a safe, tested way to restore it while preserving data compatibility.",
+    "detailed_explanation": "Use health gates and telemetry, ensure schema changes are backward-compatible, and define who can initiate rollback. Do not rely on reverting source alone after irreversible data changes.",
+    "real_world_example": "An administrator applies this approach to Azure Pipelines in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Pipelines",
+      "Deployment slots",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Pipelines before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Pipelines alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Pipelines. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Pipelines after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-12-06",
+    "slug": "cicd-how-do-you-protect-a-ci-cd-pipeline-from-supp",
+    "topic_id": "cicd",
+    "topic": "CI/CD and Azure DevOps",
+    "difficulty": "beginner",
+    "question": "How do you protect a CI/CD pipeline from supply-chain risk?",
+    "short_answer": "Protect source, dependencies, build agents, artifacts, identities, and deployment approvals as one trust chain.",
+    "detailed_explanation": "Use branch policies, dependency scanning, artifact provenance, isolated agents where needed, least privilege, and audit logs. Verify third-party extensions and pipeline templates.",
+    "real_world_example": "An administrator applies this approach to Azure DevOps in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure DevOps",
+      "Microsoft Defender for Cloud",
+      "Azure Container Registry"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure DevOps before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure DevOps alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure DevOps. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure DevOps after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-01",
+    "slug": "cost-how-would-you-investigate-an-unexpected-azure",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "advanced",
+    "question": "How would you investigate an unexpected Azure bill?",
+    "short_answer": "Filter Cost Analysis by time, subscription, resource group, service, and meter, then correlate changes and usage.",
+    "detailed_explanation": "Check reservations or savings commitments, usage anomalies, newly provisioned resources, data transfer, logs, backup, and marketplace charges. Verify billing scope and export detail before acting.",
+    "real_world_example": "An administrator applies this approach to Cost Management + Billing in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Cost Management + Billing",
+      "Azure Advisor",
+      "Budgets"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Cost Management + Billing before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Cost Management + Billing alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Cost Management + Billing. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Cost Management + Billing after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-02",
+    "slug": "cost-why-do-tags-matter-for-cost-allocation",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "beginner",
+    "question": "Why do tags matter for cost allocation?",
+    "short_answer": "Consistent tags help group and report spend by owner, environment, product, or cost center.",
+    "detailed_explanation": "Tags do not retroactively guarantee every bill line is attributable and may require inheritance or allocation rules. Enforce standards and monitor untagged resources.",
+    "real_world_example": "An administrator applies this approach to Cost Management in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Cost Management",
+      "Tags",
+      "Azure Policy"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Cost Management before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Cost Management alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Cost Management. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Cost Management after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-03",
+    "slug": "cost-what-is-the-difference-between-a-budget-and-a",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "intermediate",
+    "question": "What is the difference between a budget and a spending limit?",
+    "short_answer": "A budget tracks costs against a threshold and can trigger alerts; it does not automatically cap Azure consumption.",
+    "detailed_explanation": "Configure thresholds and action groups for timely notification, and use separate controls or automation if remediation is required. Test alert recipients and understand forecast versus actual values.",
+    "real_world_example": "An administrator applies this approach to Azure Cost Management budgets in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Cost Management budgets",
+      "Action groups",
+      "Azure Advisor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Cost Management budgets before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Cost Management budgets alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Cost Management budgets. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Cost Management budgets after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-04",
+    "slug": "cost-how-can-teams-reduce-idle-compute-spending-sa",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "advanced",
+    "question": "How can teams reduce idle compute spending safely?",
+    "short_answer": "Right-size or schedule nonproduction compute after confirming usage patterns and service dependencies.",
+    "detailed_explanation": "Use metrics and Advisor recommendations, coordinate with owners, account for startup and reserved capacity, and preserve required availability. Storage and networking costs may remain after compute stops.",
+    "real_world_example": "An administrator applies this approach to Azure Advisor in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Advisor",
+      "Virtual Machines",
+      "Cost Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Advisor before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Advisor alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Advisor. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Advisor after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-05",
+    "slug": "cost-what-cost-factors-matter-for-network-architec",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "beginner",
+    "question": "What cost factors matter for network architecture?",
+    "short_answer": "Outbound data transfer, gateways, load balancing, public IPs, firewalls, and cross-region traffic can contribute.",
+    "detailed_explanation": "Model traffic direction and volume, topology, redundancy, and inspection path. Consult current regional pricing and measure actual usage rather than assuming a flat network charge.",
+    "real_world_example": "An administrator applies this approach to Bandwidth in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Bandwidth",
+      "VPN Gateway",
+      "Azure Firewall"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Bandwidth before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Bandwidth alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Bandwidth. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Bandwidth after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-13-06",
+    "slug": "cost-how-do-reservations-and-savings-plans-affect-",
+    "topic_id": "cost",
+    "topic": "Cost Management and Optimization",
+    "difficulty": "intermediate",
+    "question": "How do reservations and savings plans affect cost management?",
+    "short_answer": "They can reduce eligible compute costs in exchange for commitment terms, subject to scope and utilization.",
+    "detailed_explanation": "Compare historical stable usage, flexibility needs, and coverage before purchase. Track utilization and coverage; avoid commitments for short-lived or uncertain workloads.",
+    "real_world_example": "An administrator applies this approach to Reservations in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Reservations",
+      "Savings plans for compute",
+      "Cost Management"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Reservations before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Reservations alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Reservations. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Reservations after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-01",
+    "slug": "reliability-how-do-you-begin-troubleshooting-a-production",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "beginner",
+    "question": "How do you begin troubleshooting a production incident?",
+    "short_answer": "Establish impact, scope, timeline, recent changes, and service health before making changes.",
+    "detailed_explanation": "Use a hypothesis-driven approach: preserve evidence, check dependencies, compare healthy and affected paths, communicate status, and assign an incident owner.",
+    "real_world_example": "An administrator applies this approach to Azure Service Health in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Service Health",
+      "Azure Monitor",
+      "Activity Log"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Service Health before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Service Health alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Service Health. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Service Health after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-02",
+    "slug": "reliability-what-is-the-difference-between-azure-service-",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "intermediate",
+    "question": "What is the difference between Azure Service Health and Azure Monitor?",
+    "short_answer": "Service Health reports Azure platform incidents and planned maintenance affecting services; Azure Monitor observes resource and application telemetry.",
+    "detailed_explanation": "Check both during an incident: platform status may explain shared impact, while resource telemetry identifies workload-specific symptoms. Configure Service Health alerts for relevant subscriptions and regions.",
+    "real_world_example": "An administrator applies this approach to Azure Service Health in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Service Health",
+      "Azure Monitor",
+      "Resource Health"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Service Health before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Service Health alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Service Health. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Service Health after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-03",
+    "slug": "reliability-how-should-a-high-latency-application-be-inve",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "advanced",
+    "question": "How should a high-latency application be investigated?",
+    "short_answer": "Break latency down by request path, dependency, network, compute saturation, and database behavior.",
+    "detailed_explanation": "Compare p50/p95 trends, traces, dependency duration, queue depth, CPU/memory, and recent releases. Avoid scaling blindly before identifying the bottleneck and downstream capacity.",
+    "real_world_example": "An administrator applies this approach to Application Insights in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Application Insights",
+      "Azure Monitor",
+      "Log Analytics"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Application Insights before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Application Insights alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Application Insights. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Application Insights after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-04",
+    "slug": "reliability-why-are-health-probes-important-for-load-bala",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "beginner",
+    "question": "Why are health probes important for load-balanced services?",
+    "short_answer": "They let a load balancer avoid routing traffic to instances that fail a configured health test.",
+    "detailed_explanation": "Set probe path, protocol, port, thresholds, and response behavior to reflect actual readiness. A probe that checks only process liveness may route to an app unable to serve dependencies.",
+    "real_world_example": "An administrator applies this approach to Azure Load Balancer in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Load Balancer",
+      "Application Gateway",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Load Balancer before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Load Balancer alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Load Balancer. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Load Balancer after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-05",
+    "slug": "reliability-how-do-you-troubleshoot-repeated-http-5xx-err",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "intermediate",
+    "question": "How do you troubleshoot repeated HTTP 5xx errors?",
+    "short_answer": "Correlate status codes with app exceptions, dependency failures, resource pressure, and deployment changes.",
+    "detailed_explanation": "Use platform diagnostic logs and Application Insights, identify whether failures are 502/503/504 or application-generated, verify health and configuration, then roll back or remediate the proven cause.",
+    "real_world_example": "An administrator applies this approach to App Service diagnostics in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "App Service diagnostics",
+      "Application Insights",
+      "Azure Monitor"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for App Service diagnostics before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming App Service diagnostics alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for App Service diagnostics. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate App Service diagnostics after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  },
+  {
+    "id": "azadm-14-06",
+    "slug": "reliability-what-should-a-post-incident-review-produce",
+    "topic_id": "reliability",
+    "topic": "Production Troubleshooting and Reliability",
+    "difficulty": "advanced",
+    "question": "What should a post-incident review produce?",
+    "short_answer": "A blameless review should identify contributing conditions, customer impact, detection gaps, and tracked corrective actions.",
+    "detailed_explanation": "Separate timeline and evidence from hypotheses, assign owners and dates, prioritize prevention and recovery improvements, and verify actions reduce recurrence.",
+    "real_world_example": "An administrator applies this approach to Azure Monitor in a staged workload change, then validates the result with the owning application team.",
+    "services": [
+      "Azure Monitor",
+      "Azure Service Health",
+      "Azure DevOps"
+    ],
+    "troubleshooting_steps": [
+      "Confirm the requirement and scope for Azure Monitor before changing configuration.",
+      "Inspect effective settings, identity, network path, and service health; compare them with a known-good workload.",
+      "Apply one least-privilege, reversible change in a nonproduction or approved window, then validate telemetry and rollback readiness."
+    ],
+    "common_mistakes": [
+      "Assuming Azure Monitor alone guarantees the required behavior without checking dependencies and scope.",
+      "Changing several controls at once, which obscures the cause and complicates rollback."
+    ],
+    "cost_considerations": "Cost depends on selected service tier, region, usage, retention, redundancy, and data transfer for Azure Monitor. Check current Azure pricing and Cost Management data; no fixed price is assumed.",
+    "follow_up_questions": [
+      "How would you monitor and validate Azure Monitor after deployment?",
+      "Which failure mode or recovery objective would change this design?"
+    ]
+  }
+]

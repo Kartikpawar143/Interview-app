@@ -1,0 +1,100 @@
+[
+  {
+    "id": "architecture",
+    "slug": "architecture",
+    "name": "Azure Architecture and Resource Management",
+    "description": "Organize resources, subscriptions, scopes, deployments, and policy boundaries.",
+    "order": 1
+  },
+  {
+    "id": "compute",
+    "slug": "compute",
+    "name": "Azure Virtual Machines and Compute",
+    "description": "Select, operate, scale, patch, and troubleshoot compute services.",
+    "order": 2
+  },
+  {
+    "id": "networking",
+    "slug": "networking",
+    "name": "Virtual Networks, Subnets, NSGs, DNS, VPN, and Connectivity",
+    "description": "Design Azure network segments, routes, private access, and hybrid connectivity.",
+    "order": 3
+  },
+  {
+    "id": "storage",
+    "slug": "storage",
+    "name": "Storage Accounts, Blob Storage, Managed Disks, and Azure Files",
+    "description": "Choose storage services and secure, protect, and observe data access.",
+    "order": 4
+  },
+  {
+    "id": "identity",
+    "slug": "identity",
+    "name": "Microsoft Entra ID, RBAC, Managed Identities, and Key Vault",
+    "description": "Apply least privilege to human and workload identities and protect secrets.",
+    "order": 5
+  },
+  {
+    "id": "monitoring",
+    "slug": "monitoring",
+    "name": "Azure Monitor, Log Analytics, Alerts, and Troubleshooting",
+    "description": "Build useful telemetry, alerting, and structured incident investigation.",
+    "order": 6
+  },
+  {
+    "id": "containers",
+    "slug": "containers",
+    "name": "App Service, Azure Functions, Containers, and AKS",
+    "description": "Choose application hosting and diagnose platform and container health.",
+    "order": 7
+  },
+  {
+    "id": "databases",
+    "slug": "databases",
+    "name": "Azure SQL, Managed Databases, and Data Services",
+    "description": "Choose managed data services and maintain performance, availability, and security.",
+    "order": 8
+  },
+  {
+    "id": "recovery",
+    "slug": "recovery",
+    "name": "Backup, Disaster Recovery, and Business Continuity",
+    "description": "Set recovery objectives and test backup and failover procedures.",
+    "order": 9
+  },
+  {
+    "id": "governance",
+    "slug": "governance",
+    "name": "Security, Governance, and Compliance",
+    "description": "Apply policy, secure configuration, audit controls, and compliance evidence.",
+    "order": 10
+  },
+  {
+    "id": "iac",
+    "slug": "iac",
+    "name": "Azure CLI, PowerShell, ARM Templates, Bicep, and Terraform",
+    "description": "Automate repeatable Azure operations with reviewed, idempotent infrastructure definitions.",
+    "order": 11
+  },
+  {
+    "id": "cicd",
+    "slug": "cicd",
+    "name": "CI/CD and Azure DevOps",
+    "description": "Build secure pipelines with reproducible artifacts, gates, and rollback paths.",
+    "order": 12
+  },
+  {
+    "id": "cost",
+    "slug": "cost",
+    "name": "Cost Management and Optimization",
+    "description": "Attribute, forecast, and optimize spend while preserving reliability.",
+    "order": 13
+  },
+  {
+    "id": "reliability",
+    "slug": "reliability",
+    "name": "Production Troubleshooting and Reliability",
+    "description": "Triage incidents with evidence, protect service health, and prevent recurrence.",
+    "order": 14
+  }
+]

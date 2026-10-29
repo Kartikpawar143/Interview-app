@@ -1,0 +1,298 @@
+[
+  {
+    "id": "azscenario-01",
+    "slug": "vm-unreachable",
+    "title": "Azure VM unreachable over SSH or RDP",
+    "topic_id": "compute",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "A connection times out or is refused although the VM appears provisioned.",
+      "The issue started after an address, image, or network change."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Check service health and VM state",
+        "check": "Portal: VM Overview, Resource Health, Boot diagnostics; CLI: `az vm get-instance-view -g <rg> -n <vm>`.",
+        "expected_observation": "Confirm power state, provisioning state, boot status, and whether the guest reached its login screen."
+      },
+      {
+        "step": "Validate route and effective security",
+        "check": "Network Watcher: IP flow verify and effective security rules; review NIC/subnet NSGs and effective routes.",
+        "expected_observation": "Identify a deny rule, wrong next hop, missing route, or expected port 22/3389 blocked."
+      },
+      {
+        "step": "Check guest and client layers",
+        "check": "Review guest firewall/service status through approved serial console or recovery path; verify client egress and current VM IP.",
+        "expected_observation": "Determine whether traffic reaches the guest and whether SSH/RDP listens on the expected interface and port."
+      }
+    ],
+    "root_cause_reasoning": "A timeout points toward a path or firewall issue; an immediate refusal often indicates the host is reachable but the service is not listening. Boot diagnostics and flow evidence help distinguish them.",
+    "safe_remediation": [
+      "Correct the narrowest confirmed NSG, route, guest firewall, or service configuration issue.",
+      "Use Bastion or approved private access where possible; restrict any temporary inbound rule to a trusted source and remove it after validation."
+    ],
+    "safety_notes": [
+      "Do not open SSH/RDP to the whole internet as a diagnostic shortcut.",
+      "Snapshot or confirm recoverability before guest-level repair; avoid restarting a healthy production workload without impact review."
+    ]
+  },
+  {
+    "id": "azscenario-02",
+    "slug": "nsg-block",
+    "title": "Network security group blocks application traffic",
+    "topic_id": "networking",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "Requests to a VM or service time out from one subnet or client range.",
+      "A recent NSG or subnet change is suspected."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Record source and destination tuple",
+        "check": "Collect client IP, destination private/public IP, protocol, port, direction, and timestamp.",
+        "expected_observation": "You can compare a specific flow against security rules rather than broad guesses."
+      },
+      {
+        "step": "Run IP flow verification",
+        "check": "Network Watcher: IP flow verify for the target NIC and five-tuple.",
+        "expected_observation": "The result identifies the matching allow or deny rule and its associated NSG."
+      },
+      {
+        "step": "Review routing and effective rules",
+        "check": "Inspect NIC and subnet NSG associations, rule priorities, effective routes, and peering/firewall path.",
+        "expected_observation": "Find priority conflicts, wrong source range, or a route sending traffic through an unexpected appliance."
+      }
+    ],
+    "root_cause_reasoning": "NSGs are stateful and independently associated at subnet and NIC scopes; an allow in one place does not override a matching deny at another effective scope.",
+    "safe_remediation": [
+      "Correct the specific rule or association with least privilege and documented ownership.",
+      "Validate the exact flow from the intended source, then monitor denied flows and remove obsolete temporary rules."
+    ],
+    "safety_notes": [
+      "Do not add an any-to-any allow rule.",
+      "Do not assume a rule visible on the NIC is the only effective policy."
+    ]
+  },
+  {
+    "id": "azscenario-03",
+    "slug": "app-5xx",
+    "title": "Web application returns HTTP 5xx errors",
+    "topic_id": "containers",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "Users report intermittent or sustained HTTP 5xx responses.",
+      "The pattern may correlate with a deployment or dependency slowdown."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Check scope and timing",
+        "check": "Application Insights: failed requests, availability, dependency duration; compare with deployment timeline.",
+        "expected_observation": "Establish affected routes, instances, status codes, and whether failures began after a release."
+      },
+      {
+        "step": "Inspect platform health and logs",
+        "check": "App Service Diagnose and solve problems, HTTP logs, application logs, platform metrics, health checks.",
+        "expected_observation": "Look for worker restarts, resource exhaustion, startup failures, and platform-generated 502/503/504 responses."
+      },
+      {
+        "step": "Trace dependencies and configuration",
+        "check": "Review database/API dependency failures, DNS, certificates, connection strings, and slot-specific settings.",
+        "expected_observation": "Identify an upstream timeout, invalid setting, authentication failure, or resource saturation."
+      }
+    ],
+    "root_cause_reasoning": "A 5xx label alone does not identify the failing layer. Correlated traces, platform logs, and exact status code distinguish application exceptions from gateway or worker failures.",
+    "safe_remediation": [
+      "If impact is broad and a prior version is healthy, use the established rollback or slot swap process after checking data compatibility.",
+      "Fix the demonstrated dependency, configuration, or capacity issue; validate with synthetic checks and telemetry."
+    ],
+    "safety_notes": [
+      "Avoid restarting or scaling before capturing diagnostic evidence.",
+      "Do not expose secrets or personal data in logs while increasing diagnostic verbosity."
+    ]
+  },
+  {
+    "id": "azscenario-04",
+    "slug": "identity-403",
+    "title": "Managed identity cannot access a resource",
+    "topic_id": "identity",
+    "difficulty": "advanced",
+    "symptoms": [
+      "Workload obtains a token but a target operation returns 403.",
+      "A role assignment or resource move may have recently occurred."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Identify the caller and audience",
+        "check": "Check workload identity configuration and resource logs; confirm principal/object ID and token audience.",
+        "expected_observation": "The caller is the expected system- or user-assigned identity and the token targets the intended service."
+      },
+      {
+        "step": "Inspect authorization scope and role",
+        "check": "Review Azure RBAC assignments and required data-plane role at the resource, group, or subscription scope.",
+        "expected_observation": "A missing role, wrong principal, inherited-scope mismatch, or control-plane-only role is visible."
+      },
+      {
+        "step": "Check network and authorization logs",
+        "check": "Review target firewall/private endpoint/DNS settings and audit/diagnostic logs; allow for role propagation.",
+        "expected_observation": "Distinguish authorization denial from network rejection and validate the resolved endpoint."
+      }
+    ],
+    "root_cause_reasoning": "Successful token acquisition proves authentication but not authorization. Storage and Key Vault data operations commonly require a data-plane role distinct from resource management permissions.",
+    "safe_remediation": [
+      "Assign the minimum supported role to the correct principal at the narrowest scope, then retest with a fresh token after propagation.",
+      "Correct DNS or network policy only when diagnostics show that layer is responsible."
+    ],
+    "safety_notes": [
+      "Do not grant Owner or broad Contributor just to make the error disappear.",
+      "Do not log bearer tokens or secret values."
+    ]
+  },
+  {
+    "id": "azscenario-05",
+    "slug": "storage-access",
+    "title": "Storage access fails due to permissions or networking",
+    "topic_id": "storage",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "A client receives authorization failure or cannot resolve/reach the storage endpoint.",
+      "Access works from one network but not another."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Classify the failure",
+        "check": "Capture error code, caller identity, operation, endpoint hostname, source network, and timestamp.",
+        "expected_observation": "Authorization failures differ from DNS, firewall, and transport errors."
+      },
+      {
+        "step": "Verify identity and data role",
+        "check": "Inspect token principal and Storage Blob Data role assignment at the right scope.",
+        "expected_observation": "The identity has a data-plane role that permits the requested operation."
+      },
+      {
+        "step": "Check storage network path",
+        "check": "Review firewall virtual network/IP rules, private endpoint state, DNS zone links, and resolved address.",
+        "expected_observation": "The client resolves to the intended endpoint and its source network is allowed."
+      }
+    ],
+    "root_cause_reasoning": "Storage authorization and network controls are independent gates. A valid identity cannot bypass a firewall, and management-plane access does not automatically grant data access.",
+    "safe_remediation": [
+      "Grant only the required data role and allow the intended source network or private endpoint path.",
+      "Retest read/write behavior from the target network and review storage diagnostic logs."
+    ],
+    "safety_notes": [
+      "Avoid account keys or broad SAS as a permanent workaround.",
+      "Do not disable the firewall to test production access."
+    ]
+  },
+  {
+    "id": "azscenario-06",
+    "slug": "high-latency",
+    "title": "Application has high latency or resource consumption",
+    "topic_id": "monitoring",
+    "difficulty": "advanced",
+    "symptoms": [
+      "p95 response time increases and users see slow requests.",
+      "CPU, memory, dependency duration, or queue depth may be elevated."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Correlate user and service signals",
+        "check": "Application Insights: request duration, operation traces, failures, dependency calls, and deployment markers.",
+        "expected_observation": "Determine which route, instance, and dependency dominates latency."
+      },
+      {
+        "step": "Check resource saturation",
+        "check": "Azure Monitor: CPU, memory where available, network, throttling, queue depth, and autoscale events.",
+        "expected_observation": "Find sustained saturation or a scale rule that reacts too late or reaches a cap."
+      },
+      {
+        "step": "Compare healthy and affected paths",
+        "check": "Use bounded KQL queries and compare instances, regions, recent releases, and dependency behavior.",
+        "expected_observation": "Isolate application, database, network, or downstream-service contribution."
+      }
+    ],
+    "root_cause_reasoning": "End-to-end latency is additive across request processing and dependencies. Scaling the front end may not help when the database, downstream API, or lock contention is the bottleneck.",
+    "safe_remediation": [
+      "Mitigate the measured bottleneck with a tested change, capacity adjustment, query fix, or dependency protection.",
+      "Confirm latency and error-rate recovery and update alert thresholds/runbooks based on evidence."
+    ],
+    "safety_notes": [
+      "Do not dump sensitive payloads into logs.",
+      "Avoid scaling blindly; it can increase cost or overload downstream dependencies."
+    ]
+  },
+  {
+    "id": "azscenario-07",
+    "slug": "backup-recovery",
+    "title": "Service needs backup or recovery",
+    "topic_id": "recovery",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "A workload owner requests recovery after deletion, corruption, or regional outage.",
+      "Recovery requirements are unclear or untested."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Establish business recovery targets",
+        "check": "Record affected data, acceptable data loss (RPO), restoration time (RTO), region, and dependencies.",
+        "expected_observation": "You have approved targets and know whether point-in-time restore or disaster failover is needed."
+      },
+      {
+        "step": "Inspect protection and recovery points",
+        "check": "Check Azure Backup jobs, policy, vault, retention, soft delete/protection settings, and latest usable recovery point.",
+        "expected_observation": "Confirm the correct workload is protected and determine recovery-point age and health."
+      },
+      {
+        "step": "Plan an isolated recovery test",
+        "check": "Review supported restore/failover workflow, target network, identity, DNS, capacity, and owner validation.",
+        "expected_observation": "A nonproduction test path exists and will not overwrite production data or disrupt replication."
+      }
+    ],
+    "root_cause_reasoning": "Backup restores data to a point in time; disaster recovery replicates and orchestrates service continuity. Select based on the failure and RPO/RTO rather than treating them as interchangeable.",
+    "safe_remediation": [
+      "Use an approved restore or test failover to an isolated target, validate data and application integrity, and record measured recovery time.",
+      "Coordinate DNS/routing changes and production cutover only through the incident or change owner."
+    ],
+    "safety_notes": [
+      "Do not overwrite a live system before validating the restore point.",
+      "Do not assume a green backup job proves application-consistent recovery."
+    ]
+  },
+  {
+    "id": "azscenario-08",
+    "slug": "unexpected-bill",
+    "title": "Unexpected Azure bill requires investigation",
+    "topic_id": "cost",
+    "difficulty": "intermediate",
+    "symptoms": [
+      "A team notices a material increase in estimated or invoiced spend.",
+      "The source resource or meter is not obvious."
+    ],
+    "diagnostic_steps": [
+      {
+        "step": "Set billing scope and compare periods",
+        "check": "Cost Management: select correct billing scope, date range, granularity, and compare with prior period.",
+        "expected_observation": "The increase is isolated to subscription, service, resource, or meter and actual versus forecast is understood."
+      },
+      {
+        "step": "Break down usage and changes",
+        "check": "Group by resource, service, meter, region, and tag; review Activity Log and deployment history.",
+        "expected_observation": "Find newly created resources, usage growth, changed tier, backup/log ingestion, or data transfer."
+      },
+      {
+        "step": "Check commitments and ancillary services",
+        "check": "Review reservations/savings-plan utilization, marketplace, networking, monitoring, and storage retention.",
+        "expected_observation": "Separate covered compute from independent charges and identify ongoing resources."
+      }
+    ],
+    "root_cause_reasoning": "A total bill rarely identifies the cause. Break down usage and correlate timestamps with deployment and consumption data; billing data can have reporting delay.",
+    "safe_remediation": [
+      "Confirm the owning team and business impact before stopping or downsizing resources.",
+      "Apply approved schedules, retention, rightsizing, or removal after dependency checks; configure budget alerts and tag standards."
+    ],
+    "safety_notes": [
+      "A budget alert is not a spending cap.",
+      "Do not delete a resource solely because its cost is unfamiliar; verify owner, dependencies, and recovery requirements first."
+    ]
+  }
+]

@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "az900-introduction-q01",
+    "section_id": "az900-introduction",
+    "type": "multiple_choice",
+    "prompt": "A team compares cloud deployment models. Which model combines on-premises infrastructure with public cloud services?",
+    "choices": [
+      "Public cloud",
+      "Private cloud",
+      "Software as a service",
+      "Hybrid cloud"
+    ],
+    "answer": 3,
+    "explanation": "Hybrid cloud connects private/on-premises environments with public cloud resources.",
+    "tags": [
+      "Orientation",
+      "AZ-900 Certification Introduction"
+    ]
+  },
+  {
+    "id": "az900-introduction-q02",
+    "section_id": "az900-introduction",
+    "type": "multiple_choice",
+    "prompt": "Which cloud service model gives the customer the most control over the guest operating system?",
+    "choices": [
+      "Software as a service (SaaS)",
+      "Function as a service",
+      "Infrastructure as a service (IaaS)",
+      "Platform as a service (PaaS)"
+    ],
+    "answer": 2,
+    "explanation": "IaaS leaves the customer responsible for the guest OS and more of the software stack.",
+    "tags": [
+      "Orientation",
+      "AZ-900 Certification Introduction"
+    ]
+  },
+  {
+    "id": "az900-introduction-q03",
+    "section_id": "az900-introduction",
+    "type": "multiple_choice",
+    "prompt": "What does a consumption-based cloud model generally charge for?",
+    "choices": [
+      "A certification exam result",
+      "Measured resource use",
+      "A fixed perpetual license only",
+      "The number of on-premises racks"
+    ],
+    "answer": 1,
+    "explanation": "Consumption pricing is based on metered service usage, subject to service terms.",
+    "tags": [
+      "Orientation",
+      "AZ-900 Certification Introduction"
+    ]
+  },
+  {
+    "id": "az900-introduction-q04",
+    "section_id": "az900-introduction",
+    "type": "multiple_choice",
+    "prompt": "A business wants to use a finished email application without managing its runtime. Which model fits best?",
+    "choices": [
+      "Software as a service (SaaS)",
+      "Infrastructure as a service (IaaS)",
+      "A private datacenter",
+      "A virtual network"
+    ],
+    "answer": 0,
+    "explanation": "SaaS provides a ready-to-use application managed by its provider.",
+    "tags": [
+      "Orientation",
+      "AZ-900 Certification Introduction"
+    ]
+  },
+  {
+    "id": "az900-introduction-q05",
+    "section_id": "az900-introduction",
+    "type": "multiple_choice",
+    "prompt": "Which statement about serverless computing is accurate?",
+    "choices": [
+      "Applications run without any physical servers.",
+      "Customers must patch every host operating system.",
+      "It is another name for a private cloud.",
+      "The provider manages much of the infrastructure and scaling; servers still exist."
+    ],
+    "answer": 3,
+    "explanation": "Serverless abstracts infrastructure operations; it does not mean there are no servers.",
+    "tags": [
+      "Orientation",
+      "AZ-900 Certification Introduction"
+    ]
+  },
+  {
+    "id": "cloud-azure-start-q01",
+    "section_id": "cloud-azure-start",
+    "type": "multiple_choice",
+    "prompt": "A company needs full control of its VM operating system. Which service model is the closest fit?",
+    "choices": [
+      "PaaS",
+      "A public endpoint",
+      "IaaS",
+      "SaaS"
+    ],
+    "answer": 2,
+    "explanation": "IaaS gives customers broad control over the operating system and applications.",
+    "tags": [
+      "Cloud concepts",
+      "Getting Started with Cloud and Microsoft Azure"
+    ]
+  },
+  {
+    "id": "cloud-azure-start-q02",
+    "section_id": "cloud-azure-start",
+    "type": "multiple_choice",
+    "prompt": "Which cloud model is dedicated to one organization?",
+    "choices": [
+      "Consumption cloud",
+      "Private cloud",
+      "Public cloud",
+      "Hybrid cloud"
+    ],
+    "answer": 1,
+    "explanation": "A private cloud is dedicated to a single organization.",
+    "tags": [
+      "Cloud concepts",
+      "Getting Started with Cloud and Microsoft Azure"
+    ]
+  },
+  {
+    "id": "cloud-azure-start-q03",
+    "section_id": "cloud-azure-start",
+    "type": "multiple_choice",
+    "prompt": "Which benefit describes automatically adjusting capacity as demand changes?",
+    "choices": [
+      "Elasticity",
+      "Data residency",
+      "Resource locking",
+      "Authentication"
+    ],
+    "answer": 0,
+    "explanation": "Elasticity is the ability to scale capacity with demand.",
+    "tags": [
+      "Cloud concepts",
+      "Getting Started with Cloud and Microsoft Azure"
+    ]
+  },
+  {
+    "id": "cloud-azure-start-q04",
+    "section_id": "cloud-azure-start",
+    "type": "multiple_choice",
+    "prompt": "A developer wants to focus on application code while the platform handles OS maintenance. Which model is most appropriate?",
+    "choices": [
+      "IaaS",
+      "Private cloud",
+      "Local disk storage",
+      "PaaS"
+    ],
+    "answer": 3,
+    "explanation": "PaaS manages more of the application platform than IaaS.",
+    "tags": [
+      "Cloud concepts",
+      "Getting Started with Cloud and Microsoft Azure"
+    ]
+  },
+  {
+    "id": "cloud-azure-start-q05",
+    "section_id": "cloud-azure-start",
+    "type": "multiple_choice",
+    "prompt": "Under shared responsibility, what is generally true?",
+    "choices": [
+      "The customer is responsible for the cloud datacenter building.",
+      "Responsibility never changes between IaaS and SaaS.",
+      "Responsibility is divided between provider and customer based on service type.",
+      "The provider is responsible for every customer setting."
+    ],
+    "answer": 2,
+    "explanation": "The exact division depends on the service model and customer configuration.",
+    "tags": [
+      "Cloud concepts",
+      "Getting Started with Cloud and Microsoft Azure"
+    ]
+  },
+  {
+    "id": "regions-zones-q01",
+    "section_id": "regions-zones",
+    "type": "multiple_choice",
+    "prompt": "What is an Azure region?",
+    "choices": [
+      "A deployment template",
+      "A geographic area containing one or more datacenters",
+      "A single subscription billing record",
+      "A subnet inside a virtual network"
+    ],
+    "answer": 1,
+    "explanation": "Regions are geographic deployment areas made up of datacenters.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Regions and Availability Zones"
+    ]
+  },
+  {
+    "id": "regions-zones-q02",
+    "section_id": "regions-zones",
+    "type": "multiple_choice",
+    "prompt": "What do availability zones provide within a region?",
+    "choices": [
+      "Physically separate datacenter locations",
+      "A method to group subscriptions",
+      "A private identity directory",
+      "A storage access tier"
+    ],
+    "answer": 0,
+    "explanation": "Availability zones separate infrastructure within a region.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Regions and Availability Zones"
+    ]
+  },
+  {
+    "id": "regions-zones-q03",
+    "section_id": "regions-zones",
+    "type": "multiple_choice",
+    "prompt": "A workload has strict data residency needs. What should its designer verify first?",
+    "choices": [
+      "Whether the VM has a larger size",
+      "Whether the resource group name is unique",
+      "Whether it uses a public endpoint",
+      "Whether required services are available in an allowed region"
+    ],
+    "answer": 3,
+    "explanation": "Service availability and residency must be checked for the chosen region.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Regions and Availability Zones"
+    ]
+  },
+  {
+    "id": "regions-zones-q04",
+    "section_id": "regions-zones",
+    "type": "multiple_choice",
+    "prompt": "What is a region pair?",
+    "choices": [
+      "Two subnets in one VNet",
+      "A pair of user accounts",
+      "A selected relationship between Azure regions used by some platform recovery scenarios",
+      "Two VNets joined by peering"
+    ],
+    "answer": 2,
+    "explanation": "Region pairs are a platform relationship, but do not automatically make every workload resilient.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Regions and Availability Zones"
+    ]
+  },
+  {
+    "id": "regions-zones-q05",
+    "section_id": "regions-zones",
+    "type": "multiple_choice",
+    "prompt": "Which design uses multiple zones for improved datacenter failure tolerance?",
+    "choices": [
+      "Adding a tag to the VM",
+      "Deploying supported application components across zones and configuring them for resilience",
+      "Putting all components in one zone and assuming replication",
+      "Creating two resource groups in the same zone"
+    ],
+    "answer": 1,
+    "explanation": "Applications must be deployed and configured to take advantage of zones.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Regions and Availability Zones"
+    ]
+  },
+  {
+    "id": "virtual-machines-q01",
+    "section_id": "virtual-machines",
+    "type": "multiple_choice",
+    "prompt": "Which choice is a core Azure VM configuration decision?",
+    "choices": [
+      "Selecting an image, size, disks, and network configuration",
+      "Selecting a SaaS tenant theme",
+      "Choosing a table partition key only",
+      "Choosing an exam objective"
+    ],
+    "answer": 0,
+    "explanation": "VM capability depends on image, size, disks, region, and network setup.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Virtual Machines"
+    ]
+  },
+  {
+    "id": "virtual-machines-q02",
+    "section_id": "virtual-machines",
+    "type": "multiple_choice",
+    "prompt": "What is the main role of a VM scale set?",
+    "choices": [
+      "Provide a cloud identity directory",
+      "Store object blobs",
+      "Apply compliance classifications",
+      "Manage and scale a group of similar virtual machines"
+    ],
+    "answer": 3,
+    "explanation": "Scale sets manage groups of similar VMs and support scaling.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Virtual Machines"
+    ]
+  },
+  {
+    "id": "virtual-machines-q03",
+    "section_id": "virtual-machines",
+    "type": "multiple_choice",
+    "prompt": "Which option is designed to deliver virtual desktops and remote apps?",
+    "choices": [
+      "Azure Policy",
+      "Azure DNS",
+      "Azure Virtual Desktop",
+      "Azure Files"
+    ],
+    "answer": 2,
+    "explanation": "Azure Virtual Desktop delivers virtual desktop and remote application experiences.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Virtual Machines"
+    ]
+  },
+  {
+    "id": "virtual-machines-q04",
+    "section_id": "virtual-machines",
+    "type": "multiple_choice",
+    "prompt": "What do availability sets help reduce?",
+    "choices": [
+      "The number of Azure regions",
+      "The chance that all placed VMs are affected by a localized hardware or maintenance event",
+      "The cost of every network transfer",
+      "The need for identity verification"
+    ],
+    "answer": 1,
+    "explanation": "Availability sets distribute VMs across fault and update domains.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Virtual Machines"
+    ]
+  },
+  {
+    "id": "virtual-machines-q05",
+    "section_id": "virtual-machines",
+    "type": "multiple_choice",
+    "prompt": "Who generally patches the guest operating system on a standard IaaS VM?",
+    "choices": [
+      "The customer",
+      "Microsoft in all cases",
+      "The domain registrar",
+      "The DNS resolver"
+    ],
+    "answer": 0,
+    "explanation": "In IaaS, customers retain responsibility for guest OS maintenance.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Virtual Machines"
+    ]
+  },
+  {
+    "id": "managed-compute-q01",
+    "section_id": "managed-compute",
+    "type": "multiple_choice",
+    "prompt": "A short task runs when a queue message arrives. Which compute option is a natural fit?",
+    "choices": [
+      "Azure Virtual Desktop",
+      "Azure Files",
+      "Availability set",
+      "Azure Functions"
+    ],
+    "answer": 3,
+    "explanation": "Functions are suited to event-driven code.",
+    "tags": [
+      "Azure architecture and services",
+      "Managed Compute Services"
+    ]
+  },
+  {
+    "id": "managed-compute-q02",
+    "section_id": "managed-compute",
+    "type": "multiple_choice",
+    "prompt": "What does a container package to support consistent application deployment?",
+    "choices": [
+      "A region pair",
+      "A billing agreement",
+      "An application and its dependencies",
+      "A complete Azure subscription hierarchy"
+    ],
+    "answer": 2,
+    "explanation": "Containers package applications with their runtime dependencies.",
+    "tags": [
+      "Azure architecture and services",
+      "Managed Compute Services"
+    ]
+  },
+  {
+    "id": "managed-compute-q03",
+    "section_id": "managed-compute",
+    "type": "multiple_choice",
+    "prompt": "Which service is commonly used to host managed web applications?",
+    "choices": [
+      "Azure Data Box",
+      "Azure App Service",
+      "Azure Resource Manager",
+      "Azure Policy"
+    ],
+    "answer": 1,
+    "explanation": "App Service hosts web applications while abstracting much of the infrastructure.",
+    "tags": [
+      "Azure architecture and services",
+      "Managed Compute Services"
+    ]
+  },
+  {
+    "id": "managed-compute-q04",
+    "section_id": "managed-compute",
+    "type": "multiple_choice",
+    "prompt": "Is every container deployment serverless?",
+    "choices": [
+      "No; orchestration and infrastructure management depend on the chosen service.",
+      "Yes; containers never use servers.",
+      "Yes; containers always scale to zero.",
+      "No; containers cannot run in Azure."
+    ],
+    "answer": 0,
+    "explanation": "Container services have different management models; containers themselves do not imply serverless.",
+    "tags": [
+      "Azure architecture and services",
+      "Managed Compute Services"
+    ]
+  },
+  {
+    "id": "managed-compute-q05",
+    "section_id": "managed-compute",
+    "type": "multiple_choice",
+    "prompt": "A team needs broad control of the operating system. Which compute option best supports that requirement?",
+    "choices": [
+      "Managed web app",
+      "Event-triggered function",
+      "SaaS email service",
+      "Virtual machine"
+    ],
+    "answer": 3,
+    "explanation": "VMs provide the broadest control of the operating system among these choices.",
+    "tags": [
+      "Azure architecture and services",
+      "Managed Compute Services"
+    ]
+  },
+  {
+    "id": "azure-storage-q01",
+    "section_id": "azure-storage",
+    "type": "multiple_choice",
+    "prompt": "Which Azure Storage service is best aligned with object data such as images and backups?",
+    "choices": [
+      "Queue Storage",
+      "Azure DNS",
+      "Blob Storage",
+      "Azure Files"
+    ],
+    "answer": 2,
+    "explanation": "Blob Storage is designed for object data.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Storage"
+    ]
+  },
+  {
+    "id": "azure-storage-q02",
+    "section_id": "azure-storage",
+    "type": "multiple_choice",
+    "prompt": "Which access tier is intended for rarely accessed data with higher retrieval trade-offs?",
+    "choices": [
+      "Zone redundant",
+      "Archive",
+      "Hot",
+      "Premium SSD"
+    ],
+    "answer": 1,
+    "explanation": "Archive is intended for long-term infrequently accessed blob data.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Storage"
+    ]
+  },
+  {
+    "id": "azure-storage-q03",
+    "section_id": "azure-storage",
+    "type": "multiple_choice",
+    "prompt": "Which redundancy option spreads storage copies across availability zones in a region?",
+    "choices": [
+      "ZRS",
+      "LRS",
+      "GRS",
+      "Locally cached only"
+    ],
+    "answer": 0,
+    "explanation": "ZRS stores copies across zones in a region.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Storage"
+    ]
+  },
+  {
+    "id": "azure-storage-q04",
+    "section_id": "azure-storage",
+    "type": "multiple_choice",
+    "prompt": "Which tool is a command-line utility for transferring Azure Storage data?",
+    "choices": [
+      "Azure Policy",
+      "Azure Advisor",
+      "Azure Arc",
+      "AzCopy"
+    ],
+    "answer": 3,
+    "explanation": "AzCopy is a command-line tool for copying data to and from Azure Storage.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Storage"
+    ]
+  },
+  {
+    "id": "azure-storage-q05",
+    "section_id": "azure-storage",
+    "type": "multiple_choice",
+    "prompt": "A large dataset must be imported where network bandwidth is limited. Which option may help?",
+    "choices": [
+      "Azure RBAC",
+      "Availability set",
+      "Azure Data Box",
+      "Azure DNS"
+    ],
+    "answer": 2,
+    "explanation": "Data Box supports offline data transfer for large datasets.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Storage"
+    ]
+  },
+  {
+    "id": "azure-databases-q01",
+    "section_id": "azure-databases",
+    "type": "multiple_choice",
+    "prompt": "A workload depends on joins and relational constraints. Which data model is a natural starting point?",
+    "choices": [
+      "Key/value table only",
+      "Relational database",
+      "Blob object store",
+      "Queue"
+    ],
+    "answer": 1,
+    "explanation": "Relational databases model structured tables and relationships.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Databases"
+    ]
+  },
+  {
+    "id": "azure-databases-q02",
+    "section_id": "azure-databases",
+    "type": "multiple_choice",
+    "prompt": "Which Azure service is a globally distributed NoSQL database offering?",
+    "choices": [
+      "Azure Cosmos DB",
+      "Azure Files",
+      "Azure DNS",
+      "Azure Policy"
+    ],
+    "answer": 0,
+    "explanation": "Cosmos DB is a globally distributed database service with multiple APIs and consistency choices.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Databases"
+    ]
+  },
+  {
+    "id": "azure-databases-q03",
+    "section_id": "azure-databases",
+    "type": "multiple_choice",
+    "prompt": "Does using a managed database remove the customer’s responsibility for data access design?",
+    "choices": [
+      "Yes; Microsoft controls all customer access.",
+      "Yes; the database has no schema.",
+      "No; managed databases cannot be used for production.",
+      "No; customers still manage data design, access, and workload choices."
+    ],
+    "answer": 3,
+    "explanation": "Managed services reduce infrastructure tasks but do not remove customer data responsibilities.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Databases"
+    ]
+  },
+  {
+    "id": "azure-databases-q04",
+    "section_id": "azure-databases",
+    "type": "multiple_choice",
+    "prompt": "Which factor should guide database selection?",
+    "choices": [
+      "The number of resource groups alone",
+      "Whether the app uses CSS",
+      "Data model, query pattern, consistency, scale, and compatibility",
+      "The icon color in the portal"
+    ],
+    "answer": 2,
+    "explanation": "Database choices should match workload characteristics and compatibility needs.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Databases"
+    ]
+  },
+  {
+    "id": "azure-databases-q05",
+    "section_id": "azure-databases",
+    "type": "multiple_choice",
+    "prompt": "A team must preserve compatibility with an existing SQL application. What should it do before migration?",
+    "choices": [
+      "Move the database to Archive tier",
+      "Validate required SQL features and tooling against the target service",
+      "Assume all features work identically",
+      "Delete the schema"
+    ],
+    "answer": 1,
+    "explanation": "Compatibility should be checked before moving a workload to a managed database.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Databases"
+    ]
+  },
+  {
+    "id": "azure-networking-q01",
+    "section_id": "azure-networking",
+    "type": "multiple_choice",
+    "prompt": "What is a subnet inside an Azure VNet?",
+    "choices": [
+      "A subdivision of the VNet address space",
+      "A billing scope above subscriptions",
+      "A public DNS record",
+      "A storage redundancy option"
+    ],
+    "answer": 0,
+    "explanation": "Subnets divide a VNet address space into smaller network ranges.",
+    "tags": [
+      "Azure architecture and services",
+      "Networking in Azure"
+    ]
+  },
+  {
+    "id": "azure-networking-q02",
+    "section_id": "azure-networking",
+    "type": "multiple_choice",
+    "prompt": "Which service commonly provides encrypted site-to-site connectivity over the internet?",
+    "choices": [
+      "ExpressRoute",
+      "Azure Files",
+      "Azure Policy",
+      "VPN Gateway"
+    ],
+    "answer": 3,
+    "explanation": "VPN Gateway can connect networks through encrypted VPN tunnels over the internet.",
+    "tags": [
+      "Azure architecture and services",
+      "Networking in Azure"
+    ]
+  },
+  {
+    "id": "azure-networking-q03",
+    "section_id": "azure-networking",
+    "type": "multiple_choice",
+    "prompt": "Which connectivity option uses a private connection through a connectivity provider?",
+    "choices": [
+      "Azure DNS",
+      "Storage Explorer",
+      "ExpressRoute",
+      "Public endpoint"
+    ],
+    "answer": 2,
+    "explanation": "ExpressRoute provides private connectivity through a connectivity provider.",
+    "tags": [
+      "Azure architecture and services",
+      "Networking in Azure"
+    ]
+  },
+  {
+    "id": "azure-networking-q04",
+    "section_id": "azure-networking",
+    "type": "multiple_choice",
+    "prompt": "What does VNet peering connect?",
+    "choices": [
+      "An Azure region to a subscription",
+      "Two virtual networks using private connectivity",
+      "A tenant to a passwordless method",
+      "A blob to an archive tier"
+    ],
+    "answer": 1,
+    "explanation": "VNet peering connects virtual networks.",
+    "tags": [
+      "Azure architecture and services",
+      "Networking in Azure"
+    ]
+  },
+  {
+    "id": "azure-networking-q05",
+    "section_id": "azure-networking",
+    "type": "multiple_choice",
+    "prompt": "What does a private endpoint provide for a supported service?",
+    "choices": [
+      "A private IP address in a virtual network for service access",
+      "A public website URL",
+      "A new subscription",
+      "A VM image"
+    ],
+    "answer": 0,
+    "explanation": "Private endpoints map supported services to private IPs in a VNet.",
+    "tags": [
+      "Azure architecture and services",
+      "Networking in Azure"
+    ]
+  },
+  {
+    "id": "hybrid-cloud-q01",
+    "section_id": "hybrid-cloud",
+    "type": "multiple_choice",
+    "prompt": "Which statement describes a hybrid cloud?",
+    "choices": [
+      "It means using two public DNS providers.",
+      "It is an Azure storage tier.",
+      "It means operating only from a public cloud.",
+      "It integrates private or on-premises environments with public cloud services."
+    ],
+    "answer": 3,
+    "explanation": "Hybrid cloud combines connected private/on-premises and public cloud environments.",
+    "tags": [
+      "Enrichment: hybrid and migration context",
+      "Hybrid Cloud with Azure"
+    ]
+  },
+  {
+    "id": "hybrid-cloud-q02",
+    "section_id": "hybrid-cloud",
+    "type": "multiple_choice",
+    "prompt": "What is Azure Arc primarily used for?",
+    "choices": [
+      "Replacing all identity providers",
+      "Creating an exam schedule",
+      "Managing supported resources across Azure, on-premises, and other environments",
+      "Copying large files on physical appliances only"
+    ],
+    "answer": 2,
+    "explanation": "Azure Arc extends Azure management and governance to supported resources outside Azure.",
+    "tags": [
+      "Enrichment: hybrid and migration context",
+      "Hybrid Cloud with Azure"
+    ]
+  },
+  {
+    "id": "hybrid-cloud-q03",
+    "section_id": "hybrid-cloud",
+    "type": "multiple_choice",
+    "prompt": "Which service helps assess and plan workload migration to Azure?",
+    "choices": [
+      "Azure DNS",
+      "Azure Migrate",
+      "Azure Files",
+      "Azure Monitor alerts"
+    ],
+    "answer": 1,
+    "explanation": "Azure Migrate helps assess and plan migrations.",
+    "tags": [
+      "Enrichment: hybrid and migration context",
+      "Hybrid Cloud with Azure"
+    ]
+  },
+  {
+    "id": "hybrid-cloud-q04",
+    "section_id": "hybrid-cloud",
+    "type": "multiple_choice",
+    "prompt": "Which tool is useful for physically transferring large data volumes?",
+    "choices": [
+      "Azure Data Box",
+      "Azure RBAC",
+      "Azure Policy",
+      "Application Insights"
+    ],
+    "answer": 0,
+    "explanation": "Data Box supports offline transfer when network transfer is impractical.",
+    "tags": [
+      "Enrichment: hybrid and migration context",
+      "Hybrid Cloud with Azure"
+    ]
+  },
+  {
+    "id": "hybrid-cloud-q05",
+    "section_id": "hybrid-cloud",
+    "type": "multiple_choice",
+    "prompt": "A factory must keep control systems local for latency while analyzing summaries in cloud. Which pattern fits?",
+    "choices": [
+      "SaaS-only architecture",
+      "Single-region archive",
+      "Public endpoint only",
+      "Hybrid architecture"
+    ],
+    "answer": 3,
+    "explanation": "Hybrid patterns can keep latency-sensitive systems local and integrate cloud analytics.",
+    "tags": [
+      "Enrichment: hybrid and migration context",
+      "Hybrid Cloud with Azure"
+    ]
+  },
+  {
+    "id": "resource-hierarchy-q01",
+    "section_id": "resource-hierarchy",
+    "type": "multiple_choice",
+    "prompt": "Which is the correct Azure resource hierarchy order from broad to specific?",
+    "choices": [
+      "Subscriptions → resources → management groups → resource groups",
+      "Resource groups → management groups → resources → subscriptions",
+      "Management groups → subscriptions → resource groups → resources",
+      "Resources → resource groups → subscriptions → management groups"
+    ],
+    "answer": 2,
+    "explanation": "Management groups can contain subscriptions, which contain resource groups and resources.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Resource Hierarchy"
+    ]
+  },
+  {
+    "id": "resource-hierarchy-q02",
+    "section_id": "resource-hierarchy",
+    "type": "multiple_choice",
+    "prompt": "What commonly defines a billing and access boundary?",
+    "choices": [
+      "Blob container",
+      "Subscription",
+      "Availability zone",
+      "Subnet"
+    ],
+    "answer": 1,
+    "explanation": "Subscriptions are commonly used as billing and access boundaries.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Resource Hierarchy"
+    ]
+  },
+  {
+    "id": "resource-hierarchy-q03",
+    "section_id": "resource-hierarchy",
+    "type": "multiple_choice",
+    "prompt": "What is a common purpose of a resource group?",
+    "choices": [
+      "Organize related resources for lifecycle and management",
+      "Provide a separate datacenter",
+      "Authenticate external users",
+      "Store DNS zones only"
+    ],
+    "answer": 0,
+    "explanation": "Resource groups are logical containers for related resources.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Resource Hierarchy"
+    ]
+  },
+  {
+    "id": "resource-hierarchy-q04",
+    "section_id": "resource-hierarchy",
+    "type": "multiple_choice",
+    "prompt": "What happens when an Azure resource group is deleted?",
+    "choices": [
+      "Only its tags are removed.",
+      "Its subscription is deleted.",
+      "Nothing; resource groups cannot be deleted.",
+      "Its contained resources are also deleted."
+    ],
+    "answer": 3,
+    "explanation": "Deleting a resource group deletes its contained resources.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Resource Hierarchy"
+    ]
+  },
+  {
+    "id": "resource-hierarchy-q05",
+    "section_id": "resource-hierarchy",
+    "type": "multiple_choice",
+    "prompt": "At which scope can an organization apply a broad governance baseline across multiple subscriptions?",
+    "choices": [
+      "Subnet only",
+      "Storage access tier",
+      "Management group",
+      "VM disk"
+    ],
+    "answer": 2,
+    "explanation": "Management groups organize subscriptions and support governance at broader scope.",
+    "tags": [
+      "Azure architecture and services",
+      "Azure Resource Hierarchy"
+    ]
+  },
+  {
+    "id": "identity-management-q01",
+    "section_id": "identity-management",
+    "type": "multiple_choice",
+    "prompt": "What does authentication establish?",
+    "choices": [
+      "A region pair",
+      "The identity of a user or workload",
+      "The permitted actions on a resource",
+      "The storage access tier"
+    ],
+    "answer": 1,
+    "explanation": "Authentication verifies identity; authorization determines what that identity can do.",
+    "tags": [
+      "Azure architecture and services",
+      "Identity Management"
+    ]
+  },
+  {
+    "id": "identity-management-q02",
+    "section_id": "identity-management",
+    "type": "multiple_choice",
+    "prompt": "What does Azure RBAC control?",
+    "choices": [
+      "Which actions an identity can perform on Azure resources at a scope",
+      "How a password is hashed in every SaaS app",
+      "Which region has availability zones",
+      "How much a VM costs"
+    ],
+    "answer": 0,
+    "explanation": "RBAC assigns permissions to identities at Azure scopes.",
+    "tags": [
+      "Azure architecture and services",
+      "Identity Management"
+    ]
+  },
+  {
+    "id": "identity-management-q03",
+    "section_id": "identity-management",
+    "type": "multiple_choice",
+    "prompt": "What does MFA add to sign-in?",
+    "choices": [
+      "A second subscription",
+      "A resource lock",
+      "A storage replica",
+      "One or more additional verification factors"
+    ],
+    "answer": 3,
+    "explanation": "MFA adds verification beyond a single factor.",
+    "tags": [
+      "Azure architecture and services",
+      "Identity Management"
+    ]
+  },
+  {
+    "id": "identity-management-q04",
+    "section_id": "identity-management",
+    "type": "multiple_choice",
+    "prompt": "What can Microsoft Entra Conditional Access evaluate?",
+    "choices": [
+      "VM image size only",
+      "Resource group name length",
+      "Signals such as user, device, location, and risk",
+      "Blob access tier only"
+    ],
+    "answer": 2,
+    "explanation": "Conditional Access evaluates sign-in context and applies access requirements.",
+    "tags": [
+      "Azure architecture and services",
+      "Identity Management"
+    ]
+  },
+  {
+    "id": "identity-management-q05",
+    "section_id": "identity-management",
+    "type": "multiple_choice",
+    "prompt": "A contractor needs access to one project resource group. Which approach follows least privilege?",
+    "choices": [
+      "Disable authentication",
+      "Grant a narrowly scoped role for the required tasks",
+      "Assign global administrator permanently",
+      "Share an owner password"
+    ],
+    "answer": 1,
+    "explanation": "A narrowly scoped role limits permissions to the needed resources and actions.",
+    "tags": [
+      "Azure architecture and services",
+      "Identity Management"
+    ]
+  },
+  {
+    "id": "security-services-q01",
+    "section_id": "security-services",
+    "type": "multiple_choice",
+    "prompt": "Which principle is central to Zero Trust?",
+    "choices": [
+      "Verify explicitly and use least privilege",
+      "Trust all internal network traffic",
+      "Disable logging",
+      "Use one shared administrator account"
+    ],
+    "answer": 0,
+    "explanation": "Zero Trust includes verifying explicitly, least privilege, and assuming breach.",
+    "tags": [
+      "Azure architecture and services",
+      "Other Azure Security Services"
+    ]
+  },
+  {
+    "id": "security-services-q02",
+    "section_id": "security-services",
+    "type": "multiple_choice",
+    "prompt": "What is the purpose of defense in depth?",
+    "choices": [
+      "Replace all monitoring with one firewall",
+      "Guarantee zero incidents",
+      "Move every service to a private subnet",
+      "Layer safeguards so one failed control does not expose everything"
+    ],
+    "answer": 3,
+    "explanation": "Defense in depth layers controls across the system.",
+    "tags": [
+      "Azure architecture and services",
+      "Other Azure Security Services"
+    ]
+  },
+  {
+    "id": "security-services-q03",
+    "section_id": "security-services",
+    "type": "multiple_choice",
+    "prompt": "What is a role of Microsoft Defender for Cloud?",
+    "choices": [
+      "Replace all network security rules",
+      "Host domain registrations",
+      "Assess security posture and provide workload protection capabilities",
+      "Issue exam certifications"
+    ],
+    "answer": 2,
+    "explanation": "Defender for Cloud supports security posture and workload protection.",
+    "tags": [
+      "Azure architecture and services",
+      "Other Azure Security Services"
+    ]
+  },
+  {
+    "id": "security-services-q04",
+    "section_id": "security-services",
+    "type": "multiple_choice",
+    "prompt": "A VM is exposed to broad inbound management traffic. What is a sensible first response?",
+    "choices": [
+      "Move it to Archive tier",
+      "Review and restrict access to the required sources",
+      "Add a cost tag only",
+      "Increase its disk size"
+    ],
+    "answer": 1,
+    "explanation": "Reducing unnecessary management exposure is a high-value security action.",
+    "tags": [
+      "Azure architecture and services",
+      "Other Azure Security Services"
+    ]
+  },
+  {
+    "id": "security-services-q05",
+    "section_id": "security-services",
+    "type": "multiple_choice",
+    "prompt": "Does one Defender for Cloud recommendation prove an environment is secure?",
+    "choices": [
+      "No; findings need context and multiple controls remain necessary.",
+      "Yes; recommendations certify compliance.",
+      "Yes; it disables all public endpoints.",
+      "No; Defender for Cloud cannot show posture information."
+    ],
+    "answer": 0,
+    "explanation": "A posture tool helps identify issues but does not prove overall security.",
+    "tags": [
+      "Azure architecture and services",
+      "Other Azure Security Services"
+    ]
+  },
+  {
+    "id": "support-guarantees-q01",
+    "section_id": "support-guarantees",
+    "type": "multiple_choice",
+    "prompt": "What does a service SLA describe?",
+    "choices": [
+      "A guarantee that every architecture has zero downtime",
+      "A customer’s exam score",
+      "A VNet address range",
+      "A provider commitment under defined service conditions"
+    ],
+    "answer": 3,
+    "explanation": "SLAs define commitments and conditions for specific services.",
+    "tags": [
+      "Enrichment: support and service commitments",
+      "Azure Support and Service Guarantees"
+    ]
+  },
+  {
+    "id": "support-guarantees-q02",
+    "section_id": "support-guarantees",
+    "type": "multiple_choice",
+    "prompt": "Where should an operator check subscription-specific service incidents and maintenance?",
+    "choices": [
+      "Azure Data Box",
+      "Azure Files",
+      "Azure Service Health",
+      "Pricing Calculator"
+    ],
+    "answer": 2,
+    "explanation": "Service Health provides information relevant to affected services and subscriptions.",
+    "tags": [
+      "Enrichment: support and service commitments",
+      "Azure Support and Service Guarantees"
+    ]
+  },
+  {
+    "id": "support-guarantees-q03",
+    "section_id": "support-guarantees",
+    "type": "multiple_choice",
+    "prompt": "Does a high SLA for one component guarantee the same end-to-end application availability?",
+    "choices": [
+      "No; SLAs apply only to subscriptions.",
+      "No; dependencies and architecture affect composite availability.",
+      "Yes; all component SLAs are identical.",
+      "Yes; if the app uses a resource group."
+    ],
+    "answer": 1,
+    "explanation": "End-to-end availability depends on the components and their failure relationships.",
+    "tags": [
+      "Enrichment: support and service commitments",
+      "Azure Support and Service Guarantees"
+    ]
+  },
+  {
+    "id": "support-guarantees-q04",
+    "section_id": "support-guarantees",
+    "type": "multiple_choice",
+    "prompt": "What should a team review before relying on an SLA?",
+    "choices": [
+      "The service-specific conditions, exclusions, and configuration requirements",
+      "Only the service icon",
+      "The cost tag spelling",
+      "The number of lesson bookmarks"
+    ],
+    "answer": 0,
+    "explanation": "SLA terms are service-specific and have defined conditions.",
+    "tags": [
+      "Enrichment: support and service commitments",
+      "Azure Support and Service Guarantees"
+    ]
+  },
+  {
+    "id": "support-guarantees-q05",
+    "section_id": "support-guarantees",
+    "type": "multiple_choice",
+    "prompt": "What do support plans generally define?",
+    "choices": [
+      "VM guest OS patches in every service model",
+      "A guarantee against all incidents",
+      "Data redundancy settings",
+      "Support channels and response commitments"
+    ],
+    "answer": 3,
+    "explanation": "Support plans describe available support options and response commitments.",
+    "tags": [
+      "Enrichment: support and service commitments",
+      "Azure Support and Service Guarantees"
+    ]
+  },
+  {
+    "id": "compliance-governance-q01",
+    "section_id": "compliance-governance",
+    "type": "multiple_choice",
+    "prompt": "What is Azure Policy used for?",
+    "choices": [
+      "Replicating data across regions automatically",
+      "Replacing a backup system",
+      "Auditing or enforcing resource configuration rules",
+      "Preventing every user from signing in"
+    ],
+    "answer": 2,
+    "explanation": "Azure Policy can audit, deny, or deploy configurations according to definitions.",
+    "tags": [
+      "Azure management and governance",
+      "Compliance, Privacy and Governance"
+    ]
+  },
+  {
+    "id": "compliance-governance-q02",
+    "section_id": "compliance-governance",
+    "type": "multiple_choice",
+    "prompt": "What is the purpose of a resource lock?",
+    "choices": [
+      "Guarantee regional failover",
+      "Help prevent accidental deletion or modification",
+      "Encrypt all network traffic",
+      "Replace RBAC"
+    ],
+    "answer": 1,
+    "explanation": "Locks help protect resources from accidental deletion or modification.",
+    "tags": [
+      "Azure management and governance",
+      "Compliance, Privacy and Governance"
+    ]
+  },
+  {
+    "id": "compliance-governance-q03",
+    "section_id": "compliance-governance",
+    "type": "multiple_choice",
+    "prompt": "What is Microsoft Purview associated with?",
+    "choices": [
+      "Data governance capabilities",
+      "VM scale-out",
+      "Private network routing",
+      "Cloud billing identities"
+    ],
+    "answer": 0,
+    "explanation": "Purview supports data governance.",
+    "tags": [
+      "Azure management and governance",
+      "Compliance, Privacy and Governance"
+    ]
+  },
+  {
+    "id": "compliance-governance-q04",
+    "section_id": "compliance-governance",
+    "type": "multiple_choice",
+    "prompt": "Do compliance attestations remove an organization’s responsibility to configure services correctly?",
+    "choices": [
+      "Yes; all compliance becomes Microsoft’s responsibility.",
+      "Yes; no access controls are required.",
+      "No; Azure has no compliance programs.",
+      "No; customers still have configuration and compliance responsibilities."
+    ],
+    "answer": 3,
+    "explanation": "Cloud compliance is shared; customer responsibilities remain.",
+    "tags": [
+      "Azure management and governance",
+      "Compliance, Privacy and Governance"
+    ]
+  },
+  {
+    "id": "compliance-governance-q05",
+    "section_id": "compliance-governance",
+    "type": "multiple_choice",
+    "prompt": "What should be considered when data residency is required?",
+    "choices": [
+      "The VM’s hostname",
+      "Whether the user has a bookmark",
+      "Whether each service and configuration supports the required geography",
+      "Only the Azure portal theme"
+    ],
+    "answer": 2,
+    "explanation": "Residency needs must be checked against service-specific regional availability and terms.",
+    "tags": [
+      "Azure management and governance",
+      "Compliance, Privacy and Governance"
+    ]
+  },
+  {
+    "id": "managing-costs-q01",
+    "section_id": "managing-costs",
+    "type": "multiple_choice",
+    "prompt": "Which tool estimates Azure workload pricing before deployment?",
+    "choices": [
+      "Microsoft Entra ID",
+      "Azure Pricing Calculator",
+      "Azure Policy",
+      "Azure Service Health"
+    ],
+    "answer": 1,
+    "explanation": "Pricing Calculator helps estimate service costs based on configured assumptions.",
+    "tags": [
+      "Azure management and governance",
+      "Managing Costs"
+    ]
+  },
+  {
+    "id": "managing-costs-q02",
+    "section_id": "managing-costs",
+    "type": "multiple_choice",
+    "prompt": "Which factor can increase compute cost?",
+    "choices": [
+      "Running a larger VM for more hours",
+      "Changing a bookmark label",
+      "Using a shorter resource group name",
+      "Adding a knowledge check"
+    ],
+    "answer": 0,
+    "explanation": "VM size and runtime can affect compute charges.",
+    "tags": [
+      "Azure management and governance",
+      "Managing Costs"
+    ]
+  },
+  {
+    "id": "managing-costs-q03",
+    "section_id": "managing-costs",
+    "type": "multiple_choice",
+    "prompt": "What are Azure resource tags useful for?",
+    "choices": [
+      "Encrypting network traffic",
+      "Granting permission to delete resources",
+      "Creating availability zones",
+      "Organizing resources and reporting costs by dimensions such as owner or environment"
+    ],
+    "answer": 3,
+    "explanation": "Tags can organize resources and support cost analysis/reporting.",
+    "tags": [
+      "Azure management and governance",
+      "Managing Costs"
+    ]
+  },
+  {
+    "id": "managing-costs-q04",
+    "section_id": "managing-costs",
+    "type": "multiple_choice",
+    "prompt": "What can Azure Cost Management help teams do?",
+    "choices": [
+      "Create a private endpoint automatically",
+      "Move archives to Data Box",
+      "Analyze spending and manage budgets",
+      "Authenticate applications"
+    ],
+    "answer": 2,
+    "explanation": "Cost Management provides cost analysis and budget capabilities.",
+    "tags": [
+      "Azure management and governance",
+      "Managing Costs"
+    ]
+  },
+  {
+    "id": "managing-costs-q05",
+    "section_id": "managing-costs",
+    "type": "multiple_choice",
+    "prompt": "When should a team consider a compute reservation or savings plan?",
+    "choices": [
+      "To avoid setting a budget",
+      "When stable eligible usage makes a commitment worthwhile",
+      "Whenever usage is unknown and short-lived",
+      "To encrypt a database"
+    ],
+    "answer": 1,
+    "explanation": "Commitment discounts should be evaluated against usage patterns and terms.",
+    "tags": [
+      "Azure management and governance",
+      "Managing Costs"
+    ]
+  },
+  {
+    "id": "misc-fundamentals-q01",
+    "section_id": "misc-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What is Azure Cloud Shell?",
+    "choices": [
+      "A browser-accessible shell for Azure CLI or Azure PowerShell",
+      "A private cloud region",
+      "A storage redundancy option",
+      "A database schema"
+    ],
+    "answer": 0,
+    "explanation": "Cloud Shell provides a browser-accessible command environment with Azure tools.",
+    "tags": [
+      "Azure management and governance",
+      "Miscellaneous Azure Fundamentals"
+    ]
+  },
+  {
+    "id": "misc-fundamentals-q02",
+    "section_id": "misc-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What does Azure Resource Manager provide?",
+    "choices": [
+      "A relational database engine",
+      "An identity verification factor",
+      "A file transfer appliance",
+      "The management layer for deploying and organizing Azure resources"
+    ],
+    "answer": 3,
+    "explanation": "ARM is Azure’s management and deployment layer.",
+    "tags": [
+      "Azure management and governance",
+      "Miscellaneous Azure Fundamentals"
+    ]
+  },
+  {
+    "id": "misc-fundamentals-q03",
+    "section_id": "misc-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What is a benefit of infrastructure as code?",
+    "choices": [
+      "Automatic removal of all resource costs",
+      "Elimination of network design",
+      "Repeatable, reviewable infrastructure deployments",
+      "No need to protect deployment credentials"
+    ],
+    "answer": 2,
+    "explanation": "IaC definitions can be versioned, reviewed, and deployed consistently.",
+    "tags": [
+      "Azure management and governance",
+      "Miscellaneous Azure Fundamentals"
+    ]
+  },
+  {
+    "id": "misc-fundamentals-q04",
+    "section_id": "misc-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "Which interface is graphical and browser based?",
+    "choices": [
+      "A JSON ARM template",
+      "Azure portal",
+      "Azure CLI",
+      "Azure PowerShell module"
+    ],
+    "answer": 1,
+    "explanation": "The Azure portal is the graphical browser interface.",
+    "tags": [
+      "Azure management and governance",
+      "Miscellaneous Azure Fundamentals"
+    ]
+  },
+  {
+    "id": "misc-fundamentals-q05",
+    "section_id": "misc-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What is Azure Arc used for in a management context?",
+    "choices": [
+      "Extending Azure management to supported resources outside Azure",
+      "Replacing all cloud models",
+      "Creating passwordless credentials",
+      "Providing blob archive retrieval"
+    ],
+    "answer": 0,
+    "explanation": "Arc extends Azure management and governance beyond Azure-native resources.",
+    "tags": [
+      "Azure management and governance",
+      "Miscellaneous Azure Fundamentals"
+    ]
+  },
+  {
+    "id": "devops-fundamentals-q01",
+    "section_id": "devops-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What does continuous integration commonly do?",
+    "choices": [
+      "Guarantees production has no incidents",
+      "Creates a new Azure region",
+      "Replaces source control",
+      "Builds and validates code changes frequently"
+    ],
+    "answer": 3,
+    "explanation": "CI automates integration checks and builds for code changes.",
+    "tags": [
+      "Enrichment: delivery workflow",
+      "Azure DevOps Fundamentals"
+    ]
+  },
+  {
+    "id": "devops-fundamentals-q02",
+    "section_id": "devops-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "Why version infrastructure definitions with application code?",
+    "choices": [
+      "To remove the need for testing",
+      "To guarantee all regions have identical services",
+      "To review and reproduce environment changes consistently",
+      "To make tags act as passwords"
+    ],
+    "answer": 2,
+    "explanation": "Versioning infrastructure definitions improves traceability and repeatability.",
+    "tags": [
+      "Enrichment: delivery workflow",
+      "Azure DevOps Fundamentals"
+    ]
+  },
+  {
+    "id": "devops-fundamentals-q03",
+    "section_id": "devops-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What is an artifact in a software delivery pipeline?",
+    "choices": [
+      "A support plan",
+      "A packaged output produced by a build",
+      "A subscription boundary",
+      "A DNS zone"
+    ],
+    "answer": 1,
+    "explanation": "A build artifact is a packaged output that can be tested or deployed.",
+    "tags": [
+      "Enrichment: delivery workflow",
+      "Azure DevOps Fundamentals"
+    ]
+  },
+  {
+    "id": "devops-fundamentals-q04",
+    "section_id": "devops-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "Why should deployment identities use least privilege?",
+    "choices": [
+      "To limit damage if credentials are misused",
+      "To make deployments run without authentication",
+      "To increase VM size",
+      "To disable approval gates"
+    ],
+    "answer": 0,
+    "explanation": "Least privilege limits what a deployment identity can change.",
+    "tags": [
+      "Enrichment: delivery workflow",
+      "Azure DevOps Fundamentals"
+    ]
+  },
+  {
+    "id": "devops-fundamentals-q05",
+    "section_id": "devops-fundamentals",
+    "type": "multiple_choice",
+    "prompt": "What is a common purpose of a staging environment?",
+    "choices": [
+      "Store long-term backup blobs only",
+      "Manage Microsoft Entra tenants",
+      "Provide region-pair failover automatically",
+      "Validate a release in a production-like setting before promotion"
+    ],
+    "answer": 3,
+    "explanation": "Staging allows validation before a release reaches production.",
+    "tags": [
+      "Enrichment: delivery workflow",
+      "Azure DevOps Fundamentals"
+    ]
+  },
+  {
+    "id": "quick-review-q01",
+    "section_id": "quick-review",
+    "type": "multiple_choice",
+    "prompt": "Which objective domain has the largest stated AZ-900 weight range in the current guide?",
+    "choices": [
+      "Describe Azure management and governance",
+      "None; all are identical",
+      "Describe Azure architecture and services",
+      "Describe cloud concepts"
+    ],
+    "answer": 2,
+    "explanation": "The current study guide lists architecture and services at 35–40%.",
+    "tags": [
+      "Review",
+      "Quick Review"
+    ]
+  },
+  {
+    "id": "quick-review-q02",
+    "section_id": "quick-review",
+    "type": "multiple_choice",
+    "prompt": "Which pair is commonly confused but distinct: identity verification vs permissions?",
+    "choices": [
+      "Budget vs tag",
+      "Authentication vs authorization",
+      "Region vs subscription",
+      "Blob vs queue"
+    ],
+    "answer": 1,
+    "explanation": "Authentication establishes identity; authorization determines permissions.",
+    "tags": [
+      "Review",
+      "Quick Review"
+    ]
+  },
+  {
+    "id": "quick-review-q03",
+    "section_id": "quick-review",
+    "type": "multiple_choice",
+    "prompt": "What is the difference between an availability zone and region pair?",
+    "choices": [
+      "A zone is a separate datacenter location within a region; a region pair links two regions.",
+      "Both mean two subnets in one VNet.",
+      "A region pair is a storage tier; a zone is an identity method.",
+      "They are identical terms."
+    ],
+    "answer": 0,
+    "explanation": "Zones are within a region; region pairs connect two regions for certain platform scenarios.",
+    "tags": [
+      "Review",
+      "Quick Review"
+    ]
+  },
+  {
+    "id": "quick-review-q04",
+    "section_id": "quick-review",
+    "type": "multiple_choice",
+    "prompt": "Which statement about resource groups is correct?",
+    "choices": [
+      "They are always identical to a region.",
+      "They are the top level above management groups.",
+      "They are authentication providers.",
+      "They organize resources and can serve as a lifecycle boundary."
+    ],
+    "answer": 3,
+    "explanation": "Resource groups logically contain resources and have lifecycle implications.",
+    "tags": [
+      "Review",
+      "Quick Review"
+    ]
+  },
+  {
+    "id": "quick-review-q05",
+    "section_id": "quick-review",
+    "type": "multiple_choice",
+    "prompt": "What is a reliable way to use a missed practice question?",
+    "choices": [
+      "Assume it appeared on the actual exam.",
+      "Ignore the explanation.",
+      "Review the concept and explain why each option is right or wrong.",
+      "Memorize the option letter only."
+    ],
+    "answer": 2,
+    "explanation": "Concept review and distractor analysis build transfer beyond memorized choices.",
+    "tags": [
+      "Review",
+      "Quick Review"
+    ]
+  },
+  {
+    "id": "exam-readiness-q01",
+    "section_id": "exam-readiness",
+    "type": "multiple_choice",
+    "prompt": "Which source should be checked for current official AZ-900 skill objectives?",
+    "choices": [
+      "An old saved screenshot",
+      "Microsoft Learn AZ-900 study guide",
+      "A third-party course outline only",
+      "A social media post"
+    ],
+    "answer": 1,
+    "explanation": "Microsoft Learn publishes the official study guide and updates.",
+    "tags": [
+      "Exam readiness",
+      "Getting Ready for the AZ-900 Exam"
+    ]
+  },
+  {
+    "id": "exam-readiness-q02",
+    "section_id": "exam-readiness",
+    "type": "multiple_choice",
+    "prompt": "What is a practice score best used for?",
+    "choices": [
+      "Finding knowledge gaps and pacing issues",
+      "Guaranteeing a certification result",
+      "Predicting the exact exam questions",
+      "Replacing official registration details"
+    ],
+    "answer": 0,
+    "explanation": "Practice results can guide review but cannot guarantee an exam outcome.",
+    "tags": [
+      "Exam readiness",
+      "Getting Ready for the AZ-900 Exam"
+    ]
+  },
+  {
+    "id": "exam-readiness-q03",
+    "section_id": "exam-readiness",
+    "type": "multiple_choice",
+    "prompt": "Where should candidates verify current exam scheduling and accommodations?",
+    "choices": [
+      "The Fieldnotes mock score panel",
+      "An Azure resource group",
+      "The pricing calculator",
+      "Microsoft certification resources and exam-provider instructions"
+    ],
+    "answer": 3,
+    "explanation": "Official certification and exam-provider pages provide current logistics.",
+    "tags": [
+      "Exam readiness",
+      "Getting Ready for the AZ-900 Exam"
+    ]
+  },
+  {
+    "id": "exam-readiness-q04",
+    "section_id": "exam-readiness",
+    "type": "multiple_choice",
+    "prompt": "What can the Microsoft exam sandbox help a candidate understand?",
+    "choices": [
+      "Azure VM pricing",
+      "How to configure their own subscription",
+      "The exam interface and interaction style",
+      "The exact future exam questions"
+    ],
+    "answer": 2,
+    "explanation": "The sandbox demonstrates the exam environment, not the live question set.",
+    "tags": [
+      "Exam readiness",
+      "Getting Ready for the AZ-900 Exam"
+    ]
+  },
+  {
+    "id": "exam-readiness-q05",
+    "section_id": "exam-readiness",
+    "type": "multiple_choice",
+    "prompt": "A candidate repeatedly misses storage questions. What is a useful next step?",
+    "choices": [
+      "Buy a cloud subscription immediately.",
+      "Review the storage lessons and retest with different practice items.",
+      "Repeat only the same question until memorized.",
+      "Skip all storage objectives."
+    ],
+    "answer": 1,
+    "explanation": "Targeted concept review followed by fresh retrieval checks is more useful.",
+    "tags": [
+      "Exam readiness",
+      "Getting Ready for the AZ-900 Exam"
+    ]
+  },
+  {
+    "id": "practice-test-q01",
+    "section_id": "practice-test",
+    "type": "multiple_choice",
+    "prompt": "Are Fieldnotes AZ-900 practice questions actual Microsoft exam questions?",
+    "choices": [
+      "No; they are original independent practice material.",
+      "Yes; they are copied from live exam forms.",
+      "Yes; Microsoft approved each item.",
+      "They are Udemy course transcripts."
+    ],
+    "answer": 0,
+    "explanation": "The bank is original Fieldnotes practice material and is not actual exam content.",
+    "tags": [
+      "Practice assessment",
+      "AZ-900 Practice Test"
+    ]
+  },
+  {
+    "id": "practice-test-q02",
+    "section_id": "practice-test",
+    "type": "multiple_choice",
+    "prompt": "How is a practice percentage calculated in this mock?",
+    "choices": [
+      "Skipped answers divided by elapsed minutes",
+      "Correct answers plus skipped answers",
+      "Time remaining divided by section count",
+      "Correct answers divided by the number of questions in the attempt"
+    ],
+    "answer": 3,
+    "explanation": "The score uses correct responses over the full selected question count.",
+    "tags": [
+      "Practice assessment",
+      "AZ-900 Practice Test"
+    ]
+  },
+  {
+    "id": "practice-test-q03",
+    "section_id": "practice-test",
+    "type": "multiple_choice",
+    "prompt": "What should happen to an unanswered question at submission?",
+    "choices": [
+      "It is removed from the denominator.",
+      "It changes the exam duration.",
+      "It is counted as skipped and shown for review.",
+      "It is silently marked correct."
+    ],
+    "answer": 2,
+    "explanation": "Skipped items remain visible and count as unanswered in the result review.",
+    "tags": [
+      "Practice assessment",
+      "AZ-900 Practice Test"
+    ]
+  },
+  {
+    "id": "practice-test-q04",
+    "section_id": "practice-test",
+    "type": "multiple_choice",
+    "prompt": "How should recommended revision topics be generated?",
+    "choices": [
+      "From Azure resource usage",
+      "From incorrect and skipped questions’ section/topic tags",
+      "From the learner’s name",
+      "From the selected timer duration alone"
+    ],
+    "answer": 1,
+    "explanation": "Review recommendations should point to the concepts represented by missed items.",
+    "tags": [
+      "Practice assessment",
+      "AZ-900 Practice Test"
+    ]
+  },
+  {
+    "id": "practice-test-q05",
+    "section_id": "practice-test",
+    "type": "multiple_choice",
+    "prompt": "What does a configurable mock exam allow the learner to choose?",
+    "choices": [
+      "Question count and time limit for a practice attempt",
+      "The official exam outcome",
+      "Microsoft certification price",
+      "The public IP address of a VM"
+    ],
+    "answer": 0,
+    "explanation": "The mock allows local configuration of attempt length and question count.",
+    "tags": [
+      "Practice assessment",
+      "AZ-900 Practice Test"
+    ]
+  }
+]

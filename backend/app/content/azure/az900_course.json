@@ -1,0 +1,898 @@
+{
+  "title": "AZ-900 Azure Fundamentals",
+  "description": "An independent Fieldnotes study course with original lessons and practice questions aligned to the current Microsoft Learn AZ-900 skills outline.",
+  "disclaimer": "Independent educational material from Fieldnotes. Not an official Microsoft or Udemy course. Practice questions are original and are not actual exam questions. Exam objectives can change; check Microsoft Learn before your exam.",
+  "exam_objectives_as_of": "2026-07-20",
+  "exam_domains": [
+    {
+      "name": "Describe cloud concepts",
+      "weight": "25–30%"
+    },
+    {
+      "name": "Describe Azure architecture and services",
+      "weight": "35–40%"
+    },
+    {
+      "name": "Describe Azure management and governance",
+      "weight": "30–35%"
+    }
+  ],
+  "official_study_guide": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900",
+  "sections": [
+    {
+      "id": "az900-introduction",
+      "number": 1,
+      "title": "AZ-900 Certification Introduction",
+      "domain": "Orientation",
+      "objective_note": "Set a study plan using the three current objective domains and understand the scope and format of foundational certification preparation.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Read the exam guide and identify the three domains.",
+        "Set a weekly study target and use practice scores to find weak areas."
+      ],
+      "terminology": [
+        "exam domains",
+        "measured skills",
+        "foundational scope"
+      ],
+      "revision_notes": [
+        "The current guide weights cloud concepts at 25–30%, Azure architecture and services at 35–40%, and management and governance at 30–35%. Treat this Fieldnotes course as independent study support."
+      ],
+      "related_sections": [
+        "cloud-azure-start"
+      ],
+      "lessons": [
+        {
+          "id": "az900-introduction-lesson-1",
+          "title": "Exam scope and objective weights",
+          "notes": "AZ-900 assesses foundational cloud concepts, Azure architecture and services, and Azure management and governance. Weights are approximate exam emphasis, not a promise about any individual test form.",
+          "example": "A learner schedules more review time for Azure architecture because it has the largest stated range, while still reserving time for all domains.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-cloud-concepts/"
+        },
+        {
+          "id": "az900-introduction-lesson-2",
+          "title": "Build a useful study loop",
+          "notes": "Use short lessons, retrieval practice, and a review log. After an incorrect answer, write down the underlying distinction and revisit the related lesson before trying a new question.",
+          "example": "After confusing a resource group with a subscription, the learner reviews hierarchy notes and then answers a new scenario question.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-cloud-concepts/"
+        }
+      ]
+    },
+    {
+      "id": "cloud-azure-start",
+      "number": 2,
+      "title": "Getting Started with Cloud and Microsoft Azure",
+      "domain": "Cloud concepts",
+      "objective_note": "Explain cloud computing, deployment models, consumption pricing, service models, and common cloud benefits.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Compare public, private, and hybrid deployment models.",
+        "Distinguish IaaS, PaaS, SaaS, and serverless responsibilities."
+      ],
+      "terminology": [
+        "cloud computing",
+        "shared responsibility",
+        "public cloud",
+        "private cloud",
+        "hybrid cloud",
+        "consumption-based",
+        "IaaS",
+        "PaaS",
+        "SaaS",
+        "serverless"
+      ],
+      "revision_notes": [
+        "Choose models and service types based on control, responsibility, scale, and use case. Serverless still uses servers; the provider manages more of the infrastructure."
+      ],
+      "related_sections": [
+        "az900-introduction",
+        "regions-zones"
+      ],
+      "lessons": [
+        {
+          "id": "cloud-azure-start-lesson-1",
+          "title": "Cloud models and consumption",
+          "notes": "Cloud computing provides on-demand access to shared compute, storage, and networking. Public cloud uses provider-operated infrastructure; private cloud is dedicated to one organization; hybrid combines connected environments. Consumption pricing charges for measured use, subject to service-specific terms.",
+          "example": "A retailer keeps a regulated legacy system on private infrastructure while using public cloud capacity for seasonal web traffic.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-cloud-concepts/"
+        },
+        {
+          "id": "cloud-azure-start-lesson-2",
+          "title": "Service models and responsibility",
+          "notes": "IaaS offers the most customer control over the operating system and applications. PaaS abstracts infrastructure and runtime operations. SaaS delivers a finished application. Responsibility is shared and shifts toward the provider as the service becomes more managed.",
+          "example": "A team needing OS-level tuning selects a VM; a team focused on deploying web code considers a managed app platform.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-cloud-concepts/"
+        }
+      ]
+    },
+    {
+      "id": "regions-zones",
+      "number": 3,
+      "title": "Azure Regions and Availability Zones",
+      "domain": "Azure architecture and services",
+      "objective_note": "Describe Azure global infrastructure, regions, region pairs, sovereign regions, datacenters, and availability zones.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Relate regions, zones, and datacenters.",
+        "Choose a deployment location using latency, resilience, residency, and service availability."
+      ],
+      "terminology": [
+        "region",
+        "region pair",
+        "sovereign region",
+        "availability zone",
+        "datacenter",
+        "latency",
+        "data residency"
+      ],
+      "revision_notes": [
+        "A region is a geographic deployment area; zones are physically separate locations within a region. Verify regional service availability and residency requirements before design decisions."
+      ],
+      "related_sections": [
+        "cloud-azure-start",
+        "virtual-machines"
+      ],
+      "lessons": [
+        {
+          "id": "regions-zones-lesson-1",
+          "title": "Regions and geography",
+          "notes": "Azure regions group datacenters in a defined geography. Region pairs are selected relationships used by some platform services for certain recovery scenarios; they do not automatically make every workload resilient. Sovereign regions address specific government or regulatory needs.",
+          "example": "A service with users in Europe evaluates latency and residency before selecting a region, then checks whether each required service is available there.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "regions-zones-lesson-2",
+          "title": "Availability zones and resilience",
+          "notes": "Availability zones are separated datacenter locations with independent infrastructure within a region. A zonal design can reduce exposure to a single datacenter failure, but applications must be deployed and configured to use multiple zones.",
+          "example": "A stateless frontend is placed across zones behind a load-balancing layer, while its data tier is separately configured for resilience.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "virtual-machines",
+      "number": 4,
+      "title": "Azure Virtual Machines",
+      "domain": "Azure architecture and services",
+      "objective_note": "Compare virtual machines, availability sets, scale sets, and Azure Virtual Desktop at a fundamentals level.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Identify core VM resource choices.",
+        "Distinguish availability sets, zones, and scale sets."
+      ],
+      "terminology": [
+        "virtual machine",
+        "image",
+        "VM size",
+        "disk",
+        "availability set",
+        "scale set",
+        "Azure Virtual Desktop"
+      ],
+      "revision_notes": [
+        "VMs provide OS control and require choices about image, size, disks, network access, patching, and availability. More control means more operational responsibility."
+      ],
+      "related_sections": [
+        "regions-zones",
+        "managed-compute"
+      ],
+      "lessons": [
+        {
+          "id": "virtual-machines-lesson-1",
+          "title": "VM building blocks",
+          "notes": "An Azure VM is a compute resource paired with supporting resources such as disks and network interfaces. Image, size, region, OS, disk performance, and network rules affect capability and cost.",
+          "example": "A development team chooses a Linux image and modest size for a test workload, then restricts inbound access to approved sources.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "virtual-machines-lesson-2",
+          "title": "Scaling and availability options",
+          "notes": "Availability sets distribute VMs across fault and update domains in a datacenter. Availability zones span separate datacenters in a region. Virtual Machine Scale Sets manage groups of similar VMs and support scaling. Azure Virtual Desktop delivers virtual desktops and remote apps.",
+          "example": "A variable web tier uses a scale set; a desktop delivery project evaluates Azure Virtual Desktop rather than treating it as a VM scale-out feature.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "managed-compute",
+      "number": 5,
+      "title": "Managed Compute Services",
+      "domain": "Azure architecture and services",
+      "objective_note": "Compare containers, functions, web apps, and VMs by workload fit and management responsibility.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Choose among VMs, containers, functions, and managed web apps.",
+        "Explain how managed compute changes operational responsibility."
+      ],
+      "terminology": [
+        "container",
+        "orchestration",
+        "Azure Functions",
+        "App Service",
+        "event-driven",
+        "PaaS",
+        "IaaS"
+      ],
+      "revision_notes": [
+        "Match the compute option to workload shape and required control. Containers package apps; Functions suit event-driven code; App Service hosts web applications without direct VM management."
+      ],
+      "related_sections": [
+        "virtual-machines",
+        "azure-storage"
+      ],
+      "lessons": [
+        {
+          "id": "managed-compute-lesson-1",
+          "title": "Application hosting choices",
+          "notes": "Virtual machines provide broad control. Containers package applications and dependencies consistently. Managed web hosting reduces OS operations. Azure Functions runs event-triggered code with hosting and scaling choices that depend on its plan.",
+          "example": "A team deploys a containerized service when packaging consistency matters, and a small event handler as a function when execution is triggered by a queue message.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "managed-compute-lesson-2",
+          "title": "Container and serverless fit",
+          "notes": "Containers are not automatically serverless: orchestration and cluster operations depend on the chosen service. Functions are suited to discrete event-driven tasks; they are not a universal replacement for long-running services.",
+          "example": "A scheduled image-processing job can be triggered by object arrival, while a continuously connected multiplayer server may need a different compute model.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "azure-storage",
+      "number": 6,
+      "title": "Azure Storage",
+      "domain": "Azure architecture and services",
+      "objective_note": "Compare Azure Storage services, account options, access tiers, redundancy, and data movement tools.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Match blob, file, queue, and table storage to use cases.",
+        "Compare access tiers and redundancy options."
+      ],
+      "terminology": [
+        "Blob Storage",
+        "Azure Files",
+        "Queue Storage",
+        "Table Storage",
+        "Hot",
+        "Cool",
+        "Archive",
+        "LRS",
+        "ZRS",
+        "GRS",
+        "AzCopy",
+        "Storage Explorer",
+        "File Sync",
+        "Data Box"
+      ],
+      "revision_notes": [
+        "Select storage by access pattern, protocol, durability, performance, and recovery needs. Tier and redundancy choices affect both cost and availability."
+      ],
+      "related_sections": [
+        "managed-compute",
+        "azure-databases"
+      ],
+      "lessons": [
+        {
+          "id": "azure-storage-lesson-1",
+          "title": "Storage services and tiers",
+          "notes": "Blob Storage is suited to object data; Azure Files provides managed file shares; Queue Storage supports message queues; Table Storage is a NoSQL key/attribute store. Hot, Cool, and Archive tiers differ in access cost and retrieval characteristics.",
+          "example": "A media archive with infrequent retrieval can evaluate Archive tier; frequently served images usually need a hotter access tier.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "azure-storage-lesson-2",
+          "title": "Redundancy and data movement",
+          "notes": "LRS keeps copies within one datacenter; ZRS spreads copies across zones in a region; GRS replicates to a secondary region. Exact availability, failover, and access behavior varies. AzCopy and Storage Explorer move/manage data; Data Box helps transfer large offline datasets.",
+          "example": "A large initial migration with limited network bandwidth may use Data Box; regular scripted transfers may use AzCopy.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "azure-databases",
+      "number": 7,
+      "title": "Azure Databases",
+      "domain": "Azure architecture and services",
+      "objective_note": "Recognize Azure relational, globally distributed, and managed database options and how workload needs influence selection.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Compare relational and NoSQL workload characteristics.",
+        "Identify why a team may choose a managed database service."
+      ],
+      "terminology": [
+        "relational database",
+        "Azure SQL",
+        "Cosmos DB",
+        "managed database",
+        "schema",
+        "consistency",
+        "availability"
+      ],
+      "revision_notes": [
+        "Choose based on data model, query patterns, consistency, scale, operational expertise, and compatibility. Managed database does not eliminate data design or access control responsibilities."
+      ],
+      "related_sections": [
+        "azure-storage",
+        "azure-networking"
+      ],
+      "lessons": [
+        {
+          "id": "azure-databases-lesson-1",
+          "title": "Relational and NoSQL models",
+          "notes": "Relational databases use structured tables and relationships with query capabilities suited to transactional workloads. NoSQL services support different models and scale patterns; Cosmos DB is a globally distributed database service with multiple APIs and consistency choices.",
+          "example": "An inventory system with strong relationships may fit a relational design; globally distributed profile data may warrant evaluating a NoSQL model.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "azure-databases-lesson-2",
+          "title": "Managed database decisions",
+          "notes": "Managed services reduce some infrastructure maintenance while customers still own schema, query performance, access, and data lifecycle choices. Assess compatibility and service features rather than choosing solely by product label.",
+          "example": "A lift-and-modernize project checks whether its SQL features and tooling are supported before moving a database to a managed offering.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "azure-networking",
+      "number": 8,
+      "title": "Networking in Azure",
+      "domain": "Azure architecture and services",
+      "objective_note": "Describe virtual networks, subnets, peering, DNS, VPN Gateway, ExpressRoute, and public/private endpoints.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Explain VNet, subnet, and peering roles.",
+        "Compare VPN Gateway, ExpressRoute, and endpoint types."
+      ],
+      "terminology": [
+        "virtual network",
+        "subnet",
+        "peering",
+        "Azure DNS",
+        "VPN Gateway",
+        "ExpressRoute",
+        "public endpoint",
+        "private endpoint"
+      ],
+      "revision_notes": [
+        "A VNet provides an isolated network boundary. Peering connects VNets privately; VPN uses encrypted connectivity over the internet; ExpressRoute provides private connectivity through a connectivity provider."
+      ],
+      "related_sections": [
+        "azure-databases",
+        "hybrid-cloud"
+      ],
+      "lessons": [
+        {
+          "id": "azure-networking-lesson-1",
+          "title": "Virtual network foundations",
+          "notes": "A virtual network contains address spaces divided into subnets. Network security rules and routing determine allowed communication. Peering connects networks while keeping traffic on the Microsoft backbone, subject to configuration and address-space constraints.",
+          "example": "Separate application and data subnets can support clearer network controls, with rules allowing only the required application-to-database path.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "azure-networking-lesson-2",
+          "title": "Hybrid connectivity and endpoints",
+          "notes": "VPN Gateway commonly connects networks over encrypted internet tunnels. ExpressRoute uses a private connectivity provider path. Public endpoints are reachable through public addressing; private endpoints map supported services into a VNet through a private IP.",
+          "example": "A company uses VPN for a quick site-to-site connection and evaluates ExpressRoute for predictable private connectivity requirements.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "hybrid-cloud",
+      "number": 9,
+      "title": "Hybrid Cloud with Azure",
+      "domain": "Enrichment: hybrid and migration context",
+      "objective_note": "Understand hybrid cloud patterns and Azure tools that span on-premises, edge, and cloud environments.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Describe hybrid cloud trade-offs.",
+        "Distinguish Azure Arc management from workload migration tools."
+      ],
+      "terminology": [
+        "hybrid cloud",
+        "Azure Arc",
+        "Azure Migrate",
+        "Azure Data Box",
+        "migration assessment"
+      ],
+      "revision_notes": [
+        "This requested section adds context around the measured cloud models and Azure Arc/migration objectives. Azure Arc extends management and governance; it does not magically move workloads into Azure."
+      ],
+      "related_sections": [
+        "azure-networking",
+        "resource-hierarchy"
+      ],
+      "lessons": [
+        {
+          "id": "hybrid-cloud-lesson-1",
+          "title": "Hybrid architecture patterns",
+          "notes": "Hybrid designs integrate on-premises or edge systems with cloud services. Consider connectivity, identity, data movement, latency, governance, and failure modes across both environments.",
+          "example": "A manufacturer retains low-latency factory control locally while sending aggregated telemetry to cloud analytics.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "hybrid-cloud-lesson-2",
+          "title": "Arc and migration tools",
+          "notes": "Azure Arc provides a control plane for managing supported resources outside Azure. Azure Migrate helps assess and plan migration. Data Box can physically transfer large data volumes when network transfer is impractical.",
+          "example": "A team can onboard existing servers to Arc for governance visibility while a separate migration project evaluates which workloads should move.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "resource-hierarchy",
+      "number": 10,
+      "title": "Azure Resource Hierarchy",
+      "domain": "Azure architecture and services",
+      "objective_note": "Explain resources, resource groups, subscriptions, and management groups and their hierarchy.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Place common Azure objects in the hierarchy.",
+        "Choose scope for access, policy, and lifecycle management."
+      ],
+      "terminology": [
+        "resource",
+        "resource group",
+        "subscription",
+        "management group",
+        "Azure Resource Manager",
+        "scope"
+      ],
+      "revision_notes": [
+        "The hierarchy is management groups → subscriptions → resource groups → resources. Resource groups organize lifecycle; subscriptions are billing and access boundaries; management groups help apply governance across subscriptions."
+      ],
+      "related_sections": [
+        "hybrid-cloud",
+        "identity-management"
+      ],
+      "lessons": [
+        {
+          "id": "resource-hierarchy-lesson-1",
+          "title": "Hierarchy and scope",
+          "notes": "Azure resources are organized under resource groups, subscriptions, and optional management groups. Policies and role assignments can be applied at supported scopes and inherited down the hierarchy.",
+          "example": "A company applies a baseline policy at a management group, then assigns workload owners permissions within their subscription.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "resource-hierarchy-lesson-2",
+          "title": "Resource group lifecycle",
+          "notes": "A resource group is a logical container with a location for its metadata. Its members can be in different regions. Deleting a resource group deletes its contained resources, so resource grouping should reflect lifecycle and ownership.",
+          "example": "A short-lived training environment groups related resources so they can be reviewed and removed together.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "identity-management",
+      "number": 11,
+      "title": "Identity Management",
+      "domain": "Azure architecture and services",
+      "objective_note": "Describe Microsoft Entra ID, authentication, external identities, Conditional Access, and Azure RBAC.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Compare authentication and authorization.",
+        "Explain MFA, Conditional Access, and least-privilege RBAC."
+      ],
+      "terminology": [
+        "Microsoft Entra ID",
+        "tenant",
+        "identity",
+        "authentication",
+        "SSO",
+        "MFA",
+        "passwordless",
+        "Conditional Access",
+        "RBAC"
+      ],
+      "revision_notes": [
+        "Authentication establishes identity; authorization decides allowed actions. Conditional Access evaluates signals and policies. RBAC grants Azure resource actions at a scope."
+      ],
+      "related_sections": [
+        "resource-hierarchy",
+        "security-services"
+      ],
+      "lessons": [
+        {
+          "id": "identity-management-lesson-1",
+          "title": "Identity and authentication",
+          "notes": "Microsoft Entra ID is Microsoft’s cloud identity and access management service. SSO reduces repeated sign-ins; MFA adds verification factors; passwordless methods can remove password entry. External identities support collaboration with people outside an organization.",
+          "example": "A contractor signs in using an external identity and must satisfy a stronger authentication requirement before accessing a sensitive app.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        },
+        {
+          "id": "identity-management-lesson-2",
+          "title": "Authorization and Conditional Access",
+          "notes": "Conditional Access evaluates signals such as user, location, device, or risk and applies access requirements. Azure RBAC assigns roles to identities at scopes. Use least privilege and separate identity authentication from resource authorization.",
+          "example": "An administrator receives a limited role on one resource group rather than broad permissions across every subscription.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-architecture-services/"
+        }
+      ]
+    },
+    {
+      "id": "security-services",
+      "number": 12,
+      "title": "Other Azure Security Services",
+      "domain": "Azure architecture and services",
+      "objective_note": "Explain Zero Trust, defense in depth, and the purpose of Microsoft Defender for Cloud.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Describe Zero Trust principles.",
+        "Explain defense in depth and Defender for Cloud’s role."
+      ],
+      "terminology": [
+        "Zero Trust",
+        "verify explicitly",
+        "least privilege",
+        "assume breach",
+        "defense in depth",
+        "Defender for Cloud"
+      ],
+      "revision_notes": [
+        "Security is layered. Defender for Cloud provides security posture capabilities and workload protection features; it is not a substitute for identity, network, and application controls."
+      ],
+      "related_sections": [
+        "identity-management",
+        "support-guarantees"
+      ],
+      "lessons": [
+        {
+          "id": "security-services-lesson-1",
+          "title": "Zero Trust and defense in depth",
+          "notes": "Zero Trust centers on verifying explicitly, using least privilege, and assuming breach. Defense in depth layers controls so one failed safeguard does not expose the entire system.",
+          "example": "A sensitive admin action requires strong identity verification, a narrow role, network restrictions, and audit logging.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "security-services-lesson-2",
+          "title": "Defender for Cloud",
+          "notes": "Microsoft Defender for Cloud helps assess security posture and provides workload protection capabilities. Recommendations should be evaluated against application context and risk; a recommendation is not proof that a system is secure.",
+          "example": "A security team reviews posture findings for a VM and prioritizes exposed management ports before lower-risk configuration suggestions.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "support-guarantees",
+      "number": 13,
+      "title": "Azure Support and Service Guarantees",
+      "domain": "Enrichment: support and service commitments",
+      "objective_note": "Understand SLAs, service lifecycle, support plans, Service Health, and reliability commitments without overgeneralizing.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Distinguish an SLA from a design target.",
+        "Use Service Health for service incidents and planned maintenance information."
+      ],
+      "terminology": [
+        "SLA",
+        "availability",
+        "service lifecycle",
+        "Service Health",
+        "support plan",
+        "composite SLA"
+      ],
+      "revision_notes": [
+        "SLAs apply to specific services and configurations, include stated conditions/exclusions, and may provide service credits rather than guarantee zero downtime. Read the current service terms."
+      ],
+      "related_sections": [
+        "security-services",
+        "compliance-governance"
+      ],
+      "lessons": [
+        {
+          "id": "support-guarantees-lesson-1",
+          "title": "SLAs and availability",
+          "notes": "A service-level agreement describes Microsoft’s commitment for a service under defined conditions. It is not a promise that every architecture meets a particular end-to-end availability. Multi-component systems can have lower composite availability unless designed carefully.",
+          "example": "A three-tier application’s overall availability depends on each tier and its dependencies, not just the database SLA.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "support-guarantees-lesson-2",
+          "title": "Support and service health",
+          "notes": "Support plans define channels and response commitments. Azure Service Health communicates service issues and maintenance that may affect resources; Azure status pages report broader service status.",
+          "example": "During a regional incident, operators check Service Health for impacted subscriptions and follow their continuity plan.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "compliance-governance",
+      "number": 14,
+      "title": "Compliance, Privacy and Governance",
+      "domain": "Azure management and governance",
+      "objective_note": "Describe Azure Policy, resource locks, Microsoft Purview, governance controls, and compliance responsibilities.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Compare policy, locks, and data governance.",
+        "Explain shared compliance responsibility and data residency considerations."
+      ],
+      "terminology": [
+        "Azure Policy",
+        "resource lock",
+        "Microsoft Purview",
+        "compliance",
+        "data residency",
+        "governance"
+      ],
+      "revision_notes": [
+        "Policy evaluates/enforces resource configuration; locks help prevent accidental deletion or modification; Purview supports data governance. Neither locks nor compliance attestations replace operational controls."
+      ],
+      "related_sections": [
+        "support-guarantees",
+        "managing-costs"
+      ],
+      "lessons": [
+        {
+          "id": "compliance-governance-lesson-1",
+          "title": "Policy and locks",
+          "notes": "Azure Policy can audit, deny, or deploy configurations according to definitions and assignments. Resource locks help guard against accidental deletion or modification but do not replace access controls or backups.",
+          "example": "A policy audits public IP creation; a CanNotDelete lock protects a critical resource from accidental removal.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "compliance-governance-lesson-2",
+          "title": "Privacy and governance",
+          "notes": "Microsoft Purview provides data governance capabilities. Organizations remain responsible for how they configure services, classify data, meet legal obligations, and control access. Residency requirements need service-specific review.",
+          "example": "A team documents data classifications and allowed regions, then configures policy and access controls to help enforce that plan.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "managing-costs",
+      "number": 15,
+      "title": "Managing Costs",
+      "domain": "Azure management and governance",
+      "objective_note": "Explain common cost drivers, pricing estimation, cost management, and tagging.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Identify common Azure cost drivers.",
+        "Use estimates, budgets, cost analysis, and tags for cost management."
+      ],
+      "terminology": [
+        "Pricing Calculator",
+        "Cost Management",
+        "tags",
+        "consumption",
+        "reservations",
+        "budgets"
+      ],
+      "revision_notes": [
+        "Estimate before deployment, monitor actual use, and assign ownership. Calculator outputs are estimates; actual charges depend on configuration, region, usage, and current pricing terms."
+      ],
+      "related_sections": [
+        "compliance-governance",
+        "misc-fundamentals"
+      ],
+      "lessons": [
+        {
+          "id": "managing-costs-lesson-1",
+          "title": "Cost drivers and estimates",
+          "notes": "Costs can depend on compute size and runtime, storage capacity and transactions, data transfer, region, and selected redundancy. Azure Pricing Calculator supports planning, but estimates need current assumptions.",
+          "example": "A development VM that runs continuously may cost more than expected; an automatic shutdown schedule can reduce runtime charges.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "managing-costs-lesson-2",
+          "title": "Monitor and optimize",
+          "notes": "Azure Cost Management helps analyze spend and manage budgets. Tags organize resources for reporting but are not a security boundary or a guaranteed billing mechanism. Reservations and savings plans may reduce eligible compute costs when usage patterns justify commitment.",
+          "example": "A finance team groups spend by environment and owner tags, then alerts on budget thresholds and investigates unexpected growth.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "misc-fundamentals",
+      "number": 16,
+      "title": "Miscellaneous Azure Fundamentals",
+      "domain": "Azure management and governance",
+      "objective_note": "Review portal, Cloud Shell, CLI, PowerShell, ARM, infrastructure as code, and Azure Arc.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Choose a management interface for a task.",
+        "Explain ARM and the value of infrastructure as code."
+      ],
+      "terminology": [
+        "Azure portal",
+        "Cloud Shell",
+        "Azure CLI",
+        "Azure PowerShell",
+        "ARM",
+        "ARM template",
+        "IaC",
+        "Azure Arc"
+      ],
+      "revision_notes": [
+        "The portal is a browser interface; CLI and PowerShell provide command-line automation; ARM is the Azure deployment and management plane. IaC makes infrastructure definitions repeatable."
+      ],
+      "related_sections": [
+        "managing-costs",
+        "devops-fundamentals"
+      ],
+      "lessons": [
+        {
+          "id": "misc-fundamentals-lesson-1",
+          "title": "Management interfaces",
+          "notes": "The Azure portal provides a graphical interface. Azure Cloud Shell is a browser-accessible shell with Azure CLI and Azure PowerShell options. These tools issue management operations but do not remove the need for authorization and review.",
+          "example": "An operator uses Cloud Shell to run a repeatable inventory command without installing tools on a local machine.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "misc-fundamentals-lesson-2",
+          "title": "ARM and infrastructure as code",
+          "notes": "Azure Resource Manager provides the management layer for deploying and organizing resources. ARM templates describe infrastructure declaratively; infrastructure as code makes reviewed configurations repeatable and auditable.",
+          "example": "A team stores a template with its application code and deploys a consistent test environment through a controlled pipeline.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "devops-fundamentals",
+      "number": 17,
+      "title": "Azure DevOps Fundamentals",
+      "domain": "Enrichment: delivery workflow",
+      "objective_note": "Understand the basic role of source control, build/release pipelines, and repeatable deployments in Azure-oriented delivery.",
+      "estimated_minutes": 18,
+      "objectives": [
+        "Describe a basic build and deployment pipeline.",
+        "Relate infrastructure as code to repeatable delivery."
+      ],
+      "terminology": [
+        "source control",
+        "pipeline",
+        "CI",
+        "CD",
+        "artifact",
+        "deployment",
+        "infrastructure as code"
+      ],
+      "revision_notes": [
+        "This section is foundational enrichment rather than a separately named current AZ-900 objective. Connect deployment automation to ARM/IaC and management tools without implying AZ-900 tests a specific DevOps product deeply."
+      ],
+      "related_sections": [
+        "misc-fundamentals",
+        "quick-review"
+      ],
+      "lessons": [
+        {
+          "id": "devops-fundamentals-lesson-1",
+          "title": "Pipeline concepts",
+          "notes": "Continuous integration validates and packages changes; continuous delivery/deployment moves tested artifacts through environments under defined controls. Pipelines can include approvals, tests, and deployment safeguards.",
+          "example": "A web application pipeline runs tests, creates an artifact, and deploys it to a staging environment before production approval.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        },
+        {
+          "id": "devops-fundamentals-lesson-2",
+          "title": "Infrastructure with delivery",
+          "notes": "Infrastructure definitions can be versioned and reviewed alongside application code. Separate configuration from secrets and use least-privileged deployment identities.",
+          "example": "A template creates a test resource group consistently while environment-specific parameters configure names and sizes.",
+          "learn_more": "https://learn.microsoft.com/en-us/training/paths/describe-azure-management-governance/"
+        }
+      ]
+    },
+    {
+      "id": "quick-review",
+      "number": 18,
+      "title": "Quick Review",
+      "domain": "Review",
+      "objective_note": "Consolidate key distinctions from all three measured exam domains and target remaining gaps.",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Recall the three objective domains and weighting ranges.",
+        "Use contrast pairs to correct common misconceptions."
+      ],
+      "terminology": [
+        "exam domains",
+        "cloud model",
+        "service model",
+        "hierarchy",
+        "resilience",
+        "governance"
+      ],
+      "revision_notes": [
+        "Revisit concepts that are easy to confuse: region vs zone, authentication vs authorization, policy vs lock, and SLA vs architecture outcome."
+      ],
+      "related_sections": [
+        "devops-fundamentals",
+        "exam-readiness"
+      ],
+      "lessons": [
+        {
+          "id": "quick-review-lesson-1",
+          "title": "Fast recall across domains",
+          "notes": "Cloud concepts cover deployment/service models and benefits. Architecture and services cover geography, hierarchy, compute, networking, storage, identity, and security. Management and governance cover cost, policy, tools, and monitoring.",
+          "example": "Before a practice attempt, summarize one use case and one limitation for each major service category.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        },
+        {
+          "id": "quick-review-lesson-2",
+          "title": "Repair misconceptions",
+          "notes": "Use missed questions to identify a precise concept gap rather than memorizing a choice. Explain why each distractor is wrong and connect the fact to a realistic decision.",
+          "example": "If a question confuses zone redundancy with geo-redundancy, compare the failure boundary and location of each copy.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        }
+      ]
+    },
+    {
+      "id": "exam-readiness",
+      "number": 19,
+      "title": "Getting Ready for the AZ-900 Exam",
+      "domain": "Exam readiness",
+      "objective_note": "Plan a final review, understand exam logistics at a high level, and use readiness evidence without treating practice scores as a guarantee.",
+      "estimated_minutes": 15,
+      "objectives": [
+        "Build a final review schedule from weak domains.",
+        "Use practice results and official exam resources responsibly."
+      ],
+      "terminology": [
+        "readiness",
+        "retrieval practice",
+        "exam sandbox",
+        "objective weights",
+        "review plan"
+      ],
+      "revision_notes": [
+        "Use Microsoft Learn for current exam details, accommodations, and official practice assessment. Fieldnotes mock scores are practice indicators only and do not predict a result."
+      ],
+      "related_sections": [
+        "quick-review",
+        "practice-test"
+      ],
+      "lessons": [
+        {
+          "id": "exam-readiness-lesson-1",
+          "title": "Prepare with evidence",
+          "notes": "Review the current study guide and the official practice assessment. Use timed practice to identify pacing issues, but spend review time on concepts rather than answer memorization.",
+          "example": "A learner with repeated cost-management misses revisits cost tools and runs a short focused quiz before another full mock.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        },
+        {
+          "id": "exam-readiness-lesson-2",
+          "title": "Plan exam day",
+          "notes": "Confirm current scheduling, duration, ID, accommodations, and exam environment requirements through Microsoft’s certification pages and provider instructions. This course cannot register you or guarantee a passing score.",
+          "example": "A candidate checks the official exam page and runs the exam sandbox before the scheduled appointment.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        }
+      ]
+    },
+    {
+      "id": "practice-test",
+      "number": 20,
+      "title": "AZ-900 Practice Test",
+      "domain": "Practice assessment",
+      "objective_note": "Use original scenario-based questions to check recall across all three current exam domains and review every missed answer.",
+      "estimated_minutes": 22,
+      "objectives": [
+        "Complete a timed mixed-domain attempt.",
+        "Turn misses and skipped questions into a focused revision plan."
+      ],
+      "terminology": [
+        "practice assessment",
+        "score",
+        "domain balance",
+        "review log"
+      ],
+      "revision_notes": [
+        "These questions are original Fieldnotes practice material, not actual Microsoft exam questions. Configure a timed attempt, then review explanations and section recommendations."
+      ],
+      "related_sections": [
+        "exam-readiness"
+      ],
+      "lessons": [
+        {
+          "id": "practice-test-lesson-1",
+          "title": "Practice test method",
+          "notes": "A useful mock approximates coverage breadth and time pressure while remaining independent practice. Read the scenario, identify the tested distinction, and avoid changing answers without a reason.",
+          "example": "If unsure, flag the question and continue; return after completing questions you can answer confidently.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        },
+        {
+          "id": "practice-test-lesson-2",
+          "title": "Review and next steps",
+          "notes": "Score is correct divided by submitted question count; skipped questions count as unanswered and incorrect for percentage. Review recommendations are based on missed or skipped topic tags, not a certification prediction.",
+          "example": "After a missed RBAC question, review the identity section and answer a fresh question before repeating the full exam.",
+          "learn_more": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-900"
+        }
+      ]
+    }
+  ]
+}

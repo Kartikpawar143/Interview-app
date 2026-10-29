@@ -7,6 +7,9 @@ import { LinuxQuestionBankPage } from './pages/LinuxQuestionBankPage'
 import { LinuxTopicPage } from './pages/LinuxTopicPage'
 import { LinuxCopilot } from './components/linux/LinuxCopilot'
 import { LinuxVisualLearningPage } from './pages/LinuxVisualLearningPage'
+import { Az900Page } from './pages/Az900Page'
+import { AzureAdministrationPage } from './pages/AzureAdministrationPage'
+import { Az900VisualLearningPage } from './pages/Az900VisualLearningPage'
 
 function App() {
   const [route, setRoute] = useState(() => `${window.location.pathname}${window.location.search}`)
@@ -43,6 +46,31 @@ function App() {
     let slug = match[1]
     try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the API will return not found. */ }
     page = <LinuxQuestionPage key={slug} slug={slug} navigate={navigate} />
+  }
+  if (!page && pathname === '/azure/az-900') page = <Az900Page navigate={navigate} />
+  if (!page && pathname === '/azure/az-900/visual-learning') page = <Az900VisualLearningPage navigate={navigate} />
+  const az900Match = pathname.match(/^\/azure\/az-900\/([^/]+)\/([^/]+)$/)
+  if (!page && az900Match) page = <Az900Page key={`${az900Match[1]}:${az900Match[2]}`} navigate={navigate} sectionId={az900Match[1]} lessonId={az900Match[2]} />
+  if (!page && pathname === '/azure') page = <AzureAdministrationPage navigate={navigate} view="overview" />
+  if (!page && pathname === '/azure/questions') page = <AzureAdministrationPage navigate={navigate} view="questions" />
+  const azureAdminQuestionMatch = pathname.match(/^\/azure\/questions\/([^/]+)$/)
+  if (!page && azureAdminQuestionMatch) {
+    let slug = azureAdminQuestionMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the page will show its not-found state. */ }
+    page = <AzureAdministrationPage key={slug} navigate={navigate} view="question" slug={slug} />
+  }
+  const azureTopicMatch = pathname.match(/^\/azure\/topics\/([^/]+)$/)
+  if (!page && azureTopicMatch) {
+    let slug = azureTopicMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the page will show its not-found state. */ }
+    page = <AzureAdministrationPage key={slug} navigate={navigate} view="topic" slug={slug} />
+  }
+  if (!page && pathname === '/azure/scenarios') page = <AzureAdministrationPage navigate={navigate} view="scenarios" />
+  const azureScenarioMatch = pathname.match(/^\/azure\/scenarios\/([^/]+)$/)
+  if (!page && azureScenarioMatch) {
+    let slug = azureScenarioMatch[1]
+    try { slug = decodeURIComponent(slug) } catch { /* Keep the raw slug; the page will show its not-found state. */ }
+    page = <AzureAdministrationPage key={slug} navigate={navigate} view="scenario" slug={slug} />
   }
   if (!page && pathname === '/') page = <HomePage />
   if (!page) page = <main className="route-not-found"><h1>That page isn’t here.</h1><a href="/linux">Return to Linux learning</a></main>

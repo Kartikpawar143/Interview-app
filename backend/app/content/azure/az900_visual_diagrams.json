@@ -1,0 +1,1859 @@
+[
+  {
+    "id": "cloud-fundamentals",
+    "title": "Cloud Computing Fundamentals",
+    "summary": "Compare cloud deployment models, service models, and how responsibility shifts between a provider and a customer.",
+    "nodes": [
+      {
+        "id": "deployment-models",
+        "label": "Public · Private · Hybrid",
+        "description": "A deployment model describes where cloud infrastructure runs and who can use it. Public cloud is provider-operated and broadly available; private cloud is dedicated to one organization; hybrid connects cloud and on-premises environments.",
+        "purpose": "Choose the model around control, compliance, connectivity, and operating capability rather than assuming one model fits every workload.",
+        "example": "A retailer keeps a latency-sensitive warehouse system locally while using public cloud analytics for aggregated inventory data.",
+        "services": [
+          "Public cloud",
+          "Private cloud",
+          "Hybrid cloud"
+        ],
+        "section_id": "az900-introduction",
+        "admin_topic_id": "architecture",
+        "x": 35,
+        "y": 150,
+        "question_ids": [
+          "az900-introduction-q01",
+          "az900-introduction-q02"
+        ]
+      },
+      {
+        "id": "iaas",
+        "label": "IaaS",
+        "description": "Infrastructure as a Service provides configurable compute, storage, and networking while the customer manages the guest operating system and application stack.",
+        "purpose": "Use IaaS when a workload needs operating-system control or a migration path with fewer application changes.",
+        "example": "A team moves a legacy service to a VM and remains responsible for guest patching and host-level configuration.",
+        "services": [
+          "Azure Virtual Machines",
+          "Managed Disks",
+          "Virtual Network"
+        ],
+        "section_id": "az900-introduction",
+        "admin_topic_id": "compute",
+        "x": 305,
+        "y": 75,
+        "question_ids": [
+          "az900-introduction-q01",
+          "az900-introduction-q02"
+        ]
+      },
+      {
+        "id": "paas",
+        "label": "PaaS",
+        "description": "Platform as a Service gives developers a managed application platform while the provider handles more operating-system and runtime operations.",
+        "purpose": "Use PaaS when the application fits the platform and the team wants to focus on code, configuration, and data.",
+        "example": "A web team deploys an application to App Service instead of maintaining a VM image and web server.",
+        "services": [
+          "App Service",
+          "Azure SQL Database",
+          "Azure Functions"
+        ],
+        "section_id": "cloud-azure-start",
+        "admin_topic_id": "containers",
+        "x": 305,
+        "y": 165,
+        "question_ids": [
+          "cloud-azure-start-q01",
+          "cloud-azure-start-q02"
+        ]
+      },
+      {
+        "id": "saas",
+        "label": "SaaS",
+        "description": "Software as a Service delivers a complete application managed by its provider; customers configure users, access, and their use of the data.",
+        "purpose": "Use SaaS when an existing hosted product meets the need without building and operating the application.",
+        "example": "A company uses a hosted email product and manages its users and access policies rather than the mail servers.",
+        "services": [
+          "Microsoft 365",
+          "Microsoft Entra ID"
+        ],
+        "section_id": "az900-introduction",
+        "admin_topic_id": "identity",
+        "x": 305,
+        "y": 255,
+        "question_ids": [
+          "az900-introduction-q01",
+          "az900-introduction-q02"
+        ]
+      },
+      {
+        "id": "shared-responsibility",
+        "label": "Shared responsibility",
+        "description": "Cloud responsibility is divided between the provider and customer, and the split changes by service model. Customers always retain responsibility for their data, identities, and access decisions.",
+        "purpose": "Use the model to identify who patches, configures, protects, and monitors each layer of a solution.",
+        "example": "On a VM, the customer patches the guest OS; on a managed platform, the provider operates more of the underlying host.",
+        "services": [
+          "Shared responsibility model",
+          "Azure Policy",
+          "Microsoft Entra ID"
+        ],
+        "section_id": "cloud-azure-start",
+        "admin_topic_id": "governance",
+        "x": 900,
+        "y": 150,
+        "question_ids": [
+          "cloud-azure-start-q01",
+          "cloud-azure-start-q02"
+        ]
+      }
+    ],
+    "order": 1,
+    "edges": [
+      [
+        "deployment-models",
+        "iaas"
+      ],
+      [
+        "deployment-models",
+        "paas"
+      ],
+      [
+        "deployment-models",
+        "saas"
+      ],
+      [
+        "iaas",
+        "shared-responsibility"
+      ],
+      [
+        "paas",
+        "shared-responsibility"
+      ],
+      [
+        "saas",
+        "shared-responsibility"
+      ]
+    ],
+    "quiz_question_ids": [
+      "az900-introduction-q01",
+      "az900-introduction-q02",
+      "az900-introduction-q03"
+    ],
+    "groups": [
+      {
+        "id": "deployment",
+        "title": "DEPLOYMENT CHOICES",
+        "caption": "Where infrastructure is hosted",
+        "x": 15,
+        "y": 20,
+        "width": 230,
+        "height": 350
+      },
+      {
+        "id": "service-models",
+        "title": "SERVICE MODELS",
+        "caption": "How much of the stack the provider operates",
+        "x": 265,
+        "y": 20,
+        "width": 470,
+        "height": 350
+      },
+      {
+        "id": "customer-boundary",
+        "title": "CUSTOMER RESPONSIBILITY",
+        "caption": "Data, identities, access, and configuration remain shared duties",
+        "x": 755,
+        "y": 20,
+        "width": 390,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "deployment-models",
+      "paas",
+      "shared-responsibility"
+    ]
+  },
+  {
+    "id": "global-infrastructure",
+    "title": "Azure Global Infrastructure",
+    "summary": "Explore how Azure regions and availability zones support placement, resilience, and data-location decisions.",
+    "nodes": [
+      {
+        "id": "region",
+        "label": "Region",
+        "description": "An Azure region is a geographic area containing one or more datacenters connected through a low-latency network. Service availability differs by region.",
+        "purpose": "Select a region after checking service availability, latency, resilience requirements, and applicable data-location commitments.",
+        "example": "A team chooses a region near its primary users and confirms that its required database SKU is available there.",
+        "services": [
+          "Azure regions",
+          "Azure products by region"
+        ],
+        "section_id": "regions-zones",
+        "admin_topic_id": "architecture",
+        "x": 35,
+        "y": 150,
+        "question_ids": [
+          "regions-zones-q01",
+          "regions-zones-q02"
+        ]
+      },
+      {
+        "id": "datacenter",
+        "label": "Datacenters",
+        "description": "Datacenters provide the physical facilities, power, cooling, and networking that host Azure infrastructure.",
+        "purpose": "Physical placement matters when designing for failures that can affect a building or shared facility.",
+        "example": "A workload with a zone-redundancy requirement places supported resources across separate datacenters in a region.",
+        "services": [
+          "Azure datacenters",
+          "Azure Resource Health"
+        ],
+        "section_id": "regions-zones",
+        "admin_topic_id": "reliability",
+        "x": 295,
+        "y": 150,
+        "question_ids": [
+          "regions-zones-q01",
+          "regions-zones-q02"
+        ]
+      },
+      {
+        "id": "availability-zone",
+        "label": "Availability zones",
+        "description": "Availability zones are physically separate locations within a region, each with independent power, cooling, and networking. Not every service or region supports zones.",
+        "purpose": "Use zones for higher availability against a datacenter-level failure when the chosen service supports zonal or zone-redundant deployment.",
+        "example": "A zone-redundant application keeps instances in multiple zones and routes requests to healthy capacity.",
+        "services": [
+          "Availability Zones",
+          "Load Balancer"
+        ],
+        "section_id": "regions-zones",
+        "admin_topic_id": "compute",
+        "x": 560,
+        "y": 75,
+        "question_ids": [
+          "regions-zones-q01",
+          "regions-zones-q02"
+        ]
+      },
+      {
+        "id": "region-pair",
+        "label": "Region pairs",
+        "description": "Some regions are paired for specific platform recovery and update scenarios, but pairing does not automatically replicate every resource.",
+        "purpose": "Verify service-specific replication and recovery behavior instead of treating a region pair as a complete disaster-recovery plan.",
+        "example": "A storage design explicitly configures geo-redundancy and tests failover rather than assuming that selecting a region creates a replica.",
+        "services": [
+          "Azure region pairs",
+          "Azure Storage redundancy"
+        ],
+        "section_id": "regions-zones",
+        "admin_topic_id": "recovery",
+        "x": 560,
+        "y": 260,
+        "question_ids": [
+          "regions-zones-q01",
+          "regions-zones-q02"
+        ]
+      },
+      {
+        "id": "data-residency",
+        "label": "Data residency",
+        "description": "Data residency requirements determine where data may be stored or processed. Service configuration, replication choice, and legal commitments all matter.",
+        "purpose": "Validate the exact service and redundancy option against the organization’s policy before deployment.",
+        "example": "A regulated application selects a supported in-country region and avoids a geo-replication option that would copy data outside its allowed boundary.",
+        "services": [
+          "Azure regions",
+          "Microsoft Purview"
+        ],
+        "section_id": "regions-zones",
+        "admin_topic_id": "governance",
+        "x": 920,
+        "y": 150,
+        "question_ids": [
+          "regions-zones-q01",
+          "regions-zones-q02"
+        ]
+      }
+    ],
+    "order": 2,
+    "edges": [
+      [
+        "region",
+        "datacenter"
+      ],
+      [
+        "datacenter",
+        "availability-zone"
+      ],
+      [
+        "region",
+        "region-pair"
+      ],
+      [
+        "availability-zone",
+        "data-residency"
+      ],
+      [
+        "region-pair",
+        "data-residency"
+      ]
+    ],
+    "quiz_question_ids": [
+      "regions-zones-q01",
+      "regions-zones-q02",
+      "regions-zones-q03"
+    ],
+    "groups": [
+      {
+        "id": "single-region",
+        "title": "REGIONAL PLACEMENT",
+        "caption": "Latency, product availability, and data location",
+        "x": 15,
+        "y": 20,
+        "width": 490,
+        "height": 350
+      },
+      {
+        "id": "resilience",
+        "title": "RESILIENCE OPTIONS",
+        "caption": "Zones protect within a region; pairs support selected recovery scenarios",
+        "x": 520,
+        "y": 20,
+        "width": 365,
+        "height": 350
+      },
+      {
+        "id": "policy-boundary",
+        "title": "DATA BOUNDARY",
+        "caption": "Confirm replication and residency per service",
+        "x": 900,
+        "y": 20,
+        "width": 245,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "region",
+      "datacenter",
+      "availability-zone"
+    ]
+  },
+  {
+    "id": "resource-hierarchy",
+    "title": "Azure Resource Hierarchy",
+    "summary": "Follow the management scope from enterprise-wide governance down to individual Azure resources.",
+    "sequence": [
+      "management-group",
+      "subscription",
+      "resource-group",
+      "resource"
+    ],
+    "nodes": [
+      {
+        "id": "management-group",
+        "label": "Management group",
+        "description": "Management groups organize subscriptions into a hierarchy so governance policies and access assignments can be inherited across subscriptions.",
+        "purpose": "Use them for durable organizational policy and access boundaries that span subscriptions.",
+        "example": "A platform team puts production subscriptions under a governed management group with region restrictions.",
+        "services": [
+          "Management groups",
+          "Azure Policy",
+          "Azure RBAC"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "architecture",
+        "x": 35,
+        "y": 65,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      },
+      {
+        "id": "subscription",
+        "label": "Subscription",
+        "description": "A subscription is a billing, quota, and access-management boundary that contains resource groups and resources.",
+        "purpose": "Separate subscriptions when billing, ownership, quotas, or security boundaries need clear isolation.",
+        "example": "A company uses separate subscriptions for production and development, each governed by a parent management group.",
+        "services": [
+          "Azure subscriptions",
+          "Cost Management",
+          "Azure RBAC"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "architecture",
+        "x": 305,
+        "y": 65,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      },
+      {
+        "id": "resource-group",
+        "label": "Resource group",
+        "description": "A resource group is a management container for resources that share a lifecycle or operational boundary. A resource belongs to one resource group at a time.",
+        "purpose": "Group related resources for deployment, access review, policy scope, and lifecycle management.",
+        "example": "An application team groups its web app, plan, and supporting service resources by environment.",
+        "services": [
+          "Resource groups",
+          "Azure Resource Manager"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "architecture",
+        "x": 575,
+        "y": 65,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      },
+      {
+        "id": "resource",
+        "label": "Resource",
+        "description": "A resource is an individual Azure service instance, such as a virtual machine, storage account, or virtual network.",
+        "purpose": "Resource-level configuration and access assignments allow targeted administration when broader scopes are too permissive.",
+        "example": "An operator assigns a narrowly scoped role on one storage account to a service team.",
+        "services": [
+          "Azure resources",
+          "Azure RBAC"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "architecture",
+        "x": 845,
+        "y": 65,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      },
+      {
+        "id": "scope-inheritance",
+        "label": "Scope inheritance",
+        "description": "Azure governance scopes form a hierarchy: management group, subscription, resource group, and resource. Assignments can flow from parent scopes to descendants.",
+        "purpose": "Understand inherited policy and access before troubleshooting an unexpected deny or excess access.",
+        "example": "A policy assigned at a subscription applies to its resource groups and resources unless an allowed exception changes the outcome.",
+        "services": [
+          "Azure Policy",
+          "Azure RBAC",
+          "Management groups"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "governance",
+        "x": 575,
+        "y": 250,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      }
+    ],
+    "order": 3,
+    "edges": [
+      [
+        "management-group",
+        "subscription"
+      ],
+      [
+        "subscription",
+        "resource-group"
+      ],
+      [
+        "resource-group",
+        "resource"
+      ],
+      [
+        "management-group",
+        "scope-inheritance"
+      ],
+      [
+        "subscription",
+        "scope-inheritance"
+      ],
+      [
+        "scope-inheritance",
+        "resource"
+      ]
+    ],
+    "quiz_question_ids": [
+      "resource-hierarchy-q01",
+      "resource-hierarchy-q02",
+      "resource-hierarchy-q03"
+    ],
+    "groups": [
+      {
+        "id": "mgmt-scope",
+        "title": "MANAGEMENT GROUP",
+        "caption": "Organize subscriptions and apply policy",
+        "x": 15,
+        "y": 20,
+        "width": 235,
+        "height": 155
+      },
+      {
+        "id": "subscription-scope",
+        "title": "SUBSCRIPTION",
+        "caption": "Billing and access boundary",
+        "x": 280,
+        "y": 20,
+        "width": 235,
+        "height": 155
+      },
+      {
+        "id": "resource-group-scope",
+        "title": "RESOURCE GROUP",
+        "caption": "Lifecycle and role assignment scope",
+        "x": 545,
+        "y": 20,
+        "width": 235,
+        "height": 155
+      },
+      {
+        "id": "resource-scope",
+        "title": "RESOURCE",
+        "caption": "Deployable service instance",
+        "x": 810,
+        "y": 20,
+        "width": 335,
+        "height": 155
+      },
+      {
+        "id": "inheritance",
+        "title": "SCOPE INHERITANCE",
+        "caption": "Policy and RBAC assignments can flow to child scopes",
+        "x": 280,
+        "y": 205,
+        "width": 865,
+        "height": 165
+      }
+    ]
+  },
+  {
+    "id": "azure-compute",
+    "title": "Azure Compute",
+    "summary": "Choose between virtual machines, managed application platforms, event-driven compute, and containers.",
+    "nodes": [
+      {
+        "id": "virtual-machine",
+        "label": "Virtual Machines",
+        "description": "Azure Virtual Machines provide configurable IaaS compute with control over the guest operating system, installed software, and runtime.",
+        "purpose": "Choose a VM when operating-system control or a compatible lift-and-shift path is needed.",
+        "example": "A legacy application runs on a VM while the team manages OS updates, disks, and network access.",
+        "services": [
+          "Azure Virtual Machines",
+          "Managed Disks"
+        ],
+        "section_id": "virtual-machines",
+        "admin_topic_id": "compute",
+        "x": 275,
+        "y": 150,
+        "question_ids": [
+          "virtual-machines-q01",
+          "virtual-machines-q02"
+        ]
+      },
+      {
+        "id": "scale-sets",
+        "label": "Virtual Machine Scale Sets",
+        "description": "Scale Sets manage a group of similarly configured VMs and can scale instance count based on rules and signals.",
+        "purpose": "Use them for repeatable VM fleets that need horizontal scaling and coordinated lifecycle operations.",
+        "example": "A stateless worker fleet adds instances as a queue grows and removes them as demand falls.",
+        "services": [
+          "Virtual Machine Scale Sets",
+          "Azure Monitor"
+        ],
+        "section_id": "virtual-machines",
+        "admin_topic_id": "compute",
+        "x": 510,
+        "y": 75,
+        "question_ids": [
+          "virtual-machines-q01",
+          "virtual-machines-q02"
+        ]
+      },
+      {
+        "id": "app-service",
+        "label": "App Service",
+        "description": "App Service is a managed platform for hosting web applications and APIs without managing the underlying VM operating system.",
+        "purpose": "Choose it when supported runtimes and platform features meet the application’s needs.",
+        "example": "A team deploys a web API to an App Service plan and uses deployment slots for staged releases.",
+        "services": [
+          "Azure App Service",
+          "Deployment slots"
+        ],
+        "section_id": "managed-compute",
+        "admin_topic_id": "containers",
+        "x": 750,
+        "y": 75,
+        "question_ids": [
+          "managed-compute-q01",
+          "managed-compute-q02"
+        ]
+      },
+      {
+        "id": "functions",
+        "label": "Azure Functions",
+        "description": "Azure Functions runs code in response to triggers such as events, timers, or queue messages, with hosting-plan-specific scaling behavior.",
+        "purpose": "Use Functions for event-driven tasks and short-lived operations, while designing for retries and idempotency.",
+        "example": "A function processes a message when it appears in a queue and records a result in a managed database.",
+        "services": [
+          "Azure Functions",
+          "Azure Storage queues"
+        ],
+        "section_id": "managed-compute",
+        "admin_topic_id": "containers",
+        "x": 750,
+        "y": 150,
+        "question_ids": [
+          "managed-compute-q01",
+          "managed-compute-q02"
+        ]
+      },
+      {
+        "id": "containers",
+        "label": "Containers",
+        "description": "Containers package an application and its dependencies into an image that can run consistently across supported environments.",
+        "purpose": "Select a managed container platform based on orchestration, scaling, networking, and operational needs.",
+        "example": "A team builds an image once, stores it in Azure Container Registry, then deploys it to a container service.",
+        "services": [
+          "Azure Container Apps",
+          "Azure Kubernetes Service",
+          "Azure Container Registry"
+        ],
+        "section_id": "managed-compute",
+        "admin_topic_id": "containers",
+        "x": 750,
+        "y": 255,
+        "question_ids": [
+          "managed-compute-q01",
+          "managed-compute-q02"
+        ]
+      },
+      {
+        "id": "workload-profile",
+        "label": "Workload requirements",
+        "description": "Start with workload shape, scaling behavior, operating-system control, and how much of the runtime the team wants to manage.",
+        "purpose": "Choose a compute service by operational responsibility and workload fit, then validate availability and scaling requirements.",
+        "example": "A team with a custom OS image selects virtual machines; a team shipping web code may select App Service or containers.",
+        "services": [
+          "Compute selection",
+          "Azure Well-Architected Framework"
+        ],
+        "section_id": "managed-compute",
+        "admin_topic_id": "architecture",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "managed-compute-q01",
+          "managed-compute-q02"
+        ]
+      }
+    ],
+    "order": 4,
+    "edges": [
+      [
+        "workload-profile",
+        "virtual-machine"
+      ],
+      [
+        "virtual-machine",
+        "scale-sets"
+      ],
+      [
+        "workload-profile",
+        "app-service"
+      ],
+      [
+        "workload-profile",
+        "functions"
+      ],
+      [
+        "workload-profile",
+        "containers"
+      ]
+    ],
+    "quiz_question_ids": [
+      "virtual-machines-q01",
+      "virtual-machines-q02",
+      "virtual-machines-q03"
+    ],
+    "groups": [
+      {
+        "id": "requirements",
+        "title": "START WITH THE WORKLOAD",
+        "caption": "Control, runtime, scaling, and execution pattern",
+        "x": 15,
+        "y": 20,
+        "width": 225,
+        "height": 350
+      },
+      {
+        "id": "vm-based",
+        "title": "VIRTUAL MACHINE OPTIONS",
+        "caption": "You manage the guest OS; scale sets manage groups of VMs",
+        "x": 260,
+        "y": 20,
+        "width": 445,
+        "height": 350
+      },
+      {
+        "id": "managed-compute",
+        "title": "MANAGED COMPUTE",
+        "caption": "Platform and event-driven choices reduce infrastructure work",
+        "x": 725,
+        "y": 20,
+        "width": 420,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "workload-profile",
+      "virtual-machine",
+      "scale-sets"
+    ]
+  },
+  {
+    "id": "azure-networking",
+    "title": "Azure Networking",
+    "summary": "Trace a request through virtual networks, security rules, routing, name resolution, and connectivity services.",
+    "sequence": [
+      "client",
+      "vnet",
+      "subnet",
+      "nsg",
+      "service"
+    ],
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Client",
+        "description": "A client starts a connection using a destination name, address, protocol, and port. DNS and client-side network policy can affect the path before Azure receives traffic.",
+        "purpose": "Capture the source, destination, protocol, port, and time when diagnosing connectivity.",
+        "example": "An administrator compares a failed SSH attempt from a corporate network with a known-good connection from an approved jump host.",
+        "services": [
+          "DNS",
+          "Client firewall"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "vnet",
+        "label": "Virtual network",
+        "description": "A virtual network is an isolated network boundary in Azure with address spaces, subnets, and connectivity options.",
+        "purpose": "Plan non-overlapping address spaces and connectivity before adding peering or hybrid gateways.",
+        "example": "An application VNet connects to a shared services VNet through peering and explicit routing.",
+        "services": [
+          "Azure Virtual Network",
+          "VNet peering"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 250,
+        "y": 150,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "subnet",
+        "label": "Subnet",
+        "description": "A subnet divides a VNet address range into smaller segments for placement and policy association.",
+        "purpose": "Use subnets to organize workloads and apply controls such as NSGs or service endpoints.",
+        "example": "Web and data workloads occupy separate subnets with different access rules.",
+        "services": [
+          "Subnets",
+          "Service endpoints"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 485,
+        "y": 150,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "nsg",
+        "label": "NSG and routes",
+        "description": "Network Security Groups allow or deny traffic using prioritized rules; routes determine the next hop for traffic.",
+        "purpose": "Check effective rules and effective routes together because a valid allow rule cannot correct an incorrect route.",
+        "example": "Network Watcher IP flow verify identifies an NSG deny while effective routes show the selected next hop.",
+        "services": [
+          "Network Security Groups",
+          "Route tables",
+          "Network Watcher"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 720,
+        "y": 75,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "service",
+        "label": "Connectivity and endpoints",
+        "description": "VPN Gateway, ExpressRoute, load balancers, Azure DNS, and private endpoints solve different connectivity and traffic-management needs.",
+        "purpose": "Choose a service based on trust boundary, traffic direction, availability, and whether public or private access is required.",
+        "example": "A site connects over VPN Gateway while an internal application reaches a supported PaaS service through a private endpoint and DNS zone.",
+        "services": [
+          "VPN Gateway",
+          "ExpressRoute",
+          "Azure DNS",
+          "Private Link",
+          "Load Balancer"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 955,
+        "y": 150,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "dns",
+        "label": "DNS resolution",
+        "description": "Azure DNS can host public DNS zones, while Private DNS zones resolve names for private Azure networks. Name resolution must match the connectivity path.",
+        "purpose": "Resolve the intended endpoint before troubleshooting routes or application health.",
+        "example": "A VM resolves an internal service name through a linked private DNS zone before connecting over a VNet path.",
+        "services": [
+          "Azure DNS",
+          "Private DNS zones"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 250,
+        "y": 75,
+        "question_ids": [
+          "azure-networking-q01",
+          "azure-networking-q02"
+        ]
+      },
+      {
+        "id": "vpn-gateway",
+        "label": "VPN Gateway",
+        "description": "VPN Gateway connects Azure virtual networks with on-premises or other networks over encrypted tunnels. Routes and address spaces must be compatible.",
+        "purpose": "Use site-to-site or point-to-site connectivity when private network paths are required.",
+        "example": "A branch office reaches a private application subnet through a site-to-site VPN and routes only approved address ranges.",
+        "services": [
+          "VPN Gateway",
+          "Local network gateway"
+        ],
+        "section_id": "azure-networking",
+        "admin_topic_id": "networking",
+        "x": 720,
+        "y": 260,
+        "question_ids": [
+          "azure-networking-q03",
+          "azure-networking-q04"
+        ]
+      }
+    ],
+    "order": 5,
+    "edges": [
+      [
+        "client",
+        "dns"
+      ],
+      [
+        "dns",
+        "vnet"
+      ],
+      [
+        "client",
+        "vnet"
+      ],
+      [
+        "vnet",
+        "subnet"
+      ],
+      [
+        "subnet",
+        "nsg"
+      ],
+      [
+        "nsg",
+        "service"
+      ],
+      [
+        "subnet",
+        "vpn-gateway"
+      ],
+      [
+        "vpn-gateway",
+        "vnet"
+      ]
+    ],
+    "quiz_question_ids": [
+      "azure-networking-q01",
+      "azure-networking-q02",
+      "azure-networking-q03"
+    ],
+    "groups": [
+      {
+        "id": "name-resolution",
+        "title": "NAME RESOLUTION",
+        "caption": "DNS maps service names to reachable endpoints",
+        "x": 15,
+        "y": 20,
+        "width": 220,
+        "height": 350
+      },
+      {
+        "id": "network-boundary",
+        "title": "VIRTUAL NETWORK",
+        "caption": "Subnets divide address space and security boundaries",
+        "x": 245,
+        "y": 20,
+        "width": 445,
+        "height": 350
+      },
+      {
+        "id": "traffic-controls",
+        "title": "TRAFFIC CONTROL",
+        "caption": "NSGs filter traffic; routes choose the next hop",
+        "x": 700,
+        "y": 20,
+        "width": 220,
+        "height": 350
+      },
+      {
+        "id": "connectivity",
+        "title": "CONNECTIVITY",
+        "caption": "VPN and service endpoints extend the network path",
+        "x": 930,
+        "y": 20,
+        "width": 215,
+        "height": 350
+      }
+    ]
+  },
+  {
+    "id": "azure-storage",
+    "title": "Azure Storage",
+    "summary": "Map common data shapes to Azure Storage services and understand where storage accounts and managed disks fit.",
+    "nodes": [
+      {
+        "id": "storage-account",
+        "label": "Storage account",
+        "description": "A storage account is a management and namespace boundary for supported Azure Storage services and their configuration.",
+        "purpose": "Choose account settings for redundancy, networking, security, and performance based on workload requirements.",
+        "example": "An application uses a secured storage account with private network access and role-based data authorization.",
+        "services": [
+          "Storage accounts",
+          "Azure Storage redundancy"
+        ],
+        "section_id": "azure-storage",
+        "admin_topic_id": "storage",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "azure-storage-q01",
+          "azure-storage-q02"
+        ]
+      },
+      {
+        "id": "blob",
+        "label": "Blob Storage",
+        "description": "Blob Storage stores unstructured object data such as images, documents, logs, and backups.",
+        "purpose": "Use access tiers and lifecycle rules to align retrieval patterns and retention requirements.",
+        "example": "A media service stores uploaded images in containers and transitions older objects to a lower-access tier.",
+        "services": [
+          "Azure Blob Storage",
+          "Lifecycle management"
+        ],
+        "section_id": "azure-storage",
+        "admin_topic_id": "storage",
+        "x": 300,
+        "y": 75,
+        "question_ids": [
+          "azure-storage-q01",
+          "azure-storage-q02"
+        ]
+      },
+      {
+        "id": "files",
+        "label": "Azure Files",
+        "description": "Azure Files provides managed file shares accessed through supported SMB or NFS protocols.",
+        "purpose": "Use it when an application needs shared file-system semantics rather than object APIs.",
+        "example": "Several application instances mount a common share for files that require a familiar file interface.",
+        "services": [
+          "Azure Files",
+          "Azure File Sync"
+        ],
+        "section_id": "azure-storage",
+        "admin_topic_id": "storage",
+        "x": 300,
+        "y": 150,
+        "question_ids": [
+          "azure-storage-q01",
+          "azure-storage-q02"
+        ]
+      },
+      {
+        "id": "queues-tables",
+        "label": "Queues and tables",
+        "description": "Queue Storage provides message queues; Table Storage is a NoSQL key/attribute store for structured, non-relational data.",
+        "purpose": "Use these services for simple asynchronous messaging or key-based data patterns where their semantics fit.",
+        "example": "A background worker consumes queued jobs while a small lookup dataset is stored by partition and row keys.",
+        "services": [
+          "Queue Storage",
+          "Table Storage"
+        ],
+        "section_id": "azure-storage",
+        "admin_topic_id": "storage",
+        "x": 300,
+        "y": 255,
+        "question_ids": [
+          "azure-storage-q01",
+          "azure-storage-q02"
+        ]
+      },
+      {
+        "id": "managed-disks",
+        "label": "Managed disks",
+        "description": "Managed disks provide persistent block storage for Azure virtual machines, with performance and redundancy options.",
+        "purpose": "Select disk type and size against workload I/O needs and recovery requirements.",
+        "example": "A database VM uses a managed data disk sized for its expected throughput and protected by an approved backup policy.",
+        "services": [
+          "Managed Disks",
+          "Azure Backup"
+        ],
+        "section_id": "virtual-machines",
+        "admin_topic_id": "compute",
+        "x": 900,
+        "y": 150,
+        "question_ids": [
+          "virtual-machines-q01",
+          "virtual-machines-q02"
+        ]
+      },
+      {
+        "id": "virtual-machine",
+        "label": "Virtual machine",
+        "description": "Managed disks provide persistent block storage for Azure virtual machines and are managed as separate resources from storage-account services.",
+        "purpose": "Choose managed disks for VM operating-system and data volumes, with performance and redundancy matched to the workload.",
+        "example": "A VM uses a premium managed disk for its database data volume while application files are stored in Blob Storage.",
+        "services": [
+          "Azure Managed Disks",
+          "Azure Virtual Machines"
+        ],
+        "section_id": "virtual-machines",
+        "admin_topic_id": "compute",
+        "x": 635,
+        "y": 150,
+        "question_ids": [
+          "virtual-machines-q01",
+          "virtual-machines-q02"
+        ]
+      }
+    ],
+    "order": 6,
+    "edges": [
+      [
+        "storage-account",
+        "blob"
+      ],
+      [
+        "storage-account",
+        "files"
+      ],
+      [
+        "storage-account",
+        "queues-tables"
+      ],
+      [
+        "virtual-machine",
+        "managed-disks"
+      ]
+    ],
+    "quiz_question_ids": [
+      "azure-storage-q01",
+      "azure-storage-q02",
+      "azure-storage-q03"
+    ],
+    "groups": [
+      {
+        "id": "account-services",
+        "title": "STORAGE ACCOUNT SERVICES",
+        "caption": "Object, file-share, queue, and table services",
+        "x": 15,
+        "y": 20,
+        "width": 570,
+        "height": 350
+      },
+      {
+        "id": "block-storage",
+        "title": "VM BLOCK STORAGE",
+        "caption": "Managed disks attach to compute as persistent volumes",
+        "x": 610,
+        "y": 20,
+        "width": 535,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "storage-account",
+      "blob",
+      "files"
+    ]
+  },
+  {
+    "id": "identity-access",
+    "title": "Identity and Access Management",
+    "summary": "Connect identities, authentication, authorization scopes, workload identity, and secrets management.",
+    "sequence": [
+      "entra-id",
+      "managed-identity",
+      "rbac",
+      "key-vault"
+    ],
+    "nodes": [
+      {
+        "id": "entra-id",
+        "label": "Microsoft Entra ID",
+        "description": "Microsoft Entra ID is the identity and access management service used to authenticate users, groups, applications, and workloads.",
+        "purpose": "Centralize identity and apply sign-in protections such as multifactor authentication and Conditional Access.",
+        "example": "A user signs in once and receives access to approved cloud applications based on policy.",
+        "services": [
+          "Microsoft Entra ID",
+          "MFA",
+          "Conditional Access"
+        ],
+        "section_id": "identity-management",
+        "admin_topic_id": "identity",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "identity-management-q01",
+          "identity-management-q02"
+        ]
+      },
+      {
+        "id": "users-groups",
+        "label": "Users and groups",
+        "description": "Users represent people or service principals; groups collect principals so access can be assigned and reviewed consistently.",
+        "purpose": "Use managed group membership and lifecycle processes instead of ad hoc user-by-user grants.",
+        "example": "A project group receives a Reader role at a resource group, and membership is reviewed when the project ends.",
+        "services": [
+          "Microsoft Entra users",
+          "Microsoft Entra groups"
+        ],
+        "section_id": "identity-management",
+        "admin_topic_id": "identity",
+        "x": 285,
+        "y": 75,
+        "question_ids": [
+          "identity-management-q01",
+          "identity-management-q02"
+        ]
+      },
+      {
+        "id": "rbac",
+        "label": "Azure RBAC",
+        "description": "Azure RBAC authorizes actions on Azure resources using role definitions, assignments, principals, and scopes.",
+        "purpose": "Grant the minimum required role at the narrowest scope and distinguish management-plane roles from data-plane roles.",
+        "example": "A support engineer receives VM Reader access on one resource group rather than subscription-wide Contributor access.",
+        "services": [
+          "Azure RBAC",
+          "Management groups",
+          "Resource groups"
+        ],
+        "section_id": "identity-management",
+        "admin_topic_id": "identity",
+        "x": 585,
+        "y": 150,
+        "question_ids": [
+          "identity-management-q01",
+          "identity-management-q02"
+        ]
+      },
+      {
+        "id": "managed-identity",
+        "label": "Managed identity",
+        "description": "A managed identity gives an Azure workload an Entra identity whose credentials are managed by the platform.",
+        "purpose": "Use it to obtain tokens for supported services without embedding long-lived credentials in application settings.",
+        "example": "An App Service managed identity receives a narrowly scoped data role on a storage account.",
+        "services": [
+          "Managed identities",
+          "Microsoft Entra ID"
+        ],
+        "section_id": "identity-management",
+        "admin_topic_id": "identity",
+        "x": 285,
+        "y": 255,
+        "question_ids": [
+          "identity-management-q01",
+          "identity-management-q02"
+        ]
+      },
+      {
+        "id": "key-vault",
+        "label": "Key Vault",
+        "description": "Key Vault stores and controls access to secrets, keys, and certificates used by applications and operators.",
+        "purpose": "Use identity-based access, least privilege, audit, and network controls to protect sensitive values.",
+        "example": "A deployment retrieves a required certificate through an approved workload identity rather than committing it to source control.",
+        "services": [
+          "Azure Key Vault",
+          "Azure RBAC",
+          "Managed identities"
+        ],
+        "section_id": "identity-management",
+        "admin_topic_id": "identity",
+        "x": 875,
+        "y": 150,
+        "question_ids": [
+          "identity-management-q01",
+          "identity-management-q02"
+        ]
+      }
+    ],
+    "order": 7,
+    "edges": [
+      [
+        "entra-id",
+        "users-groups"
+      ],
+      [
+        "entra-id",
+        "managed-identity"
+      ],
+      [
+        "users-groups",
+        "rbac"
+      ],
+      [
+        "managed-identity",
+        "rbac"
+      ],
+      [
+        "rbac",
+        "key-vault"
+      ]
+    ],
+    "quiz_question_ids": [
+      "identity-management-q01",
+      "identity-management-q02",
+      "identity-management-q03"
+    ],
+    "groups": [
+      {
+        "id": "identity-provider",
+        "title": "IDENTITY PROVIDER",
+        "caption": "Authenticate people and workloads",
+        "x": 15,
+        "y": 20,
+        "width": 240,
+        "height": 350
+      },
+      {
+        "id": "principals",
+        "title": "SECURITY PRINCIPALS",
+        "caption": "Users, groups, and workload identities",
+        "x": 270,
+        "y": 20,
+        "width": 280,
+        "height": 350
+      },
+      {
+        "id": "authorization",
+        "title": "AUTHORIZATION",
+        "caption": "Azure RBAC evaluates role, principal, and scope",
+        "x": 565,
+        "y": 20,
+        "width": 280,
+        "height": 350
+      },
+      {
+        "id": "secret-target",
+        "title": "PROTECTED RESOURCE",
+        "caption": "Grant least privilege to vault operations",
+        "x": 860,
+        "y": 20,
+        "width": 285,
+        "height": 350
+      }
+    ]
+  },
+  {
+    "id": "monitoring-observability",
+    "title": "Monitoring and Observability",
+    "summary": "Follow telemetry from an application through Azure Monitor to logs, alerts, and operator action.",
+    "sequence": [
+      "application",
+      "azure-monitor",
+      "metrics-logs",
+      "alert",
+      "operator"
+    ],
+    "nodes": [
+      {
+        "id": "application",
+        "label": "Application",
+        "description": "Applications emit telemetry about requests, dependencies, traces, and exceptions that can explain user-visible behavior.",
+        "purpose": "Instrument key user journeys and correlate telemetry with deployments while avoiding secrets and unnecessary personal data.",
+        "example": "A request trace shows that a web endpoint spends most of its response time waiting for a database dependency.",
+        "services": [
+          "Application Insights",
+          "OpenTelemetry"
+        ],
+        "section_id": "misc-fundamentals",
+        "admin_topic_id": "monitoring",
+        "x": 20,
+        "y": 150,
+        "question_ids": [
+          "misc-fundamentals-q01",
+          "misc-fundamentals-q02"
+        ]
+      },
+      {
+        "id": "azure-monitor",
+        "label": "Azure Monitor",
+        "description": "Azure Monitor collects and analyzes supported metrics and logs from Azure resources and applications.",
+        "purpose": "Use it to build dashboards, query telemetry, and configure alert rules for operational signals.",
+        "example": "An operator compares a rising error rate with CPU and dependency metrics to locate a bottleneck.",
+        "services": [
+          "Azure Monitor",
+          "Diagnostic settings"
+        ],
+        "section_id": "misc-fundamentals",
+        "admin_topic_id": "monitoring",
+        "x": 260,
+        "y": 80,
+        "question_ids": [
+          "misc-fundamentals-q01",
+          "misc-fundamentals-q02"
+        ]
+      },
+      {
+        "id": "metrics-logs",
+        "label": "Metrics and logs",
+        "description": "Metrics are numeric time series; logs are records that can be queried for detailed events and correlation.",
+        "purpose": "Choose the signal that answers the question: fast aggregated health or detailed event investigation.",
+        "example": "A metric alert detects a latency threshold while a KQL query correlates failed requests with application traces.",
+        "services": [
+          "Azure Monitor metrics",
+          "Log Analytics",
+          "KQL"
+        ],
+        "section_id": "misc-fundamentals",
+        "admin_topic_id": "monitoring",
+        "x": 520,
+        "y": 150,
+        "question_ids": [
+          "misc-fundamentals-q01",
+          "misc-fundamentals-q02"
+        ]
+      },
+      {
+        "id": "alert",
+        "label": "Alerts and action groups",
+        "description": "Alert rules evaluate metrics or logs and can notify people or invoke configured actions through action groups.",
+        "purpose": "Make alerts actionable, scoped, and tested to reduce noise and ensure the right responder is notified.",
+        "example": "A log alert opens an incident when repeated application errors exceed a validated threshold.",
+        "services": [
+          "Azure Monitor alerts",
+          "Action groups"
+        ],
+        "section_id": "misc-fundamentals",
+        "admin_topic_id": "monitoring",
+        "x": 760,
+        "y": 150,
+        "question_ids": [
+          "misc-fundamentals-q01",
+          "misc-fundamentals-q02"
+        ]
+      },
+      {
+        "id": "operator",
+        "label": "Operator response",
+        "description": "Operators use Azure Monitor alongside Service Health and Resource Health to distinguish workload issues from platform events.",
+        "purpose": "Correlate impact, scope, timeline, recent changes, and dependencies before changing production resources.",
+        "example": "A team checks Service Health for a regional incident while inspecting application traces for a separate database timeout.",
+        "services": [
+          "Azure Service Health",
+          "Resource Health",
+          "Azure Monitor"
+        ],
+        "section_id": "support-guarantees",
+        "admin_topic_id": "reliability",
+        "x": 970,
+        "y": 150,
+        "question_ids": [
+          "support-guarantees-q01",
+          "support-guarantees-q02"
+        ]
+      },
+      {
+        "id": "application-insights",
+        "label": "Application Insights",
+        "description": "Application Insights collects application telemetry such as requests, dependencies, exceptions, and traces for application-level diagnosis.",
+        "purpose": "Use application telemetry to connect user symptoms with service behavior and downstream dependencies.",
+        "example": "A latency investigation correlates slow requests with a database dependency and exception traces.",
+        "services": [
+          "Application Insights",
+          "Azure Monitor"
+        ],
+        "section_id": "misc-fundamentals",
+        "admin_topic_id": "monitoring",
+        "x": 260,
+        "y": 260,
+        "question_ids": [
+          "misc-fundamentals-q01",
+          "misc-fundamentals-q02"
+        ]
+      }
+    ],
+    "order": 8,
+    "edges": [
+      [
+        "application",
+        "azure-monitor"
+      ],
+      [
+        "application",
+        "application-insights"
+      ],
+      [
+        "azure-monitor",
+        "metrics-logs"
+      ],
+      [
+        "application-insights",
+        "metrics-logs"
+      ],
+      [
+        "metrics-logs",
+        "alert"
+      ],
+      [
+        "alert",
+        "operator"
+      ]
+    ],
+    "quiz_question_ids": [
+      "support-guarantees-q01",
+      "support-guarantees-q02",
+      "support-guarantees-q03"
+    ],
+    "groups": [
+      {
+        "id": "instrumentation",
+        "title": "WORKLOAD",
+        "caption": "Emit platform and application telemetry",
+        "x": 15,
+        "y": 20,
+        "width": 225,
+        "height": 350
+      },
+      {
+        "id": "collection",
+        "title": "TELEMETRY COLLECTION",
+        "caption": "Metrics and logs flow into Azure Monitor",
+        "x": 250,
+        "y": 20,
+        "width": 250,
+        "height": 350
+      },
+      {
+        "id": "analysis",
+        "title": "ANALYSIS AND SIGNALS",
+        "caption": "Queries, dashboards, alerts, and action groups",
+        "x": 510,
+        "y": 20,
+        "width": 440,
+        "height": 350
+      },
+      {
+        "id": "response",
+        "title": "OPERATIONS",
+        "caption": "Respond, investigate, and improve",
+        "x": 960,
+        "y": 20,
+        "width": 185,
+        "height": 350
+      }
+    ]
+  },
+  {
+    "id": "governance-security",
+    "title": "Governance and Security",
+    "summary": "Use policy, locks, security posture tools, and compliance evidence as complementary controls.",
+    "nodes": [
+      {
+        "id": "azure-policy",
+        "label": "Azure Policy",
+        "description": "Azure Policy evaluates resource configuration against organizational rules and can audit, deny, or support remediation.",
+        "purpose": "Use policy to express required configuration consistently across governance scopes.",
+        "example": "A policy audits storage accounts that permit public access before the organization considers enforcement.",
+        "services": [
+          "Azure Policy",
+          "Management groups"
+        ],
+        "section_id": "compliance-governance",
+        "admin_topic_id": "governance",
+        "x": 285,
+        "y": 75,
+        "question_ids": [
+          "compliance-governance-q01",
+          "compliance-governance-q02"
+        ]
+      },
+      {
+        "id": "resource-locks",
+        "label": "Resource locks",
+        "description": "Resource locks help protect supported resources from accidental deletion or modification at a chosen scope.",
+        "purpose": "Use locks as an additional guardrail, and verify that automation and approved maintenance account for them.",
+        "example": "A critical resource group receives a deletion-prevention lock while change processes remain responsible for data protection.",
+        "services": [
+          "CanNotDelete lock",
+          "ReadOnly lock"
+        ],
+        "section_id": "compliance-governance",
+        "admin_topic_id": "governance",
+        "x": 285,
+        "y": 150,
+        "question_ids": [
+          "compliance-governance-q01",
+          "compliance-governance-q02"
+        ]
+      },
+      {
+        "id": "defender-cloud",
+        "label": "Defender for Cloud",
+        "description": "Microsoft Defender for Cloud provides security posture management and workload protection capabilities for supported environments.",
+        "purpose": "Use recommendations as signals to investigate and prioritize risks; validate changes against workload needs.",
+        "example": "A security team reviews a public management endpoint finding, confirms ownership, and narrows access through an approved change.",
+        "services": [
+          "Microsoft Defender for Cloud",
+          "Secure score"
+        ],
+        "section_id": "security-services",
+        "admin_topic_id": "governance",
+        "x": 285,
+        "y": 255,
+        "question_ids": [
+          "security-services-q01",
+          "security-services-q02"
+        ]
+      },
+      {
+        "id": "purview",
+        "label": "Compliance and data governance",
+        "description": "Compliance work maps organizational and regulatory obligations to controls, responsibilities, and evidence. Microsoft Purview supports data governance and compliance-related capabilities.",
+        "purpose": "Treat compliance as a shared operating process; a cloud certification does not automatically make a customer workload compliant.",
+        "example": "A team documents data classification, retention, identity controls, and evidence for its workload boundary.",
+        "services": [
+          "Microsoft Purview",
+          "Compliance Manager"
+        ],
+        "section_id": "compliance-governance",
+        "admin_topic_id": "governance",
+        "x": 595,
+        "y": 150,
+        "question_ids": [
+          "compliance-governance-q01",
+          "compliance-governance-q02"
+        ]
+      },
+      {
+        "id": "defense-in-depth",
+        "label": "Defense in depth",
+        "description": "Defense in depth layers identity, network, host, application, data, and monitoring controls so a single failure is less likely to expose a workload.",
+        "purpose": "Review controls together and test their interactions rather than depending on one perimeter rule.",
+        "example": "A service combines least-privilege identity, private connectivity, encryption, logging, and tested recovery.",
+        "services": [
+          "Microsoft Entra ID",
+          "NSGs",
+          "Defender for Cloud"
+        ],
+        "section_id": "security-services",
+        "admin_topic_id": "governance",
+        "x": 900,
+        "y": 150,
+        "question_ids": [
+          "security-services-q01",
+          "security-services-q02"
+        ]
+      },
+      {
+        "id": "resource-estate",
+        "label": "Azure resource estate",
+        "description": "The resource estate is the set of subscriptions and services governed by organizational policies and security controls.",
+        "purpose": "Establish governance and security controls at the right scopes before teams deploy workloads.",
+        "example": "A platform team applies allowed-region policies and security baselines to subscriptions used by application teams.",
+        "services": [
+          "Azure Resource Manager",
+          "Management groups"
+        ],
+        "section_id": "resource-hierarchy",
+        "admin_topic_id": "architecture",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "resource-hierarchy-q01",
+          "resource-hierarchy-q02"
+        ]
+      }
+    ],
+    "order": 9,
+    "edges": [
+      [
+        "resource-estate",
+        "azure-policy"
+      ],
+      [
+        "resource-estate",
+        "resource-locks"
+      ],
+      [
+        "resource-estate",
+        "defender-cloud"
+      ],
+      [
+        "resource-estate",
+        "purview"
+      ],
+      [
+        "azure-policy",
+        "defense-in-depth"
+      ],
+      [
+        "resource-locks",
+        "defense-in-depth"
+      ],
+      [
+        "defender-cloud",
+        "defense-in-depth"
+      ],
+      [
+        "purview",
+        "defense-in-depth"
+      ]
+    ],
+    "quiz_question_ids": [
+      "compliance-governance-q01",
+      "compliance-governance-q02",
+      "compliance-governance-q03"
+    ],
+    "groups": [
+      {
+        "id": "estate",
+        "title": "GOVERNED ESTATE",
+        "caption": "Apply controls across selected scopes",
+        "x": 15,
+        "y": 20,
+        "width": 245,
+        "height": 350
+      },
+      {
+        "id": "controls",
+        "title": "PREVENT AND DETECT",
+        "caption": "Policy, locks, and cloud security posture",
+        "x": 270,
+        "y": 20,
+        "width": 295,
+        "height": 350
+      },
+      {
+        "id": "data-governance",
+        "title": "DATA GOVERNANCE",
+        "caption": "Discover, classify, and govern data",
+        "x": 575,
+        "y": 20,
+        "width": 290,
+        "height": 350
+      },
+      {
+        "id": "security-posture",
+        "title": "DEFENSE IN DEPTH",
+        "caption": "Combine controls; no single control is sufficient",
+        "x": 875,
+        "y": 20,
+        "width": 270,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "resource-estate",
+      "azure-policy",
+      "defense-in-depth"
+    ]
+  },
+  {
+    "id": "cost-management",
+    "title": "Cost Management",
+    "summary": "Trace Azure cost from workload choices to budgets, analysis, and operational optimization.",
+    "nodes": [
+      {
+        "id": "pricing-factors",
+        "label": "Usage and pricing factors",
+        "description": "Azure costs can depend on region, service tier, usage duration, storage, data transfer, licensing, and enabled features.",
+        "purpose": "Estimate using workload assumptions and review actual usage after deployment; avoid relying on memorized prices.",
+        "example": "A VM estimate includes its size and runtime, disk configuration, backup, public IP, and expected outbound transfer.",
+        "services": [
+          "Azure Pricing Calculator",
+          "Azure pricing pages"
+        ],
+        "section_id": "managing-costs",
+        "admin_topic_id": "cost",
+        "x": 25,
+        "y": 150,
+        "question_ids": [
+          "managing-costs-q01",
+          "managing-costs-q02"
+        ]
+      },
+      {
+        "id": "cost-analysis",
+        "label": "Cost analysis",
+        "description": "Cost Management cost analysis groups and filters usage and charges across supported billing and resource scopes.",
+        "purpose": "Use time comparisons and dimensions such as service, resource, meter, and tags to explain a change.",
+        "example": "An unexpected monthly increase is traced to a new logging workspace and a data-ingestion increase.",
+        "services": [
+          "Cost Management + Billing",
+          "Cost analysis"
+        ],
+        "section_id": "managing-costs",
+        "admin_topic_id": "cost",
+        "x": 300,
+        "y": 150,
+        "question_ids": [
+          "managing-costs-q01",
+          "managing-costs-q02"
+        ]
+      },
+      {
+        "id": "budgets",
+        "label": "Budgets and alerts",
+        "description": "Budgets track actual or forecast spending against thresholds and can send notifications; they do not automatically stop consumption.",
+        "purpose": "Configure alerts with owners and response steps, and understand reporting delay and billing scope.",
+        "example": "A forecasted-cost alert prompts a team to inspect a planned scale-out before its monthly review.",
+        "services": [
+          "Azure budgets",
+          "Action groups"
+        ],
+        "section_id": "managing-costs",
+        "admin_topic_id": "cost",
+        "x": 585,
+        "y": 75,
+        "question_ids": [
+          "managing-costs-q01",
+          "managing-costs-q02"
+        ]
+      },
+      {
+        "id": "tags",
+        "label": "Tags and allocation",
+        "description": "Tags are metadata that can help organize resources and allocate costs by owner, environment, product, or cost center.",
+        "purpose": "Standardize and enforce tag keys; tags do not provide access control and may not cover every bill item.",
+        "example": "A policy requires environment and service-owner tags on new resources so cost reports can be grouped consistently.",
+        "services": [
+          "Azure tags",
+          "Azure Policy"
+        ],
+        "section_id": "managing-costs",
+        "admin_topic_id": "cost",
+        "x": 585,
+        "y": 255,
+        "question_ids": [
+          "managing-costs-q01",
+          "managing-costs-q02"
+        ]
+      },
+      {
+        "id": "optimization",
+        "label": "Optimization choices",
+        "description": "Optimization can include right-sizing, removing idle resources, scheduling nonproduction workloads, and evaluating commitments for stable usage.",
+        "purpose": "Validate recommendations against performance, resilience, and recovery objectives before applying them.",
+        "example": "A team schedules a nonproduction VM to stop overnight while retaining its disks and checking application dependencies.",
+        "services": [
+          "Azure Advisor",
+          "Reservations",
+          "Savings plans"
+        ],
+        "section_id": "managing-costs",
+        "admin_topic_id": "cost",
+        "x": 900,
+        "y": 150,
+        "question_ids": [
+          "managing-costs-q01",
+          "managing-costs-q02"
+        ]
+      }
+    ],
+    "order": 10,
+    "edges": [
+      [
+        "pricing-factors",
+        "cost-analysis"
+      ],
+      [
+        "cost-analysis",
+        "budgets"
+      ],
+      [
+        "cost-analysis",
+        "tags"
+      ],
+      [
+        "budgets",
+        "optimization"
+      ],
+      [
+        "tags",
+        "optimization"
+      ]
+    ],
+    "quiz_question_ids": [
+      "managing-costs-q01",
+      "managing-costs-q02",
+      "managing-costs-q03"
+    ],
+    "groups": [
+      {
+        "id": "measure",
+        "title": "MEASURE USAGE",
+        "caption": "Metering depends on service, region, and configuration",
+        "x": 15,
+        "y": 20,
+        "width": 245,
+        "height": 350
+      },
+      {
+        "id": "analyze",
+        "title": "ANALYZE AND ALLOCATE",
+        "caption": "Find trends, owners, and forecast variance",
+        "x": 275,
+        "y": 20,
+        "width": 500,
+        "height": 350
+      },
+      {
+        "id": "optimize",
+        "title": "ACT AND REVIEW",
+        "caption": "Set guardrails, then verify the effect",
+        "x": 785,
+        "y": 20,
+        "width": 360,
+        "height": 350
+      }
+    ],
+    "sequence": [
+      "pricing-factors",
+      "cost-analysis",
+      "budgets",
+      "optimization"
+    ]
+  }
+]

@@ -122,6 +122,101 @@
 }
 @media(max-width:700px){.learn-breadcrumb,.detail-meta{flex-wrap:wrap}.learn-breadcrumb>*{min-width:0;overflow-wrap:anywhere}.dashboard-heading .eyebrow{flex-wrap:wrap;overflow-wrap:anywhere}.question-row-meta{flex-wrap:wrap}.question-row-main,.question-row-meta span{min-width:0}.detail-meta>span{min-width:0;overflow-wrap:anywhere}.detail-heading h1{overflow-wrap:anywhere}.recommended-list b{min-width:0;overflow-wrap:anywhere}}
 
+/* AZ-900 learning content reuses the Linux learning shell and Fieldnotes visual tokens. */
+.az900-exam-view{min-width:0}
+.az900-disclaimer{display:grid;gap:7px;margin:15px 0;padding:12px 14px;border:1px solid #2d454d;border-radius:3px;background:#111b20;color:#a3adb5;font-size:12px;line-height:1.7}
+.az900-disclaimer a,.az900-learn-more{display:inline-flex;align-items:center;gap:6px;color:#99c8d1;font-size:12px}
+.az900-domain-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 20px}
+.az900-domain-grid article{display:grid;gap:7px;min-width:0;padding:13px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-domain-grid article>span,.az900-domain-grid small{color:#82919a;font:10px var(--mono);letter-spacing:.5px}
+.az900-domain-grid article>b{font:600 14px/1.4 var(--heading);color:#dce2e6}
+.az900-overview-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:13px;border:1px solid #27313a;background:#10161b}
+.az900-progress-summary{display:grid;gap:5px;flex:1;min-width:180px}
+.az900-progress-summary>span,.az900-overline{color:#84949c;font:9px var(--mono);letter-spacing:.7px}
+.az900-progress-summary>b{font:14px var(--mono);color:#dce2e6}.az900-progress-summary>b small{color:#89949e;font-size:10px}
+.az900-overview-sections{margin-top:31px}
+.az900-section-card{margin-bottom:9px;border:1px solid #303c45;border-radius:4px;background:#10161c;transition:border-color .18s ease,background-color .18s ease,transform .18s ease}
+.az900-section-card:hover{border-color:#59717c;background:#141d24;transform:translateY(-1px)}
+.az900-section-card-top{display:grid;grid-template-columns:30px minmax(0,1fr) 34px;gap:10px;padding:13px}
+.az900-section-card-top>span:first-child{color:#73939d;font:12px var(--mono)}.az900-section-card-top>div{min-width:0}
+.az900-section-card h3{margin:0 0 5px;color:#e3e9ec;font:600 14px/1.35 var(--heading)}
+.az900-section-card p{margin:0 0 7px;color:#a7b2bb;font-size:12px;line-height:1.5}
+.az900-section-card-top small{color:#82919a;font:10px var(--mono)}
+.az900-section-status{align-self:start;padding:4px 6px;border:1px solid #2a4438;border-radius:2px;background:#15231e;color:#85c2a4;text-align:center;font:10px var(--mono)}
+.az900-lesson-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:0 13px 13px 53px}
+.az900-lesson-links button{display:flex;align-items:center;gap:7px;min-width:0;min-height:38px;padding:8px 11px;border:1px solid #34434c;border-radius:3px;background:#11181d;color:#c0e0e7;text-align:left;font-size:12px;cursor:pointer;transition:border-color .18s,background .18s}
+.az900-lesson-links button>svg:last-child{flex:none;margin-left:auto;color:#8cabb3}.az900-lesson-links button:hover{border-color:#4a707b;background:#151f24}
+.az900-exam-setup{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;margin-top:24px;padding:17px;border:1px solid #2d454d;border-radius:3px;background:#111b20}
+.az900-exam-setup h2,.az900-quiz-title h2{margin:7px 0 0;color:#dce2e6;font:600 18px var(--heading)}
+.az900-exam-setup p{max-width:580px;margin:7px 0 0;color:#9ba6ae;font-size:13px;line-height:1.65}
+.az900-setup-controls{display:flex;align-items:end;gap:8px;flex-wrap:wrap}
+.az900-setup-controls label{display:grid;gap:5px;color:#82919a;font:10px var(--mono);text-transform:uppercase}
+.az900-setup-controls select{min-height:38px;padding:7px 9px;border:1px solid #39464f;border-radius:3px;background:#151d23;color:#dce2e6;font:13px var(--heading)}
+.az900-bookmarks,.az900-history{margin-top:24px}.az900-bookmarks>div,.az900-history>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:9px}
+.az900-bookmarks button{display:grid;grid-template-columns:15px minmax(0,1fr);gap:3px 7px;padding:10px;border:1px solid #28333b;border-radius:3px;background:#10151a;color:#c0dce2;text-align:left;font-size:12px;cursor:pointer}
+.az900-bookmarks button>svg{grid-row:span 2;color:#91c9d4}.az900-bookmarks button small{grid-column:2;color:#82919a;font-size:11px}
+.az900-history article{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-history article span{overflow:hidden;color:#82919a;font:10px var(--mono);text-overflow:ellipsis}.az900-history article b{flex:none;color:#d6e7ea;font:11px var(--mono)}.az900-history article small{flex:none;color:#7d8993;font-size:11px}
+.az900-lesson-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 0}
+.az900-lesson-toolbar>span{display:flex;align-items:center;gap:5px;margin-right:auto;color:#7d8993;font:11px var(--mono)}
+.az900-lesson-toolbar button{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid #2a353e;border-radius:3px;background:#11171c;color:#b6dbe2;font-size:12px;cursor:pointer;transition:background .18s,border-color .18s}
+.az900-lesson-toolbar button:hover,.az900-lesson-toolbar button.saved{border-color:#4a707b;background:#151f24;color:#c2e9f0}
+.az900-lesson-card{padding:16px 19px;border:1px solid #2d454d;border-radius:3px;background:#111b20}
+.az900-lesson-card>p{margin:10px 0;color:#dbe5e8;font:500 16px/1.75 var(--heading)}
+.az900-example{margin:15px 0;padding:12px 13px;border:1px solid #26323a;border-radius:3px;background:#10161b}
+.az900-example>b{color:#83aebb;font:11px var(--mono);letter-spacing:.8px}.az900-example p{margin:6px 0 0;color:#a3adb5;font-size:14px;line-height:1.85}
+.az900-objectives{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+.az900-objectives>div{min-width:0}.az900-objectives>div:last-child{grid-column:1/-1;border-top:1px solid #26313a;padding-top:15px}
+.az900-objectives ul{display:grid;gap:2px;margin:9px 0 0;padding:0;list-style:none;border-top:1px solid #26313a}
+.az900-objectives li{padding:9px 7px;border-bottom:1px solid #222b33;color:#9ba6ae;font-size:13px;line-height:1.65}
+.az900-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}.az900-tags span{padding:4px 7px;border:1px solid #2a4438;border-radius:2px;background:#15231e;color:#85c2a4;font:11px var(--mono)}
+.az900-objectives p{margin:8px 0 0;color:#a3adb5;font-size:14px;line-height:1.85}
+.az900-related{border-top:1px solid #25313a;padding-top:22px;margin-top:28px}.az900-related>div{border-top:1px solid #25313a;margin-top:8px}
+.az900-related button{width:100%;display:flex;align-items:center;gap:11px;padding:12px 6px;border:0;border-bottom:1px solid #222c34;background:none;color:#bdc6cc;text-align:left;font-size:13px;cursor:pointer}
+.az900-related button:hover{background:#10161b;color:#e5ecef}.az900-related button span{color:#73939d;font:12px var(--mono)}.az900-related button svg{margin-left:auto;color:#71818b}
+.az900-quiz{margin-top:24px;padding-top:15px;border-top:1px solid #26313a}
+.az900-quiz-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:11px}.az900-quiz-title>span{color:#82919a;font:10px var(--mono)}
+.az900-quiz-question{padding:13px 0;border-top:1px solid #29343b}.az900-quiz-question>b{display:block;color:#dce2e6;font:500 15px/1.4 var(--heading)}
+.az900-options{display:grid;gap:5px;margin-top:9px}.az900-options label{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border:1px solid #2a353e;border-radius:3px;background:#11171c;color:#b6dbe2;font-size:13px;line-height:1.55;cursor:pointer}
+.az900-options label:hover{border-color:#4a707b;background:#151f24}.az900-options label input{margin:4px 0 0;accent-color:#83d5e8}.az900-options label>span{flex:none;color:#73939d;font:12px var(--mono)}
+.az900-options label.correct{border-color:#2a4438;background:#15231e;color:#c3e5d2}.az900-options label.incorrect{border-color:#4b3035;background:#281c20;color:#e2bebe}
+.az900-explanation{margin:9px 0 0;padding:12px 13px;border:1px solid #26323a;border-radius:3px;background:#10161b;color:#a3adb5;font-size:13px;line-height:1.75}
+.az900-quiz-result{display:flex;align-items:center;gap:7px;margin-top:10px;color:#85c2a4;font-size:13px}.az900-quiz-result button{display:flex;align-items:center;gap:5px;margin-left:auto;padding:7px 9px;border:1px solid #2a4438;border-radius:3px;background:#15231e;color:#c3e5d2;font-size:12px;cursor:pointer}
+.az900-lesson-nav{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:9px;margin-top:24px;padding-top:15px;border-top:1px solid #202830}
+.az900-lesson-nav>button:not(.az900-complete-button){display:flex;align-items:center;gap:8px;min-width:0;padding:9px;border:1px solid #2a353e;border-radius:3px;background:#11171c;color:#bdc6cc;text-align:left;font-size:12px;cursor:pointer}
+.az900-lesson-nav>button:last-child{justify-content:flex-end;text-align:right}.az900-lesson-nav button:disabled{opacity:.4;cursor:not-allowed}
+.az900-lesson-nav button span{display:grid;gap:4px;min-width:0}.az900-lesson-nav button small{color:#82919a;font:10px var(--mono)}
+.az900-complete-button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:8px 11px;border:1px solid #2a4438;border-radius:3px;background:#15231e;color:#c3e5d2;font-size:12px;white-space:nowrap;cursor:pointer}
+.az900-timer{display:flex;align-items:center;gap:8px;flex:none;padding:9px 12px;border:1px solid #2d454d;border-radius:3px;background:#111b20;color:#c2e9f0;font:16px var(--mono)}.az900-timer.urgent{border-color:#4b3035;background:#281c20;color:#e2bebe}
+.az900-exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 190px;align-items:start;gap:13px;margin-top:14px}.az900-exam-questions{display:grid;gap:9px;min-width:0}
+.az900-exam-question{scroll-margin-top:80px;padding:15px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-question-heading{display:flex;justify-content:space-between;gap:10px;color:#73939d;font:11px var(--mono)}.az900-question-heading small{color:#82919a;font:10px var(--mono)}
+.az900-exam-question h2,.az900-result-list h2{margin:11px 0;color:#dce2e6;font:500 16px/1.4 var(--heading)}
+.az900-question-map{position:sticky;top:82px;padding:12px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-question-map>b{color:#82919a;font:10px var(--mono);letter-spacing:.6px}.az900-question-map>div{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:10px 0}
+.az900-question-map>div button{aspect-ratio:1;border:1px solid #39464f;border-radius:3px;background:#151d23;color:#c0dce2;font:12px var(--mono);cursor:pointer}
+.az900-question-map>div button.answered{border-color:#2a4438;background:#15231e;color:#c3e5d2}.az900-question-map>small{color:#89949e;font-size:11px}
+.az900-submit{display:block;width:100%;margin-top:12px}
+.az900-notice{margin:12px 0;padding:10px;border:1px solid #4b412d;border-radius:3px;background:#282319;color:#c6ad78;font-size:13px}
+.az900-modal-backdrop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:#05080bd9}
+.az900-confirm-modal{position:relative;width:min(480px,100%);padding:22px;border:1px solid #39464f;border-radius:3px;background:#11171c;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.az900-confirm-modal>button:first-child{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:30px;height:30px;border:0;background:none;color:#a3adb5;cursor:pointer}
+.az900-confirm-modal h2{margin:6px 35px 8px 0;color:#e3e9ec;font:600 20px var(--heading)}.az900-confirm-modal p{color:#a3adb5;font-size:14px;line-height:1.75}
+.az900-confirm-modal>div{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+.az900-results>h1{font:600 clamp(33px,3.5vw,44px)/1.2 var(--heading);letter-spacing:-1.6px;margin:14px 0 18px}
+.az900-result-score{display:flex;align-items:center;gap:15px;padding:17px;border:1px solid #2d454d;border-radius:3px;background:#111b20}
+.az900-result-score>b{color:#85c2a4;font:500 36px var(--mono)}.az900-result-score>div{display:grid;gap:5px}.az900-result-score strong{color:#dce2e6;font:12px var(--mono)}.az900-result-score span{color:#89949e;font-size:12px}
+.az900-result-actions{display:flex;align-items:start;gap:15px;margin:13px 0}.az900-result-actions>div{display:grid;gap:6px;flex:1;padding:11px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-result-actions>div>b{color:#82919a;font:10px var(--mono);text-transform:uppercase}.az900-result-actions>div>span{color:#a3adb5;font-size:13px}
+.az900-result-list{display:grid;gap:8px}.az900-result-list article{padding:13px;border:1px solid #28333b;border-radius:3px;background:#10151a}
+.az900-result-list article.is-correct{border-left:2px solid #83c3a3}.az900-result-list article.is-wrong{border-left:2px solid #c7858a}
+.az900-result-list article>div{display:flex;justify-content:space-between;gap:8px;color:#85c2a4;font:10px var(--mono)}.az900-result-list article.is-wrong>div{color:#c58c8e}.az900-result-list article>div small{color:#89949e}
+.az900-result-list article>p:not(.az900-explanation){margin:4px 0;color:#9ba6ae;font-size:13px;line-height:1.6}
+.az900-result-list article h2{font-size:15px}
+@media(max-width:960px){.az900-exam-layout{grid-template-columns:minmax(0,1fr) 160px}}
+@media(max-width:700px){.az900-domain-grid{grid-template-columns:1fr}.az900-overview-actions{align-items:stretch}.az900-progress-summary{flex-basis:100%}.az900-overview-actions>.button-primary{flex:1}.az900-lesson-links{grid-template-columns:1fr;padding-left:13px}.az900-exam-setup{grid-template-columns:minmax(0,1fr)}.az900-setup-controls{justify-content:flex-start}.az900-exam-layout{grid-template-columns:minmax(0,1fr)}.az900-question-map{position:static;grid-row:1}.az900-question-map>div{grid-template-columns:repeat(10,1fr)}.az900-question-map>div button{max-width:40px}.az900-objectives{grid-template-columns:1fr}.az900-objectives>div:last-child{grid-column:auto}.az900-quiz-title{align-items:flex-start;flex-direction:column}.az900-lesson-nav{grid-template-columns:1fr 1fr}.az900-complete-button{grid-column:1/-1;grid-row:1}.az900-lesson-nav>button:not(.az900-complete-button){min-height:48px}.az900-bookmarks>div,.az900-history>div{grid-template-columns:1fr}.az900-result-actions{flex-direction:column}}
+@media(max-width:420px){.az900-section-card-top{grid-template-columns:25px minmax(0,1fr) 27px;gap:7px;padding:11px}.az900-section-card h3{font-size:15px}.az900-section-card p{font-size:12px}.az900-lesson-nav>button:not(.az900-complete-button){min-height:48px}.az900-result-score>b{font-size:31px}.az900-result-score strong{font-size:11px}}
+
 .topic-detail-content{min-width:0}
 .topic-detail-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:28px;row-gap:0;padding:8px 0 24px;border-bottom:1px solid #27313a}
 .topic-detail-heading .eyebrow,.topic-detail-heading h1,.topic-detail-heading p{grid-column:1}
@@ -188,3 +283,231 @@
 @keyframes visual-reveal{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .visual-explanation{animation:visual-reveal .2s ease-out}
 @media(prefers-reduced-motion:reduce){.visual-diagram-tabs button,.diagram-node rect,.diagram-edge{transition:none!important}.visual-diagram-svg{scroll-behavior:auto!important}.visual-explanation{animation:none!important}}
+
+/* Azure administration only. Shared learn-* components intentionally retain Linux design tokens. */
+.azure-admin-content .dashboard-heading h1{max-width:720px}
+.azure-admin-content .dashboard-heading h1 span{color:var(--learn-accent)}
+.azure-admin-cert-link{border-top:1px solid #242d35;margin-top:0;padding-top:13px;color:#a4bdc4}
+.azure-admin-cert-banner{display:flex;align-items:center;justify-content:space-between;gap:22px;border:1px solid #33444b;border-radius:4px;background:#10191e;padding:19px 21px;margin:0 0 31px}
+.azure-admin-cert-banner h2{font:600 19px var(--heading);letter-spacing:-.3px;margin:6px 0}
+.azure-admin-cert-banner p{max-width:570px;color:#a7b2bb;font-size:13px;line-height:1.6;margin:0}
+.azure-admin-cert-banner .button-primary{flex:0 0 auto}
+.azure-admin-text-link{display:flex;align-items:center;gap:7px;border:0;background:none;color:#a8dce8;font-size:13px;cursor:pointer;padding:5px}
+.azure-admin-text-link:hover{color:#ddf7fb}
+.azure-admin-scenario-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.azure-admin-scenario-grid .topic-card{min-height:85px;grid-template-columns:23px minmax(0,1fr) 18px}
+.azure-admin-scenario-list{margin-top:24px;border-top:1px solid #27313a}
+.azure-admin-scenario-detail{max-width:850px}
+.azure-admin-scenario-detail .az900-disclaimer{margin-top:17px}
+.azure-admin-check .prose-block{margin-bottom:10px}
+.azure-admin-content .detail-note b{color:#dce4e8}
+@media(max-width:960px){.azure-admin-cert-banner{align-items:flex-start;flex-direction:column}.azure-admin-scenario-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.azure-admin-cert-banner{padding:15px}.azure-admin-cert-banner .button-primary{width:100%;justify-content:center;white-space:normal}.azure-admin-scenario-grid{gap:7px}.azure-admin-content .question-total{align-self:flex-start}}
+@media(prefers-reduced-motion:reduce){.azure-admin-content *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Keep Azure's topic drawer independent from the shared compact horizontal Linux topic bar. */
+.learn-sidebar.azure-admin-sidebar{display:grid;grid-template-rows:auto auto auto auto auto minmax(0,1fr) auto auto auto;align-content:stretch;gap:0;min-width:0;overflow:hidden;overflow-x:hidden}
+.azure-admin-sidebar .sidebar-back,.azure-admin-sidebar .sidebar-overview,.azure-admin-sidebar .sidebar-question-bank,.azure-admin-sidebar .sidebar-command-link,.azure-admin-sidebar .sidebar-foot{min-width:0;max-width:100%}
+.azure-admin-sidebar .sidebar-section-label{min-width:0;overflow-wrap:anywhere}
+.azure-admin-sidebar .sidebar-back{white-space:normal}
+.azure-admin-sidebar .sidebar-question-bank{display:flex;align-items:center;gap:10px;padding:10px 9px;border:0;border-radius:3px;background:none;color:#b4c0c8;text-align:left;font:inherit;cursor:pointer}
+.azure-admin-sidebar .sidebar-overview.is-active,.azure-admin-sidebar .sidebar-question-bank.is-active,.azure-admin-sidebar .sidebar-command-link.is-active{background:#16242a;color:#b5e4ed}
+.azure-admin-sidebar .sidebar-overview:hover,.azure-admin-sidebar .sidebar-question-bank:hover,.azure-admin-sidebar .sidebar-command-link:hover{background:#172128;color:#f1f5f7}
+.azure-admin-sidebar .topic-label{margin:0;padding-top:15px;padding-bottom:9px}
+.azure-admin-sidebar .topic-nav{display:grid;grid-auto-rows:min-content;align-content:start;align-items:stretch;gap:3px;min-width:0;min-height:0;width:100%;flex:none;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}
+.azure-admin-sidebar .topic-nav button{display:grid;grid-template-columns:20px minmax(0,1fr);align-items:start;justify-content:stretch;gap:9px;min-width:0;min-height:0;width:100%;padding:8px;border:0;border-radius:3px;white-space:normal;text-align:left;line-height:1.45;overflow-wrap:anywhere}
+.azure-admin-sidebar .topic-nav button>span:first-child{min-width:0;flex:none;padding-top:1px}
+.azure-admin-sidebar .topic-nav button>span:last-child{display:block;min-width:0;width:100%;overflow:visible;white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.45}
+.azure-admin-sidebar .sidebar-command-link{gap:9px;margin:0;padding:12px 8px;border-top:1px solid #242d35;white-space:normal;overflow-wrap:anywhere}
+.azure-admin-sidebar .sidebar-command-link svg{flex:none}
+.azure-admin-sidebar .sidebar-command-link svg:last-child{margin-left:auto}
+.azure-admin-sidebar .azure-admin-cert-link{padding-top:11px}
+.azure-admin-sidebar .sidebar-foot{margin:0;padding:13px 7px 3px;min-width:0}
+.azure-admin-sidebar .sidebar-foot>span:last-child,.azure-admin-sidebar .sidebar-foot small{min-width:0;overflow-wrap:anywhere}
+@media(max-width:960px){
+  .learn-sidebar.azure-admin-sidebar{position:fixed;inset:64px auto 0 0;width:min(310px,calc(100vw - 24px));height:calc(100vh - 64px);height:calc(100dvh - 64px);max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);overflow:hidden;overflow-x:hidden;padding:16px 13px 15px;grid-template-rows:auto auto auto auto auto minmax(0,1fr) auto auto auto;overscroll-behavior:contain}
+  .azure-admin-sidebar .topic-nav button{font-size:13px;padding:8px}
+}
+@media(max-width:700px){
+  .learn-sidebar.azure-admin-sidebar{position:fixed;inset:58px auto 0 0;width:min(310px,calc(100vw - 20px));height:calc(100vh - 58px);height:calc(100dvh - 58px);max-height:calc(100vh - 58px);max-height:calc(100dvh - 58px);padding:13px 12px calc(13px + env(safe-area-inset-bottom));z-index:21;border-right:1px solid #34414a;border-bottom:0;background:#0f1419;box-shadow:12px 0 32px rgba(0,0,0,.28);grid-template-rows:auto auto auto auto auto minmax(0,1fr) auto auto auto}
+  .azure-admin-sidebar .sidebar-back,.azure-admin-sidebar .sidebar-overview,.azure-admin-sidebar .sidebar-question-bank,.azure-admin-sidebar .sidebar-command-link,.azure-admin-sidebar .sidebar-foot,.azure-admin-sidebar .sidebar-section-label{display:flex}
+  .azure-admin-sidebar .sidebar-section-label{display:block}
+  .azure-admin-sidebar .topic-nav{display:grid;flex:none;min-height:0;overflow-y:auto;overflow-x:hidden}
+  .azure-admin-sidebar .topic-nav button{flex:none;white-space:normal;border:0;padding:8px;font-size:13px}
+  .azure-admin-sidebar .topic-nav-number{display:block}
+}
+@media(max-width:420px){
+  .learn-sidebar.azure-admin-sidebar{width:min(300px,calc(100vw - 16px));padding-inline:10px}
+  .azure-admin-sidebar .topic-nav button{grid-template-columns:20px minmax(0,1fr);gap:8px;padding:8px 7px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.azure-admin-sidebar .topic-nav button{transition:none!important}}
+
+/* Keep the AZ-900 course drawer contained on tablet and mobile without changing Linux navigation. */
+@media(max-width:960px){
+  .learn-sidebar.az900-course-sidebar{display:grid;grid-template-rows:auto auto auto auto auto auto minmax(0,1fr);gap:0;position:fixed;inset:64px auto 0 0;width:min(310px,calc(100vw - 24px));height:calc(100vh - 64px);height:calc(100dvh - 64px);max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);overflow:hidden;padding:18px 15px 15px;overscroll-behavior:contain}
+  .az900-course-sidebar .topic-nav{display:grid;grid-auto-rows:min-content;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
+  .az900-exam-setup{grid-template-columns:minmax(0,1fr)}
+  .az900-setup-controls{justify-content:flex-start}
+}
+@media(max-width:700px){
+  .learn-sidebar.az900-course-sidebar{inset-block-start:58px;height:calc(100vh - 58px);height:calc(100dvh - 58px);max-height:calc(100vh - 58px);max-height:calc(100dvh - 58px);padding:13px 12px calc(13px + env(safe-area-inset-bottom));z-index:21;border-right:1px solid #34414a;border-bottom:0;background:#0f1419;box-shadow:12px 0 32px rgba(0,0,0,.28)}
+  .az900-course-sidebar .topic-nav{flex:1 1 auto}
+}
+
+/* AZ-900 visual learning uses the Fieldnotes shell with its own diagram components. */
+.learn-sidebar.az900-visual-sidebar{display:grid;grid-template-rows:auto auto auto auto auto minmax(0,1fr) auto;align-content:stretch;gap:0;min-width:0;overflow:hidden;overflow-x:hidden}
+.az900-visual-sidebar .sidebar-back,.az900-visual-sidebar .sidebar-overview,.az900-visual-sidebar .sidebar-visual-link,.az900-visual-sidebar .sidebar-command-link,.az900-visual-sidebar .sidebar-foot{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.az900-visual-sidebar .sidebar-command-link{margin:0;padding:13px 8px;border-top:1px solid #242d35}
+.az900-visual-sidebar .sidebar-command-link svg{flex:none}
+.az900-visual-sidebar .sidebar-command-link svg:last-child{margin-left:auto}
+.az900-visual-sidebar-spacer{min-height:0}
+.az900-visual-sidebar .sidebar-foot{margin:0;padding:14px 7px 3px}
+.az900-visual-heading{margin-bottom:0}
+.az900-visual-heading h1 span{color:var(--learn-accent)}
+.azvisual-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:19px 0}
+.azvisual-tabs button{min-width:0;min-height:44px;display:flex;align-items:center;gap:8px;padding:8px 9px;border:1px solid #2d3941;border-radius:3px;background:#10161b;color:#aab6bd;text-align:left;font:12px var(--heading);line-height:1.4;cursor:pointer;transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+.azvisual-tabs button>span{flex:none;color:#748a94;font:10px var(--mono)}
+.azvisual-tabs button:hover{border-color:#58737d;color:#e1eaed}
+.azvisual-tabs button.active{border-color:#668995;background:#152128;color:#d9edf1}
+.azvisual-workspace{min-width:0;border:1px solid #2a363e;border-radius:4px;background:#0e1418;overflow:hidden}
+.azvisual-workspace-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;padding:17px 18px 14px;border-bottom:1px solid #27323a}
+.azvisual-workspace-heading>div{min-width:0}
+.azvisual-workspace-heading h2{margin:6px 0 5px;color:#e0e8eb;font:600 20px var(--heading)}
+.azvisual-workspace-heading p{margin:0;max-width:680px;color:#9eaab1;font-size:12px;line-height:1.6}
+.azvisual-tag{flex:none;margin-top:3px;padding:5px 7px;border:1px solid #2a3c44;color:#91bac4;font:9px var(--mono);letter-spacing:.4px}
+.azvisual-viewport{width:100%;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;scrollbar-color:#34424b transparent;background:radial-gradient(ellipse at center,#131c21 0,#0d1317 70%)}
+.az900-diagram-svg{display:block;width:100%;min-width:900px;height:auto;min-height:300px;padding:12px 8px;color:#82aab4;overflow:visible}
+.azvisual-group rect{fill:#111a1f;fill-opacity:.88;stroke:#2c3b43;stroke-width:1;stroke-dasharray:4 5}
+.azvisual-group-title{fill:#8eabb4;font:10px var(--mono);letter-spacing:.8px}
+.azvisual-group-caption{fill:#657a83;font:8px var(--mono);letter-spacing:.1px}
+.azvisual-edge{fill:none;stroke:#344851;stroke-width:2;stroke-dasharray:1000;stroke-dashoffset:0;opacity:.85;transition:stroke .2s ease,opacity .2s ease}
+.azvisual-node{cursor:pointer;transform-box:fill-box;transform-origin:center;outline:none}
+.azvisual-node rect{fill:#151e23;stroke:#3a4a53;stroke-width:1.3;transition:fill .18s ease,stroke .18s ease,filter .18s ease}
+.azvisual-node .azvisual-node-accent{fill:#6f9ba6;stroke:none}
+.azvisual-node:hover rect,.azvisual-node:focus rect{fill:#192830;stroke:#8bbac5;filter:drop-shadow(0 0 7px #69a8b622)}
+.azvisual-node.selected rect{fill:#192a30;stroke:#83b7c2;stroke-width:2;filter:drop-shadow(0 0 9px #72b7c71f)}
+.azvisual-node-label{fill:#dce6e9;font:600 11px var(--heading);pointer-events:none}
+.azvisual-node-meta{fill:#82969d;font:7px var(--mono);letter-spacing:.15px;pointer-events:none}
+.azvisual-step-number{fill:#93c6d0;font:8px var(--mono);letter-spacing:.4px;pointer-events:none}
+.azvisual-packet-path{fill:none;stroke:#71c8a6;stroke-width:1.5;stroke-dasharray:4 7;opacity:.25}
+.azvisual-packet{fill:#a4edc9;stroke:#e1fff0;stroke-width:2;filter:drop-shadow(0 0 7px #79e7b4);pointer-events:none}
+.azvisual-sequence-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:11px 15px;border-top:1px solid #253139;background:#10171b}
+.azvisual-sequence-stage{display:grid;gap:4px;min-width:0}
+.azvisual-sequence-stage>span,.azvisual-interaction-hint{color:#84949c;font:9px var(--mono);letter-spacing:.7px}
+.azvisual-sequence-stage>b{overflow:hidden;color:#c5d8de;font:10px var(--mono);text-overflow:ellipsis;white-space:nowrap}
+.azvisual-sequence-stage small{color:#b4ad8a;font-size:10px}
+.azvisual-sequence-buttons{display:flex;gap:6px;flex:none}
+.azvisual-sequence-buttons button,.azvisual-next-steps button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:6px 9px;border:1px solid #34454e;border-radius:3px;background:#141e23;color:#b6d8df;font-size:10px;cursor:pointer}
+.azvisual-sequence-buttons button:hover,.azvisual-next-steps button:hover{border-color:#7398a2;background:#1a2a30}
+.azvisual-sequence-buttons button:disabled{opacity:.45;cursor:not-allowed}
+.azvisual-interaction-hint{display:flex;align-items:center;gap:8px;margin:0;padding:11px 15px;border-top:1px solid #253139;color:#93a2aa;font-size:11px;letter-spacing:0}
+.azvisual-interaction-hint span{color:#83aeb8;font:10px var(--mono)}
+.azvisual-details-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:14px;margin-top:15px;align-items:start}
+.azvisual-explanation,.azvisual-quiz{min-width:0;border:1px solid #2a363e;border-radius:4px;background:#10161b;padding:17px}
+.azvisual-explanation h2{margin:8px 0;color:#e1e8eb;font:600 23px var(--heading)}
+.azvisual-explanation h2 span{color:#94c8d3}
+.azvisual-description{margin:0 0 16px;color:#aeb9c0;font-size:13px;line-height:1.7}
+.azvisual-detail-block{padding:11px 0;border-top:1px solid #27323a}
+.azvisual-detail-block>b{display:flex;align-items:center;gap:7px;color:#c4d2d7;font-size:11px}
+.azvisual-detail-block>b svg{color:#91bfca}
+.azvisual-detail-block p{margin:6px 0 0;color:#9faeb5;font-size:12px;line-height:1.65}
+.azvisual-related,.azvisual-links,.azvisual-node-questions{padding:12px 0;border-top:1px solid #27323a}
+.azvisual-related>div:nth-child(2){display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.azvisual-related code{padding:4px 6px;border:1px solid #2c3b43;border-radius:2px;background:#0d1317;color:#add8e0;font:10px var(--mono)}
+.azvisual-text-link{display:flex;align-items:center;gap:6px;width:fit-content;margin-top:8px;padding:0;border:0;background:none;color:#8fc2cd;font-size:11px;text-align:left;cursor:pointer}
+.azvisual-text-link:hover{color:#d3eef3;text-decoration:underline}
+.azvisual-node-questions details{border-bottom:1px solid #27323a;padding:9px 0;color:#aebbc1}
+.azvisual-node-questions summary{color:#cbd7db;font:500 12px/1.55 var(--heading);cursor:pointer}
+.azvisual-node-questions details p{margin:7px 0 0;color:#a2afb6;font-size:11px;line-height:1.6}
+.azvisual-quiz-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;border-bottom:1px solid #2a363e}
+.azvisual-quiz-heading>span{display:flex;align-items:center;gap:7px;color:#cbd8dd;font:10px var(--mono);letter-spacing:.4px}
+.azvisual-quiz-heading svg{color:#91bfca}
+.azvisual-quiz-heading>b{color:#8fb8c1;font:9px var(--mono)}
+.azvisual-quiz-note{margin:9px 0 0;color:#87969e;font-size:10px;line-height:1.5}
+.azvisual-quiz-question{padding:13px 0;border-bottom:1px solid #27323a}
+.azvisual-quiz-question:last-child{padding-bottom:0;border-bottom:0}
+.azvisual-quiz-question h3{display:flex;gap:9px;margin:0 0 10px;color:#d2dce0;font:500 13px/1.5 var(--heading)}
+.azvisual-quiz-question h3>span{flex:none;color:#7c9ba5;font:10px var(--mono);padding-top:2px}
+.azvisual-quiz-options{display:grid;gap:5px}
+.azvisual-quiz-options button{display:flex;justify-content:space-between;align-items:center;gap:9px;width:100%;padding:8px 9px;border:1px solid #2c3941;border-radius:3px;background:#0d1317;color:#aab6bd;text-align:left;font-size:11px;line-height:1.4;cursor:pointer}
+.azvisual-quiz-options button:hover:not(:disabled){border-color:#607d87;background:#141f24;color:#e1e9ec}
+.azvisual-quiz-options button.correct{border-color:#487a65;background:#13221c;color:#c3e5d2}
+.azvisual-quiz-options button.incorrect{border-color:#754b4b;background:#241718;color:#e2bebe}
+.azvisual-feedback{margin:8px 0 0;padding:8px;border-left:2px solid #628e7a;background:#14201b;color:#b9d8c7;font-size:10px;line-height:1.55}
+.azvisual-feedback.is-incorrect{border-color:#9b6666;background:#211718;color:#d9baba}
+.azvisual-next-steps{display:flex;align-items:center;gap:7px;margin-top:15px;padding:13px 14px;border:1px solid #2a363e;background:#10161b}
+.azvisual-next-steps>div{display:grid;gap:5px;flex:1}
+.azvisual-next-steps>div>b{color:#cbd8dd;font:500 12px var(--heading)}
+.learn-sidebar.az900-visual-sidebar :is(.sidebar-back,.sidebar-overview,.sidebar-visual-link,.sidebar-command-link){width:100%;text-align:left}
+.learn-sidebar.az900-visual-sidebar .sidebar-visual-link.is-active{background:#16242a;color:#b5e4ed}
+.home-platform .home-learning-loop{border:1px solid #28333c;background:#10161c;border-radius:4px;padding:10px 17px 0;box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.home-platform .home-loop-step{min-height:67px;display:flex;align-items:center;gap:13px;border-bottom:1px solid #222b33}
+.home-platform .home-loop-step>span{color:#77909a;font:12px var(--mono)}
+.home-platform .home-loop-step>div{display:grid;gap:4px;min-width:0;flex:1}
+.home-platform .home-loop-step b{color:#d4dce0;font-size:13px;font-weight:600}
+.home-platform .home-loop-step small{color:#8b98a1;font-size:11px}
+.home-platform .home-loop-step svg{color:#82b4c0}
+.home-platform .home-loop-foot{height:34px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#72818b;font:9px var(--mono);letter-spacing:.45px}
+.home-platform .home-loop-foot span:first-child{display:flex;align-items:center;gap:6px}
+.home-platform .home-loop-foot i{width:5px;height:5px;border-radius:50%;background:#76bf9c}
+.home-pathways,.home-features{padding-top:52px;padding-bottom:66px;border-top:1px solid #1a2229}
+.home-pathway-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.home-pathway-card{min-width:0;display:flex;flex-direction:column;border:1px solid #27313a;border-radius:4px;background:#10151b;padding:17px;transition:border-color .2s,background-color .2s}
+.home-pathway-card:hover{border-color:#3f5964;background:#11191f}
+.home-pathway-azure{border-color:#2d3a48}
+.home-pathway-mark{display:flex;align-items:center;gap:9px;color:#89bdc9;font:10px var(--mono);letter-spacing:.55px}
+.home-pathway-mark svg{flex:none}
+.home-pathway-card h3{margin:20px 0 8px;color:#e1e7ea;font:600 17px/1.4 var(--heading);letter-spacing:-.2px}
+.home-pathway-card p{margin:0 0 18px;color:#9aa6ae;font-size:12px;line-height:1.7;flex:1}
+.home-pathway-link,.home-pathway-secondary{display:flex;align-items:center;gap:7px;width:fit-content;color:#a8dce8;font-size:12px;font-weight:600}
+.home-pathway-link:hover,.home-pathway-secondary:hover{color:#d6f2f7}
+.home-pathway-links{display:grid;gap:10px}
+.home-pathway-secondary{font-weight:500;color:#aab8c0}
+.home-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.home-feature{min-width:0;border:1px solid #252f37;border-radius:3px;background:#0f1419;padding:14px}
+.home-feature>div{display:flex;align-items:center;justify-content:space-between;color:#81aab4}
+.home-feature>div span{font:10px var(--mono);color:#71858e}
+.home-feature h3{margin:14px 0 6px;color:#d9e0e4;font:600 14px var(--heading)}
+.home-feature p{margin:0;color:#96a2aa;font-size:12px;line-height:1.65}
+.home-platform .approach{margin-top:0}
+.home-platform :is(a,button):focus-visible{outline:2px solid #a6e3ef;outline-offset:3px}
+@media(max-width:960px){.home-pathway-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.azvisual-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.azvisual-details-grid{grid-template-columns:1fr}}
+@media(max-width:850px){.home-platform .home-platform-hero{grid-template-columns:minmax(0,1fr);min-height:auto;padding-top:55px;padding-bottom:58px}.home-platform .home-platform-hero .hero-visual{width:100%;max-width:640px}.home-platform .hero-rail{display:none}}
+@media(max-width:700px){
+  .learn-sidebar.az900-visual-sidebar{position:fixed;inset:58px auto 0 0;width:min(310px,calc(100vw - 20px));height:calc(100vh - 58px);height:calc(100dvh - 58px);max-height:calc(100vh - 58px);max-height:calc(100dvh - 58px);padding:13px 12px calc(13px + env(safe-area-inset-bottom));z-index:21;border-right:1px solid #34414a;border-bottom:0;background:#0f1419;box-shadow:12px 0 32px rgba(0,0,0,.28);grid-template-rows:auto auto auto auto auto minmax(0,1fr) auto}
+  .learn-sidebar.az900-visual-sidebar .sidebar-back,.learn-sidebar.az900-visual-sidebar .sidebar-overview,.learn-sidebar.az900-visual-sidebar .sidebar-visual-link,.learn-sidebar.az900-visual-sidebar .sidebar-command-link,.learn-sidebar.az900-visual-sidebar .sidebar-foot,.learn-sidebar.az900-visual-sidebar .sidebar-section-label{display:flex}
+  .learn-sidebar.az900-visual-sidebar .sidebar-section-label{display:block}
+  .azvisual-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin:14px 0}
+  .azvisual-tabs button{min-height:43px;padding:7px;font-size:10px;gap:6px}
+  .azvisual-workspace-heading{display:block;padding:13px}
+  .azvisual-tag{display:inline-flex;margin-top:9px}
+  .azvisual-sequence-controls{align-items:flex-start;flex-direction:column}
+  .azvisual-sequence-buttons{width:100%}
+  .azvisual-sequence-buttons button{flex:1}
+  .azvisual-explanation,.azvisual-quiz{padding:13px}
+  .azvisual-quiz-heading{align-items:flex-start;flex-direction:column}
+  .azvisual-next-steps{align-items:stretch;flex-direction:column}
+  .home-platform .section-heading{align-items:flex-start;flex-direction:column;gap:12px}
+  .home-platform .section-heading>p{font-size:13px}
+  .home-platform .home-pathway-grid,.home-platform .home-feature-grid{grid-template-columns:1fr;gap:8px}
+  .home-platform .home-pathway-card{padding:15px}
+  .home-platform .hero-actions{align-items:flex-start;flex-direction:column;gap:14px}
+  .home-platform .hero-footnote{margin-top:30px;flex-wrap:wrap}
+  .home-platform .home-platform-hero{grid-template-columns:1fr;gap:35px}
+  .home-platform .home-loop-step{min-height:60px}
+}
+@media(min-width:701px) and (max-width:960px){
+  .learn-sidebar.az900-visual-sidebar{position:fixed;inset:64px auto 0 0;width:min(310px,calc(100vw - 24px));height:calc(100vh - 64px);height:calc(100dvh - 64px);max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);padding:18px 15px 15px}
+  .az900-visual-sidebar .sidebar-visual-link,.az900-visual-sidebar .sidebar-command-link{display:flex}
+}
+@media(max-width:960px){
+  .azure-admin-sidebar .topic-nav button,.az900-course-sidebar .topic-nav button{min-height:40px}
+}
+@media(max-width:700px){
+  .home-platform .footer-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;padding-top:14px;padding-bottom:14px}
+  .az900-content .learn-footer,.azure-admin-content .learn-footer,.az900-visual-page .learn-footer{flex-wrap:wrap;justify-content:flex-start;line-height:1.5;overflow-wrap:anywhere}
+  .az900-confirm-modal{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto}
+  .az900-lesson-toolbar button,.az900-lesson-links button,.azvisual-sequence-buttons button,.azvisual-next-steps button,.azvisual-quiz-options button{min-height:40px}
+}
+@media(max-width:420px){.azvisual-tabs{grid-template-columns:1fr}.azvisual-quiz-heading>b{font-size:9px}.home-platform .home-pathway-card h3{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.azvisual-tabs button,.azvisual-node rect,.azvisual-edge,.home-platform .home-pathway-card{transition:none!important}.az900-diagram-svg{scroll-behavior:auto!important}.azvisual-explanation{animation:none!important}}

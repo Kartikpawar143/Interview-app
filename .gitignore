@@ -11,6 +11,13 @@ __pycache__/
 .venv/
 venv/
 ENV/
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+wheels/
+sdist/
+develop-eggs/
 .tox/
 .nox/
 .pytest_cache/
