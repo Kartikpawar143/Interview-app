@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 !.env.sample
+!frontend/.env.production
 
 # Python bytecode, environments, and test/tool caches
 __pycache__/
