@@ -68,7 +68,7 @@ export function LinuxQuestionBankPage({ navigate, topicFilter }: { navigate: Nav
   const invalidTopic = !loading && Boolean(topicFilter) && topics.length > 0 && !selectedTopic
   const visible = useMemo(() => results.slice(0, visibleCount), [results, visibleCount])
 
-  return <LinuxLayout topics={topics} activeTopic={selectedTopic?.id} navigate={navigate} eyebrow="QUESTION BANK">
+  return <LinuxLayout topics={topics} activeTopic={selectedTopic?.id} activeItem="questions" navigate={navigate} eyebrow="QUESTION BANK">
     <div className="learn-content">
       <div className="learn-breadcrumb"><button onClick={() => navigate('/')}>FIELDNOTES</button><ChevronRight size={12} /><button onClick={() => navigate('/linux')}>LINUX</button><ChevronRight size={12} /><span>QUESTION BANK</span></div>
       <button className="back-to-questions" onClick={() => navigate('/linux')}><ArrowLeft size={14} /> Back to Overview</button>

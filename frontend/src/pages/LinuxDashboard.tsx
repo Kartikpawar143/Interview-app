@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ArrowRight, BookOpen, ChevronRight, Command, LoaderCircle, Network } from 'lucide-react'
+import { ChevronRight, LoaderCircle } from 'lucide-react'
 import { LinuxLayout } from '../components/linux/LinuxLayout'
 import { getLinuxQuestions, getLinuxTopics } from '../lib/api'
 import type { LinuxQuestion, LinuxTopic } from '../types/linux'
@@ -38,16 +38,6 @@ export function LinuxDashboard({ navigate }: { navigate: Navigate }) {
       </section>
 
       {error && <div className="browser-state browser-error" role="alert"><span>{error}</span><button onClick={() => window.location.reload()}>Try again</button></div>}
-
-      <div className="dashboard-stats">
-        <div><BookOpen size={15} /><span><b>{loading ? '—' : topics.length}</b> focused topics</span></div>
-        <span className="stats-rule" />
-        <div className="dashboard-actions">
-          <button onClick={() => navigate('/linux/questions')}><BookOpen size={15} /> Browse All Questions <ArrowRight size={14} /></button>
-          <button onClick={() => navigate('/linux/visual-learning')}><Network size={15} /> Visual learning <ArrowRight size={14} /></button>
-          <button onClick={() => navigate('/linux/commands')}><Command size={15} /> Command reference <ArrowRight size={14} /></button>
-        </div>
-      </div>
 
       <section className="topic-section" id="topics">
         <div className="list-section-heading"><div><span className="section-overline">01 / BUILD YOUR FOUNDATION</span><h2>Explore by topic</h2></div><span className="section-count">{loading ? '—' : topics.length.toString().padStart(2, '0')} TOPICS</span></div>

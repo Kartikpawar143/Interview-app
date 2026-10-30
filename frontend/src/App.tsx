@@ -9,7 +9,7 @@ import { LinuxCopilot } from './components/linux/LinuxCopilot'
 import { LinuxVisualLearningPage } from './pages/LinuxVisualLearningPage'
 import { Az900Page } from './pages/Az900Page'
 import { AzureAdministrationPage } from './pages/AzureAdministrationPage'
-import { Az900VisualLearningPage } from './pages/Az900VisualLearningPage'
+import { AzureVisualLearningPage } from './pages/AzureVisualLearningPage'
 import { AwsPage } from './pages/AwsPage'
 import { AwsVisualLearningPage } from './pages/AwsVisualLearningPage'
 import { AwsTroubleshootingPage } from './pages/AwsTroubleshootingPage'
@@ -32,7 +32,7 @@ function App() {
   const [pathname, search = ''] = route.split('?')
   let page
   if (pathname === '/aws') page = <AwsPage navigate={navigate} view="overview" />
-  if (!page && pathname === '/aws/visual-learning') page = <AwsVisualLearningPage navigate={navigate} />
+  if (!page && pathname === '/aws/visual-learning') page = <AwsVisualLearningPage navigate={navigate} requestedDiagramId={new URLSearchParams(search).get('diagram') ?? undefined} />
   if (!page && pathname === '/aws/troubleshooting') page = <AwsTroubleshootingPage navigate={navigate} />
   const awsLabMatch = pathname.match(/^\/aws\/troubleshooting\/([^/]+)$/)
   if (!page && awsLabMatch) {
@@ -76,7 +76,7 @@ function App() {
     page = <LinuxQuestionPage key={slug} slug={slug} navigate={navigate} />
   }
   if (!page && pathname === '/azure/az-900') page = <Az900Page navigate={navigate} />
-  if (!page && pathname === '/azure/az-900/visual-learning') page = <Az900VisualLearningPage navigate={navigate} />
+  if (!page && pathname === '/azure/visual-learning') page = <AzureVisualLearningPage navigate={navigate} requestedDiagramId={new URLSearchParams(search).get('diagram') ?? undefined} />
   const az900Match = pathname.match(/^\/azure\/az-900\/([^/]+)\/([^/]+)$/)
   if (!page && az900Match) page = <Az900Page key={`${az900Match[1]}:${az900Match[2]}`} navigate={navigate} sectionId={az900Match[1]} lessonId={az900Match[2]} />
   if (!page && pathname === '/azure') page = <AzureAdministrationPage navigate={navigate} view="overview" />

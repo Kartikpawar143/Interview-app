@@ -27,7 +27,7 @@ export function LinuxQuestionPage({ slug, navigate }: { slug: string; navigate: 
   }, [slug])
 
   const topicIndex = topics.findIndex((topic) => topic.id === question?.topic_id)
-  return <LinuxLayout topics={topics} activeTopic={question?.topic_id} navigate={navigate} eyebrow="QUESTION / FIELD GUIDE">
+  return <LinuxLayout topics={topics} activeTopic={question?.topic_id} activeItem="questions" navigate={navigate} eyebrow="QUESTION / FIELD GUIDE">
     <div className="learn-content detail-content"><div className="learn-breadcrumb"><button onClick={() => navigate('/linux')}>LINUX</button><ChevronRight size={12} /><button onClick={() => question && navigate(`/linux/topics/${encodeURIComponent(question.topic_id)}`)}>{question?.topic.toUpperCase() ?? 'QUESTION'}</button><ChevronRight size={12} /><span>DETAIL</span></div>
       {loading ? <div className="detail-state" role="status"><LoaderCircle size={18} className="spin" /> Loading question…</div> : error || !question ? <div className="detail-state detail-error" role="alert"><b>Question unavailable</b><span>{error || 'This question could not be found.'}</span><button className="button-primary" onClick={() => navigate('/linux')}>Back to Linux questions <ArrowRight size={15} /></button></div> : <>
         <button className="back-to-questions" onClick={() => navigate(`/linux/topics/${encodeURIComponent(question.topic_id)}`)}><ArrowLeft size={14} /> Back to {question.topic}</button>

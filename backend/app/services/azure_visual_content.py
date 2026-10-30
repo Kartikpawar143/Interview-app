@@ -14,7 +14,7 @@ def get_visual_diagrams() -> tuple[AzureVisualDiagram, ...]:
     with (CONTENT_DIR / "az900_visual_diagrams.json").open(encoding="utf-8") as source:
         items = tuple(AzureVisualDiagram.model_validate(item) for item in json.load(source))
     if len(items) != 10 or len({item.id for item in items}) != len(items):
-        raise ValueError("AZ-900 visual learning must contain ten unique diagrams")
+        raise ValueError("Azure visual learning must contain ten unique diagrams")
     section_ids = {section.id for section in get_course().sections}
     question_ids = {question.id for question in get_questions()}
     topic_ids = {topic.id for topic in get_admin_topics()}

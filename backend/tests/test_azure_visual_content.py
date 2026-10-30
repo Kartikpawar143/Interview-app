@@ -27,7 +27,7 @@ def test_az900_visual_sequences_cover_required_workflows_and_route_is_registered
     assert diagrams["azure-networking"].sequence
     assert diagrams["identity-access"].sequence
     assert diagrams["monitoring-observability"].sequence
-    assert "/api/azure/az-900/visual-learning/diagrams" in app.openapi()["paths"]
+    assert "/api/azure/administration/visual-learning/diagrams" in app.openapi()["paths"]
     assert "/api/azure/az-900/course" in app.openapi()["paths"]
     assert "/api/azure/administration/topics" in app.openapi()["paths"]
     assert "/api/linux/topics" in app.openapi()["paths"]

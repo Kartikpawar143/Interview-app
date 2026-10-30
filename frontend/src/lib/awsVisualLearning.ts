@@ -19,6 +19,62 @@ export interface AwsVisualNodeConnection {
 
 const SECURITY_TERMS = /security|secure|permission|policy|credential|access|encrypt|public|private|ingress|egress|trust|role|secret|auth|identity|network/i
 
+export interface AwsDiagramLabelLayout { x: number; y: number; lines: string[]; width: number; height: number }
+
+export function wrapAwsNodeLabel(value: string, maxLength = 16): string[] {
+  const result: string[] = []
+  let line = ''
+  for (const word of value.split(/\s+/)) {
+    if (word.length > maxLength) {
+      if (line) { result.push(line); line = '' }
+      for (let index = 0; index < word.length; index += maxLength) result.push(word.slice(index, index + maxLength))
+      continue
+    }
+    const next = line ? `${line} ${word}` : word
+    if (line && next.length > maxLength) { result.push(line); line = word } else line = next
+  }
+  if (line) result.push(line)
+  return result
+}
+
+/** Shared SVG label layout for both AWS diagram renderers. Uses conservative text metrics
+ * and tries nearby offsets so labels do not sit on top of architecture nodes or one another. */
+export function layoutAwsEdgeLabels(diagram: AwsVisualDiagram, nodeWidth = 166, nodeHeight = 82): AwsDiagramLabelLayout[] {
+  const occupied = diagram.nodes.map((node) => ({ x: node.x, y: node.y, width: nodeWidth, height: nodeHeight }))
+  const result: AwsDiagramLabelLayout[] = []
+  const intersects = (a: {x:number;y:number;width:number;height:number}, b: {x:number;y:number;width:number;height:number}) =>
+    a.x < b.x + b.width + 5 && a.x + a.width + 5 > b.x && a.y < b.y + b.height + 4 && a.y + a.height + 4 > b.y
+  for (const edge of diagram.edges) {
+    const from = diagram.nodes.find((node) => node.id === edge.source)
+    const to = diagram.nodes.find((node) => node.id === edge.target)
+    if (!from || !to) { result.push({ x: 0, y: 0, lines: [edge.label], width: 0, height: 0 }); continue }
+    const sx = from.x + nodeWidth / 2, sy = from.y + nodeHeight / 2
+    const tx = to.x + nodeWidth / 2, ty = to.y + nodeHeight / 2
+    const dx = tx - sx, dy = ty - sy, length = Math.hypot(dx, dy) || 1
+    const nx = -dy / length, ny = dx / length
+    const words = edge.label.split(/\s+/), lines: string[] = []
+    let line = ''
+    for (const word of words) {
+      const next = line ? `${line} ${word}` : word
+      if (line && next.length > 24) { lines.push(line); line = word } else line = next
+    }
+    if (line) lines.push(line)
+    const labelLines = lines.flatMap((part) => part.length > 27 ? part.match(/.{1,24}/g) ?? [part] : [part])
+    const width = Math.min(210, Math.max(44, Math.max(...labelLines.map((part) => part.length)) * 5.1 + 12))
+    const height = labelLines.length * 12 + 8
+    const candidates = [0, 1, -1, 2, -2, 3, -3].map((offset) => ({
+      x: (sx + tx) / 2 + nx * offset * 22 - width / 2,
+      y: (sy + ty) / 2 + ny * offset * 22 - height / 2,
+      width, height,
+    }))
+    const safe = candidates.find((box) => box.x >= 2 && box.y >= 2 && box.x + width <= diagram.width - 2 && box.y + height <= diagram.height - 2 && !occupied.some((other) => intersects(box, other)))
+      ?? candidates.find((box) => !occupied.some((other) => intersects(box, other))) ?? candidates[0]
+    occupied.push(safe)
+    result.push({ ...safe, x: safe.x + width / 2, y: safe.y + height / 2, lines: labelLines })
+  }
+  return result
+}
+
 export function getAwsNodeConnections(diagram: AwsVisualDiagram, nodeId: string): AwsVisualNodeConnection[] {
   return diagram.edges.reduce<AwsVisualNodeConnection[]>((connections, edge) => {
     if (edge.source === nodeId) connections.push({ edge, nodeId: edge.target, direction: 'outgoing' })

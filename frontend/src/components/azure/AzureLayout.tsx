@@ -1,8 +1,10 @@
-import { ArrowLeft, BookOpen, Menu, Network, Terminal, X } from 'lucide-react'
+import { ArrowLeft, BookOpen, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { Az900Section } from '../../types/azure'
 import type { Navigate } from '../../lib/navigation'
+import { AzureTopNavigation } from './AzureTopNavigation'
+import { Brand } from '../Brand'
 
 export function AzureLayout({ children, sections, activeSectionId, navigate, openSection, openOverview, openExam }: {
   children: ReactNode
@@ -25,7 +27,7 @@ export function AzureLayout({ children, sections, activeSectionId, navigate, ope
   const overview = () => { setMenuOpen(false); openOverview() }
 
   return <div className="learn-app"><header className="learn-header">
-    <button className="learn-brand" onClick={home} aria-label="Return to Fieldnotes home"><span className="brand-mark"><Terminal size={16} /></span><span>fieldnotes<span className="brand-period">.</span></span></button>
+    <Brand variant="learn" onClick={home} />
     <div className="learn-header-label"><span className="header-status-dot" /> TECHNICAL INTERVIEW PREP</div>
     <button className="learn-home-link" onClick={home}><ArrowLeft size={14} /> Home</button>
     <button className="learn-menu-toggle" aria-label={menuOpen ? 'Close AZ-900 navigation' : 'Open AZ-900 navigation'} aria-expanded={menuOpen} aria-controls="azure-sidebar" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
@@ -37,11 +39,10 @@ export function AzureLayout({ children, sections, activeSectionId, navigate, ope
       <div className="sidebar-section-label">AZ-900 CERTIFICATION PREP</div>
       <button className={`sidebar-overview${!activeSectionId ? ' is-active' : ''}`} aria-current={!activeSectionId ? 'page' : undefined} onClick={overview}><BookOpen size={15} /> Course overview</button>
       <button className="sidebar-question-bank" onClick={() => { setMenuOpen(false); openExam() }}><BookOpen size={15} /> Timed practice exam</button>
-      <button className="sidebar-question-bank" onClick={() => { setMenuOpen(false); navigate('/azure/az-900/visual-learning') }}><Network size={15} /> Visual learning</button>
       <div className="sidebar-section-label topic-label">COURSE SECTIONS <span>{sections.length.toString().padStart(2, '0')}</span></div>
       <nav className="topic-nav" aria-label="AZ-900 sections">{sections.map((section) => <button key={section.id} type="button" className={activeSectionId === section.id ? 'is-active' : ''} aria-current={activeSectionId === section.id ? 'page' : undefined} onClick={() => { setMenuOpen(false); openSection(section) }}><span className="topic-nav-number">{String(section.number).padStart(2, '0')}</span><span>{section.title}</span></button>)}</nav>
     </aside>
-    <main className="learn-main">{children}</main>
+    <main className="learn-main azure-admin-main"><AzureTopNavigation active="az900" navigate={(path) => { setMenuOpen(false); navigate(path) }} />{children}</main>
   </div>
   </div>
 }

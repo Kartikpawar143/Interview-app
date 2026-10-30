@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
-import { ArrowLeft, ArrowRight, BookOpen, Check, ChevronRight, Cloud, LoaderCircle, Network, Search, ShieldAlert, X } from 'lucide-react'
+import { ArrowLeft, BookOpen, Check, ChevronRight, Cloud, LoaderCircle, Search, X } from 'lucide-react'
 import { AwsLayout } from '../components/aws/AwsLayout'
 import { getAwsQuestion, getAwsQuestions, getAwsTopics } from '../lib/api'
 import type { AwsDifficulty, AwsQuestion, AwsTopic } from '../types/aws'
@@ -59,7 +59,6 @@ export function AwsPage({ navigate, view, slug, topicFilter }: { navigate: Navig
 
       {!loading && !error && view === 'overview' && <>
         <section className="dashboard-heading"><div><div className="eyebrow"><Cloud size={14} /> AWS CLOUD / LEARNING &amp; INTERVIEW PREP</div><h1>Understand AWS<br /><span>as a system.</span></h1><p>Build practical cloud knowledge across identity, compute, networking, storage, operations, and cost. The learning materials are static and never connect to AWS accounts or resources.</p></div><div className="question-total"><strong>{questions.length}</strong><span>QUESTIONS<br />IN THE LIBRARY</span></div></section>
-        <div className="dashboard-stats"><div><Cloud size={15} /> <b>{topics.length}</b> learning topics</div><span className="stats-rule" /><div><BookOpen size={15} /> <b>{questions.length}</b> original questions</div><button onClick={() => navigate('/aws/visual-learning')}><Network size={14} /> Explore visual architectures <ArrowRight size={14} /></button><button onClick={() => navigate('/aws/troubleshooting')}><ShieldAlert size={14} /> Practice troubleshooting <ArrowRight size={14} /></button><button onClick={() => navigate('/aws/questions')}>Browse question library <ArrowRight size={14} /></button></div>
         <section className="topic-section"><div className="list-section-heading"><div><span className="section-overline">AWS CLOUD FIELD GUIDE</span><h2>Explore AWS topics<span>.</span></h2></div><span className="section-count">{topics.length} TOPICS</span></div>
           {topics.length > 0 ? <div className="topic-cards">{topics.map((topic) => <button className="topic-card" key={topic.id} onClick={() => navigate(`/aws/topics/${encodeURIComponent(topic.slug)}`)}><span className="topic-card-index">{String(topic.order).padStart(2, '0')}</span><span className="topic-card-copy"><b>{topic.name}</b><small>{topic.description}</small></span><span className="topic-card-count"><small>QUESTIONS</small>{topicQuestionCount(topic.id)}</span></button>)}</div> : <div className="browser-state empty-state"><b>No AWS topics are available</b></div>}
         </section>

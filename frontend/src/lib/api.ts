@@ -35,7 +35,7 @@ export const getLinuxCommands = (signal?: AbortSignal) => request<LinuxCommand[]
 export const getLinuxCopilotExercises = (signal?: AbortSignal) => request<LinuxCopilotExercise[]>('/api/linux/copilot/exercises', signal)
 export const getAz900Course = (signal?: AbortSignal) => request<Az900Course>('/api/azure/az-900/course', signal)
 export const getAz900Questions = (sectionId?: string, signal?: AbortSignal) => request<Az900PracticeQuestion[]>(`/api/azure/az-900/questions${sectionId ? `?section_id=${encodeURIComponent(sectionId)}` : ''}`, signal)
-export const getAz900VisualDiagrams = (signal?: AbortSignal) => request<Az900VisualDiagram[]>('/api/azure/az-900/visual-learning/diagrams', signal)
+export const getAzureVisualDiagrams = (signal?: AbortSignal) => request<Az900VisualDiagram[]>('/api/azure/administration/visual-learning/diagrams', signal)
 export const getAzureAdminTopics = (signal?: AbortSignal) => request<AzureAdminTopic[]>('/api/azure/administration/topics', signal)
 export const getAzureAdminQuestions = (filters: { q?: string; topic?: string; difficulty?: AzureAdminDifficulty } = {}, signal?: AbortSignal) => request<AzureAdminQuestion[]>(`/api/azure/administration/questions${queryString(filters)}`, signal)
 export const getAzureAdminQuestion = (slug: string, signal?: AbortSignal) => request<AzureAdminQuestion>(`/api/azure/administration/questions/${encodeURIComponent(slug)}`, signal)

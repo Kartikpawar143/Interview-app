@@ -62,25 +62,29 @@ test('Copilot panel supports close/escape and a narrow mobile layout', async () 
   assert.match(css, /\.copilot-panel\.is-expanded/)
 })
 
-test('visual learning data covers all seven diagrams and reuses current questions and topics', async () => {
+test('visual learning data covers all twelve diagrams and reuses current questions and topics', async () => {
   const diagramsSource = await readFile(new URL('../src/data/linuxDiagrams.ts', import.meta.url), 'utf8')
   const compiledDiagrams = ts.transpileModule(diagramsSource, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ES2022 } }).outputText
   const { linuxDiagrams, scoreDiagramQuiz } = await import(`data:text/javascript;base64,${Buffer.from(compiledDiagrams).toString('base64')}`)
   const questions = JSON.parse(readFileSync(new URL('../../backend/app/content/linux/questions.json', import.meta.url), 'utf8'))
   const topics = JSON.parse(readFileSync(new URL('../../backend/app/content/linux/topics.json', import.meta.url), 'utf8'))
-  assert.deepEqual(linuxDiagrams.map((diagram) => diagram.id), ['architecture','boot','filesystem','process','network','permissions','monitoring'])
+  assert.deepEqual(linuxDiagrams.map((diagram) => diagram.id), ['architecture','boot','filesystem','process','network','permissions','storage','ssh','firewall','dns','web-server','monitoring'])
   assert.equal(linuxDiagrams.every((diagram) => diagram.quiz.length >= 2 && diagram.nodes.length >= 3), true)
   assert.equal(linuxDiagrams.every((diagram) => topics.some((topic) => topic.id === diagram.topicId)), true)
   assert.equal(linuxDiagrams.every((diagram) => diagram.nodes.every((node) => questions.some((question) => question.slug === node.questionSlug))), true)
+  assert.equal(linuxDiagrams.every((diagram) => diagram.edges.every(([from, to]) => diagram.nodes.some((node) => node.id === from) && diagram.nodes.some((node) => node.id === to))), true)
+  assert.equal(linuxDiagrams.every((diagram) => diagram.sequence.every((id) => diagram.nodes.some((node) => node.id === id))), true)
+  assert.deepEqual(linuxDiagrams.slice(6, 11).map((diagram) => diagram.id), ['storage','ssh','firewall','dns','web-server'])
   const firstQuiz = linuxDiagrams[0].quiz
   assert.equal(scoreDiagramQuiz('architecture', firstQuiz, { 'architecture:0': firstQuiz[0].correct, 'architecture:1': 0 }), 1)
   assert.equal(scoreDiagramQuiz('architecture', firstQuiz, {}), 0)
 })
 
 test('visual route exposes keyboard interaction, sequence controls, quiz feedback, and reduced-motion handling', async () => {
-  const [app, page, css] = await Promise.all([
+  const [app, page, layout, css] = await Promise.all([
     readFile(new URL('../src/App.tsx', import.meta.url), 'utf8'),
     readFile(new URL('../src/pages/LinuxVisualLearningPage.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/linux/LinuxLayout.tsx', import.meta.url), 'utf8'),
     readFile(new URL('../src/styles.css', import.meta.url), 'utf8'),
   ])
   assert.match(app, /pathname === '\/linux\/visual-learning'/)
@@ -89,6 +93,11 @@ test('visual route exposes keyboard interaction, sequence controls, quiz feedbac
   assert.match(page, /timelineRef\.current\?\.restart\(\)/)
   assert.match(page, /Correct\./)
   assert.match(page, /prefers-reduced-motion: reduce/)
+  assert.match(page, /Previous sequence step/)
+  assert.match(page, /Next sequence step/)
+  assert.match(layout, /linux-diagram-nav/)
+  assert.match(layout, /onSelectDiagram/)
+  assert.doesNotMatch(page, /visual-diagram-tabs/)
   assert.match(css, /@media\(max-width:700px\)\{\.visual-page-heading/)
   assert.match(css, /@media\(prefers-reduced-motion:reduce\)\{\.visual-diagram-tabs/)
 })

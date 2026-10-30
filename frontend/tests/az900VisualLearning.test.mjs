@@ -32,7 +32,7 @@ test('ten AZ-900 diagrams have meaningful nodes and references to existing lesso
   }
 })
 
-test('the four required Azure workflows have animated sequences', () => {
+test('the Azure diagram workflows have animated sequences', () => {
   const byId = Object.fromEntries(diagrams.map((diagram) => [diagram.id, diagram]))
   assert.deepEqual(byId['resource-hierarchy'].sequence, ['management-group', 'subscription', 'resource-group', 'resource'])
   for (const id of ['azure-networking', 'identity-access', 'monitoring-observability']) assert.ok(byId[id].sequence.length >= 4)
@@ -49,28 +49,31 @@ test('diagram node references and quizzes reuse the AZ-900 question bank', () =>
   assert.equal(helpers.scoreAz900VisualQuiz(diagram, questions, {}), 0)
 })
 
-test('visual route provides keyboard node selection, sequence controls, reduced motion, and learning links', async () => {
-  const [app, page, layout, home] = await Promise.all([
+test('Azure visual learning is part of administration and keeps diagram interaction controls', async () => {
+  const [app, page, layout, home, az900] = await Promise.all([
     readFile(new URL('../src/App.tsx', import.meta.url), 'utf8'),
-    readFile(new URL('../src/pages/Az900VisualLearningPage.tsx', import.meta.url), 'utf8'),
-    readFile(new URL('../src/components/azure/AzureVisualLearningLayout.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/pages/AzureVisualLearningPage.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/azure/AzureAdministrationLayout.tsx', import.meta.url), 'utf8'),
     readFile(new URL('../src/pages/HomePage.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/azure/AzureLayout.tsx', import.meta.url), 'utf8'),
   ])
-  assert.ok(app.includes("pathname === '/azure/az-900/visual-learning'"))
+  assert.ok(app.includes("pathname === '/azure/visual-learning'"))
+  assert.ok(app.includes("get('diagram')"))
   assert.ok(page.includes("event.key === 'Enter' || event.key === ' '"))
   assert.ok(page.includes('aria-pressed='))
   for (const control of ['timelineRef.current?.play()', 'timelineRef.current?.pause()', 'timelineRef.current?.restart()', 'timelineRef.current?.reset()']) assert.ok(page.includes(control))
   assert.ok(page.includes("prefers-reduced-motion: reduce"))
-  assert.ok(page.includes('/azure/topics/'))
-  assert.ok(page.includes('/azure/az-900/${currentSection!.id}/${lesson.id}'))
   assert.ok(layout.includes('aria-expanded={menuOpen}'))
-  assert.ok(home.includes('/azure/az-900/visual-learning'))
+  assert.ok(layout.includes('AZURE DIAGRAMS'))
+  assert.ok(layout.includes('/azure/visual-learning?diagram='))
+  assert.ok(home.includes('/azure/visual-learning'))
+  assert.ok(!az900.includes('Visual learning'))
 })
 
 test('homepage presents Linux, AWS, Azure administration, and AZ-900 learning pathways', async () => {
   const home = await readFile(new URL('../src/pages/HomePage.tsx', import.meta.url), 'utf8')
   const department = await readFile(new URL('../src/components/DepartmentCard.tsx', import.meta.url), 'utf8')
-  for (const link of ['href="/linux"', 'href="/aws"', 'href="/azure/az-900"', 'href="/azure/az-900/visual-learning"', 'href="/azure"']) assert.ok(home.includes(link))
+  for (const link of ['href="/linux"', 'href="/aws"', 'href="/azure/az-900"', 'href="/azure"', 'href="/azure/visual-learning"']) assert.ok(home.includes(link))
   assert.ok(home.includes('Linux administration &amp; technical interviews'))
   assert.ok(home.includes('Microsoft Azure Fundamentals'))
   assert.ok(home.includes('Azure operations &amp; interviews'))

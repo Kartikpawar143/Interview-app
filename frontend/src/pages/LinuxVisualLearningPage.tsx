@@ -14,12 +14,46 @@ const NODE_H = 64
 type TimelineController = { add: (targets: string | Element | Element[], parameters: Record<string, unknown>, position?: number | string) => TimelineController; call: (callback: () => void, position?: number | string) => TimelineController; play: () => TimelineController; pause: () => TimelineController; restart: () => TimelineController; reset: () => TimelineController; cancel: () => TimelineController }
 
 function edgePath(from: {x:number;y:number}, to: {x:number;y:number}) {
-  const startX = from.x + NODE_W
-  const startY = from.y + NODE_H / 2
-  const endX = to.x
-  const endY = to.y + NODE_H / 2
-  const curve = Math.max(24, Math.abs(endX - startX) * .42)
-  return `M ${startX} ${startY} C ${startX + curve} ${startY}, ${endX - curve} ${endY}, ${endX} ${endY}`
+  const dx = to.x + NODE_W / 2 - (from.x + NODE_W / 2)
+  const dy = to.y + NODE_H / 2 - (from.y + NODE_H / 2)
+  const factor = 1 / Math.max(Math.abs(dx) / (NODE_W / 2), Math.abs(dy) / (NODE_H / 2))
+  const startX = from.x + NODE_W / 2 + dx * factor
+  const startY = from.y + NODE_H / 2 + dy * factor
+  const endX = to.x + NODE_W / 2 - dx * factor
+  const endY = to.y + NODE_H / 2 - dy * factor
+  const curve = Math.max(20, Math.abs(endX - startX) * .38)
+  return `M ${startX} ${startY} C ${startX + Math.sign(dx || 1) * curve} ${startY + dy * .12}, ${endX - Math.sign(dx || 1) * curve} ${endY - dy * .12}, ${endX} ${endY}`
+}
+
+function wrapNodeLabel(label: string, maxChars = 17) {
+  const words = label.split(/\s+/)
+  const lines: string[] = []
+  let line = ''
+  for (const word of words) {
+    const candidate = line ? `${line} ${word}` : word
+    if (candidate.length > maxChars && line) { lines.push(line); line = word }
+    else line = candidate
+  }
+  if (line) lines.push(line)
+  return lines.slice(0, 2)
+}
+
+function wrapEdgeLabel(label: string, maxChars = 15) {
+  const words = label.split(/\s+/)
+  const lines: string[] = []
+  let line = ''
+  for (const word of words) {
+    const candidate = line ? `${line} ${word}` : word
+    if (candidate.length > maxChars && line) { lines.push(line); line = word }
+    else line = candidate
+  }
+  if (line) lines.push(line)
+  return lines.slice(0, 2)
+}
+
+function edgeLabelY(from: {x:number;y:number}, to: {x:number;y:number}) {
+  if (Math.abs(from.y - to.y) < 28) return from.y >= 130 ? Math.min(from.y, to.y) - 13 : Math.max(from.y, to.y) + NODE_H + 14
+  return Math.min(from.y, to.y) - 14
 }
 
 export function LinuxVisualLearningPage({ navigate }: { navigate: Navigate }) {
@@ -101,6 +135,20 @@ export function LinuxVisualLearningPage({ navigate }: { navigate: Navigate }) {
     else timelineRef.current?.play()
     setPlaying(true)
   }
+  const previousStep = () => {
+    const next = Math.max(0, sequenceStep - 1)
+    setSequenceStep(next)
+    if (sequenceIds[Math.max(0, next - 1)]) setSelectedNodeId(sequenceIds[Math.max(0, next - 1)])
+    setPlaying(false)
+    timelineRef.current?.pause()
+  }
+  const nextStep = () => {
+    const next = Math.min(sequenceIds.length, sequenceStep + 1)
+    setSequenceStep(next)
+    if (sequenceIds[next - 1]) setSelectedNodeId(sequenceIds[next - 1])
+    setPlaying(false)
+    timelineRef.current?.pause()
+  }
   const pause = () => { timelineRef.current?.pause(); setPlaying(false) }
   const replay = () => { setSequenceStep(0); setSelectedNodeId(sequenceIds[0] ?? diagram.nodes[0].id); if (reducedMotion) { setPlaying(false); return }; timelineRef.current?.restart(); setPlaying(true) }
   const reset = () => { timelineRef.current?.pause(); timelineRef.current?.reset(); setSequenceStep(0); setPlaying(false); setSelectedNodeId(diagram.nodes[0].id) }
@@ -109,29 +157,29 @@ export function LinuxVisualLearningPage({ navigate }: { navigate: Navigate }) {
   }
   const addAnswer = (quizIndex: number, optionIndex: number) => setAnswers((old) => ({ ...old, [`${diagram.id}:${quizIndex}`]: optionIndex }))
 
-  return <LinuxLayout topics={topics} navigate={navigate} eyebrow="VISUAL LEARNING">
+  return <LinuxLayout topics={topics} diagrams={linuxDiagrams} activeDiagramId={diagram.id} onSelectDiagram={chooseDiagram} activeItem="visual" navigate={navigate} eyebrow="VISUAL LEARNING">
     <div className="learn-content visual-learning-page">
       <div className="learn-breadcrumb"><button onClick={() => navigate('/linux')}>LINUX</button><ChevronRight size={12} /><span>VISUAL LEARNING</span></div>
-      <header className="visual-page-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> LINUX / VISUAL FIELD GUIDE</div><h1>See the system.<br /><span>Understand the flow.</span></h1><p>Explore interactive diagrams of how Linux works, inspect each component, then check your understanding with a short quiz.</p></div><div className="visual-heading-mark"><Sparkles size={22} /><span>07<br />DIAGRAMS</span></div></header>
-      <nav className="visual-diagram-tabs" aria-label="Linux diagrams">{linuxDiagrams.map((item, index) => <button key={item.id} type="button" className={diagram.id === item.id ? 'active' : ''} aria-current={diagram.id === item.id ? 'page' : undefined} onClick={() => chooseDiagram(item.id)}><span>{String(index + 1).padStart(2,'0')}</span>{item.title}</button>)}</nav>
-
+      <header className="visual-page-heading"><div><div className="eyebrow"><span className="eyebrow-line" /> LINUX / VISUAL FIELD GUIDE</div><h1>See the system.<br /><span>Understand the flow.</span></h1><p>Explore 12 interactive Linux architectures, inspect each component, then check your understanding with a short quiz.</p></div><div className="visual-heading-mark"><Sparkles size={22} /><span>12<br />DIAGRAMS</span></div></header>
       <section key={diagram.id} className="visual-workspace" aria-label={`${diagram.title} interactive diagram`}>
         <div className="visual-workspace-heading"><div><span className="section-overline">INTERACTIVE DIAGRAM / {String(linuxDiagrams.indexOf(diagram)+1).padStart(2,'0')}</span><h2>{diagram.title}</h2><p>{diagram.summary}</p></div><span className="visual-context-tag">{topic?.name ?? 'LINUX SYSTEMS'}</span></div>
         <div className="diagram-viewport" role="group" aria-label="Diagram; select a node for details">
-          <svg ref={svgRef} className={`linux-diagram-svg diagram-${diagram.id}`} viewBox="0 0 1020 360" role="group" aria-labelledby="diagram-title diagram-desc">
-            <title id="diagram-title">{diagram.title}</title><desc id="diagram-desc">{diagram.summary} Select each labeled component to learn more.</desc>
+          <svg ref={svgRef} className={`linux-diagram-svg diagram-${diagram.id}`} viewBox="0 0 1020 360" role="group" aria-labelledby={`diagram-title-${diagram.id} diagram-desc-${diagram.id}`}>
+            <title id={`diagram-title-${diagram.id}`}>{diagram.title}</title><desc id={`diagram-desc-${diagram.id}`}>{diagram.summary} Select each labeled component to learn more.</desc>
             <defs><marker id={`arrow-${diagram.id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" /></marker></defs>
+            <g className="diagram-boundaries" aria-hidden="true">{diagram.groups?.map((group) => <g key={group.id} className="diagram-boundary"><rect x={group.x} y={group.y} width={group.width} height={group.height} rx="8"/><text className="diagram-boundary-title" x={group.x + 12} y={group.y + 18}>{group.title}</text><text className="diagram-boundary-caption" x={group.x + 12} y={group.y + 32}>{group.caption}</text></g>)}</g>
             <g className="diagram-edges">{diagram.edges.map(([fromId,toId]) => { const from=diagram.nodes.find((item)=>item.id===fromId)!; const to=diagram.nodes.find((item)=>item.id===toId)!; return <path id={`visual-edge-${diagram.id}-${fromId}-${toId}`} key={`${fromId}-${toId}`} pathLength={1000} d={edgePath(from,to)} markerEnd={`url(#arrow-${diagram.id})`} className="diagram-edge" /> })}</g>
+            <g className="diagram-edge-labels" aria-hidden="true">{diagram.edges.map(([fromId,toId]) => { const label=diagram.edgeLabels?.[`${fromId}->${toId}`]; if(!label) return null; const from=diagram.nodes.find((item)=>item.id===fromId)!; const to=diagram.nodes.find((item)=>item.id===toId)!; const x=(from.x+NODE_W/2+to.x+NODE_W/2)/2; const y=edgeLabelY(from,to); const lines=wrapEdgeLabel(label); const width=Math.max(...lines.map((line)=>line.length))*5.1+12; const height=lines.length*10+6; return <g key={`${fromId}-${toId}`} className="diagram-edge-label" transform={`translate(${x} ${y})`}><rect x={-width/2} y={-height/2} width={width} height={height} rx="3"/><text textAnchor="middle" y={-((lines.length-1)*5)}>{lines.map((line,index)=><tspan key={index} x="0" dy={index===0?0:10}>{line}</tspan>)}</text></g> })}</g>
             {diagram.id === 'network' && <><path id="network-packet-path" className="network-packet-path" d="M 106 177 C 150 177 230 177 276 177 S 400 177 446 177 S 570 177 616 177 S 740 177 786 177 C 845 177 866 238 916 312" /><circle id="network-packet" className="network-packet" cx="0" cy="0" r="7" aria-label="Animated network packet" /></>}
-            {diagram.nodes.map((item,index) => <g key={item.id} id={`visual-node-${diagram.id}-${item.id}`} className={`diagram-node${selectedNode.id===item.id?' selected':''}${sequenceIds.includes(item.id) ? ' is-sequence-node' : ''}`} transform={`translate(${item.x} ${item.y})`} role="button" tabIndex={0} aria-label={`${item.label}: show explanation`} aria-pressed={selectedNode.id===item.id} onClick={(event)=>chooseNode(item.id,event.currentTarget)} onKeyDown={(event)=>onNodeKeyDown(event,item.id)}>
+            {diagram.nodes.map((item,index) => { const lines=wrapNodeLabel(item.label); return <g key={item.id} id={`visual-node-${diagram.id}-${item.id}`} className={`diagram-node${selectedNode.id===item.id?' selected':''}${sequenceIds.includes(item.id) ? ' is-sequence-node' : ''}`} transform={`translate(${item.x} ${item.y})`} role="button" tabIndex={0} aria-label={`${item.label}: show explanation`} aria-pressed={selectedNode.id===item.id} onClick={(event)=>chooseNode(item.id,event.currentTarget)} onKeyDown={(event)=>onNodeKeyDown(event,item.id)}>
               <rect width={NODE_W} height={NODE_H} rx="7" />
               {sequenceIds.includes(item.id) && <text className="diagram-step-number" x="11" y="16">{String(sequenceIds.indexOf(item.id)+1).padStart(2,'0')}</text>}
-              <text className="diagram-node-label" x={NODE_W/2} y={sequenceIds.includes(item.id)?36:37} textAnchor="middle">{item.label}</text>
-              <text className="diagram-node-meta" x={NODE_W/2} y="54" textAnchor="middle">{index===0?'SYSTEM COMPONENT':'SELECT TO EXPLORE'}</text>
-            </g>)}
+              <text className="diagram-node-label" x={NODE_W/2} y={lines.length>1?25:33} textAnchor="middle">{lines.map((line,lineIndex)=><tspan key={lineIndex} x={NODE_W/2} dy={lineIndex===0?0:12}>{line}</tspan>)}</text>
+              <text className="diagram-node-meta" x={NODE_W/2} y="54" textAnchor="middle">{sequenceIds.includes(item.id)?`STEP ${String(sequenceIds.indexOf(item.id)+1).padStart(2,'0')}`:index===0?'SYSTEM COMPONENT':'SELECT TO EXPLORE'}</text>
+            </g>})}
           </svg>
         </div>
-        {sequenceIds.length > 0 && <div className="diagram-sequence-controls"><div className="sequence-stage"><span>SEQUENCE</span><b>{sequenceStep ? `${String(sequenceStep).padStart(2,'0')} / ${String(sequenceIds.length).padStart(2,'0')} · ${diagram.nodes.find((item)=>item.id===sequenceIds[Math.max(0,sequenceStep-1)])?.label ?? 'Ready'}` : `READY · ${sequenceIds.length} STEPS`}</b>{reducedMotion && <small>Reduced motion is on. Each Play press advances one step.</small>}</div><div className="sequence-buttons"><button onClick={playing?pause:play} aria-label={playing?'Pause sequence':reducedMotion?'Next sequence step':'Play sequence'}>{playing?<Pause size={14}/>:<Play size={14}/>} {playing?'Pause':reducedMotion?'Next step':'Play'}</button><button onClick={replay} aria-label="Replay sequence"><RotateCcw size={14}/> Replay</button><button onClick={reset} aria-label="Reset sequence"><RotateCcw size={14}/> Reset</button></div></div>}
+        {sequenceIds.length > 0 && <div className="diagram-sequence-controls"><div className="sequence-stage"><span>GUIDED SYSTEM FLOW</span><b>{sequenceStep ? `${String(sequenceStep).padStart(2,'0')} / ${String(sequenceIds.length).padStart(2,'0')} · ${diagram.nodes.find((item)=>item.id===sequenceIds[Math.max(0,sequenceStep-1)])?.label ?? 'Ready'}` : `READY · ${sequenceIds.length} STEPS`}</b>{reducedMotion && <small>Reduced motion is on. Use Previous and Next step to navigate manually.</small>}</div><div className="sequence-buttons">{reducedMotion && <><button onClick={previousStep} disabled={sequenceStep===0} aria-label="Previous sequence step"><ArrowLeft size={14}/> Previous</button><button onClick={nextStep} disabled={sequenceStep>=sequenceIds.length} aria-label="Next sequence step">Next step <ArrowRight size={14}/></button></>}{!reducedMotion && <button onClick={playing?pause:play} aria-label={playing?'Pause sequence':'Play sequence'}>{playing?<Pause size={14}/>:<Play size={14}/>} {playing?'Pause':'Play'}</button>}<button onClick={replay} aria-label="Replay sequence"><RotateCcw size={14}/> Replay</button><button onClick={reset} aria-label="Reset sequence"><RotateCcw size={14}/> Reset</button></div></div>}
         {sequenceIds.length === 0 && <p className="diagram-interaction-hint"><span>01</span> Select any diagram component to inspect its role and related Linux content.</p>}
       </section>
 
