@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
-// @ts-ignore Anime.js is installed from package.json; Vite uses a local API-compatible shim in offline workspaces.
 import { animate, createScope, createTimeline, stagger, svg } from 'animejs'
 import { ArrowLeft, ArrowRight, BookOpen, Check, ChevronRight, CircleHelp, Command, ExternalLink, Lightbulb, Pause, Play, RotateCcw, Sparkles, Terminal } from 'lucide-react'
 import { LinuxLayout } from '../components/linux/LinuxLayout'
@@ -11,8 +10,6 @@ import type { LinuxQuestion, LinuxTopic } from '../types/linux'
 
 const NODE_W = 142
 const NODE_H = 64
-type TimelineController = { add: (targets: string | Element | Element[], parameters: Record<string, unknown>, position?: number | string) => TimelineController; call: (callback: () => void, position?: number | string) => TimelineController; play: () => TimelineController; pause: () => TimelineController; restart: () => TimelineController; reset: () => TimelineController; cancel: () => TimelineController }
-
 function edgePath(from: {x:number;y:number}, to: {x:number;y:number}) {
   const dx = to.x + NODE_W / 2 - (from.x + NODE_W / 2)
   const dy = to.y + NODE_H / 2 - (from.y + NODE_H / 2)
@@ -67,7 +64,7 @@ export function LinuxVisualLearningPage({ navigate }: { navigate: Navigate }) {
   const [reducedMotion, setReducedMotion] = useState(false)
   const svgRef = useRef<SVGSVGElement>(null)
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null)
-  const timelineRef = useRef<TimelineController | null>(null)
+  const timelineRef = useRef<ReturnType<typeof createTimeline> | null>(null)
   const selectionAnimationRef = useRef<ReturnType<typeof animate> | null>(null)
   const diagram = useMemo(() => diagramById(diagramId), [diagramId])
   const selectedNode = diagram.nodes.find((node) => node.id === selectedNodeId) ?? diagram.nodes[0]

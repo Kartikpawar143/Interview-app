@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent } from 'react'
-// @ts-ignore Anime.js is installed from package.json; Vite has a local API-compatible offline fallback.
 import { animate, createScope, createTimeline, stagger, svg } from 'animejs'
 import { ArrowRight, BookOpen, Check, ChevronLeft, ChevronRight, ExternalLink, LoaderCircle, Network, Pause, Play, RotateCcw, ShieldCheck } from 'lucide-react'
 import { AzureAdministrationLayout } from '../components/azure/AzureAdministrationLayout'
@@ -10,7 +9,6 @@ import type { Az900PracticeQuestion, Az900VisualDiagram, Az900VisualNode } from 
 import type { AzureAdminQuestion, AzureAdminScenario, AzureAdminTopic } from '../types/azureAdmin'
 import type { Navigate } from '../lib/navigation'
 
-type TimelineController = { add: (targets: string | Element | Element[], parameters: Record<string, unknown>, position?: number | string) => TimelineController; call: (callback: () => void, position?: number | string) => TimelineController; play: () => TimelineController; pause: () => TimelineController; restart: () => TimelineController; reset: () => TimelineController; cancel: () => TimelineController }
 type DiagramConnection = { nodeId: string; direction: 'incoming' | 'outgoing' }
 const NODE_W = 184
 const NODE_H = 84
@@ -61,7 +59,7 @@ export function AzureVisualLearningPage({ navigate, requestedDiagramId }: { navi
   const [error, setError] = useState('')
   const svgRef = useRef<SVGSVGElement>(null)
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null)
-  const timelineRef = useRef<TimelineController | null>(null)
+  const timelineRef = useRef<ReturnType<typeof createTimeline> | null>(null)
   const selectionAnimationRef = useRef<ReturnType<typeof animate> | null>(null)
   const diagram = useMemo(() => diagrams.find((item) => item.id === diagramId) ?? diagrams[0], [diagrams, diagramId])
   const selectedNode = diagram?.nodes.find((node) => node.id === selectedNodeId) ?? diagram?.nodes[0]
